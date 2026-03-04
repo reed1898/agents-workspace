@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772618878513,
+      "updatedAtMs": 1772633274059,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772633249186,
-        "lastRunAtMs": 1772618849186,
+        "nextRunAtMs": 1772647649192,
+        "lastRunAtMs": 1772633249192,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 29327,
+        "lastDurationMs": 24867,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -178,7 +178,7 @@
       "description": "每天晚上9:20安全扫描并报告",
       "enabled": true,
       "createdAtMs": 1772508063062,
-      "updatedAtMs": 1772544136508,
+      "updatedAtMs": 1772630576198,
       "schedule": {
         "kind": "cron",
         "expr": "20 21 * * *",
@@ -196,11 +196,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772630400000,
-        "lastRunAtMs": 1772544000011,
+        "nextRunAtMs": 1772716800000,
+        "lastRunAtMs": 1772630400008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 136497,
+        "lastDurationMs": 176190,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -285,7 +285,7 @@
       "name": "kb-hourly-closed-loop-xiaohong",
       "enabled": true,
       "createdAtMs": 1772587819080,
-      "updatedAtMs": 1772622270540,
+      "updatedAtMs": 1772636721110,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -305,11 +305,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772625837495,
-        "lastRunAtMs": 1772622237506,
+        "nextRunAtMs": 1772640237495,
+        "lastRunAtMs": 1772636637504,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 33034,
+        "lastDurationMs": 83606,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -324,7 +324,7 @@
       "description": "If Reed has not messaged in the last hour, send a proactive status update; otherwise stay silent.",
       "enabled": true,
       "createdAtMs": 1772604495794,
-      "updatedAtMs": 1772622319103,
+      "updatedAtMs": 1772636755613,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -344,11 +344,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772625876835,
-        "lastRunAtMs": 1772622276843,
+        "nextRunAtMs": 1772640276835,
+        "lastRunAtMs": 1772636723122,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 42260,
+        "lastDurationMs": 32491,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
