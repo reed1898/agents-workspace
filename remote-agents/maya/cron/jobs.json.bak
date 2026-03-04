@@ -1006,7 +1006,7 @@
       "name": "kb-sync-maya-hourly",
       "enabled": true,
       "createdAtMs": 1772587424209,
-      "updatedAtMs": 1772609068539,
+      "updatedAtMs": 1772612679902,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1023,11 +1023,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772612657941,
-        "lastRunAtMs": 1772609057941,
+        "nextRunAtMs": 1772616257955,
+        "lastRunAtMs": 1772612657955,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 10598,
+        "lastDurationMs": 21947,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -1039,7 +1039,7 @@
       "name": "kb-hourly-sync-merge-maya",
       "enabled": true,
       "createdAtMs": 1772588305081,
-      "updatedAtMs": 1772606338323,
+      "updatedAtMs": 1772613536285,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1056,15 +1056,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772609905155,
-        "lastRunAtMs": 1772606305155,
+        "nextRunAtMs": 1772617105183,
+        "lastRunAtMs": 1772613505183,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 33168,
+        "lastDurationMs": 31102,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772609905166
+        "consecutiveErrors": 0
       }
     }
   ]

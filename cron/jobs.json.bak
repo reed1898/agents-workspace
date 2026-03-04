@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772604468768,
+      "updatedAtMs": 1772618878513,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772618849179,
-        "lastRunAtMs": 1772604449179,
+        "nextRunAtMs": 1772633249186,
+        "lastRunAtMs": 1772618849186,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 19589,
+        "lastDurationMs": 29327,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -285,7 +285,7 @@
       "name": "kb-hourly-closed-loop-xiaohong",
       "enabled": true,
       "createdAtMs": 1772587819080,
-      "updatedAtMs": 1772607920000,
+      "updatedAtMs": 1772622270540,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -305,11 +305,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772611437495,
-        "lastRunAtMs": 1772607837504,
+        "nextRunAtMs": 1772625837495,
+        "lastRunAtMs": 1772622237506,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 82496,
+        "lastDurationMs": 33034,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -324,7 +324,7 @@
       "description": "If Reed has not messaged in the last hour, send a proactive status update; otherwise stay silent.",
       "enabled": true,
       "createdAtMs": 1772604495794,
-      "updatedAtMs": 1772604495794,
+      "updatedAtMs": 1772618766447,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -344,8 +344,15 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772607876835,
-        "runningAtMs": 1772607922008
+        "nextRunAtMs": 1772622276835,
+        "lastRunAtMs": 1772618682985,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 83462,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772622276841
       }
     }
   ]

@@ -1006,7 +1006,7 @@
       "name": "kb-sync-maya-hourly",
       "enabled": true,
       "createdAtMs": 1772587424209,
-      "updatedAtMs": 1772609068539,
+      "updatedAtMs": 1772612679902,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1023,11 +1023,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772612657941,
-        "lastRunAtMs": 1772609057941,
+        "nextRunAtMs": 1772616257955,
+        "lastRunAtMs": 1772612657955,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 10598,
+        "lastDurationMs": 21947,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -1039,7 +1039,7 @@
       "name": "kb-hourly-sync-merge-maya",
       "enabled": true,
       "createdAtMs": 1772588305081,
-      "updatedAtMs": 1772609931945,
+      "updatedAtMs": 1772613536285,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1056,14 +1056,43 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772613505168,
-        "lastRunAtMs": 1772609905168,
+        "nextRunAtMs": 1772617105183,
+        "lastRunAtMs": 1772613505183,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 26777,
+        "lastDurationMs": 31102,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "89124dbf-08eb-4799-8764-45324cd2a474",
+      "agentId": "main",
+      "name": "openclawdirectory-hot-skills-check",
+      "description": "Check openclawdirectory.co.uk for hot skills twice daily and notify Reed only when notable",
+      "enabled": true,
+      "createdAtMs": 1772614370276,
+      "updatedAtMs": 1772614370276,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10,22 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "检查 https://openclawdirectory.co.uk/ 上的热门 skills。只提取值得关注的新/热条目（最多5个），每个给出：技能名、热度信号（如排序/点赞/讨论/新上榜）、一句为何值得关注。若没有明显值得关注的变化，回复 NO_REPLY；若有，发一条简短中文汇报给 Reed，最后加一句‘要不要我帮你拉取其中一个来试？’。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685",
+        "accountId": "maya"
+      },
+      "state": {
+        "nextRunAtMs": 1772632800000
       }
     }
   ]
