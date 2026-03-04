@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772633274059,
+      "updatedAtMs": 1772647676288,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772647649192,
-        "lastRunAtMs": 1772633249192,
+        "nextRunAtMs": 1772662049205,
+        "lastRunAtMs": 1772647649205,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 24867,
+        "lastDurationMs": 27083,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -42,10 +42,10 @@
       "name": "daily-agent-summary",
       "enabled": true,
       "createdAtMs": 1772475266617,
-      "updatedAtMs": 1772560846365,
+      "updatedAtMs": 1772646264850,
       "schedule": {
         "kind": "cron",
-        "expr": "0 2 * * *",
+        "expr": "0 1 * * *",
         "tz": "Asia/Shanghai"
       },
       "sessionTarget": "isolated",
@@ -59,7 +59,7 @@
         "mode": "announce"
       },
       "state": {
-        "nextRunAtMs": 1772647200000,
+        "nextRunAtMs": 1772730000000,
         "lastRunAtMs": 1772560800008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
@@ -213,7 +213,7 @@
       "name": "evolver-hourly",
       "enabled": true,
       "createdAtMs": 1772560611996,
-      "updatedAtMs": 1772575315802,
+      "updatedAtMs": 1772650882580,
       "schedule": {
         "kind": "cron",
         "expr": "0 3,4,5,6 * * *",
@@ -232,14 +232,15 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772650800000,
-        "lastRunAtMs": 1772575200032,
+        "nextRunAtMs": 1772654400000,
+        "lastRunAtMs": 1772650800027,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 115770,
+        "lastDurationMs": 82553,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772654400009
       }
     },
     {
@@ -285,10 +286,10 @@
       "name": "kb-hourly-closed-loop-xiaohong",
       "enabled": true,
       "createdAtMs": 1772587819080,
-      "updatedAtMs": 1772636721110,
+      "updatedAtMs": 1772646313323,
       "schedule": {
         "kind": "cron",
-        "expr": "0 * * * *",
+        "expr": "0 10,22 * * *",
         "tz": "Asia/Shanghai",
         "staggerMs": 300000
       },
@@ -305,11 +306,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772640237495,
-        "lastRunAtMs": 1772636637504,
+        "nextRunAtMs": 1772676237495,
+        "lastRunAtMs": 1772643837502,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 83606,
+        "lastDurationMs": 94342,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -324,10 +325,10 @@
       "description": "If Reed has not messaged in the last hour, send a proactive status update; otherwise stay silent.",
       "enabled": true,
       "createdAtMs": 1772604495794,
-      "updatedAtMs": 1772633107335,
+      "updatedAtMs": 1772646313346,
       "schedule": {
         "kind": "cron",
-        "expr": "0 * * * *",
+        "expr": "0 10,12,14,16,18,20,22 * * *",
         "tz": "Asia/Shanghai",
         "staggerMs": 300000
       },
@@ -344,15 +345,14 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772636676835,
-        "lastRunAtMs": 1772633076847,
+        "nextRunAtMs": 1772676276835,
+        "lastRunAtMs": 1772643933882,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 30488,
+        "lastDurationMs": 62102,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772636723120
+        "consecutiveErrors": 0
       }
     }
   ]
