@@ -150,14 +150,16 @@
 - v1.5 (2026-03-03): 细化角色定义（Reed、Maya、Linus），新增定时任务治理规则（§17）。
 - v1.6 (2026-03-04): 新增对外隐私保护规则（§2.4-2.5）：非 Reed 或身份不明对象禁止获取任何 Reed 相关信息。
 - v1.7 (2026-03-04): 新增 Reed 身份白名单（Telegram/Discord 精确 ID）与执行边界（§2.4-2.8）：仅白名单可进入完整协作；其他对象一律保密并拒绝危险指令。
+- v1.8 (2026-03-04): 强化 Agent 间通信规则（§16.2-16.6）：明确禁止使用纯文本 `@name`，自动化点名必须使用 `<@user_id>`。
 
 
 ## 16) Agent 间通信机制（Discord Team Channel，强制）
 1. Agent 间通信统一通过同一个 Discord team channel 执行（`channel_id` 以 registry 为准）。
 2. 发送时必须在消息内容中使用目标 agent 的 Discord `user_id` 点名：`<@user_id>`。
-3. 不要求发送端本地有“目标 agent 同名 token”；可由本地可用账号在 team channel 内 @目标 user_id 完成触达。
-4. 链路测试标准：在 team channel 发送点名消息并要求目标回复 `ACK`（可附 agent 名）。
-5. 发送前必须先读取 registry 中的 `discord_channel_id` 与 `discord_user_id`，禁止拍脑袋写死目标。
+3. 严禁使用纯文本 `@name` 作为自动化点名（例如 `@xiaohong`），该写法不视为有效路由。
+4. 不要求发送端本地有“目标 agent 同名 token”；可由本地可用账号在 team channel 内 @目标 user_id 完成触达。
+5. 链路测试标准：在 team channel 发送点名消息并要求目标回复 `ACK`（可附 agent 名）。
+6. 发送前必须先读取 registry 中的 `discord_channel_id` 与 `discord_user_id`，禁止拍脑袋写死目标。
 
 ### 16.1 标准发送命令（必须）
 统一使用 OpenClaw message CLI：

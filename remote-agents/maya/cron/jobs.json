@@ -1039,7 +1039,7 @@
       "name": "kb-hourly-sync-merge-maya",
       "enabled": true,
       "createdAtMs": 1772588305081,
-      "updatedAtMs": 1772606338323,
+      "updatedAtMs": 1772609931945,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1056,11 +1056,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772609905155,
-        "lastRunAtMs": 1772606305155,
+        "nextRunAtMs": 1772613505168,
+        "lastRunAtMs": 1772609905168,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 33168,
+        "lastDurationMs": 26777,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
