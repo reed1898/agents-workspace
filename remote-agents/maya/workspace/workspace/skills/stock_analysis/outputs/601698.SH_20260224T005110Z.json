@@ -1,0 +1,69 @@
+{
+  "symbol": "601698",
+  "company": "中国卫通",
+  "as_of": "2026-02-24T00:51:10.804357+00:00",
+  "price": 0.0,
+  "currency": "CNY",
+  "change_percent": -100.0,
+  "valuation": {
+    "pe": 392.18,
+    "pb": 9.42,
+    "market_cap": 149416512022,
+    "float_market_cap": 149416512022
+  },
+  "technical": {
+    "sma20": 37.88,
+    "sma50": 34.15,
+    "rsi14": 36.64,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-12 15:56:29:309",
+      "title": "中国卫通:中国卫通关于控股子公司亚太卫星控股有限公司公布盈利预警的提示性公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH601698/AN202602121819899073.html"
+    },
+    {
+      "time": "2026-01-23 18:08:27:211",
+      "title": "中国卫通:中国卫通股票交易风险提示性公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH601698/AN202601231818334590.html"
+    },
+    {
+      "time": "2026-01-22 17:19:44:291",
+      "title": "中国卫通:中国卫通关于持股5%以上的股东权益变动触及1%刻度的提示性公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH601698/AN202601221818277857.html"
+    },
+    {
+      "time": "2026-01-20 17:08:21:309",
+      "title": "中国卫通:中国卫通关于持股5%以上的股东权益变动触及1%刻度的提示性公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH601698/AN202601201818156309.html"
+    },
+    {
+      "time": "2026-01-15 17:03:59:314",
+      "title": "中国卫通:中国卫通股票交易异常波动公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH601698/AN202601151817051021.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：中国卫通:中国卫通关于控股子公司亚太卫星控股有限公司公布"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 50,
+    "total": 55.3
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "symbol": "002400",
+  "company": "省广集团",
+  "as_of": "2026-02-20T07:21:08.085537+00:00",
+  "price": 11.06,
+  "currency": "CNY",
+  "change_percent": -4.57,
+  "valuation": {
+    "pe": 150.49,
+    "pb": 3.87,
+    "market_cap": 19281308635,
+    "float_market_cap": 19091380675
+  },
+  "technical": {
+    "sma20": 11.52,
+    "sma50": 10.16,
+    "rsi14": 48.47,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-01-19 16:52:10:608",
+      "title": "省广集团:关于股票交易异常波动的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002400/AN202601191818109875.html"
+    },
+    {
+      "time": "2026-01-15 17:23:22:254",
+      "title": "省广集团:关于延期更换选举独立董事的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002400/AN202601151817051816.html"
+    },
+    {
+      "time": "2026-01-13 16:57:12:320",
+      "title": "省广集团:关于股票交易异常波动的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002400/AN202601131816981529.html"
+    },
+    {
+      "time": "2026-01-04 15:31:38:215",
+      "title": "省广集团:关于高级管理人员辞职的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002400/AN202601041814692134.html"
+    },
+    {
+      "time": "2025-12-29 18:32:07:869",
+      "title": "省广集团:2025年第三次临时股东会法律意见书",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002400/AN202512291810692135.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：省广集团:关于股票交易异常波动的公告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 70,
+    "total": 62.3
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

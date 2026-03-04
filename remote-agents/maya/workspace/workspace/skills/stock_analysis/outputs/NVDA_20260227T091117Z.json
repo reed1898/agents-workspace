@@ -1,0 +1,39 @@
+{
+  "symbol": "NVDA",
+  "company": "NVIDIA Corporation",
+  "as_of": "2026-02-27T09:11:17.736310+00:00",
+  "price": 184.89,
+  "currency": "USD",
+  "change_percent": -5.46,
+  "valuation": {
+    "pe": 45.65,
+    "market_cap": 4501516845056
+  },
+  "technical": {
+    "sma20": 186.75,
+    "sma50": 185.6,
+    "rsi14": 62.51,
+    "trend": "sideways"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险",
+    "高PE对业绩兑现要求较高"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 70,
+    "total": 62.3
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

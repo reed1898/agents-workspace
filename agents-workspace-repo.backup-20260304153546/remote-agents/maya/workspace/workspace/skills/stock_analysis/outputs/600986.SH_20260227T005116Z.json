@@ -1,0 +1,39 @@
+{
+  "symbol": "600986.SH",
+  "company": "Sample Corp (Offline)",
+  "as_of": "2026-02-27T00:51:16.431232+00:00",
+  "price": 214.1,
+  "currency": "USD",
+  "change_percent": 0.19,
+  "valuation": {
+    "pe": 29.4,
+    "market_cap": 3200000000000
+  },
+  "technical": {
+    "sma20": 209.67,
+    "sma50": 203.39,
+    "rsi14": 90.79,
+    "trend": "uptrend"
+  },
+  "risks": [
+    "宏观流动性收紧导致估值压缩",
+    "财报不及预期引发回撤",
+    "行业竞争加剧影响利润率"
+  ],
+  "catalysts": [
+    "新产品周期带来收入增长",
+    "回购/分红提升股东回报",
+    "指引上修触发盈利预期抬升"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 55,
+    "total": 63.3
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。 当前技术趋势偏强。",
+  "confidence": "medium (sample)",
+  "data_sources": [
+    "offline_sample_dataset"
+  ]
+}

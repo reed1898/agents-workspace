@@ -1,0 +1,26 @@
+{
+  "exchange": "binance",
+  "symbols": [
+    {"symbol": "BTCUSDT", "name": "BTC"},
+    {"symbol": "ETHUSDT", "name": "ETH"},
+    {"symbol": "SOLUSDT", "name": "SOL"}
+  ],
+  "intervalMinutes": 5,
+  "bars": 300,
+  "thresholds": {
+    "crash15mPct": -2.0,
+    "spike15mPct": 2.0,
+    "crash1hPct": -4.0,
+    "spike1hPct": 4.0,
+    "bounceFromLowPct": 1.8,
+    "crashWindowHours": 6,
+    "cooldownMinutes": 60,
+
+    "breakoutLookbackBars": 50,
+    "breakoutVolMult": 1.5,
+
+    "intrabarRange15mPct": 4.0,
+    "intrabarLeg15mPct": 2.0,
+    "intrabarCooldownMinutes": 20
+  }
+}

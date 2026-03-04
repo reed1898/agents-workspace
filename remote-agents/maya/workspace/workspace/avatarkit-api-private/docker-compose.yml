@@ -1,0 +1,100 @@
+# AvatarKit API - Docker Compose 部署配置
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      # 应用配置
+      - APP_NAME=AvatarKit API
+      - DEBUG=false
+      - ENV=production
+      
+      # 数据库配置
+      - DATABASE_URL=postgresql+asyncpg://avatarkit:your_password@db:5432/avatarkit
+      
+      # Redis 配置
+      - REDIS_URL=redis://redis:6379/0
+      
+      # 安全配置（生产环境必须修改）
+      - JWT_SECRET=${JWT_SECRET:-your-super-secret-jwt-key-change-in-production}
+      - API_KEY_SALT=${API_KEY_SALT:-your-api-key-salt-change-in-production}
+      
+      # 外部 API 密钥
+      - FAL_KEY=${FAL_KEY:-}
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY:-}
+      
+      # 存储配置（可选）
+      - R2_ACCOUNT_ID=${R2_ACCOUNT_ID:-}
+      - R2_ACCESS_KEY_ID=${R2_ACCESS_KEY_ID:-}
+      - R2_SECRET_ACCESS_KEY=${R2_SECRET_ACCESS_KEY:-}
+      - R2_BUCKET_NAME=${R2_BUCKET_NAME:-avatarkit}
+      - STORAGE_PUBLIC_URL=${STORAGE_PUBLIC_URL:-}
+      
+      # 支付配置（可选）
+      - ALIPAY_APP_ID=${ALIPAY_APP_ID:-}
+      - ALIPAY_PRIVATE_KEY=${ALIPAY_PRIVATE_KEY:-}
+      - ALIPAY_PUBLIC_KEY=${ALIPAY_PUBLIC_KEY:-}
+      - WECHAT_APP_ID=${WECHAT_APP_ID:-}
+      - WECHAT_MCH_ID=${WECHAT_MCH_ID:-}
+      - WECHAT_API_KEY=${WECHAT_API_KEY:-}
+      - WECHAT_NOTIFY_URL=${WECHAT_NOTIFY_URL:-https://your-domain.com/v1/orders/webhook/wechat}
+    
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    
+    restart: unless-stopped
+    
+    networks:
+      - avatarkit-network
+
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=avatarkit
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-your_password}
+      - POSTGRES_DB=avatarkit
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U avatarkit -d avatarkit"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    
+    restart: unless-stopped
+    
+    networks:
+      - avatarkit-network
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    
+    restart: unless-stopped
+    
+    networks:
+      - avatarkit-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  avatarkit-network:
+    driver: bridge

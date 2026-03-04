@@ -1,0 +1,8 @@
+logs/
+**/logs/
+session/
+sessions/
+session-logs/
+**/session/
+**/sessions/
+**/session-logs/

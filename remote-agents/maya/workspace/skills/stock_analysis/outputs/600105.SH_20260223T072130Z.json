@@ -1,0 +1,69 @@
+{
+  "symbol": "600105",
+  "company": "永鼎股份",
+  "as_of": "2026-02-23T07:21:30.528777+00:00",
+  "price": 26.41,
+  "currency": "CNY",
+  "change_percent": -4.69,
+  "valuation": {
+    "pe": 87.99,
+    "pb": 11.7,
+    "market_cap": 38611282720,
+    "float_market_cap": 38611282720
+  },
+  "technical": {
+    "sma20": 26.84,
+    "sma50": 24.84,
+    "rsi14": 52.39,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-10 18:23:56:328",
+      "title": "永鼎股份:永鼎股份关于为子公司申请年度银行授信提供担保的进展公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600105/AN202602101819859036.html"
+    },
+    {
+      "time": "2026-01-28 17:19:52:355",
+      "title": "永鼎股份:永鼎股份关于控股股东部分股权解除质押及再质押的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600105/AN202601281818507232.html"
+    },
+    {
+      "time": "2026-01-27 17:12:17:305",
+      "title": "永鼎股份:永鼎股份2025年年度业绩预增公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600105/AN202601271818467559.html"
+    },
+    {
+      "time": "2026-01-09 15:51:40:682",
+      "title": "永鼎股份:永鼎股份关于担保额度调剂及为子公司申请年度银行授信提供担保的进展公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600105/AN202601091816878680.html"
+    },
+    {
+      "time": "2025-12-26 17:12:25:416",
+      "title": "永鼎股份:永鼎股份股票交易异常波动公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600105/AN202512261808614890.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：永鼎股份:永鼎股份关于为子公司申请年度银行授信提供担保的"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 70,
+    "total": 62.3
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

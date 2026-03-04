@@ -1,0 +1,285 @@
+{
+  "main": {
+    "id": "e10ef1b535b8ab6d",
+    "type": "split",
+    "children": [
+      {
+        "id": "0a4b222da75e76aa",
+        "type": "split",
+        "children": [
+          {
+            "id": "c72b2294f4353ef1",
+            "type": "tabs",
+            "dimension": 69.66199505358615,
+            "children": [
+              {
+                "id": "09c4e33a62b47c84",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "01_Daily/agents/2026-02/linus-daily-2026-02-26.md",
+                    "mode": "preview",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "linus-daily-2026-02-26"
+                }
+              }
+            ]
+          },
+          {
+            "id": "2dbfa0c9a96ea9d2",
+            "type": "tabs",
+            "dimension": 30.338004946413854,
+            "children": [
+              {
+                "id": "849259a0be4ff016",
+                "type": "leaf",
+                "pinned": true,
+                "state": {
+                  "type": "terminal:terminal",
+                  "state": {
+                    "terminal:terminal": {
+                      "cwd": "/Users/rain/.openclaw/kb/",
+                      "focus": false,
+                      "profile": {
+                        "args": [
+                          "--login"
+                        ],
+                        "executable": "/bin/zsh",
+                        "followTheme": true,
+                        "name": "",
+                        "platforms": {
+                          "darwin": true
+                        },
+                        "pythonExecutable": "python3",
+                        "restoreHistory": false,
+                        "rightClickAction": "copyPaste",
+                        "successExitCodes": [
+                          "0",
+                          "SIGINT",
+                          "SIGTERM"
+                        ],
+                        "terminalOptions": {
+                          "documentOverride": null
+                        },
+                        "type": "integrated",
+                        "useWin32Conhost": true
+                      },
+                      "serial": null
+                    }
+                  },
+                  "pinned": true,
+                  "icon": "terminal",
+                  "title": "终端：zsh"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f9d3108c039e1b91",
+    "type": "split",
+    "children": [
+      {
+        "id": "5326e6976942e853",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c5f55b1e24631862",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "3db8eb0c4dcd60dc",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "f2f223bbc2c68a34",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 436.5
+  },
+  "right": {
+    "id": "6656bb5597267171",
+    "type": "split",
+    "children": [
+      {
+        "id": "289026bcfa2d2974",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "145b4586131a44de",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "01_Daily/agents/2026-02/linus-daily-2026-02-26.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "linus-daily-2026-02-26 的反向链接列表"
+            }
+          },
+          {
+            "id": "5b9c6d348338a3ca",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "01_Daily/2026-02-24-daily-morning.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "2026-02-24-daily-morning 的出链列表"
+            }
+          },
+          {
+            "id": "f41c095afaafe3d6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "2456a7bda6722c32",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "9a7383de469ea79b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "01_Daily/2026-02-24-daily-morning.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "2026-02-24-daily-morning 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "obsidian42-brat:BRAT": false,
+      "claudian:Open Claudian": false,
+      "terminal:Open terminal": false
+    }
+  },
+  "active": "09c4e33a62b47c84",
+  "lastOpenFiles": [
+    "01_Daily/agents/2026-02/night-evolve-2026-02-28.md",
+    "01_Daily/skills-security-scan-2026-02-27.md",
+    "us-preopen-2026-02-27.md",
+    "30_Research/openclaw-ecosystem/signals/2026-02-27.md",
+    "01_Daily/crypto/2026-02/crypto-2026-02-27-2200.md",
+    "01_Daily/2026-02-27-daily-evening.md",
+    "01_Daily/agents/2026-02/reed-daily-2026-02-27.md",
+    "01_Daily/agents/2026-02/jesse-daily-2026-02-27.md",
+    "01_Daily/agents/2026-02/linus-daily-2026-02-27.md",
+    "01_Daily/agents/2026-02/maya-daily-2026-02-27.md",
+    "01_Daily/us/2026-02/us-2026-02-27-2030.md",
+    "01_Daily/us/2026-02/us-2026-02-27-0910.md",
+    "01_Daily/crypto/2026-02/crypto-2026-02-27-1600.md",
+    "a-share-postclose-2026-02-27.md",
+    "01_Daily/ai/2026-02/ai-2026-02-27-0400.md",
+    "01_Daily/ashare/2026-02/ashare-2026-02-27-0936.md",
+    "01_Daily/portfolio/2026-02/portfolio-2026-02-27-0920.md",
+    "01_Daily/crypto/2026-02/crypto-2026-02-27-0900.md",
+    "01_Daily/ashare/a-share-preopen-2026-02-27.md",
+    "a-share-preopen-2026-02-27.md",
+    "01_Daily/ashare/2026-02/ashare-2026-02-27-0845.md",
+    "01_Daily/2026-02-27-daily-morning.md",
+    "us-postclose-2026-02-26.md",
+    "01_Daily/us/2026-02/us-2026-02-26-2110.md",
+    "01_Daily/agents/2026-02/night-evolve-2026-02-26.md",
+    "90_Agents/Builder/Article-Drafts/2026-02-multi-agent-architecture/outline.md",
+    "90_Agents/Builder/Article-Drafts/2026-02-multi-agent-architecture",
+    "90_Agents/Builder/Article-Drafts",
+    "01_Daily/agents/2026-02",
+    "01_Daily/agents",
+    "20_Inbox/urls/2026-02/web-6f57421b89aa1a35-Showcase-What-People-Are-Building-with-OpenClaw/meta.json",
+    "20_Inbox/urls/2026-02/web-6f57421b89aa1a35-Showcase-What-People-Are-Building-with-OpenClaw",
+    "99_Archive/kb-cleanup-20260225-163454",
+    "99_Archive",
+    "06_Crypto",
+    "03_Investing/CaixinVIP",
+    "20_Inbox/urls/2026-02/img-4d7b007090407c4b-Screenshot-file_0-3cd7dbda-955a-41f3-a876-fa41f71e6f37.jpg/image.jpg"
+  ]
+}

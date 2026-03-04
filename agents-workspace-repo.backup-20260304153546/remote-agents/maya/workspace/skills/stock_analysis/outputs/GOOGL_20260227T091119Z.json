@@ -1,0 +1,38 @@
+{
+  "symbol": "GOOGL",
+  "company": "Alphabet Inc.",
+  "as_of": "2026-02-27T09:11:19.747209+00:00",
+  "price": 307.38,
+  "currency": "USD",
+  "change_percent": -1.76,
+  "valuation": {
+    "pe": 28.41,
+    "market_cap": 3718376062976
+  },
+  "technical": {
+    "sma20": 319.06,
+    "sma50": 319.91,
+    "rsi14": 29.3,
+    "trend": "downtrend"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 30,
+    "total": 54.6
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。 当前技术趋势偏弱。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

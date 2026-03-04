@@ -1,0 +1,755 @@
+# Skills Security Scan — 2026-02-20
+
+生成时间(UTC): 2026-02-20 16:01:08
+
+## 今晚结论摘要（≤10行）
+- 扫描范围：3 个目录，合计 92 个 skills。
+- 风险分布：high 14 / medium 61 / low 17。
+- 本次发现若干 high 项，主要触发因子：动态执行(eval/new Function)、子进程调用、敏感环境变量读取、可疑外部域名、可执行文件。
+- 未执行任何破坏性操作；仅静态扫描与字符串命中，结果偏保守（可能含误报）。
+- 优先复核 high 风险 skill 的命中文件与调用链，确认是否为预期能力。
+- 变更检测：优先 git（status/log），非 git 使用 mtime 作为最近变更线索。
+
+## 按 Skill 详细结果（项目符号）
+
+### 来源：`/home/ubuntu/.openclaw/workspace/skills`
+- **_disabled**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/_disabled`
+  - SKILL.md: no; package.json: no
+  - risk: **high** — suspicious_net in 3 file(s); curl_wget in 1 file(s); env_secret_read in 1 file(s); b64_exec in 1 file(s); ...
+  - pattern hits: b64_exec:1, curl_wget:1, env_secret_read:1, suspicious_domains:8, suspicious_net:3
+  - scripts(sample): claw-roam.disabled-20260208-081734/scripts/claw-roam.sh
+  - executables/binaries(sample): claw-roam.disabled-20260208-081734/scripts/claw-roam.sh
+  - recent change: git: dirty=0; last=694d94c 2026-02-09 07:42:47 +0000 feat(knowledge): scaffold Obsidian knowledge system and templates
+- **a-stock-analysis**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 2 file(s); suspicious_domains in 4 file(s); 1 executable/binary file(s)
+  - pattern hits: suspicious_domains:4, suspicious_net:2
+  - scripts(sample): scripts/portfolio.py, scripts/analyze.py
+  - executables/binaries(sample): scripts/a-stock-analysis
+  - recent change: git: dirty=1; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **ai-daily-digest**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/ai-daily-digest`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — env_secret_read in 3 file(s); suspicious_net in 4 file(s); child_process_exec in 1 file(s); suspicious_domains in 129 file(s)
+  - pattern hits: child_process_exec:1, env_secret_read:3, suspicious_domains:129, suspicious_net:4
+  - scripts(sample): scripts/digest.ts
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=961240f 2026-02-19 10:43:03 +0000 feat: default digest output to kb/02_AI
+- **ai-video-generation**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/ai-video-generation`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — curl_wget in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 12 file(s)
+  - pattern hits: curl_wget:1, suspicious_domains:12, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=c6ffc49 2026-02-07 18:26:11 +0000 feat(skills): add x-search skills and catpaw video generation scaffold
+- **avatarkit**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/avatarkit`
+  - SKILL.md: yes; package.json: yes (openclaw-avatarkit@0.1.0)
+  - risk: **high** — env_secret_read in 4 file(s); suspicious_net in 8 file(s); b64_exec in 2 file(s); suspicious_domains in 16 file(s)
+  - pattern hits: b64_exec:2, env_secret_read:4, suspicious_domains:16, suspicious_net:8
+  - scripts(sample): example.ts, src/image.ts, src/SKILL.ts, src/avatar.ts, src/memory.ts, src/natural.ts ...
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=5a17ff7 2026-02-11 15:35:16 +0800 feat: Redesign landing page with OpenClaw style + i18n
+- **browse**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/browse`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — curl_wget in 3 file(s); env_secret_read in 2 file(s); suspicious_net in 6 file(s); dynamic_eval in 2 file(s); ...
+  - pattern hits: curl_wget:3, dynamic_eval:2, env_secret_read:2, suspicious_domains:13, suspicious_net:6
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **claw-roam**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/claw-roam`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s); 1 executable/binary file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): scripts/claw-roam.sh
+  - executables/binaries(sample): scripts/claw-roam.sh
+  - recent change: git: dirty=1; last=694d94c 2026-02-09 07:42:47 +0000 feat(knowledge): scaffold Obsidian knowledge system and templates
+- **clawra**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/clawra`
+  - SKILL.md: yes; package.json: yes (clawra@1.1.1)
+  - risk: **high** — child_process_exec in 5 file(s); curl_wget in 4 file(s); env_secret_read in 6 file(s); suspicious_net in 10 file(s); ...
+  - pattern hits: child_process_exec:5, curl_wget:4, env_secret_read:6, suspicious_domains:22, suspicious_net:10
+  - scripts(sample): bin/cli.js, scripts/clawra-selfie.ts, scripts/clawra-selfie.sh, skill/scripts/clawra-selfie.ts, skill/scripts/clawra-selfie.sh
+  - executables/binaries(sample): bin/cli.js, scripts/clawra-selfie.sh, skill/scripts/clawra-selfie.sh
+  - recent change: git: dirty=0; last=f9edfa7 2026-02-11 17:31:27 +0000 fix(clawra-selfie): update openclaw message CLI flags
+- **crypto-price**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/crypto-price`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 3 file(s); env_secret_read in 1 file(s); suspicious_domains in 7 file(s)
+  - pattern hits: env_secret_read:1, suspicious_domains:7, suspicious_net:3
+  - scripts(sample): scripts/get_price_chart.py
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **crypto-watch**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/crypto-watch`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 2 file(s); suspicious_domains in 3 file(s); 1 executable/binary file(s)
+  - pattern hits: suspicious_domains:3, suspicious_net:2
+  - scripts(sample): scripts/crypto_watch.py
+  - executables/binaries(sample): scripts/crypto_watch.py
+  - recent change: git: dirty=0; last=7a34fae 2026-02-07 18:13:44 +0000 feat(crypto-watch): add intrabar shock alerts for unfinished 15m swings
+- **db-readonly**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/db-readonly`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — 1 executable/binary file(s)
+  - pattern hits: none
+  - scripts(sample): scripts/db_readonly.sh
+  - executables/binaries(sample): scripts/db_readonly.sh
+  - recent change: git: dirty=0; last=843624d 2026-02-09 10:41:36 +0000 feat(skill): add db-readonly skill for safe MySQL/Postgres reads
+- **deepwiki**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/deepwiki`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 3 file(s); suspicious_domains in 4 file(s)
+  - pattern hits: suspicious_domains:4, suspicious_net:3
+  - scripts(sample): scripts/deepwiki.js
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **deepwork-tracker**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 2 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:2
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **find-skills**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/find-skills`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 2 file(s); suspicious_domains in 2 file(s)
+  - pattern hits: suspicious_domains:2, suspicious_net:2
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=1; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **github**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/github`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **Gmail**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/Gmail`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — curl_wget in 1 file(s); env_secret_read in 1 file(s); suspicious_net in 2 file(s); b64_exec in 1 file(s); ...
+  - pattern hits: b64_exec:1, curl_wget:1, env_secret_read:1, suspicious_domains:7, suspicious_net:2
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=1; last=694d94c 2026-02-09 07:42:47 +0000 feat(knowledge): scaffold Obsidian knowledge system and templates
+- **gmail**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/gmail`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — curl_wget in 1 file(s); env_secret_read in 1 file(s); suspicious_net in 2 file(s); b64_exec in 1 file(s); ...
+  - pattern hits: b64_exec:1, curl_wget:1, env_secret_read:1, suspicious_domains:9, suspicious_net:2
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=1; last=n/a
+- **gmail-auto-processor**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor`
+  - SKILL.md: yes; package.json: yes (gmail-auto-processor@1.0.0)
+  - risk: **medium** — child_process_exec in 11 file(s); 2 executable/binary file(s)
+  - pattern hits: child_process_exec:11
+  - scripts(sample): archive-promotions.js, gmail-processor.js, generate-report.js, archive-promotions.sh, index-anxiety-free.js, smart-run.js ...
+  - executables/binaries(sample): gmail-processor.js, archive-promotions.sh
+  - recent change: git: dirty=1; last=n/a
+- **google-workspace-mcp**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=694d94c 2026-02-09 07:42:47 +0000 feat(knowledge): scaffold Obsidian knowledge system and templates
+- **imap-smtp-email**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email`
+  - SKILL.md: yes; package.json: yes (imap-smtp-email-skill@1.0.0)
+  - risk: **medium** — env_secret_read in 3 file(s); suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: env_secret_read:3, suspicious_domains:1, suspicious_net:1
+  - scripts(sample): setup.sh, scripts/smtp.js, scripts/imap.js
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **larksuite-wiki**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 5 file(s); suspicious_net in 3 file(s); suspicious_domains in 4 file(s); 2 executable/binary file(s)
+  - pattern hits: env_secret_read:5, suspicious_domains:4, suspicious_net:3
+  - scripts(sample): larksuite-wiki.py
+  - executables/binaries(sample): larksuite-wiki.py, larksuite-wiki
+  - recent change: git: dirty=0; last=e600c2c 2026-02-06 16:43:10 +0000 feat: trading-journal + branch workflow
+- **obsidian-integration**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/obsidian-integration`
+  - SKILL.md: yes; package.json: yes (obsidian-integration@1.0.0)
+  - risk: **medium** — child_process_exec in 1 file(s)
+  - pattern hits: child_process_exec:1
+  - scripts(sample): index.js
+  - executables/binaries(sample): none
+  - recent change: git: dirty=1; last=n/a
+- **reminder**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/reminder`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s); 1 executable/binary file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): scripts/reminder-scheduler.sh
+  - executables/binaries(sample): scripts/reminder-scheduler.sh
+  - recent change: git: dirty=4; last=e803d1e 2026-02-12 17:54:40 +0000 chore(reminder): support telegram+discord delivery targets
+- **self-reflection**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/self-reflection`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 3 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:3
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **skill-vetter**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/skill-vetter`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — child_process_exec in 1 file(s); curl_wget in 1 file(s); ssh_write in 1 file(s); suspicious_net in 2 file(s); ...
+  - pattern hits: b64_exec:1, child_process_exec:1, curl_wget:1, dynamic_eval:1, ssh_write:1, sudo:1, suspicious_domains:2, suspicious_net:2
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **stock_analysis**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/stock_analysis`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — sudo in 3 file(s); suspicious_net in 102 file(s); curl_wget in 1 file(s); suspicious_domains in 102 file(s); ...
+  - pattern hits: curl_wget:1, sudo:3, suspicious_domains:102, suspicious_net:102
+  - scripts(sample): scripts/analyze_stock.sh, scripts/install_deps.sh, scripts/stock_analyzer.py
+  - executables/binaries(sample): scripts/analyze_stock.sh, scripts/install_deps.sh, scripts/stock_analyzer.py
+  - recent change: git: dirty=2; last=ccb7bec 2026-02-11 08:44:43 +0000 feat(stock_analysis): support A-share fundamentals and announcements
+- **task-status**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/task-status`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 3 file(s); suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: env_secret_read:3, suspicious_domains:1, suspicious_net:1
+  - scripts(sample): scripts/monitor_task.py, scripts/test_send_status.py, scripts/send_status_websocket.py, scripts/send_status_with_logging.py, scripts/send_status.py
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **technews**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/technews`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 4 file(s); suspicious_domains in 5 file(s)
+  - pattern hits: suspicious_domains:5, suspicious_net:4
+  - scripts(sample): scripts/article_fetcher.py, scripts/techmeme_scraper.py, scripts/social_reactions.py, scripts/technews.py
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **trading-journal**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/trading-journal`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — 1 executable/binary file(s)
+  - pattern hits: none
+  - scripts(sample): scripts/trade-log.sh
+  - executables/binaries(sample): scripts/trade-log.sh
+  - recent change: git: dirty=0; last=434c59e 2026-02-06 17:10:27 +0000 feat(trading-journal): echo saved entry + commentary
+- **ui-ux-pro-max**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — suspicious_net in 32 file(s); env_secret_read in 6 file(s); sudo in 2 file(s); suspicious_domains in 74 file(s)
+  - pattern hits: env_secret_read:6, sudo:2, suspicious_domains:74, suspicious_net:32
+  - scripts(sample): scripts/design_system.py, scripts/core.py, scripts/__init__.py, scripts/search.py
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **vercel-cli**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/vercel-cli`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — child_process_exec in 1 file(s); env_secret_read in 1 file(s); 1 executable/binary file(s)
+  - pattern hits: child_process_exec:1, env_secret_read:1
+  - scripts(sample): vercel-skill.js
+  - executables/binaries(sample): vercel-skill.js
+  - recent change: git: dirty=1; last=n/a
+- **webapp-testing**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/webapp-testing`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 5 file(s); suspicious_domains in 2 file(s)
+  - pattern hits: suspicious_domains:2, suspicious_net:5
+  - scripts(sample): examples/element_discovery.py, examples/console_logging.py, examples/static_html_automation.py, scripts/with_server.py
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **x-search**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/x-search`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — curl_wget in 3 file(s); env_secret_read in 3 file(s); suspicious_net in 3 file(s); suspicious_domains in 4 file(s); ...
+  - pattern hits: curl_wget:3, env_secret_read:3, suspicious_domains:4, suspicious_net:3
+  - scripts(sample): scripts/x_search.sync-conflict-20260208-163216-3MIRDQS.sh, scripts/x_search.sh
+  - executables/binaries(sample): scripts/x_search.sync-conflict-20260208-163216-3MIRDQS.sh, scripts/x_search.sh
+  - recent change: git: dirty=0; last=c6ffc49 2026-02-07 18:26:11 +0000 feat(skills): add x-search skills and catpaw video generation scaffold
+- **xai-x-search**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/xai-x-search`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 3 file(s)
+  - pattern hits: env_secret_read:1, suspicious_domains:3, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=c6ffc49 2026-02-07 18:26:11 +0000 feat(skills): add x-search skills and catpaw video generation scaffold
+- **YouTube**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/YouTube`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 2 file(s); suspicious_net in 3 file(s); suspicious_domains in 6 file(s)
+  - pattern hits: env_secret_read:2, suspicious_domains:6, suspicious_net:3
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: git: dirty=0; last=fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+
+### 来源：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+- **1password**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=3)
+- **apple-notes**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — suspicious_net in 1 file(s)
+  - pattern hits: suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **apple-reminders**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — suspicious_net in 1 file(s)
+  - pattern hits: suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **bear-notes**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: env_secret_read:1, suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **blogwatcher**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 2 file(s)
+  - pattern hits: suspicious_domains:2, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **blucli**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **bluebubbles**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — b64_exec in 1 file(s)
+  - pattern hits: b64_exec:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **camsnap**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **canvas**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — curl_wget in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 4 file(s)
+  - pattern hits: curl_wget:1, suspicious_domains:4, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **clawhub**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **coding-agent**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — suspicious_net in 1 file(s)
+  - pattern hits: suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **discord**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — No obvious high-risk pattern found in sampled static scan
+  - pattern hits: none
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **eightctl**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **food-order**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/food-order`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 2 file(s)
+  - pattern hits: suspicious_domains:2, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **gemini**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **gh-issues**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — curl_wget in 1 file(s); env_secret_read in 1 file(s); suspicious_net in 1 file(s)
+  - pattern hits: curl_wget:1, env_secret_read:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **gifgrep**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: env_secret_read:1, suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **github**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — suspicious_net in 1 file(s)
+  - pattern hits: suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **gog**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **goplaces**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — env_secret_read in 1 file(s); suspicious_net in 1 file(s)
+  - pattern hits: env_secret_read:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **healthcheck**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — No obvious high-risk pattern found in sampled static scan
+  - pattern hits: none
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **himalaya**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 2 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:2
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=3)
+- **imsg**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **mcporter**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 3 file(s)
+  - pattern hits: suspicious_domains:3, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **model-usage**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — No obvious high-risk pattern found in sampled static scan
+  - pattern hits: none
+  - scripts(sample): scripts/model_usage.py
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:13 (files=3)
+- **nano-banana-pro**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — env_secret_read in 2 file(s); suspicious_net in 1 file(s); b64_exec in 1 file(s); suspicious_domains in 1 file(s); ...
+  - pattern hits: b64_exec:1, env_secret_read:2, suspicious_domains:1, suspicious_net:1
+  - scripts(sample): scripts/generate_image.py
+  - executables/binaries(sample): scripts/generate_image.py
+  - recent change: mtime: 2026-02-19 18:19:13 (files=2)
+- **nano-pdf**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **notion**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — curl_wget in 1 file(s); env_secret_read in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 4 file(s)
+  - pattern hits: curl_wget:1, env_secret_read:1, suspicious_domains:4, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **obsidian**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **openai-image-gen**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 2 file(s); suspicious_net in 2 file(s); b64_exec in 1 file(s)
+  - pattern hits: b64_exec:1, env_secret_read:2, suspicious_net:2
+  - scripts(sample): scripts/gen.py
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:13 (files=2)
+- **openai-whisper**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — suspicious_net in 1 file(s)
+  - pattern hits: suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **openai-whisper-api**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — curl_wget in 2 file(s); env_secret_read in 2 file(s); suspicious_net in 2 file(s)
+  - pattern hits: curl_wget:2, env_secret_read:2, suspicious_net:2
+  - scripts(sample): scripts/transcribe.sh
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:13 (files=2)
+- **openhue**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **oracle**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: env_secret_read:1, suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **ordercli**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 2 file(s)
+  - pattern hits: env_secret_read:1, suspicious_domains:2, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **peekaboo**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 2 file(s)
+  - pattern hits: suspicious_domains:2, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **sag**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: env_secret_read:1, suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **session-logs**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — No obvious high-risk pattern found in sampled static scan
+  - pattern hits: none
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **sherpa-onnx-tts**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); child_process_exec in 1 file(s); env_secret_read in 1 file(s); 1 executable/binary file(s)
+  - pattern hits: child_process_exec:1, env_secret_read:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): bin/sherpa-onnx-tts
+  - recent change: mtime: 2026-02-19 18:19:12 (files=2)
+- **skill-creator**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): scripts/quick_validate.py, scripts/test_package_skill.py, scripts/init_skill.py, scripts/package_skill.py
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:14 (files=6)
+- **slack**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — No obvious high-risk pattern found in sampled static scan
+  - pattern hits: none
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **songsee**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — suspicious_net in 1 file(s)
+  - pattern hits: suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **sonoscli**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: env_secret_read:1, suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **spotify-player**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **summarize**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 3 file(s)
+  - pattern hits: env_secret_read:1, suspicious_domains:3, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **things-mac**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — env_secret_read in 1 file(s); suspicious_net in 1 file(s)
+  - pattern hits: env_secret_read:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **tmux**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — 2 executable/binary file(s)
+  - pattern hits: none
+  - scripts(sample): scripts/find-sessions.sh, scripts/wait-for-text.sh
+  - executables/binaries(sample): scripts/find-sessions.sh, scripts/wait-for-text.sh
+  - recent change: mtime: 2026-02-19 18:19:13 (files=3)
+- **trello**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — curl_wget in 1 file(s); env_secret_read in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 3 file(s)
+  - pattern hits: curl_wget:1, env_secret_read:1, suspicious_domains:3, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **video-frames**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): scripts/frame.sh
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:13 (files=2)
+- **voice-call**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call`
+  - SKILL.md: yes; package.json: no
+  - risk: **low** — No obvious high-risk pattern found in sampled static scan
+  - pattern hits: none
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **wacli**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+- **weather**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — curl_wget in 1 file(s); suspicious_net in 1 file(s); suspicious_domains in 1 file(s)
+  - pattern hits: curl_wget:1, suspicious_domains:1, suspicious_net:1
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-19 18:19:12 (files=1)
+
+### 来源：`/home/ubuntu/.openclaw/skills`
+- **clawra-selfie**
+  - path: `/home/ubuntu/.openclaw/skills/clawra-selfie`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — child_process_exec in 2 file(s); curl_wget in 2 file(s); env_secret_read in 3 file(s); suspicious_net in 3 file(s); ...
+  - pattern hits: child_process_exec:2, curl_wget:2, env_secret_read:3, suspicious_domains:8, suspicious_net:3
+  - scripts(sample): scripts/clawra-selfie.ts, scripts/clawra-selfie.sh
+  - executables/binaries(sample): scripts/clawra-selfie.sh
+  - recent change: mtime: 2026-02-11 17:10:45 (files=4)
+- **find-skills**
+  - path: `/home/ubuntu/.openclaw/skills/find-skills`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — suspicious_net in 2 file(s); suspicious_domains in 2 file(s)
+  - pattern hits: suspicious_domains:2, suspicious_net:2
+  - scripts(sample): none
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-12 15:56:02 (files=3)
+- **google-workspace**
+  - path: `/home/ubuntu/.openclaw/skills/google-workspace`
+  - SKILL.md: yes; package.json: no
+  - risk: **high** — suspicious_net in 4 file(s); b64_exec in 2 file(s); env_secret_read in 2 file(s); suspicious_domains in 2 file(s)
+  - pattern hits: b64_exec:2, env_secret_read:2, suspicious_domains:2, suspicious_net:4
+  - scripts(sample): scripts/read_email.py, scripts/list_calendars.py, scripts/create_draft.py, scripts/search_emails.py, scripts/needs_reply.py, scripts/calendar_auth.py ...
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-08 06:27:12 (files=12)
+- **knowledge-base-collector**
+  - path: `/home/ubuntu/.openclaw/skills/knowledge-base-collector`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 5 file(s); suspicious_net in 1 file(s); suspicious_domains in 3 file(s)
+  - pattern hits: env_secret_read:5, suspicious_domains:3, suspicious_net:1
+  - scripts(sample): scripts/tagger.py, scripts/weekly_digest.py, scripts/wechat_backlog.py, scripts/ingest_url.py, scripts/search_kb.py, scripts/ingest_image.py
+  - executables/binaries(sample): none
+  - recent change: mtime: 2026-02-13 07:08:13 (files=7)
+- **walkie**
+  - path: `/home/ubuntu/.openclaw/skills/walkie`
+  - SKILL.md: yes; package.json: no
+  - risk: **medium** — env_secret_read in 4 file(s); 3 executable/binary file(s)
+  - pattern hits: env_secret_read:4
+  - scripts(sample): templates/two-agent-collab.sh, templates/monitoring.sh, templates/same-machine-collab.sh, templates/delegated-task.sh
+  - executables/binaries(sample): templates/two-agent-collab.sh, templates/monitoring.sh, templates/delegated-task.sh
+  - recent change: mtime: 2026-02-20 14:19:09 (files=8)

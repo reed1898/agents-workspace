@@ -1,0 +1,1107 @@
+# Skills Security Scan — 2026-02-21
+
+## 今晚结论摘要
+- 扫描范围：3 个目录，共 95 个 skill（含符号链接目标）。
+- 风险分级：high 5 / medium 22 / low 68。
+- 重点结论：发现 high 风险项，请优先复核。
+- 本次为静态审计（模式匹配 + 文件类型 + 最近变更），未执行破坏性操作。
+
+## 变更/新增概览
+- `/home/ubuntu/.openclaw/workspace/skills`：git 检测到 17 个变更文件。
+  -  M skills/find-skills/.clawhub/origin.json
+  -  M skills/stock_analysis/SKILL.md
+  - ?? skills/Gmail/
+  - ?? skills/a-stock-analysis/scripts/a-stock-analysis
+  - ?? skills/avatarkit/
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`：非 git 目录，按 mtime 显示最近文件：
+  - 2026-02-21T14:31:17.995104Z — /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator/license.txt
+  - 2026-02-21T14:31:16.559095Z — /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux/scripts/wait-for-text.sh
+  - 2026-02-21T14:31:16.559095Z — /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api/scripts/transcribe.sh
+  - 2026-02-21T14:31:16.558095Z — /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames/scripts/frame.sh
+  - 2026-02-21T14:31:16.557095Z — /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux/scripts/find-sessions.sh
+- `/home/ubuntu/.openclaw/skills`：非 git 目录，按 mtime 显示最近文件：
+  - 2026-02-21T14:11:15.866524Z — /home/ubuntu/.openclaw/skills/x-tweet-fetcher/scripts/fetch_tweet.py
+  - 2026-02-21T14:11:15.865069Z — /home/ubuntu/.openclaw/skills/x-tweet-fetcher/SKILL.md
+  - 2026-02-13T07:08:13.820784Z — /home/ubuntu/.openclaw/skills/knowledge-base-collector/SKILL.md
+  - 2026-02-13T07:07:59.109932Z — /home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/weekly_digest.py
+  - 2026-02-13T07:07:59.089932Z — /home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/wechat_backlog.py
+
+## 按 Skill 详细结果（bullet list）
+- **ai-daily-digest**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ai-daily-digest`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**high**；原因：存在进程执行调用；大量环境变量/密钥读取；出现非白名单域名请求；包含二进制文件
+  - 命中模式：child_process/exec=2, curl/wget=0, ssh/key=0, env/secret=17, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - http://antirez.com
+    - http://antirez.com/rss
+    - http://www.aaronsw.com/2002/feeds/pgessays.rss
+  - 二进制文件（抽样）：
+    - assets/overview.png
+  - 最近改动文件（mtime）：
+    - 2026-02-19 10:42:55Z — SKILL.md
+    - 2026-02-19 10:30:36Z — scripts/digest.ts
+    - 2026-02-19 10:30:36Z — assets/overview.png
+- **browse**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/browse`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**high**；原因：出现 eval/new Function；存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=10, ssh/key=0, env/secret=2, eval=2, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - http://127.0.0.1:14113/v1/functions/my-automation/invoke
+    - http://127.0.0.1:14113/v1/functions/my-function/invoke
+    - http://127.0.0.1:14113`
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — skills/functions/SKILL.md
+    - 2026-02-06 15:37:07Z — skills/fix/SKILL.md
+    - 2026-02-06 15:37:07Z — skills/create/SKILL.md
+- **clawra**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/clawra`
+  - SKILL.md：yes；package.json：yes（clawra@1.1.1）
+  - 风险等级：**high**；原因：多处进程执行能力；大量环境变量/密钥读取；出现非白名单域名请求；包含二进制文件
+  - 命中模式：child_process/exec=5, curl/wget=12, ssh/key=0, env/secret=28, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - http://localhost:18789
+    - http://localhost:18789/message
+    - http://localhost:18789}
+  - 二进制文件（抽样）：
+    - assets/clawra.png
+    - skill/assets/clawra.png
+  - 脚本/可执行（抽样）：
+    - bin/cli.js
+    - scripts/clawra-selfie.sh
+    - skill/scripts/clawra-selfie.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-11 17:30:58Z — scripts/clawra-selfie.sh
+    - 2026-02-11 17:30:58Z — skill/scripts/clawra-selfie.sh
+    - 2026-02-11 17:10:45Z — templates/soul-injection.md
+- **clawra-selfie**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/clawra-selfie`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**high**；原因：存在进程执行调用；大量环境变量/密钥读取；出现非白名单域名请求；包含二进制文件
+  - 命中模式：child_process/exec=2, curl/wget=6, ssh/key=0, env/secret=14, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - http://localhost:18789
+    - http://localhost:18789/message
+    - http://localhost:18789}
+  - 二进制文件（抽样）：
+    - assets/clawra.png
+  - 脚本/可执行（抽样）：
+    - scripts/clawra-selfie.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-11 17:10:45Z — scripts/clawra-selfie.ts
+    - 2026-02-11 17:10:45Z — scripts/clawra-selfie.sh
+    - 2026-02-11 17:10:45Z — assets/clawra.png
+- **skill-vetter**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/skill-vetter`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**high**；原因：出现 eval/new Function；出现 sudo；存在进程执行调用；涉及 .ssh/密钥相关路径；出现非白名单域名请求
+  - 命中模式：child_process/exec=1, curl/wget=5, ssh/key=1, env/secret=0, eval=1, base64/命令=0, sudo=1
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — _meta.json
+    - 2026-02-06 15:37:07Z — SKILL.md
+    - 2026-02-06 15:37:07Z — .clawhub/origin.json
+- **_disabled**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/_disabled`
+  - SKILL.md：no；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求；缺少 SKILL.md
+  - 命中模式：child_process/exec=0, curl/wget=5, ssh/key=0, env/secret=2, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+    - https://connect.maton.ai/?session_token=...
+    - https://ctrl.maton.ai/connections
+  - 脚本/可执行（抽样）：
+    - claw-roam.disabled-20260208-081734/scripts/claw-roam.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-08 03:43:57Z — claw-roam.disabled-20260208-081734/scripts/claw-roam.sh
+    - 2026-02-08 03:43:57Z — claw-roam.disabled-20260208-081734/SKILL.md
+    - 2026-02-06 16:43:10Z — claw-roam.disabled-20260208-081734/_meta.json
+- **bear-notes**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=2, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - http://127.0.0.1:42123/success
+    - https://bear.app
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **crypto-price**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/crypto-price`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=2, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://api.coingecko.com/api/v3/`
+    - https://api.coingecko.com/api/v3/coins/{id}/market_chart?vs_currency={currency}&days=1
+    - https://api.coingecko.com/api/v3/coins/{id}/market_chart?vs_currency={currency}&days={days}
+  - 脚本/可执行（抽样）：
+    - scripts/get_price_chart.py
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — scripts/get_price_chart.py
+    - 2026-02-06 15:37:07Z — requirements.txt
+    - 2026-02-06 15:37:07Z — _meta.json
+- **gh-issues**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：大量环境变量/密钥读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=24, ssh/key=0, env/secret=42, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://x-access-token:$GH_TOKEN@github.com/{PUSH_REPO}.git
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **Gmail**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/Gmail`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=5, ssh/key=0, env/secret=2, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+    - https://connect.maton.ai/?session_token=...
+    - https://ctrl.maton.ai/connections
+  - 最近改动文件（mtime）：
+    - 2026-02-03 08:35:43Z — .clawhub/origin.json
+    - 2026-02-03 08:35:43Z — LICENSE.txt
+    - 2026-02-03 08:35:43Z — SKILL.md
+- **gmail**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/gmail`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：大量环境变量/密钥读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=3, ssh/key=0, env/secret=9, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+    - https://clawhub.ai/byungkyu/api-gateway
+    - https://connect.maton.ai/?session_token=...
+  - 最近改动文件（mtime）：
+    - 2026-02-19 06:40:36Z — _meta.json
+    - 2026-02-19 06:40:36Z — .clawhub/origin.json
+    - 2026-02-19 06:40:36Z — SKILL.md
+- **google-workspace**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/google-workspace` → `/home/ubuntu/.agents/skills/google-workspace`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=2, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://www.googleapis.com/auth/calendar.events
+    - https://www.googleapis.com/auth/calendar.events`
+    - https://www.googleapis.com/auth/calendar.readonly
+  - 脚本/可执行（抽样）：
+    - scripts/calendar_auth.py
+    - scripts/create_draft.py
+    - scripts/create_event.py
+    - scripts/find_busy.py
+    - scripts/gmail_auth.py
+  - 最近改动文件（mtime）：
+    - 2026-02-08 06:27:12Z — scripts/gmail_auth.py
+    - 2026-02-08 06:27:12Z — scripts/search_events.py
+    - 2026-02-08 06:27:12Z — scripts/search_emails.py
+- **imap-smtp-email**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email`
+  - SKILL.md：yes；package.json：yes（imap-smtp-email-skill@1.0.0）
+  - 风险等级：**medium**；原因：大量环境变量/密钥读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=18, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+  - 脚本/可执行（抽样）：
+    - scripts/imap.js
+    - scripts/smtp.js
+    - setup.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — setup.sh
+    - 2026-02-06 15:37:07Z — scripts/smtp.js
+    - 2026-02-06 15:37:07Z — scripts/imap.js
+- **knowledge-base-collector**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/knowledge-base-collector`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=5, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://r.jina.ai/
+  - 脚本/可执行（抽样）：
+    - scripts/ingest_image.py
+    - scripts/ingest_url.py
+    - scripts/search_kb.py
+    - scripts/tagger.py
+    - scripts/wechat_backlog.py
+  - 最近改动文件（mtime）：
+    - 2026-02-13 07:08:13Z — SKILL.md
+    - 2026-02-13 07:07:59Z — scripts/weekly_digest.py
+    - 2026-02-13 07:07:59Z — scripts/wechat_backlog.py
+- **larksuite-wiki**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：大量环境变量/密钥读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=14, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://open.larksuite.com
+    - https://open.larksuite.com/
+    - https://open.larksuite.com/console
+  - 脚本/可执行（抽样）：
+    - larksuite-wiki.py
+  - 最近改动文件（mtime）：
+    - 2026-02-06 17:04:37Z — larksuite-wiki
+    - 2026-02-06 15:37:07Z — references/api-reference.md
+    - 2026-02-06 15:37:07Z — larksuite-wiki.py
+- **nano-banana-pro**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=1, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://ai.google.dev/
+  - 脚本/可执行（抽样）：
+    - scripts/generate_image.py
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — scripts/generate_image.py
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **oracle**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=1, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://askoracle.dev
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **ordercli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=1, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://ordercli.sh
+    - https://www.foodora.at/
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **sherpa-onnx-tts**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在进程执行调用；大量环境变量/密钥读取
+  - 命中模式：child_process/exec=1, curl/wget=0, ssh/key=0, env/secret=8, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+    - 2026-02-21 14:31:10Z — bin/sherpa-onnx-tts
+- **sonoscli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=1, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://sonoscli.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **stock_analysis**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/stock_analysis`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：出现 sudo；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=1, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=8
+  - 可疑域名请求（抽样）：
+    - https://bootstrap.pypa.io/get-pip.py
+    - https://data.eastmoney.com/notices/detail/SH600105/AN202512261808614890.html
+    - https://data.eastmoney.com/notices/detail/SH600105/AN202601091816878680.html
+  - 脚本/可执行（抽样）：
+    - scripts/analyze_stock.sh
+    - scripts/install_deps.sh
+    - scripts/stock_analyzer.py
+  - 最近改动文件（mtime）：
+    - 2026-02-20 21:15:45Z — outputs/TQQQ_20260220T211545Z.txt
+    - 2026-02-20 21:15:45Z — outputs/TQQQ_20260220T211545Z.json
+    - 2026-02-20 21:15:45Z — outputs/TDY_20260220T211545Z.txt
+- **summarize**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=4, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://example.com
+    - https://summarize.sh
+    - https://youtu.be/dQw4w9WgXcQ
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **task-status**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/task-status`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：大量环境变量/密钥读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=15, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+  - 脚本/可执行（抽样）：
+    - scripts/monitor_task.py
+    - scripts/send_status.py
+    - scripts/send_status_websocket.py
+    - scripts/send_status_with_logging.py
+    - scripts/test_send_status.py
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — scripts/test_send_status.py
+    - 2026-02-06 15:37:07Z — scripts/send_status_with_logging.py
+    - 2026-02-06 15:37:07Z — scripts/send_status_websocket.py
+- **trello**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：大量环境变量/密钥读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=11, ssh/key=0, env/secret=12, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://api.trello.com/1/boards/{boardId}/cards?key=$TRELLO_API_KEY&token=$TRELLO_TOKEN
+    - https://api.trello.com/1/boards/{boardId}/lists?key=$TRELLO_API_KEY&token=$TRELLO_TOKEN
+    - https://api.trello.com/1/cards/{cardId}/actions/comments?key=$TRELLO_API_KEY&token=$TRELLO_TOKEN
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **ui-ux-pro-max**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：出现 sudo；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=4
+  - 可疑域名请求（抽样）：
+    - https://api.star-history.com/svg?repos=nextlevelbuilder/ui-ux-pro-max-skill&type=Date
+    - https://clawhub.ai
+    - https://img.shields.io/badge/PayPal-Donate-00457C?style=for-the-badge&logo=paypal&logoColor=white
+  - 脚本/可执行（抽样）：
+    - scripts/__init__.py
+    - scripts/core.py
+    - scripts/design_system.py
+    - scripts/search.py
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — scripts/search.py
+    - 2026-02-06 15:37:07Z — scripts/design_system.py
+    - 2026-02-06 15:37:07Z — scripts/core.py
+- **x-search**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/x-search` → `/home/ubuntu/.openclaw/workspace/.agents/skills/x-search`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=3, ssh/key=0, env/secret=3, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://api.x.ai
+    - https://api.x.ai}
+  - 脚本/可执行（抽样）：
+    - scripts/x_search.sh
+    - scripts/x_search.sync-conflict-20260208-163216-3MIRDQS.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-08 05:42:00Z — scripts/x_search.sh
+    - 2026-02-08 03:45:04Z — scripts/x_search.sync-conflict-20260208-163216-3MIRDQS.sh
+    - 2026-02-08 03:45:04Z — SKILL.md
+- **xai-x-search**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/xai-x-search` → `/home/ubuntu/.openclaw/workspace/.agents/skills/xai-x-search`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**medium**；原因：存在环境变量读取；出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=1, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://api.x.ai/v1
+    - https://docs.x.ai/docs/guides/live-search
+    - https://x.ai/news/grok-4-1-fast/
+  - 最近改动文件（mtime）：
+    - 2026-02-08 03:45:04Z — SKILL.md
+- **1password**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://developer.1password.com/docs/cli/get-started/
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+    - 2026-02-21 14:31:15Z — references/get-started.md
+    - 2026-02-21 14:31:15Z — references/cli-examples.md
+- **a-stock-analysis**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+    - https://finance.sina.com.cn
+    - https://hq.sinajs.cn/list={codes_str}
+  - 脚本/可执行（抽样）：
+    - scripts/analyze.py
+    - scripts/portfolio.py
+  - 最近改动文件（mtime）：
+    - 2026-02-18 07:54:13Z — scripts/a-stock-analysis
+    - 2026-02-06 15:37:07Z — scripts/portfolio.py
+    - 2026-02-06 15:37:07Z — scripts/analyze.py
+- **ai-video-generation**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ai-video-generation` → `/home/ubuntu/.openclaw/workspace/.agents/skills/ai-video-generation`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=1, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://...
+    - https://audio.mp3
+    - https://cli.inference.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-08 03:45:04Z — SKILL.md
+- **apple-notes**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **apple-reminders**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **avatarkit**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/avatarkit`
+  - SKILL.md：yes；package.json：yes（openclaw-avatarkit@0.1.0）
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=1, sudo=0
+  - 可疑域名请求（抽样）：
+    - http://localhost:3000/v1
+    - https://api.avatarkit.com
+    - https://api.avatarkit.com/v1
+  - 最近改动文件（mtime）：
+    - 2026-02-11 07:35:00Z — index.html
+    - 2026-02-11 07:29:11Z — vercel.json
+    - 2026-02-11 07:29:02Z — package.json
+- **blogwatcher**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://example.com`
+    - https://xkcd.com
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **blucli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://blucli.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **bluebubbles**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **camsnap**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://camsnap.ai
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **canvas**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=1, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - http://127.0.0.1:18793/__openclaw__/canvas/<file>.html`
+    - http://<host>:18793/__openclaw__/canvas/games/snake.html
+    - http://<host>:18793/__openclaw__/canvas/index.html
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **claw-roam**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/claw-roam`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+  - 脚本/可执行（抽样）：
+    - scripts/claw-roam.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-06 17:49:35Z — scripts/claw-roam.sh
+    - 2026-02-06 17:49:35Z — SKILL.md
+    - 2026-02-06 17:04:43Z — _meta.json
+- **clawhub**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.com
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **coding-agent**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **crypto-watch**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/crypto-watch`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://api.binance.com
+    - https://www.okx.com
+    - https://www.okx.com/api/v5/market/candles?instId=<INST>&bar=15m&limit=300`
+  - 脚本/可执行（抽样）：
+    - scripts/crypto_watch.py
+  - 最近改动文件（mtime）：
+    - 2026-02-08 03:45:04Z — scripts/crypto_watch.py
+    - 2026-02-08 03:45:04Z — references/OKX.md
+    - 2026-02-08 03:45:04Z — assets/watchlist.template.json
+- **db-readonly**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/db-readonly`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 脚本/可执行（抽样）：
+    - scripts/db_readonly.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-09 10:41:27Z — references/query-cookbook.md
+    - 2026-02-09 10:41:27Z — scripts/db_readonly.sh
+    - 2026-02-09 10:41:27Z — SKILL.md
+- **deepwiki**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/deepwiki`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+    - https://docs.devin.ai/work-with-devin/deepwiki-mcp
+    - https://mcp.deepwiki.com
+  - 脚本/可执行（抽样）：
+    - scripts/deepwiki.js
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — scripts/deepwiki.js
+    - 2026-02-06 15:37:07Z — _meta.json
+    - 2026-02-06 15:37:07Z — SKILL.md
+- **deepwork-tracker**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — _meta.json
+    - 2026-02-06 15:37:07Z — SKILL.md
+    - 2026-02-06 15:37:07Z — .clawhub/origin.json
+- **discord**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **eightctl**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://eightctl.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **find-skills**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/find-skills`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+    - https://skills.sh/
+    - https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices
+  - 最近改动文件（mtime）：
+    - 2026-02-12 15:56:49Z — .clawhub/origin.json
+    - 2026-02-12 15:56:49Z — _meta.json
+    - 2026-02-12 15:56:49Z — SKILL.md
+- **find-skills**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/find-skills`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+    - https://skills.sh/
+    - https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices
+  - 最近改动文件（mtime）：
+    - 2026-02-12 15:56:02Z — _meta.json
+    - 2026-02-12 15:56:02Z — .clawhub/origin.json
+    - 2026-02-12 15:56:02Z — SKILL.md
+- **food-order**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/food-order`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://ordercli.sh
+    - https://www.foodora.at/
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **gemini**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://ai.google.dev/
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **gifgrep**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://gifgrep.com
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **github**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/github`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — _meta.json
+    - 2026-02-06 15:37:07Z — SKILL.md
+    - 2026-02-06 15:37:07Z — .clawhub/origin.json
+- **github**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **gmail-auto-processor**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor`
+  - SKILL.md：yes；package.json：yes（gmail-auto-processor@1.0.0）
+  - 风险等级：**low**；原因：多处进程执行能力
+  - 命中模式：child_process/exec=11, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 脚本/可执行（抽样）：
+    - archive-promotions.js
+    - archive-promotions.sh
+    - batch-process.js
+    - generate-report.js
+    - gmail-processor.js
+  - 最近改动文件（mtime）：
+    - 2026-02-16 12:35:39Z — package-lock.json
+    - 2026-02-10 05:23:29Z — generate-report.js
+    - 2026-02-10 05:21:35Z — gmail-quick.js
+- **gmail-inbox-zero-triage**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/gmail-inbox-zero-triage`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawd.bot
+    - https://clawdhub.com
+    - https://clawhub.ai
+  - 最近改动文件（mtime）：
+    - 2026-02-21 01:24:02Z — .clawhub/origin.json
+    - 2026-02-21 01:24:02Z — _meta.json
+    - 2026-02-21 01:24:02Z — SKILL.md
+- **gog**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://gogcli.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **google-workspace-mcp**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+  - 最近改动文件（mtime）：
+    - 2026-02-08 07:52:17Z — .clawhub/origin.json
+    - 2026-02-08 07:52:17Z — _meta.json
+    - 2026-02-08 07:52:17Z — SKILL.md
+- **goplaces**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：存在环境变量读取
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=1, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **healthcheck**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **himalaya**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://provider.com/oauth/authorize
+    - https://provider.com/oauth/token
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+    - 2026-02-21 14:31:15Z — references/message-composition.md
+    - 2026-02-21 14:31:15Z — references/configuration.md
+- **imsg**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://imsg.to
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **mcporter**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - http://mcporter.dev
+    - https://api.example.com/mcp.fetch
+    - https://example.com`
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **model-usage**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 脚本/可执行（抽样）：
+    - scripts/model_usage.py
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — scripts/model_usage.py
+    - 2026-02-21 14:31:16Z — SKILL.md
+    - 2026-02-21 14:31:15Z — references/codexbar-cli.md
+- **nano-pdf**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://pypi.org/project/nano-pdf/
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **notion**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=9, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://...
+    - https://api.notion.com/v1/...
+    - https://api.notion.com/v1/blocks/{page_id}/children
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **obsidian**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://help.obsidian.md
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **obsidian-integration**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/obsidian-integration`
+  - SKILL.md：yes；package.json：yes（obsidian-integration@1.0.0）
+  - 风险等级：**low**；原因：存在进程执行调用
+  - 命中模式：child_process/exec=1, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 脚本/可执行（抽样）：
+    - index.js
+  - 最近改动文件（mtime）：
+    - 2026-02-09 08:28:02Z — config.json
+    - 2026-02-09 08:24:12Z — package.json
+    - 2026-02-09 08:23:38Z — index.js
+- **openai-image-gen**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：存在环境变量读取
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=5, eval=0, base64/命令=0, sudo=0
+  - 脚本/可执行（抽样）：
+    - scripts/gen.py
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — scripts/gen.py
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **openai-whisper**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **openai-whisper-api**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：大量环境变量/密钥读取
+  - 命中模式：child_process/exec=0, curl/wget=3, ssh/key=0, env/secret=6, eval=0, base64/命令=0, sudo=0
+  - 脚本/可执行（抽样）：
+    - scripts/transcribe.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — scripts/transcribe.sh
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **openhue**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://www.openhue.io/cli
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **peekaboo**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://example.com
+    - https://peekaboo.boo
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **reminder**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/reminder`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+  - 脚本/可执行（抽样）：
+    - scripts/reminder-scheduler.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-12 17:54:29Z — SKILL.md
+    - 2026-02-08 03:45:04Z — scripts/reminder-scheduler.sh
+    - 2026-02-08 03:45:04Z — _meta.json
+- **sag**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://sag.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **self-reflection**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/self-reflection`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — self-reflection.example.json
+    - 2026-02-06 15:37:07Z — _meta.json
+    - 2026-02-06 15:37:07Z — SKILL.md
+- **session-logs**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **skill-creator**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - http://www.apache.org/licenses/
+    - http://www.apache.org/licenses/LICENSE-2.0
+  - 脚本/可执行（抽样）：
+    - scripts/init_skill.py
+    - scripts/package_skill.py
+    - scripts/quick_validate.py
+    - scripts/test_package_skill.py
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:17Z — license.txt
+    - 2026-02-21 14:31:16Z — scripts/test_package_skill.py
+    - 2026-02-21 14:31:16Z — scripts/quick_validate.py
+- **slack**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **songsee**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **spotify-player**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://www.spotify.com
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **technews**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/technews`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawhub.ai
+    - https://hn.algolia.com/api/v1/search
+    - https://news.ycombinator.com/item?id={hit.get(
+  - 脚本/可执行（抽样）：
+    - scripts/article_fetcher.py
+    - scripts/social_reactions.py
+    - scripts/techmeme_scraper.py
+    - scripts/technews.py
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — scripts/technews.py
+    - 2026-02-06 15:37:07Z — scripts/techmeme_scraper.py
+    - 2026-02-06 15:37:07Z — scripts/social_reactions.py
+- **things-mac**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：大量环境变量/密钥读取
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=11, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **tmux**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 脚本/可执行（抽样）：
+    - scripts/find-sessions.sh
+    - scripts/wait-for-text.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — scripts/wait-for-text.sh
+    - 2026-02-21 14:31:16Z — scripts/find-sessions.sh
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **trading-journal**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/trading-journal`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 脚本/可执行（抽样）：
+    - scripts/trade-log.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-08 03:43:57Z — SKILL.md
+    - 2026-02-06 17:04:37Z — scripts/trade-log.sh
+- **vercel-cli**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/vercel-cli`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：存在进程执行调用；存在环境变量读取
+  - 命中模式：child_process/exec=1, curl/wget=0, ssh/key=0, env/secret=1, eval=0, base64/命令=0, sudo=0
+  - 脚本/可执行（抽样）：
+    - vercel-skill.js
+  - 最近改动文件（mtime）：
+    - 2026-02-11 07:23:24Z — vercel-skill.js
+    - 2026-02-11 07:22:58Z — SKILL.md
+- **video-frames**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://ffmpeg.org
+  - 脚本/可执行（抽样）：
+    - scripts/frame.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — scripts/frame.sh
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **voice-call**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：未发现明显高风险模式
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **wacli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://wacli.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **walkie**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/walkie` → `/home/ubuntu/.agents/skills/walkie`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：大量环境变量/密钥读取
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=10, eval=0, base64/命令=0, sudo=0
+  - 脚本/可执行（抽样）：
+    - templates/delegated-task.sh
+    - templates/monitoring.sh
+    - templates/same-machine-collab.sh
+    - templates/two-agent-collab.sh
+  - 最近改动文件（mtime）：
+    - 2026-02-20 14:19:09Z — references/architecture.md
+    - 2026-02-20 14:19:09Z — templates/two-agent-collab.sh
+    - 2026-02-20 14:19:09Z — templates/same-machine-collab.sh
+- **weather**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=14, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://wttr.in/:help
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:31:16Z — SKILL.md
+- **webapp-testing**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/webapp-testing`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - http://localhost:5173
+    - http://www.apache.org/licenses/
+    - http://www.apache.org/licenses/LICENSE-2.0
+  - 脚本/可执行（抽样）：
+    - examples/console_logging.py
+    - examples/element_discovery.py
+    - examples/static_html_automation.py
+    - scripts/with_server.py
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — scripts/with_server.py
+    - 2026-02-06 15:37:07Z — examples/static_html_automation.py
+    - 2026-02-06 15:37:07Z — examples/element_discovery.py
+- **x-tweet-fetcher**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/x-tweet-fetcher`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://api.fxtwitter.com/{username}/status/{tweet_id}
+  - 脚本/可执行（抽样）：
+    - scripts/fetch_tweet.py
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:07:15Z — SKILL.md
+    - 2026-02-21 14:07:15Z — scripts/fetch_tweet.py
+- **x-tweet-fetcher**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/x-tweet-fetcher`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://api.fxtwitter.com/{username}/status/{tweet_id}
+  - 脚本/可执行（抽样）：
+    - scripts/fetch_tweet.py
+  - 最近改动文件（mtime）：
+    - 2026-02-21 14:11:15Z — scripts/fetch_tweet.py
+    - 2026-02-21 14:11:15Z — SKILL.md
+- **YouTube**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/YouTube`
+  - SKILL.md：yes；package.json：no
+  - 风险等级：**low**；原因：出现非白名单域名请求
+  - 命中模式：child_process/exec=0, curl/wget=0, ssh/key=0, env/secret=0, eval=0, base64/命令=0, sudo=0
+  - 可疑域名请求（抽样）：
+    - https://clawdbot.com
+    - https://clawhub.ai
+  - 最近改动文件（mtime）：
+    - 2026-02-06 15:37:07Z — _meta.json
+    - 2026-02-06 15:37:07Z — SKILL.md
+    - 2026-02-06 15:37:07Z — README.md

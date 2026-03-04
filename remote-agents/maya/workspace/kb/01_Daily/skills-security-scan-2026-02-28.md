@@ -1,0 +1,722 @@
+# Skills Security Scan — 2026-02-28
+
+## 今晚结论摘要（<=10行）
+- 扫描总数：101 个 skill（workspace + npm 全局 + ~/.openclaw/skills）。
+- 风险分布：high 12 / medium 32 / low 57。
+- 结论：发现 **12 个 high 风险项**，主要由可执行命令（exec/spawn/curl/sudo）、密钥环境变量读取、外部 API 调用触发；暂未看到明显恶意混淆投毒特征。
+- 高风险重点：clawra/clawra-selfie、gmail/Gmail（含 disabled 副本）、browse/functions、stock_analysis、ui-ux-pro-max、skill-vetter（规则文本命中导致偏高）。
+- 二进制文件检查：未发现明显异常二进制落地（常见脚本为 .sh/.py/.js/.ts）。
+- 变更面：workspace skills 所在仓库存在大量未提交变更（按目录统计 diff/status），建议分批收敛。
+- 近 7 天有变更迹象（mtime）skill 数：56。
+- 建议：优先人工复核所有 high 项脚本入口与外部请求域名白名单；对 medium 项做抽样复核。
+- 本报告为静态审计，不执行破坏性操作。
+
+## 按 skill 详细结果（项目符号）
+- **1password**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://developer.1password.com/docs/cli/get-started/ (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=26055cb4868fec52
+- **apple-notes**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=9b5a3ac995194fa9
+- **apple-reminders**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=77f11d0bb4ec2332
+- **bear-notes**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://bear.app (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=227572a323f01915
+- **blogwatcher**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://example.com` (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=20377db1e29ed5e0
+- **blucli**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://blucli.sh (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=793b57764ef6ff62
+- **bluebubbles**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains base64 decode patterns
+  - pattern hits: base64_exec
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=31ca2eb3fe5981d4
+- **camsnap**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://camsnap.ai (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=7fa55419308f8b49
+- **canvas**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: contains curl/wget usage; contains external URLs outside allowlist
+  - pattern hits: curl_wget
+  - external URL(sample): http://<tailscale-hostname>:18793/__openclaw__/canvas/<file>.html (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=960165193e5d6c83
+- **clawhub**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=326fe5daae444f74
+- **coding-agent**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=26434696bd1818ac
+- **discord**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=7a9b40635a9a94ee
+- **eightctl**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://eightctl.sh (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=c413e6d0cdacfe4c
+- **gemini**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://ai.google.dev/ (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=a53e6435da36cd2b
+- **gh-issues**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: contains curl/wget usage; reads env/secret-like variables
+  - pattern hits: curl_wget,env_secret
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=2bd2125eb7c4ed20
+- **gifgrep**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://gifgrep.com (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=adbe93ef813381bc
+- **github**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=1740c4ce29cd5703
+- **gog**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://gogcli.sh (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=fa6a29a012b40f93
+- **goplaces**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=28ac67b22ed359c1
+- **healthcheck**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=098a7fa157b656f2
+- **himalaya**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://provider.com/oauth/authorize (references/configuration.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=69abe88a6734541c
+- **imsg**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://imsg.to (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=9d8026502beba49f
+- **mcporter**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): http://mcporter.dev (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=51e7bb44f5c1521b
+- **model-usage**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - scripts(sample): scripts/model_usage.py, scripts/test_model_usage.py
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=aaf3ca17efe344ba
+- **nano-banana-pro**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: contains base64 decode patterns; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: base64_exec,env_secret
+  - scripts(sample): scripts/generate_image.py
+  - external URL(sample): https://ai.google.dev/ (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=f819ef8f769c5964
+- **nano-pdf**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://pypi.org/project/nano-pdf/ (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=c63a64076492d3c6
+- **notion**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: curl_wget,env_secret
+  - external URL(sample): https://developers.notion.com (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=60d9748c4eb3a380
+- **obsidian**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://help.obsidian.md (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=de122604c7e26714
+- **openai-image-gen**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: contains base64 decode patterns; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: base64_exec,env_secret
+  - scripts(sample): scripts/gen.py, scripts/test_gen.py
+  - external URL(sample): https://platform.openai.com/docs/api-reference/images (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=96484be0d05cfb77
+- **openai-whisper**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://openai.com/research/whisper (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=c41ebc388c85e442
+- **openai-whisper-api**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: curl_wget,env_secret
+  - scripts(sample): scripts/transcribe.sh
+  - external URL(sample): https://platform.openai.com/docs/guides/speech-to-text (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=c6c40f3c51688eca
+- **openhue**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://www.openhue.io/cli (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=b41259111bc37fb5
+- **oracle**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://askoracle.dev (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=95f47c7d337280bc
+- **ordercli**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://ordercli.sh (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=a3d877aa4d93458f
+- **peekaboo**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://peekaboo.boo (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=763963192ec5b646
+- **sag**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://sag.sh (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=0b3428eab65b019b
+- **session-logs**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=6663dc5d8b2afc59
+- **sherpa-onnx-tts**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: uses child_process/exec/spawn patterns; reads env/secret-like variables
+  - pattern hits: child_process,env_secret
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=7c7f10bdb027d6f6
+- **skill-creator**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - scripts(sample): scripts/init_skill.py, scripts/package_skill.py, scripts/quick_validate.py, scripts/test_package_skill.py, scripts/test_quick_validate.py
+  - external URL(sample): http://www.apache.org/licenses/ (license.txt)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=2d576c8e4a51fe3a
+- **slack**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=216f1f4224c53fe4
+- **songsee**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=86f88e2482746074
+- **sonoscli**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://sonoscli.sh (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=e4a8f63111a36539
+- **spotify-player**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://www.spotify.com (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=c6c1dd6e5c214a44
+- **summarize**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://summarize.sh (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=b0e29691b5978126
+- **things-mac**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=90cede1ecc02b131
+- **tmux**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - scripts(sample): scripts/find-sessions.sh, scripts/wait-for-text.sh
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=0a3c2468f342470d
+- **trello**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: curl_wget,env_secret
+  - external URL(sample): https://developer.atlassian.com/cloud/trello/rest/ (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=4fb787a1d9586a57
+- **video-frames**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - scripts(sample): scripts/frame.sh
+  - external URL(sample): https://ffmpeg.org (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=43b4ff84cd95daa2
+- **voice-call**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=1737bcf7ff53f4b1
+- **wacli**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://wacli.sh (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=6260f65f86362c8d
+- **weather**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: contains curl/wget usage; contains external URLs outside allowlist
+  - pattern hits: curl_wget
+  - external URL(sample): https://wttr.in/:help (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=b1f9238fa5f5c59e
+- **xurl**
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/xurl` | source: openclaw-global
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: curl_wget,env_secret
+  - external URL(sample): https://x.com/user/status/1234567890` (SKILL.md)
+  - change signal: non-git; mtime=2026-02-25 15:35 UTC; fp=fd1d0e35b1091e96
+- **clawra-selfie**
+  - path: `/home/ubuntu/.openclaw/skills/clawra-selfie` | source: openclaw-local
+  - SKILL.md: yes | package.json: no
+  - risk: **high** | reason: uses child_process/exec/spawn patterns; contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: child_process,curl_wget,env_secret
+  - scripts(sample): scripts/clawra-selfie.sh, scripts/clawra-selfie.ts
+  - external URL(sample): https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png (SKILL.md)
+  - change signal: non-git; mtime=2026-02-11 17:10 UTC; fp=4d38c00af778653b
+- **find-skills**
+  - path: `/home/ubuntu/.openclaw/skills/find-skills` | source: openclaw-local
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://skills.sh/ (SKILL.md)
+  - change signal: non-git; mtime=2026-02-12 15:56 UTC; fp=254dc150ea4e9349
+- **knowledge-base-collector**
+  - path: `/home/ubuntu/.openclaw/skills/knowledge-base-collector` | source: openclaw-local
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - scripts(sample): scripts/ingest_image.py, scripts/ingest_url.py, scripts/search_kb.py, scripts/tagger.py, scripts/wechat_backlog.py, scripts/weekly_digest.py
+  - external URL(sample): https://twitter.com/ (scripts/ingest_url.py)
+  - change signal: non-git; mtime=2026-02-13 07:08 UTC; fp=be2ba553743c4f23
+- **x-tweet-fetcher**
+  - path: `/home/ubuntu/.openclaw/skills/x-tweet-fetcher` | source: openclaw-local
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - scripts(sample): scripts/fetch_tweet.py
+  - external URL(sample): https://api.fxtwitter.com/{username}/status/{tweet_id} (scripts/fetch_tweet.py)
+  - change signal: non-git; mtime=2026-02-21 14:11 UTC; fp=9c0f0510ab6b3275
+- **Gmail**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/Gmail` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **high** | reason: contains base64 decode patterns; contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: base64_exec,curl_wget,env_secret
+  - external URL(sample): https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10 (SKILL.md)
+  - change signal: git: status 1, diff 0
+- **YouTube**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/YouTube` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://console.cloud.google.com (README.md, SKILL.md)
+  - change signal: git: status 0, diff 0
+- **_disabled**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/_disabled` | source: workspace
+  - SKILL.md: no | package.json: no
+  - risk: **high** | reason: contains base64 decode patterns; contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: base64_exec,curl_wget,env_secret
+  - scripts(sample): claw-roam.disabled-20260208-081734/scripts/claw-roam.sh
+  - external URL(sample): https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10 (Gmail.disabled-20260208-062106/SKILL.md)
+  - change signal: git: status 0, diff 0
+- **Gmail.disabled-20260208-062106**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **high** | reason: contains base64 decode patterns; contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: base64_exec,curl_wget,env_secret
+  - external URL(sample): https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10 (SKILL.md)
+  - change signal: git: status 0, diff 0
+- **claw-roam.disabled-20260208-081734**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - scripts(sample): scripts/claw-roam.sh
+  - change signal: git: status 0, diff 0
+- **a-stock-analysis**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - scripts(sample): scripts/analyze.py, scripts/portfolio.py
+  - external URL(sample): https://hq.sinajs.cn/list={codes_str} (scripts/analyze.py)
+  - change signal: git: status 1, diff 0
+- **ai-daily-digest**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/ai-daily-digest` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: uses child_process/exec/spawn patterns; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: child_process,env_secret
+  - scripts(sample): scripts/digest.ts
+  - external URL(sample): https://aistudio.google.com/apikey (README.md, SKILL.md, scripts/digest.ts)
+  - change signal: git: status 0, diff 0
+- **avatarkit**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/avatarkit` | source: workspace
+  - SKILL.md: yes | package.json: yes
+  - risk: **medium** | reason: contains base64 decode patterns; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: base64_exec,env_secret
+  - scripts(sample): example.ts, src/SKILL.ts, src/api.ts, src/avatar.ts, src/image.ts, src/index.ts
+  - external URL(sample): https://your-api.com/v1 (DEVELOPMENT.md)
+  - change signal: git: status 0, diff 0
+- **browse**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/browse` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **high** | reason: uses eval/new Function; contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: curl_wget,env_secret,eval
+  - external URL(sample): https://browserbase.com (SKILL.md)
+  - change signal: git: status 0, diff 0
+- **auth**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/browse/skills/auth` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - change signal: git: status 0, diff 0
+- **browser-automation**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/browse/skills/browser-automation` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://example.com (SKILL.md)
+  - change signal: git: status 0, diff 0
+- **create**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/browse/skills/create` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: contains curl/wget usage; contains external URLs outside allowlist
+  - pattern hits: curl_wget
+  - external URL(sample): https://example.com (SKILL.md)
+  - change signal: git: status 0, diff 0
+- **fix**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/browse/skills/fix` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://example.com/product/123 (SKILL.md)
+  - change signal: git: status 0, diff 0
+- **functions**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/browse/skills/functions` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **high** | reason: uses eval/new Function; contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: curl_wget,env_secret,eval
+  - external URL(sample): https://browserbase.com/settings (SKILL.md)
+  - change signal: git: status 0, diff 0
+- **claw-roam**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/claw-roam` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - scripts(sample): scripts/claw-roam.sh
+  - change signal: git: status 1, diff 0
+- **clawra**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/clawra` | source: workspace
+  - SKILL.md: yes | package.json: yes
+  - risk: **high** | reason: uses child_process/exec/spawn patterns; contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: child_process,curl_wget,env_secret
+  - scripts(sample): bin/cli.js, scripts/clawra-selfie.sh, scripts/clawra-selfie.ts, skill/scripts/clawra-selfie.sh, skill/scripts/clawra-selfie.ts
+  - external URL(sample): https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png (README.md, SKILL.md, bin/cli.js, skill/SKILL.md)
+  - change signal: git: status 0, diff 0
+- **skill**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/clawra/skill` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **high** | reason: uses child_process/exec/spawn patterns; contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: child_process,curl_wget,env_secret
+  - scripts(sample): scripts/clawra-selfie.sh, scripts/clawra-selfie.ts
+  - external URL(sample): https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png (SKILL.md)
+  - change signal: git: status 0, diff 0
+- **crypto-price**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/crypto-price` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - scripts(sample): scripts/get_price_chart.py
+  - external URL(sample): https://api.hyperliquid.xyz/info` (README.md)
+  - change signal: git: status 0, diff 0
+- **crypto-watch**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/crypto-watch` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - scripts(sample): scripts/crypto_watch.py
+  - external URL(sample): https://www.okx.com/api/v5/market/candles?instId=<INST>&bar=15m&limit=300` (references/OKX.md)
+  - change signal: git: status 0, diff 0
+- **db-readonly**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/db-readonly` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - scripts(sample): scripts/db_readonly.sh
+  - change signal: git: status 0, diff 0
+- **deepwiki**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/deepwiki` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - scripts(sample): scripts/deepwiki.js
+  - external URL(sample): https://docs.devin.ai/work-with-devin/deepwiki-mcp (SKILL.md)
+  - change signal: git: status 0, diff 0
+- **deepwork-tracker**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - change signal: git: status 0, diff 0
+- **evolver**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/evolver` | source: workspace
+  - SKILL.md: no | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - change signal: git: status 68, diff 67
+- **find-skills**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/find-skills` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - external URL(sample): https://skills.sh/ (SKILL.md)
+  - change signal: git: status 1, diff 1
+- **github**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/github` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - change signal: git: status 0, diff 0
+- **gmail**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/gmail` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **high** | reason: contains base64 decode patterns; contains curl/wget usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: base64_exec,curl_wget,env_secret
+  - external URL(sample): https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10 (SKILL.md)
+  - change signal: git: status 1, diff 0
+- **gmail-auto-processor**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor` | source: workspace
+  - SKILL.md: yes | package.json: yes
+  - risk: **low** | reason: uses child_process/exec/spawn patterns
+  - pattern hits: child_process
+  - scripts(sample): archive-promotions.js, archive-promotions.sh, batch-process.js, generate-report.js, gmail-processor.js, gmail-quick.js
+  - change signal: git: status 1, diff 0
+- **gmail-inbox-zero-triage**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/gmail-inbox-zero-triage` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - external URL(sample): https://gogcli.sh (CLAWHUB-SUBMISSION.md, OVERVIEW.md, README.md, SETUP.md)
+  - change signal: git: status 1, diff 0
+- **google-workspace-mcp**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - change signal: git: status 0, diff 0
+- **imap-smtp-email**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email` | source: workspace
+  - SKILL.md: yes | package.json: yes
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - scripts(sample): scripts/imap.js, scripts/smtp.js, setup.sh
+  - change signal: git: status 0, diff 0
+- **larksuite-wiki**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - scripts(sample): larksuite-wiki.py
+  - external URL(sample): https://open.larksuite.com/open-apis (larksuite-wiki.py)
+  - change signal: git: status 0, diff 0
+- **obsidian-integration**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/obsidian-integration` | source: workspace
+  - SKILL.md: yes | package.json: yes
+  - risk: **low** | reason: uses child_process/exec/spawn patterns
+  - pattern hits: child_process
+  - scripts(sample): index.js
+  - change signal: git: status 1, diff 0
+- **reminder**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/reminder` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - scripts(sample): scripts/reminder-scheduler.sh
+  - change signal: git: status 4, diff 0
+- **seedance-3x3-optimizer**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/seedance-3x3-optimizer` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - scripts(sample): scripts/optimize_story.py
+  - external URL(sample): https://x.com/ponyodong/status/2021534195659816995> (SKILL.md)
+  - change signal: git: status 0, diff 0
+- **self-reflection**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/self-reflection` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - change signal: git: status 0, diff 0
+- **skill-vetter**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/skill-vetter` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **high** | reason: contains sudo usage; uses eval/new Function; contains base64 decode patterns; references ~/.ssh paths; uses child_process/exec/spawn patterns; contains curl/wget usage; reads env/secret-like variables
+  - pattern hits: base64_exec,child_process,curl_wget,env_secret,eval,ssh_access,sudo
+  - change signal: git: status 0, diff 0
+- **stock_analysis**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/stock_analysis` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **high** | reason: contains sudo usage; contains curl/wget usage; contains external URLs outside allowlist
+  - pattern hits: curl_wget,sudo
+  - scripts(sample): scripts/analyze_stock.sh, scripts/install_deps.sh, scripts/stock_analyzer.py
+  - external URL(sample): https://data.eastmoney.com/notices/detail/SH601698/AN202602121819899073.html (outputs/601698.SH_20260216T072113Z.json, outputs/601698.SH_20260217T072145Z.json, outputs/601698.SH_20260219T072127Z.json, outputs/601698.SH_20260220T072125Z.json)
+  - change signal: git: status 2, diff 1
+- **task-status**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/task-status` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: reads env/secret-like variables
+  - pattern hits: env_secret
+  - scripts(sample): scripts/monitor_task.py, scripts/send_status.py, scripts/send_status_websocket.py, scripts/send_status_with_logging.py, scripts/test_send_status.py
+  - change signal: git: status 0, diff 0
+- **technews**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/technews` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret
+  - scripts(sample): scripts/article_fetcher.py, scripts/social_reactions.py, scripts/techmeme_scraper.py, scripts/technews.py
+  - external URL(sample): https://www.techmeme.com/feed.xml (scripts/techmeme_scraper.py)
+  - change signal: git: status 0, diff 0
+- **todo-kb**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/todo-kb` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - scripts(sample): scripts/todo_kb.py
+  - change signal: git: status 0, diff 0
+- **trading-journal**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/trading-journal` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: no critical pattern match
+  - pattern hits: none
+  - scripts(sample): scripts/trade-log.sh
+  - change signal: git: status 0, diff 0
+- **ui-ux-pro-max**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **high** | reason: contains sudo usage; reads env/secret-like variables; contains external URLs outside allowlist
+  - pattern hits: env_secret,sudo
+  - scripts(sample): scripts/__init__.py, scripts/core.py, scripts/design_system.py, scripts/search.py
+  - external URL(sample): https://fonts.google.com/share?selection.family=Inter:wght@300;400;500;600;700|Playfair+Display:wght@400;500;600;700 (assets/data/typography.csv, data/typography.csv)
+  - change signal: git: status 0, diff 0
+- **vercel-cli**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/vercel-cli` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **medium** | reason: uses child_process/exec/spawn patterns; reads env/secret-like variables
+  - pattern hits: child_process,env_secret
+  - scripts(sample): vercel-skill.js
+  - change signal: git: status 1, diff 0
+- **webapp-testing**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/webapp-testing` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - scripts(sample): examples/console_logging.py, examples/element_discovery.py, examples/static_html_automation.py, scripts/with_server.py
+  - external URL(sample): http://www.apache.org/licenses/ (LICENSE.txt)
+  - change signal: git: status 0, diff 0
+- **x-tweet-fetcher**
+  - path: `/home/ubuntu/.openclaw/workspace/skills/x-tweet-fetcher` | source: workspace
+  - SKILL.md: yes | package.json: no
+  - risk: **low** | reason: contains external URLs outside allowlist
+  - pattern hits: none
+  - scripts(sample): scripts/fetch_tweet.py
+  - external URL(sample): https://api.fxtwitter.com/{username}/status/{tweet_id} (scripts/fetch_tweet.py)
+  - change signal: git: status 1, diff 0

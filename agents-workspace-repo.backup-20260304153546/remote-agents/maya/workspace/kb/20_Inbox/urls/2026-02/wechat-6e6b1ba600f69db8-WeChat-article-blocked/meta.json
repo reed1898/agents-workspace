@@ -1,0 +1,14 @@
+{
+  "key": "6e6b1ba600f69db8",
+  "url": "https://mp.weixin.qq.com/s/0-P0NtbhaGGMsxownwyJrQ",
+  "title": "Agent 进化，不需要人类",
+  "source": "wechat",
+  "createdAt": "2026-02-19T10:45:33Z",
+  "tags": [
+    "#source:wechat",
+    "#type:article"
+  ],
+  "status": "ok",
+  "extractor": "node-wechat-direct",
+  "updatedAt": "2026-02-22T02:46:17Z"
+}

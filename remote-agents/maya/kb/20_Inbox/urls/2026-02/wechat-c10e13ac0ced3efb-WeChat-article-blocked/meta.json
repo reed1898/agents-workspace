@@ -1,0 +1,17 @@
+{
+  "key": "c10e13ac0ced3efb",
+  "url": "https://mp.weixin.qq.com/s/qEb3YlEfnNLSdcXodIsxUw",
+  "title": "王立群教授说：“用权力泡女人，女人在你面前服服帖帖，用金钱泡女人，女人仍是满脸不服气，甚至讨价还价，有时还嫌你礼品不上档次。”",
+  "source": "wechat",
+  "createdAt": "2026-02-13T06:39:24Z",
+  "tags": [
+    "#source:wechat",
+    "#type:article",
+    "#source:wechat",
+    "#type:article"
+  ],
+  "status": "ok",
+  "extractor": "node-wechat-direct",
+  "note": "Reed: 独立URL默认入库",
+  "updatedAt": "2026-02-22T02:46:17Z"
+}

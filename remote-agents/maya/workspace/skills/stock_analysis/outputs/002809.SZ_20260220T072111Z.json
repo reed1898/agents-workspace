@@ -1,0 +1,70 @@
+{
+  "symbol": "002809",
+  "company": "红墙股份",
+  "as_of": "2026-02-20T07:21:11.626244+00:00",
+  "price": 12.82,
+  "currency": "CNY",
+  "change_percent": -0.08,
+  "valuation": {
+    "pe": -319.96,
+    "pb": 1.74,
+    "market_cap": 2712871134,
+    "float_market_cap": 1783498913
+  },
+  "technical": {
+    "sma20": 13.58,
+    "sma50": 11.87,
+    "rsi14": 41.44,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-08 15:31:29:483",
+      "title": "红墙股份:关于控股股东、实际控制人权益变动触及1%整数倍暨减持计划实施完成的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002809/AN202602081819824746.html"
+    },
+    {
+      "time": "2026-01-28 17:12:08:260",
+      "title": "红墙股份:2025年年度业绩预告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002809/AN202601281818506846.html"
+    },
+    {
+      "time": "2026-01-21 18:22:08:319",
+      "title": "红墙股份:关于股票交易异常波动公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002809/AN202601211818212654.html"
+    },
+    {
+      "time": "2026-01-13 19:17:10:525",
+      "title": "红墙股份:关于控股股东、实际控制人减持公司股份的预披露公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002809/AN202601131816986214.html"
+    },
+    {
+      "time": "2026-01-05 16:53:22:404",
+      "title": "红墙股份:关于2025年第四季度可转债转股情况暨股份变动的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002809/AN202601051815411817.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位",
+    "当前PE为负，盈利稳定性需持续跟踪"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：红墙股份:关于控股股东、实际控制人权益变动触及1%整数倍"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 78,
+    "momentum": 50,
+    "total": 66.1
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

@@ -1,0 +1,20 @@
+# machine-local secrets / config
+LOCAL_CONFIG.md
+.env
+.env.*
+*.pem
+*.key
+
+# runtime / transient
+node_modules/
+.cache/
+logs/
+tmp/
+
+# OpenClaw transient state
+memory/heartbeat-state.json
+crypto-watch/market-snapshot.json
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

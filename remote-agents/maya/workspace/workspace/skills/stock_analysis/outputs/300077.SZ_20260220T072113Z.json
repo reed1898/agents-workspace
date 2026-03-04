@@ -1,0 +1,70 @@
+{
+  "symbol": "300077",
+  "company": "国民技术",
+  "as_of": "2026-02-20T07:21:13.965349+00:00",
+  "price": 21.7,
+  "currency": "CNY",
+  "change_percent": -1.41,
+  "valuation": {
+    "pe": -128.7,
+    "pb": 13.16,
+    "market_cap": 12653849390,
+    "float_market_cap": 12289304580
+  },
+  "technical": {
+    "sma20": 22.62,
+    "sma50": 21.63,
+    "rsi14": 48.6,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-10 18:51:08:252",
+      "title": "国民技术:关于为控股子公司提供担保的进展公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300077/AN202602101819859725.html"
+    },
+    {
+      "time": "2026-01-29 18:34:04:269",
+      "title": "国民技术:关于为控股子公司提供担保的进展公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300077/AN202601291818547592.html"
+    },
+    {
+      "time": "2026-01-27 18:53:08:260",
+      "title": "国民技术:2025年年度业绩预告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300077/AN202601271818471511.html"
+    },
+    {
+      "time": "2026-01-16 19:34:03:336",
+      "title": "国民技术:关于与浦项未来签署《〈增资协议〉之补充协议二》的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300077/AN202601161817861928.html"
+    },
+    {
+      "time": "2026-01-16 19:34:03:341",
+      "title": "国民技术:关于为子公司提供担保的进展公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300077/AN202601161817861931.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位",
+    "当前PE为负，盈利稳定性需持续跟踪"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：国民技术:关于为控股子公司提供担保的进展公告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 78,
+    "momentum": 70,
+    "total": 73.1
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

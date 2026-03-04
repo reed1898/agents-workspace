@@ -1,0 +1,111 @@
+{
+  "run_id": "daily-20260225-003005-morning-daily-morning",
+  "timestamp_utc": "2026-02-25T00:30:05.316598+00:00",
+  "phase": "morning",
+  "topic": "daily-morning",
+  "dry_run": false,
+  "max_attempts": 3,
+  "retry_base_seconds": 1.0,
+  "classifier_config": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/config/error-classifier.json",
+  "steps": {
+    "generate_daily_summary": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/generate_daily_summary.py",
+            "--phase",
+            "morning",
+            "--topic",
+            "daily-morning",
+            "--output",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-003005-morning-daily-morning-summary.json",
+            "--pretty"
+          ],
+          "returncode": 0,
+          "stdout": "[generate_daily_summary] phase=morning topic=daily-morning\n[generate_daily_summary] written output: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-003005-morning-daily-morning-summary.json\n[generate_daily_summary] done\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    },
+    "write_kb": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/write_kb.py",
+            "--input-json",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-003005-morning-daily-morning-summary.json",
+            "--receipt-path",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-003005-morning-daily-morning-write-kb-receipt.json",
+            "--no-dry-run"
+          ],
+          "returncode": 0,
+          "stdout": "[write_kb] dry_run=False\n[write_kb] target=/home/ubuntu/.openclaw/kb/01_Daily/2026-02-25-daily-morning.md\n[write_kb] written: /home/ubuntu/.openclaw/kb/01_Daily/2026-02-25-daily-morning.md\n[write_kb] done\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    },
+    "send_telegram": {
+      "ok": false,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/send_telegram.py",
+            "--input-json",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-003005-morning-daily-morning-summary.json",
+            "--account-id",
+            "maya",
+            "--target",
+            "telegram:869269685",
+            "--logs-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs",
+            "--queue-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending",
+            "--state-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/state",
+            "--classifier-config",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/config/error-classifier.json",
+            "--receipt-path",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-003005-morning-daily-morning-telegram-receipt.json",
+            "--attempt",
+            "1",
+            "--run-id",
+            "daily-20260225-003005-morning-daily-morning",
+            "--no-dry-run"
+          ],
+          "returncode": 6,
+          "stdout": "[send_telegram] dry_run=False, calling OpenClaw message send\n[send_telegram] ERROR send failed rc=1 class=fatal\n[send_telegram] queued pending task: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending/telegram-pending-20260225-003005.json\n[send_telegram] receipt written: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-003005-morning-daily-morning-telegram-receipt.json\n",
+          "stderr": "",
+          "ok": false,
+          "attempt": 1,
+          "error_class": "fatal"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "fatal"
+    }
+  },
+  "artifacts": {
+    "summary_json": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-003005-morning-daily-morning-summary.json",
+    "kb_receipt": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-003005-morning-daily-morning-write-kb-receipt.json",
+    "telegram_receipt": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-003005-morning-daily-morning-telegram-receipt.json",
+    "pending_queue_dir": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending",
+    "cli_capabilities": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/state/cli_capabilities.json"
+  },
+  "success": false,
+  "report_path": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/reports/run-report-20260225-003009.json"
+}

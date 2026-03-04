@@ -1,0 +1,44 @@
+# 2026-02-25 daily-morning (morning)
+
+- generated_at_utc: 2026-02-25T00:30:05.354838+00:00
+- status: success
+
+## Highlights
+- [skeleton] 今日重点待补充
+- [skeleton] 风险项待补充
+- [skeleton] 明日建议待补充
+
+## Risks
+- (none)
+
+## Actions
+- (none)
+
+## Raw JSON
+```json
+{
+  "status": "success",
+  "data": {
+    "report_type": "daily",
+    "phase": "morning",
+    "topic": "daily-morning",
+    "date": "2026-02-25",
+    "generated_at_utc": "2026-02-25T00:30:05.354838+00:00",
+    "highlights": [
+      "[skeleton] 今日重点待补充",
+      "[skeleton] 风险项待补充",
+      "[skeleton] 明日建议待补充"
+    ],
+    "risks": [],
+    "actions": [],
+    "artifacts": [],
+    "metrics": {}
+  },
+  "error": null,
+  "next_action": {
+    "type": "continue",
+    "target": "write_kb",
+    "reason": "日报 skeleton 生成完成，进入 KB 写入步骤"
+  }
+}
+```

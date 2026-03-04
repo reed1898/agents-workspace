@@ -1,0 +1,85 @@
+{
+  "555b180e9ab413d4d14c55f61d625779f33c66bbeaafc7e79f0b191b8c62b0f7": {
+    "deviceId": "555b180e9ab413d4d14c55f61d625779f33c66bbeaafc7e79f0b191b8c62b0f7",
+    "publicKey": "N1SiUN0HDvg3uOU8lRhOigmulLvHMR7WHmusVWC_9GA",
+    "platform": "linux",
+    "clientId": "gateway-client",
+    "clientMode": "backend",
+    "role": "operator",
+    "roles": [
+      "operator"
+    ],
+    "scopes": [
+      "operator.admin",
+      "operator.approvals",
+      "operator.pairing",
+      "operator.read",
+      "operator.write"
+    ],
+    "tokens": {
+      "operator": {
+        "token": "AFm5SySYoEupIBLRbf0KPxfgUbEYJ2ZOikvRGywCkZw",
+        "role": "operator",
+        "scopes": [
+          "operator.admin",
+          "operator.read",
+          "operator.write"
+        ],
+        "createdAtMs": 1770390076546,
+        "rotatedAtMs": 1772113752326,
+        "lastUsedAtMs": 1771403281299
+      }
+    },
+    "createdAtMs": 1770390076546,
+    "approvedAtMs": 1771685543966
+  },
+  "606cfc5dfbb3aca58c4a96318669383d78499eddc57449c23daf48991e7b96d3": {
+    "deviceId": "606cfc5dfbb3aca58c4a96318669383d78499eddc57449c23daf48991e7b96d3",
+    "publicKey": "mFOorIHYOaiqw9WdLNYzSei9rHwmr2udbkLMItAN6OY",
+    "displayName": "Reed-Mac",
+    "platform": "darwin",
+    "clientId": "node-host",
+    "clientMode": "node",
+    "role": "node",
+    "roles": [
+      "node"
+    ],
+    "tokens": {
+      "node": {
+        "token": "4e93a988ca394b3e9ae52df572c62ad5",
+        "role": "node",
+        "scopes": [],
+        "createdAtMs": 1770819387579,
+        "lastUsedAtMs": 1772125095182
+      }
+    },
+    "createdAtMs": 1770819387579,
+    "approvedAtMs": 1770819387579
+  },
+  "037ebdc2a33b9776763f69e6fee27c871ad74ab9d163c07d46d3461f5935ac98": {
+    "deviceId": "037ebdc2a33b9776763f69e6fee27c871ad74ab9d163c07d46d3461f5935ac98",
+    "publicKey": "6bGTPFkSKG6bs8F_qSu9hj8Xyjhmy6rQ3nWq6oqp0PE",
+    "platform": "linux",
+    "clientId": "cli",
+    "clientMode": "ui",
+    "role": "operator",
+    "roles": [
+      "operator"
+    ],
+    "scopes": [
+      "operator.admin"
+    ],
+    "tokens": {
+      "operator": {
+        "token": "fHmTPdiKlDPQSQ01J_npqMNDzlDGLl-7DHvtb3oo_zQ",
+        "role": "operator",
+        "scopes": [
+          "operator.admin"
+        ],
+        "createdAtMs": 1771407517796
+      }
+    },
+    "createdAtMs": 1771407517795,
+    "approvedAtMs": 1771407517795
+  }
+}

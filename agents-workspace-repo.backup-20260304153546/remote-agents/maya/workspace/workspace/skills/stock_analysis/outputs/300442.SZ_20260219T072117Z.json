@@ -1,0 +1,69 @@
+{
+  "symbol": "300442",
+  "company": "润泽科技",
+  "as_of": "2026-02-19T07:21:17.759201+00:00",
+  "price": 0.0,
+  "currency": "CNY",
+  "change_percent": -100.0,
+  "valuation": {
+    "pe": 19.94,
+    "pb": 9.23,
+    "market_cap": 125027283334,
+    "float_market_cap": 124570611841
+  },
+  "technical": {
+    "sma20": 80.28,
+    "sma50": 62.94,
+    "rsi14": 46.33,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-13 20:41:16:519",
+      "title": "润泽科技:关于公司及全资子公司润泽科技发展有限公司开展南方润泽科技数据中心REIT扩募申报发行工作的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300442/AN202602131819926090.html"
+    },
+    {
+      "time": "2026-02-13 20:41:16:514",
+      "title": "润泽科技:董事会关于本次交易符合《上市公司证券发行注册管理办法》第十一条、第十三条、第十四条规定的说明",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300442/AN202602131819926084.html"
+    },
+    {
+      "time": "2026-02-13 20:41:16:489",
+      "title": "润泽科技:董事会关于本次交易相关主体不存在《上市公司监管指引第7号——上市公司重大资产重组相关股票异常交易监管》第十二条及《深圳证券交易所上市公司自律监管指引第8号——重大资产重组》第三十条规定情形的说明",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300442/AN202602131819926093.html"
+    },
+    {
+      "time": "2026-02-13 20:41:16:482",
+      "title": "润泽科技:董事会关于本次交易履行法定程序完备性、合规性及提交法律文件有效性的说明",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300442/AN202602131819926081.html"
+    },
+    {
+      "time": "2026-02-13 20:41:16:482",
+      "title": "润泽科技:关于召开2026年第一次临时股东会的通知",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300442/AN202602131819926091.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：润泽科技:关于公司及全资子公司润泽科技发展有限公司开展南"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 78,
+    "momentum": 70,
+    "total": 73.1
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

@@ -1,0 +1,602 @@
+# Skills Security Scan Report — 2026-02-17 (Nightly)
+
+## 今晚结论摘要
+
+- 扫描范围：共 92 个 skill 目录（workspace/npm-global/.openclaw 三处）。
+- 风险分级：high 3 / medium 15 / low 74。
+- 结论：发现 3 个 high（均为‘高危能力/模式存在’），未发现明确恶意落地行为证据。
+- high 主要触发点：命令执行 + curl/wget + eval/base64 关键字组合。
+- medium 常见触发点：child_process/exec、环境变量读取、网络请求调用。
+- 二进制/可执行文件：少量存在，集中在工具型 skill（需持续关注来源与更新）。
+- 变更检测：workspace 仓库存在未提交改动；非 git 路径使用 mtime+hash 留痕。
+- 建议：对 high/medium 每周做一次人工抽检（优先看新近变更文件）。
+
+## 风险最高项（high）
+
+- **/home/ubuntu/.openclaw/workspace/skills/browse**
+  - 触发原因：存在 eval/new Function 或 base64 解码相关模式；存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 命中样例：
+    - `SKILL.md:253:const data = await page.$$eval(selector, els =>`
+    - `SKILL.md:155:Invoke with curl:`
+  - 变更：git无未提交变更
+- **/home/ubuntu/.openclaw/workspace/skills/browse/skills/functions**
+  - 触发原因：存在 eval/new Function 或 base64 解码相关模式；存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 命中样例：
+    - `SKILL.md:209:const items = await page.$$eval(params.selector, els =>`
+    - `SKILL.md:119:curl -X POST http://127.0.0.1:14113/v1/functions/my-function/invoke \`
+  - 变更：git无未提交变更
+- **/home/ubuntu/.openclaw/workspace/skills/skill-vetter**
+  - 触发原因：存在 eval/new Function 或 base64 解码相关模式；检测到 sudo/权限提升相关命令；涉及 .ssh 路径访问。
+  - 命中样例：
+    - `SKILL.md:44:• Uses eval() or exec() with external input`
+    - `SKILL.md:44:• Uses eval() or exec() with external input`
+    - `SKILL.md:38:• curl/wget to unknown URLs`
+  - 变更：git无未提交变更
+
+## 按 skill 详细清单（项目符号）
+
+- **~/.npm-global/lib/node_modules/openclaw/skills/1password**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash c6d618335270
+- **~/.npm-global/lib/node_modules/openclaw/skills/apple-notes**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash c07631bb6ec0
+- **~/.npm-global/lib/node_modules/openclaw/skills/apple-reminders**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash bd4253fc257c
+- **~/.npm-global/lib/node_modules/openclaw/skills/bear-notes**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：读取环境变量/密钥模式；出现可疑域名/IP 网络目标。
+  - 风险命中：4 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 可疑网络目标（采样）：127.0.0.1:42123
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 956251b2fca2
+- **~/.npm-global/lib/node_modules/openclaw/skills/blogwatcher**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：3 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 33011ee6e0c3
+- **~/.npm-global/lib/node_modules/openclaw/skills/blucli**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 38b96f404b6b
+- **~/.npm-global/lib/node_modules/openclaw/skills/bluebubbles**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 41a9218692a5
+- **~/.npm-global/lib/node_modules/openclaw/skills/camsnap**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：2 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 95039a10f662
+- **~/.npm-global/lib/node_modules/openclaw/skills/canvas**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**medium**；理由：存在 curl/wget 网络拉取；出现可疑域名/IP 网络目标。
+  - 风险命中：9 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 可疑网络目标（采样）：127.0.0.1:18793
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 2be0814cdb20
+- **~/.npm-global/lib/node_modules/openclaw/skills/clawhub**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 2bae787841a3
+- **~/.npm-global/lib/node_modules/openclaw/skills/coding-agent**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 065c9e530753
+- **~/.npm-global/lib/node_modules/openclaw/skills/discord**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：6 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash d686ae068530
+- **~/.npm-global/lib/node_modules/openclaw/skills/eightctl**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash a67bcb20983a
+- **~/.npm-global/lib/node_modules/openclaw/skills/food-order**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：2 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 2754deb16655
+- **~/.npm-global/lib/node_modules/openclaw/skills/gemini**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 29205943f8ad
+- **~/.npm-global/lib/node_modules/openclaw/skills/gifgrep**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：3 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 3445f7eeed1b
+- **~/.npm-global/lib/node_modules/openclaw/skills/github**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash b1dfa8cd04bc
+- **~/.npm-global/lib/node_modules/openclaw/skills/gog**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash f911184331f8
+- **~/.npm-global/lib/node_modules/openclaw/skills/goplaces**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：5 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 36b7cca469b1
+- **~/.npm-global/lib/node_modules/openclaw/skills/healthcheck**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 923de34758e7
+- **~/.npm-global/lib/node_modules/openclaw/skills/himalaya**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：3 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 15aee8d3177c
+- **~/.npm-global/lib/node_modules/openclaw/skills/imsg**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash aa534c94897e
+- **~/.npm-global/lib/node_modules/openclaw/skills/local-places**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：7
+  - 风险等级：**medium**；理由：存在 curl/wget 网络拉取；读取环境变量/密钥模式；出现可疑域名/IP 网络目标。
+  - 风险命中：24 条（采样）; 脚本文件：4；可执行/二进制：0
+  - 可疑网络目标（采样）：127.0.0.1:8000
+  - 新增/变化：mtime 2026-02-07 10:10:20 UTC, hash dbf3454d3daf
+- **~/.npm-global/lib/node_modules/openclaw/skills/mcporter**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：3 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash a9a860f7453f
+- **~/.npm-global/lib/node_modules/openclaw/skills/model-usage**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:20 UTC, hash de8fde99cfc4
+- **~/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：2
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：8 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:20 UTC, hash 08b40bfbcb21
+- **~/.npm-global/lib/node_modules/openclaw/skills/nano-pdf**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 28c360b5b915
+- **~/.npm-global/lib/node_modules/openclaw/skills/notion**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**medium**；理由：存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 风险命中：17 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 4207d754208a
+- **~/.npm-global/lib/node_modules/openclaw/skills/obsidian**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash b184f7079cf2
+- **~/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：2
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：6 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:20 UTC, hash 3a1676365ec3
+- **~/.npm-global/lib/node_modules/openclaw/skills/openai-whisper**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 6211652a4ffe
+- **~/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：2
+  - 风险等级：**medium**；理由：存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 风险命中：11 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:20 UTC, hash 0f5404890446
+- **~/.npm-global/lib/node_modules/openclaw/skills/openhue**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 87e7de91a44e
+- **~/.npm-global/lib/node_modules/openclaw/skills/oracle**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：3 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 0b227cf37ac6
+- **~/.npm-global/lib/node_modules/openclaw/skills/ordercli**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：3 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 14aef89ed6da
+- **~/.npm-global/lib/node_modules/openclaw/skills/peekaboo**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：2 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 3275c6fb3f34
+- **~/.npm-global/lib/node_modules/openclaw/skills/sag**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：5 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash d86b98ff6586
+- **~/.npm-global/lib/node_modules/openclaw/skills/session-logs**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 7c6a007031f8
+- **~/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：2
+  - 风险等级：**low**；理由：包含可执行二进制/无扩展可执行文件。
+  - 风险命中：4 条（采样）; 脚本文件：0；可执行/二进制：1
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash f09ccc8344ee
+- **~/.npm-global/lib/node_modules/openclaw/skills/skill-creator**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：6
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：2 条（采样）; 脚本文件：3；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-13 05:55:29 UTC, hash 9377339bac03
+- **~/.npm-global/lib/node_modules/openclaw/skills/slack**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash e3bf25727b1f
+- **~/.npm-global/lib/node_modules/openclaw/skills/songsee**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash ed648a76a89a
+- **~/.npm-global/lib/node_modules/openclaw/skills/sonoscli**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：2 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash ce5c4e2a3316
+- **~/.npm-global/lib/node_modules/openclaw/skills/spotify-player**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 35f3d420538c
+- **~/.npm-global/lib/node_modules/openclaw/skills/summarize**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：11 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 3ec4a66d4f27
+- **~/.npm-global/lib/node_modules/openclaw/skills/things-mac**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：9 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 5a04111134fd
+- **~/.npm-global/lib/node_modules/openclaw/skills/tmux**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：2；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:20 UTC, hash 97f4dae5a7ed
+- **~/.npm-global/lib/node_modules/openclaw/skills/trello**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**medium**；理由：存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 风险命中：24 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 61c8c5d474c5
+- **~/.npm-global/lib/node_modules/openclaw/skills/video-frames**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：2
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:20 UTC, hash dccaa29a323c
+- **~/.npm-global/lib/node_modules/openclaw/skills/voice-call**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash d3e2c6d3d4ab
+- **~/.npm-global/lib/node_modules/openclaw/skills/wacli**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash e96ce8a145db
+- **~/.npm-global/lib/node_modules/openclaw/skills/weather**
+  - 来源根路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：存在 curl/wget 网络拉取。
+  - 风险命中：9 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-07 10:10:19 UTC, hash 6953295d3da5
+- **~/.openclaw/skills/clawra-selfie**
+  - 来源根路径：`/home/ubuntu/.openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：4
+  - 风险等级：**medium**；理由：存在命令执行/子进程调用；存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 风险命中：24 条（采样）; 脚本文件：2；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-11 17:10:45 UTC, hash 355de14b45ee
+- **~/.openclaw/skills/find-skills**
+  - 来源根路径：`/home/ubuntu/.openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：4 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-12 15:56:02 UTC, hash d59d36f2f8bc
+- **~/.openclaw/skills/knowledge-base-collector**
+  - 来源根路径：`/home/ubuntu/.openclaw/skills`
+  - SKILL.md：yes；package.json：no；文件数：13
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：7 条（采样）; 脚本文件：6；可执行/二进制：0
+  - 新增/变化：mtime 2026-02-13 07:08:13 UTC, hash 0dfb0eda5c02
+- **~/.openclaw/workspace/skills/Gmail**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**medium**；理由：存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 风险命中：21 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git变更 1 项
+- **~/.openclaw/workspace/skills/YouTube**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：4
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：14 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**medium**；理由：存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 风险命中：21 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：4
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/a-stock-analysis**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：6
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：6 条（采样）; 脚本文件：2；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/avatarkit**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：yes；文件数：87
+  - 风险等级：**medium**；理由：存在 eval/new Function 或 base64 解码相关模式；读取环境变量/密钥模式。
+  - 风险命中：17 条（采样）; 脚本文件：10；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/browse**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：9
+  - 风险等级：**high**；理由：存在 eval/new Function 或 base64 解码相关模式；存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 风险命中：26 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 可疑网络目标（采样）：127.0.0.1:14113`, 127.0.0.1:14113
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/browse/skills/auth**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/browse/skills/browser-automation**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：8 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/browse/skills/create**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**medium**；理由：存在 curl/wget 网络拉取；出现可疑域名/IP 网络目标。
+  - 风险命中：5 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 可疑网络目标（采样）：127.0.0.1:14113
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/browse/skills/fix**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：2 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/browse/skills/functions**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：1
+  - 风险等级：**high**；理由：存在 eval/new Function 或 base64 解码相关模式；存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 风险命中：20 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 可疑网络目标（采样）：127.0.0.1:14113`, 127.0.0.1:14113
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/claw-roam**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：4
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：git变更 1 项
+- **~/.openclaw/workspace/skills/clawra**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：yes；文件数：14
+  - 风险等级：**medium**；理由：存在命令执行/子进程调用；存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 风险命中：29 条（采样）; 脚本文件：5；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/clawra/skill**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：4
+  - 风险等级：**medium**；理由：存在命令执行/子进程调用；存在 curl/wget 网络拉取；读取环境变量/密钥模式。
+  - 风险命中：24 条（采样）; 脚本文件：2；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/crypto-price**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：7
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：10 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/crypto-watch**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：5
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：3 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/db-readonly**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/deepwiki**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：4
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：5 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/deepwork-tracker**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：2 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/find-skills**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：4 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git变更 1 项
+- **~/.openclaw/workspace/skills/github**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/gmail-auto-processor**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：yes；文件数：17
+  - 风险等级：**low**；理由：存在命令执行/子进程调用。
+  - 风险命中：8 条（采样）; 脚本文件：13；可执行/二进制：0
+  - 新增/变化：git变更 1 项
+- **~/.openclaw/workspace/skills/google-workspace-mcp**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/imap-smtp-email**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：yes；文件数：8
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：10 条（采样）; 脚本文件：3；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/larksuite-wiki**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：5
+  - 风险等级：**low**；理由：读取环境变量/密钥模式；包含可执行二进制/无扩展可执行文件。
+  - 风险命中：16 条（采样）; 脚本文件：1；可执行/二进制：1
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/obsidian-integration**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：yes；文件数：4
+  - 风险等级：**low**；理由：存在命令执行/子进程调用。
+  - 风险命中：1 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：git变更 1 项
+- **~/.openclaw/workspace/skills/reminder**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：6
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：1 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：git变更 4 项
+- **~/.openclaw/workspace/skills/self-reflection**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：5
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：5 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/skill-vetter**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：3
+  - 风险等级：**high**；理由：存在 eval/new Function 或 base64 解码相关模式；检测到 sudo/权限提升相关命令；涉及 .ssh 路径访问。
+  - 风险命中：12 条（采样）; 脚本文件：0；可执行/二进制：0
+  - 可疑网络目标（采样）：raw.githubusercontent.com
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/stock_analysis**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：185
+  - 风险等级：**medium**；理由：检测到 sudo/权限提升相关命令；存在 curl/wget 网络拉取。
+  - 风险命中：15 条（采样）; 脚本文件：3；可执行/二进制：0
+  - 新增/变化：git变更 2 项
+- **~/.openclaw/workspace/skills/task-status**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：10
+  - 风险等级：**low**；理由：读取环境变量/密钥模式。
+  - 风险命中：12 条（采样）; 脚本文件：5；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/technews**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：9
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：8 条（采样）; 脚本文件：4；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/trading-journal**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：2
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：0 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/ui-ux-pro-max**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：57
+  - 风险等级：**medium**；理由：检测到 sudo/权限提升相关命令。
+  - 风险命中：10 条（采样）; 脚本文件：4；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+- **~/.openclaw/workspace/skills/vercel-cli**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：2
+  - 风险等级：**medium**；理由：存在命令执行/子进程调用；读取环境变量/密钥模式。
+  - 风险命中：2 条（采样）; 脚本文件：1；可执行/二进制：0
+  - 新增/变化：git变更 1 项
+- **~/.openclaw/workspace/skills/webapp-testing**
+  - 来源根路径：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes；package.json：no；文件数：8
+  - 风险等级：**low**；理由：未命中高风险模式。
+  - 风险命中：6 条（采样）; 脚本文件：4；可执行/二进制：0
+  - 新增/变化：git无未提交变更
+
+## 扫描方法
+
+- 静态审计（grep/模式命中 + 文件结构统计），未执行任何破坏性操作。
+- 规则覆盖：child_process/exec/spawn、curl/wget、.ssh、env/key、eval/new Function、base64 解码执行、sudo、可执行文件。
+- 变更检测：git 仓库走 `git status --porcelain`；非 git 目录走 `mtime + hash`。

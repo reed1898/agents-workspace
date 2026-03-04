@@ -1,0 +1,63 @@
+{
+  "project": "catpaw_black_sesame_ricecake",
+  "aspect_ratio": "16:9",
+  "fps": 24,
+  "style": {
+    "scene": "bright, clean, warm kitchen countertop",
+    "tone": "cozy, festive Chinese New Year mood",
+    "props": "cartoon cat-paw steaming bowl, bamboo steamer",
+    "food": "black sesame rice cake, smooth texture"
+  },
+  "global_constraints": [
+    "no face visible",
+    "only child hands in final shot",
+    "winter sleeve with Spring Festival atmosphere",
+    "consistent bowl position center-frame for shots 1-3",
+    "realistic food texture"
+  ],
+  "shots": [
+    {
+      "id": "shot1",
+      "duration_sec": 2.5,
+      "camera": "close-up, eye-level",
+      "prompt": "A bright and clean warm kitchen countertop. Ultra close-up of a cute cartoon cat-paw steaming bowl fixed in center frame. Thick black sesame slurry, silky and glossy, pours into the bowl. Gentle natural window light, cinematic food macro, realistic texture, cozy Chinese New Year ambiance in background decorations. Keep bowl position stable.",
+      "audio": "thick batter pouring sound"
+    },
+    {
+      "id": "shot2",
+      "duration_sec": 2.5,
+      "camera": "tighter close-up, eye-level",
+      "prompt": "Same kitchen and same cat-paw bowl in exactly the same position. Creamy white rice slurry pours into the bowl, smooth and silky, layering with black sesame base. Slight push-in compared to previous shot. Food commercial quality, macro realism.",
+      "audio": "smooth rice slurry pouring sound"
+    },
+    {
+      "id": "shot3",
+      "duration_sec": 2.5,
+      "camera": "extreme close-up, eye-level",
+      "prompt": "Same bowl and same position, even closer. One to two clear fresh pear juice droplets fall into the cat-paw bowl and ripple softly. Progressive push-in, macro lens look, clean highlights, warm cozy kitchen background bokeh.",
+      "audio": "clear water droplet plink"
+    },
+    {
+      "id": "shot4a",
+      "duration_sec": 2.5,
+      "camera": "top-down medium shot",
+      "prompt": "A wooden bamboo steamer lid is lifted, steam blooms and clears, revealing a cute cat-paw shaped black sesame rice cake inside. Warm, appetizing, bright kitchen lighting, natural steam motion.",
+      "audio": "lid lift + steam whoosh"
+    },
+    {
+      "id": "shot4b",
+      "duration_sec": 2.5,
+      "camera": "front, slight top angle, close-up",
+      "prompt": "Several black sesame rice cakes tumble from off-screen into a clean rustic bamboo steamer basket, then bounce twice to show chewy springy texture (Q弹). Food ad style, crisp details, soft warm light.",
+      "audio": "soft drop + double bounce"
+    },
+    {
+      "id": "shot5",
+      "duration_sec": 2.5,
+      "camera": "close-up, eye-level to slight low angle",
+      "prompt": "Only a 5-year-old child's small hands (no face, no body) wearing winter festive sleeves with Chinese New Year style raise one black sesame cat-paw rice cake and gently twist it. Bright clean warm kitchen backdrop. Keep child identity unrecognizable.",
+      "audio": "8-bit game coin success sound"
+    }
+  ],
+  "negative_prompt": "human face, portrait, text, watermark, logo, extra fingers, malformed hands, dark dirty kitchen, horror, low quality"
+}

@@ -1,0 +1,704 @@
+# Skills Security Scan — 2026-02-27
+
+## 今晚结论摘要
+- 扫描范围：/home/ubuntu/.openclaw/workspace/skills, /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills, /home/ubuntu/.openclaw/skills
+- 总计 skills：98（low 60 / medium 30 / high 8）
+- 发现 high 风险：是，共 8 个
+- high 列表：_disabled、browse、clawra、clawra-selfie、Gmail、gmail、skill-vetter、stock_analysis
+- 本次为静态规则扫描（含脚本与文档匹配），存在误报可能；high 项建议人工复核代码上下文。
+- 主要风险信号：命令执行、下载执行链、环境变量/密钥读取、可疑外联域名、eval/new Function、sudo/提权痕迹。
+- 变更概览：workspace 为 git 仓库（当前约 186 项变更）；其余目录多为非 git，按 mtime 提示最近变动。
+
+## 扫描方法
+- 枚举每个 skill 目录，检查 SKILL.md / package.json 存在性
+- 抽样匹配高风险模式：child_process/exec/spawn、curl/wget、~/.ssh、env/密钥、eval/new Function、base64 解码执行、sudo
+- 识别脚本文件（.sh/.ps1/.py/.js 等）与疑似二进制文件
+- 变更检测：优先 git status/diff；非 git 用最近 mtime
+
+## 按 skill 详细结果（项目符号）
+- _disabled (high)
+  - path: /home/ubuntu/.openclaw/workspace/skills/_disabled
+  - files: 7; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: curl/wget, env/local keys read, base64 decode exec, suspicious net domains
+  - reason: curl/wget, env/local keys read, base64 decode exec, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- browse (high)
+  - path: /home/ubuntu/.openclaw/workspace/skills/browse
+  - files: 9; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: curl/wget, env/local keys read, eval/new Function, suspicious net domains
+  - reason: curl/wget, env/local keys read, eval/new Function, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- clawra (high)
+  - path: /home/ubuntu/.openclaw/workspace/skills/clawra
+  - files: 14; SKILL.md: yes; package.json: yes
+  - scripts: 5; binary_suspects: 0
+  - signals: child_process/exec/spawn, curl/wget, env/local keys read, suspicious net domains
+  - reason: child_process/exec/spawn, curl/wget, env/local keys read, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- clawra-selfie (high)
+  - path: /home/ubuntu/.openclaw/skills/clawra-selfie
+  - files: 4; SKILL.md: yes; package.json: no
+  - scripts: 2; binary_suspects: 0
+  - signals: child_process/exec/spawn, curl/wget, env/local keys read, suspicious net domains
+  - reason: child_process/exec/spawn, curl/wget, env/local keys read, suspicious domains
+  - change: non-git; latest_mtime=2026-02-11 17:10:45 UTC
+- Gmail (high)
+  - path: /home/ubuntu/.openclaw/workspace/skills/Gmail
+  - files: 3; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: curl/wget, env/local keys read, base64 decode exec, suspicious net domains
+  - reason: curl/wget, env/local keys read, base64 decode exec, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=1; diff_files=0
+- gmail (high)
+  - path: /home/ubuntu/.openclaw/workspace/skills/gmail
+  - files: 4; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: curl/wget, env/local keys read, base64 decode exec, suspicious net domains
+  - reason: curl/wget, env/local keys read, base64 decode exec, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=1; diff_files=0
+- skill-vetter (high)
+  - path: /home/ubuntu/.openclaw/workspace/skills/skill-vetter
+  - files: 3; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: child_process/exec/spawn, curl/wget, write ~/.ssh, eval/new Function, base64 decode exec, sudo/privilege, suspicious net domains
+  - reason: child_process/exec/spawn, curl/wget, write ~/.ssh, eval/new Function, base64 decode exec, sudo/privilege
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- stock_analysis (high)
+  - path: /home/ubuntu/.openclaw/workspace/skills/stock_analysis
+  - files: 545; SKILL.md: yes; package.json: no
+  - scripts: 3; binary_suspects: 0
+  - signals: curl/wget, sudo/privilege, suspicious net domains
+  - reason: curl/wget, sudo/privilege, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=2; diff_files=1
+- a-stock-analysis (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis
+  - files: 7; SKILL.md: yes; package.json: no
+  - scripts: 2; binary_suspects: 1
+  - signals: suspicious net domains
+  - reason: binary files: 1, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=1; diff_files=0
+- ai-daily-digest (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/ai-daily-digest
+  - files: 5; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: child_process/exec/spawn, env/local keys read, suspicious net domains
+  - reason: child_process/exec/spawn, env/local keys read, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace/skills/ai-daily-digest; status_count=0; diff_files=0
+- ai-video-generation (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/ai-video-generation
+  - files: 1; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: curl/wget, suspicious net domains
+  - reason: curl/wget, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- avatarkit (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/avatarkit
+  - files: 21; SKILL.md: yes; package.json: yes
+  - scripts: 10; binary_suspects: 0
+  - signals: env/local keys read, suspicious net domains
+  - reason: env/local keys read, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace/skills/avatarkit; status_count=0; diff_files=0
+- claw-roam (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/claw-roam
+  - files: 4; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=1; diff_files=0
+- crypto-price (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/crypto-price
+  - files: 7; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- crypto-watch (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/crypto-watch
+  - files: 5; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 1
+  - signals: suspicious net domains
+  - reason: binary files: 1, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- deepwiki (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/deepwiki
+  - files: 4; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- deepwork-tracker (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/deepwork-tracker
+  - files: 3; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: sudo/privilege, suspicious net domains
+  - reason: sudo/privilege, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- find-skills (medium)
+  - path: /home/ubuntu/.openclaw/skills/find-skills
+  - files: 3; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: non-git; latest_mtime=2026-02-12 15:56:02 UTC
+- find-skills (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/find-skills
+  - files: 3; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=1; diff_files=1
+- github (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/github
+  - files: 3; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- gmail-inbox-zero-triage (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/gmail-inbox-zero-triage
+  - files: 8; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=1; diff_files=0
+- google-workspace (medium)
+  - path: /home/ubuntu/.openclaw/skills/google-workspace
+  - files: 12; SKILL.md: yes; package.json: no
+  - scripts: 10; binary_suspects: 0
+  - signals: env/local keys read, suspicious net domains
+  - reason: env/local keys read, suspicious domains
+  - change: non-git; latest_mtime=2026-02-08 06:27:12 UTC
+- google-workspace-mcp (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp
+  - files: 3; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- imap-smtp-email (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email
+  - files: 8; SKILL.md: yes; package.json: yes
+  - scripts: 3; binary_suspects: 0
+  - signals: env/local keys read, suspicious net domains
+  - reason: env/local keys read, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- knowledge-base-collector (medium)
+  - path: /home/ubuntu/.openclaw/skills/knowledge-base-collector
+  - files: 13; SKILL.md: yes; package.json: no
+  - scripts: 6; binary_suspects: 6
+  - signals: env/local keys read, suspicious net domains
+  - reason: binary files: 6, env/local keys read, suspicious domains
+  - change: non-git; latest_mtime=2026-02-13 07:08:13 UTC
+- larksuite-wiki (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki
+  - files: 5; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- obsidian-integration (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/obsidian-integration
+  - files: 4; SKILL.md: yes; package.json: yes
+  - scripts: 1; binary_suspects: 0
+  - signals: child_process/exec/spawn, env/local keys read
+  - reason: child_process/exec/spawn, env/local keys read
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=1; diff_files=0
+- reminder (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/reminder
+  - files: 6; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=4; diff_files=0
+- self-reflection (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/self-reflection
+  - files: 5; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- task-status (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/task-status
+  - files: 10; SKILL.md: yes; package.json: no
+  - scripts: 5; binary_suspects: 0
+  - signals: env/local keys read, suspicious net domains
+  - reason: env/local keys read, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- technews (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/technews
+  - files: 9; SKILL.md: yes; package.json: no
+  - scripts: 4; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- ui-ux-pro-max (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max
+  - files: 57; SKILL.md: yes; package.json: no
+  - scripts: 4; binary_suspects: 0
+  - signals: sudo/privilege, suspicious net domains
+  - reason: sudo/privilege, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- webapp-testing (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/webapp-testing
+  - files: 8; SKILL.md: yes; package.json: no
+  - scripts: 4; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- x-search (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/x-search
+  - files: 3; SKILL.md: yes; package.json: no
+  - scripts: 2; binary_suspects: 0
+  - signals: curl/wget, suspicious net domains
+  - reason: curl/wget, suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- x-tweet-fetcher (medium)
+  - path: /home/ubuntu/.openclaw/skills/x-tweet-fetcher
+  - files: 2; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: non-git; latest_mtime=2026-02-21 14:11:15 UTC
+- x-tweet-fetcher (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/x-tweet-fetcher
+  - files: 2; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=1; diff_files=0
+- xai-x-search (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/xai-x-search
+  - files: 1; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- YouTube (medium)
+  - path: /home/ubuntu/.openclaw/workspace/skills/YouTube
+  - files: 4; SKILL.md: yes; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: suspicious net domains
+  - reason: suspicious domains
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- 1password (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- apple-notes (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- apple-reminders (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- bear-notes (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- blogwatcher (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- blucli (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- bluebubbles (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- camsnap (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- canvas (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- clawhub (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- coding-agent (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- db-readonly (low)
+  - path: /home/ubuntu/.openclaw/workspace/skills/db-readonly
+  - files: 3; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: none
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- discord (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- eightctl (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- evolver (low)
+  - path: /home/ubuntu/.openclaw/workspace/skills/evolver
+  - files: 1; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=68; diff_files=10
+- gemini (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- gh-issues (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- gifgrep (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- github (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- gmail-auto-processor (low)
+  - path: /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor
+  - files: 17; SKILL.md: yes; package.json: yes
+  - scripts: 13; binary_suspects: 0
+  - signals: child_process/exec/spawn
+  - reason: child_process/exec/spawn
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=1; diff_files=0
+- gog (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- goplaces (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- healthcheck (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- himalaya (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- imsg (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- mcporter (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- model-usage (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- nano-banana-pro (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- nano-pdf (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- notion (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- obsidian (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- openai-image-gen (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- openai-whisper (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- openai-whisper-api (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- openhue (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- oracle (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- ordercli (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- peekaboo (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- sag (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- seedance-3x3-optimizer (low)
+  - path: /home/ubuntu/.openclaw/workspace/skills/seedance-3x3-optimizer
+  - files: 3; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: none
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- session-logs (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- sherpa-onnx-tts (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- skill-creator (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- slack (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- songsee (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- sonoscli (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- spotify-player (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- summarize (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- things-mac (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- tmux (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- todo-kb (low)
+  - path: /home/ubuntu/.openclaw/workspace/skills/todo-kb
+  - files: 2; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: none
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- trading-journal (low)
+  - path: /home/ubuntu/.openclaw/workspace/skills/trading-journal
+  - files: 2; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: none
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=0; diff_files=0
+- trello (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- vercel-cli (low)
+  - path: /home/ubuntu/.openclaw/workspace/skills/vercel-cli
+  - files: 2; SKILL.md: yes; package.json: no
+  - scripts: 1; binary_suspects: 0
+  - signals: child_process/exec/spawn
+  - reason: child_process/exec/spawn
+  - change: git repo=/home/ubuntu/.openclaw/workspace; status_count=1; diff_files=0
+- video-frames (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- voice-call (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- wacli (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- walkie (low)
+  - path: /home/ubuntu/.openclaw/skills/walkie
+  - files: 8; SKILL.md: yes; package.json: no
+  - scripts: 4; binary_suspects: 0
+  - signals: none
+  - change: non-git; latest_mtime=2026-02-20 14:19:09 UTC
+- weather (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+- xurl (low)
+  - path: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/xurl
+  - files: 0; SKILL.md: no; package.json: no
+  - scripts: 0; binary_suspects: 0
+  - signals: none
+  - reason: missing SKILL.md
+  - change: non-git; latest_mtime=None
+
+## 复核建议
+- 优先人工复核 high 风险 skill 的可执行脚本与网络调用上下文（确认是否只是文档命中）。
+- 对 medium 风险中存在 suspicious domains 的 skill，核对域名白名单与业务必要性。
+- 下一次扫描建议：对命中行号做落盘，减少文档误报并支持差异追踪。

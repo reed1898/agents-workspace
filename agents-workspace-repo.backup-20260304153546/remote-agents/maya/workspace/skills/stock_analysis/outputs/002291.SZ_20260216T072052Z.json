@@ -1,0 +1,70 @@
+{
+  "symbol": "002291",
+  "company": "遥望科技",
+  "as_of": "2026-02-16T07:20:52.992315+00:00",
+  "price": 7.71,
+  "currency": "CNY",
+  "change_percent": -4.22,
+  "valuation": {
+    "pe": -13.04,
+    "pb": 2.39,
+    "market_cap": 7209855021,
+    "float_market_cap": 6700955831
+  },
+  "technical": {
+    "sma20": 7.95,
+    "sma50": 7.18,
+    "rsi14": 51.64,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-11 17:05:14:364",
+      "title": "遥望科技:2026年第一次临时股东会决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002291/AN202602111819880390.html"
+    },
+    {
+      "time": "2026-02-11 17:05:14:342",
+      "title": "遥望科技:2026年第一次临时股东会的法律意见书",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002291/AN202602111819880391.html"
+    },
+    {
+      "time": "2026-01-30 19:05:11:332",
+      "title": "遥望科技:2025年度业绩预告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002291/AN202601301818590178.html"
+    },
+    {
+      "time": "2026-01-29 16:55:13:377",
+      "title": "遥望科技:关于2025年股票期权与限制性股票激励计划部分限制性股票回购注销完成的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002291/AN202601291818544111.html"
+    },
+    {
+      "time": "2026-01-26 17:05:06:492",
+      "title": "遥望科技:关于召开2026年第一次临时股东会的通知",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002291/AN202601261818428882.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位",
+    "当前PE为负，盈利稳定性需持续跟踪"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：遥望科技:2026年第一次临时股东会决议公告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 78,
+    "momentum": 70,
+    "total": 73.1
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

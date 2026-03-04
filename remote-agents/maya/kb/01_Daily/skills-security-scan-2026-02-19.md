@@ -1,0 +1,746 @@
+# Skills Security Scan — 2026-02-19 (UTC)
+
+- 扫描时间：2026-02-19 16:01:31 UTC
+- 扫描范围：`/home/ubuntu/.openclaw/workspace/skills/**`、`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/**`、`/home/ubuntu/.openclaw/skills/**`
+- 总技能数：91（high: 2 / medium: 15 / low: 74）
+
+## 今晚结论摘要（≤10行）
+1. 本次共审计 91 个 skill，发现 **high 风险 2 个**。
+2. high 风险主要集中在：`browse`、`skill-vetter`。
+3. medium 风险 15 个，多为执行命令/下载指令/环境变量读取的组合。
+4. 未执行破坏性操作；本次为静态规则扫描 + 元数据检查。
+5. 建议优先复核 high 项中的命令执行与下载链路，确认有无白名单与输入校验。
+
+## 按 skill 详细结果（项目符号）
+- **browse**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/browse`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：curl_wget, suspicious_net, eval_like, env_secret
+  - 风险等级：**high**（eval/new Function; curl/wget usage; env/secret var access）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **skill-vetter**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/skill-vetter`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：exec_family, curl_wget, ssh_write, env_secret, suspicious_net, eval_like, b64_exec, sudo
+  - 风险等级：**high**（eval/new Function; sudo; ssh key/path access; base64 + exec pattern; command execution APIs; curl/wget usage; env/secret var access）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **_disabled**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/_disabled`
+  - SKILL.md：no
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：env_secret, curl_wget, suspicious_net
+  - 风险等级：**medium**（curl/wget usage; env/secret var access）
+  - 最近变更：git:last 694d94c 2026-02-09 07:42:47 +0000 feat(knowledge): scaffold Obsidian knowledge system and templates
+- **ai-daily-digest**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ai-daily-digest`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net, exec_family
+  - 风险等级：**medium**（command execution APIs; env/secret var access）
+  - 最近变更：git:last 961240f 2026-02-19 10:43:03 +0000 feat: default digest output to kb/02_AI
+- **clawra**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/clawra`
+  - SKILL.md：yes
+  - package.json：yes
+  - 可疑脚本数：3；二进制数：0
+  - 命中模式：exec_family, curl_wget, env_secret, suspicious_net
+  - 风险等级：**medium**（command execution APIs; curl/wget usage; env/secret var access）
+  - 最近变更：git:last f9edfa7 2026-02-11 17:31:27 +0000 fix(clawra-selfie): update openclaw message CLI flags
+- **clawra-selfie**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/clawra-selfie`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：exec_family, curl_wget, env_secret, suspicious_net
+  - 风险等级：**medium**（command execution APIs; curl/wget usage; env/secret var access）
+  - 最近变更：mtime:2026-02-11 17:10:45Z scripts/clawra-selfie.ts; mtime:2026-02-11 17:10:45Z assets/clawra.png; mtime:2026-02-11 17:10:45Z scripts/clawra-selfie.sh
+- **gh-issues**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：exec_family, curl_wget, env_secret, suspicious_net
+  - 风险等级：**medium**（command execution APIs; curl/wget usage; env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **Gmail**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/Gmail`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：curl_wget, env_secret, suspicious_net
+  - 风险等级：**medium**（curl/wget usage; env/secret var access）
+  - 最近变更：git:?? skills/Gmail/
+- **gmail**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/gmail`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：curl_wget, env_secret, suspicious_net
+  - 风险等级：**medium**（curl/wget usage; env/secret var access）
+  - 最近变更：git:?? skills/gmail/
+- **notion**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：curl_wget, env_secret, suspicious_net
+  - 风险等级：**medium**（curl/wget usage; env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **openai-whisper-api**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：curl_wget, env_secret, suspicious_net
+  - 风险等级：**medium**（curl/wget usage; env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:06Z scripts/transcribe.sh; mtime:2026-02-18 08:37:05Z SKILL.md
+- **sherpa-onnx-tts**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net, exec_family
+  - 风险等级：**medium**（command execution APIs; env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md; mtime:2026-02-18 08:36:59Z bin/sherpa-onnx-tts
+- **stock_analysis**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/stock_analysis`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：3；二进制数：0
+  - 命中模式：sudo, suspicious_net, curl_wget
+  - 风险等级：**medium**（sudo; curl/wget usage）
+  - 最近变更：git: M skills/stock_analysis/SKILL.md; git:?? skills/stock_analysis/outputs/
+- **trello**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：curl_wget, env_secret, suspicious_net
+  - 风险等级：**medium**（curl/wget usage; env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **ui-ux-pro-max**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：4；二进制数：0
+  - 命中模式：env_secret, suspicious_net, sudo
+  - 风险等级：**medium**（sudo; env/secret var access）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **vercel-cli**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/vercel-cli`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：exec_family, env_secret
+  - 风险等级：**medium**（command execution APIs; env/secret var access）
+  - 最近变更：git:?? skills/vercel-cli/
+- **x-search**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/x-search`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：2；二进制数：0
+  - 命中模式：curl_wget, suspicious_net, env_secret
+  - 风险等级：**medium**（curl/wget usage; env/secret var access）
+  - 最近变更：git:last c6ffc49 2026-02-07 18:26:11 +0000 feat(skills): add x-search skills and catpaw video generation scaffold
+- **1password**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md; mtime:2026-02-18 08:37:05Z references/get-started.md; mtime:2026-02-18 08:37:05Z references/cli-examples.md
+- **a-stock-analysis**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：2；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git:?? skills/a-stock-analysis/scripts/a-stock-analysis
+- **ai-video-generation**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ai-video-generation`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：curl_wget, suspicious_net
+  - 风险等级：**low**（curl/wget usage）
+  - 最近变更：git:last c6ffc49 2026-02-07 18:26:11 +0000 feat(skills): add x-search skills and catpaw video generation scaffold
+- **apple-notes**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **apple-reminders**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **avatarkit**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/avatarkit`
+  - SKILL.md：yes
+  - package.json：yes
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net, env_secret
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：git:last 5a17ff7 2026-02-11 15:35:16 +0800 feat: Redesign landing page with OpenClaw style + i18n
+- **bear-notes**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **blogwatcher**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **blucli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **bluebubbles**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：none
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **camsnap**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **canvas**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：curl_wget, suspicious_net
+  - 风险等级：**low**（curl/wget usage）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **claw-roam**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/claw-roam`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：git:?? skills/claw-roam/
+- **clawhub**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **coding-agent**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **crypto-price**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/crypto-price`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **crypto-watch**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/crypto-watch`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git:last 7a34fae 2026-02-07 18:13:44 +0000 feat(crypto-watch): add intrabar shock alerts for unfinished 15m swings
+- **db-readonly**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/db-readonly`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：env_secret
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：git:last 843624d 2026-02-09 10:41:36 +0000 feat(skill): add db-readonly skill for safe MySQL/Postgres reads
+- **deepwiki**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/deepwiki`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **deepwork-tracker**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **discord**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **eightctl**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **find-skills**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/find-skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git: M skills/find-skills/.clawhub/origin.json
+- **find-skills**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/find-skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-12 15:56:02Z _meta.json; mtime:2026-02-12 15:56:02Z .clawhub/origin.json; mtime:2026-02-12 15:56:02Z SKILL.md
+- **food-order**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/food-order`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **gemini**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **gifgrep**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **github**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/github`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **github**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **gmail-auto-processor**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor`
+  - SKILL.md：yes
+  - package.json：yes
+  - 可疑脚本数：13；二进制数：0
+  - 命中模式：exec_family
+  - 风险等级：**low**（command execution APIs）
+  - 最近变更：git:?? skills/gmail-auto-processor/
+- **gog**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **google-workspace**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/google-workspace`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：10；二进制数：0
+  - 命中模式：env_secret, suspicious_net, b64_exec
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-08 06:27:12Z scripts/gmail_auth.py; mtime:2026-02-08 06:27:12Z scripts/search_events.py; mtime:2026-02-08 06:27:12Z scripts/search_emails.py
+- **google-workspace-mcp**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：git:last 694d94c 2026-02-09 07:42:47 +0000 feat(knowledge): scaffold Obsidian knowledge system and templates
+- **goplaces**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **healthcheck**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **himalaya**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net, env_secret
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md; mtime:2026-02-18 08:37:05Z references/message-composition.md; mtime:2026-02-18 08:37:05Z references/configuration.md
+- **imap-smtp-email**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email`
+  - SKILL.md：yes
+  - package.json：yes
+  - 可疑脚本数：3；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **imsg**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **knowledge-base-collector**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/knowledge-base-collector`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：6；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-13 07:08:13Z SKILL.md; mtime:2026-02-13 07:07:59Z scripts/__pycache__/weekly_digest.cpython-312.pyc; mtime:2026-02-13 07:07:59Z scripts/__pycache__/wechat_backlog.cpython-312.pyc
+- **larksuite-wiki**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：git:last e600c2c 2026-02-06 16:43:10 +0000 feat: trading-journal + branch workflow
+- **mcporter**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **model-usage**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：env_secret
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:06Z scripts/model_usage.py; mtime:2026-02-18 08:37:05Z SKILL.md; mtime:2026-02-18 08:37:05Z references/codexbar-cli.md
+- **nano-banana-pro**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：suspicious_net, env_secret, b64_exec
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:06Z scripts/generate_image.py; mtime:2026-02-18 08:37:05Z SKILL.md
+- **nano-pdf**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **obsidian**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **obsidian-integration**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/obsidian-integration`
+  - SKILL.md：yes
+  - package.json：yes
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：exec_family
+  - 风险等级：**low**（command execution APIs）
+  - 最近变更：git:?? skills/obsidian-integration/
+- **openai-image-gen**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：env_secret, suspicious_net, b64_exec
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:06Z scripts/gen.py; mtime:2026-02-18 08:37:05Z SKILL.md
+- **openai-whisper**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **openhue**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **oracle**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **ordercli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **peekaboo**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **reminder**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/reminder`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：git:?? skills/reminder/.clawhub/; git:?? skills/reminder/SKILL.sync-conflict-20260208-083216-R4LZGWG.md; git:?? skills/reminder/_meta.json; git:?? skills/reminder/scripts/
+- **sag**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **self-reflection**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/self-reflection`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **session-logs**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **skill-creator**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：3；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:08Z license.txt; mtime:2026-02-18 08:37:06Z scripts/quick_validate.py; mtime:2026-02-18 08:37:06Z scripts/package_skill.py
+- **slack**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **songsee**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **sonoscli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **spotify-player**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **summarize**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **task-status**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/task-status`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：5；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **technews**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/technews`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：4；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **things-mac**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret, suspicious_net
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **tmux**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：2；二进制数：0
+  - 命中模式：none
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:06Z scripts/wait-for-text.sh; mtime:2026-02-18 08:37:06Z scripts/find-sessions.sh; mtime:2026-02-18 08:37:05Z SKILL.md
+- **trading-journal**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/trading-journal`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：none
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git:last 434c59e 2026-02-06 17:10:27 +0000 feat(trading-journal): echo saved entry + commentary
+- **video-frames**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：1；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:06Z scripts/frame.sh; mtime:2026-02-18 08:37:05Z SKILL.md
+- **voice-call**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：env_secret
+  - 风险等级：**low**（env/secret var access）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **wacli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **weather**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：curl_wget, suspicious_net
+  - 风险等级：**low**（curl/wget usage）
+  - 最近变更：mtime:2026-02-18 08:37:05Z SKILL.md
+- **webapp-testing**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/webapp-testing`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：4；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+- **xai-x-search**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/xai-x-search`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git:last c6ffc49 2026-02-07 18:26:11 +0000 feat(skills): add x-search skills and catpaw video generation scaffold
+- **YouTube**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/YouTube`
+  - SKILL.md：yes
+  - package.json：no
+  - 可疑脚本数：0；二进制数：0
+  - 命中模式：suspicious_net
+  - 风险等级：**low**（no obvious high-risk static pattern）
+  - 最近变更：git:last fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup
+
+## 备注
+- `suspicious_net` 规则会命中正常文档 URL，属于弱信号；已通过组合规则进行分级。
+- `sudo` 在说明文档中出现也会命中，需结合脚本落地与调用路径人工复核。

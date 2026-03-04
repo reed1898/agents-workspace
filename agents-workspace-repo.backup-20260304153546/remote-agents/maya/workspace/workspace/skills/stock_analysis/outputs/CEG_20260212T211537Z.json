@@ -1,0 +1,38 @@
+{
+  "symbol": "CEG",
+  "company": "Constellation Energy Corporatio",
+  "as_of": "2026-02-12T21:15:37.710859+00:00",
+  "price": 276.12,
+  "currency": "USD",
+  "change_percent": -0.26,
+  "valuation": {
+    "pe": 31.67,
+    "market_cap": 100035534848
+  },
+  "technical": {
+    "sma20": 281.99,
+    "sma50": 325.49,
+    "rsi14": 42.06,
+    "trend": "downtrend"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 35,
+    "total": 56.3
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。 当前技术趋势偏弱。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

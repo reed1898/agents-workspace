@@ -1,0 +1,70 @@
+{
+  "symbol": "000547",
+  "company": "航天发展",
+  "as_of": "2026-02-17T07:20:27.135509+00:00",
+  "price": 28.1,
+  "currency": "CNY",
+  "change_percent": -1.13,
+  "valuation": {
+    "pe": -68.92,
+    "pb": 9.55,
+    "market_cap": 44916958358,
+    "float_market_cap": 44654301842
+  },
+  "technical": {
+    "sma20": 28.74,
+    "sma50": 27.91,
+    "rsi14": 55.97,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-10 19:18:07:335",
+      "title": "航天发展:公司2026年第一次临时股东会决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ000547/AN202602101819860344.html"
+    },
+    {
+      "time": "2026-02-10 19:18:07:301",
+      "title": "航天发展:北京市中伦律师事务所关于航天工业发展股份有限公司2026年第一次临时股东会的法律意见书",
+      "link": "https://data.eastmoney.com/notices/detail/SZ000547/AN202602101819860343.html"
+    },
+    {
+      "time": "2026-02-03 19:06:08:458",
+      "title": "航天发展:股票交易异常波动公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ000547/AN202602031819647634.html"
+    },
+    {
+      "time": "2026-01-30 18:05:14:529",
+      "title": "航天发展:2025年度业绩预告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ000547/AN202601301818587545.html"
+    },
+    {
+      "time": "2026-01-27 17:23:09:357",
+      "title": "航天发展:关于持股5%以上股东减持股份触及1%整数倍的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ000547/AN202601271818468013.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位",
+    "当前PE为负，盈利稳定性需持续跟踪"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：航天发展:公司2026年第一次临时股东会决议公告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 78,
+    "momentum": 70,
+    "total": 73.1
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

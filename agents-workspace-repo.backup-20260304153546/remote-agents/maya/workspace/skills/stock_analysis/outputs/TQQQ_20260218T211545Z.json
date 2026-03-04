@@ -1,0 +1,38 @@
+{
+  "symbol": "TQQQ",
+  "company": "ProShares UltraPro QQQ",
+  "as_of": "2026-02-18T21:15:45.063593+00:00",
+  "price": 49.39,
+  "currency": "USD",
+  "change_percent": 2.15,
+  "valuation": {
+    "pe": 30.25,
+    "market_cap": null
+  },
+  "technical": {
+    "sma20": 52.2,
+    "sma50": 53.34,
+    "rsi14": 32.02,
+    "trend": "downtrend"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 35,
+    "total": 56.3
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。 当前技术趋势偏弱。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

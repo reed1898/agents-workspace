@@ -1,0 +1,69 @@
+{
+  "symbol": "600763",
+  "company": "通策医疗",
+  "as_of": "2026-02-19T07:21:23.189201+00:00",
+  "price": 46.95,
+  "currency": "CNY",
+  "change_percent": -1.8,
+  "valuation": {
+    "pe": 30.67,
+    "pb": 4.83,
+    "market_cap": 21000224043,
+    "float_market_cap": 21000224043
+  },
+  "technical": {
+    "sma20": 47.33,
+    "sma50": 43.82,
+    "rsi14": 51.67,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-09 15:33:08:273",
+      "title": "通策医疗:通策医疗股份有限公司关于审计机构变更项目质量控制复核人的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600763/AN202602091819832674.html"
+    },
+    {
+      "time": "2025-12-10 16:55:15:403",
+      "title": "通策医疗:通策医疗股份有限公司2025年第一次临时股东会法律意见书",
+      "link": "https://data.eastmoney.com/notices/detail/SH600763/AN202512101797667578.html"
+    },
+    {
+      "time": "2025-12-10 16:55:15:403",
+      "title": "通策医疗:通策医疗股份有限公司关于选举职工董事及取消职工监事的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600763/AN202512101797667577.html"
+    },
+    {
+      "time": "2025-12-10 16:55:15:372",
+      "title": "通策医疗:通策医疗股份有限公司2025年第一次临时股东会决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600763/AN202512101797667579.html"
+    },
+    {
+      "time": "2025-12-03 16:11:09:239",
+      "title": "通策医疗:通策医疗股份有限公司2025年第一次临时股东会资料",
+      "link": "https://data.eastmoney.com/notices/detail/SH600763/AN202512031793174448.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：通策医疗:通策医疗股份有限公司关于审计机构变更项目质量控"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 70,
+    "total": 68.6
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

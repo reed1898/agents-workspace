@@ -1,0 +1,69 @@
+{
+  "symbol": "600877",
+  "company": "电科芯片",
+  "as_of": "2026-02-24T00:51:08.353245+00:00",
+  "price": 0.0,
+  "currency": "CNY",
+  "change_percent": -100.0,
+  "valuation": {
+    "pe": 1708.73,
+    "pb": 9.16,
+    "market_cap": 22627376892,
+    "float_market_cap": 22627376892
+  },
+  "technical": {
+    "sma20": 21.08,
+    "sma50": 18.7,
+    "rsi14": 32.8,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-01-13 18:59:01:502",
+      "title": "电科芯片:中电科芯片技术股份有限公司关于股票交易异常波动的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600877/AN202601131816985764.html"
+    },
+    {
+      "time": "2025-11-26 16:34:49:601",
+      "title": "电科芯片:中电科芯片技术股份有限公司2025年第二次临时股东会决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600877/AN202511261788721595.html"
+    },
+    {
+      "time": "2025-11-26 16:34:49:602",
+      "title": "电科芯片:泰和泰(重庆)律师事务所关于中电科芯片技术股份有限公司2025年第二次临时股东会的法律意见书",
+      "link": "https://data.eastmoney.com/notices/detail/SH600877/AN202511261788721596.html"
+    },
+    {
+      "time": "2025-11-19 16:07:42:575",
+      "title": "电科芯片:2025年11月18日投资者关系活动记录表",
+      "link": "https://data.eastmoney.com/notices/detail/SH600877/AN202511191784321071.html"
+    },
+    {
+      "time": "2025-11-18 16:40:01:707",
+      "title": "电科芯片:中电科芯片技术股份有限公司关于召开2025年第二次临时股东会的提示性公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600877/AN202511181783704928.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：电科芯片:中电科芯片技术股份有限公司关于股票交易异常波动"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 50,
+    "total": 55.3
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

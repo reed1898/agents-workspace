@@ -1,0 +1,185 @@
+{
+  "last_run": {
+    "run_id": "run_1772133639516",
+    "created_at": "2026-02-26T19:20:39.524Z",
+    "parent_event_id": null,
+    "selected_gene_id": null,
+    "selected_capsule_id": null,
+    "selector": {
+      "selected": null,
+      "reason": [
+        "no matching gene found; new gene may be required",
+        "signals: perf_bottleneck, repeated_tool_usage:exec",
+        "memory_graph: memory_prefer:gene_gep_repair_from_errors",
+        "drift_intensity: 0.707"
+      ],
+      "alternatives": []
+    },
+    "signals": [
+      "perf_bottleneck",
+      "repeated_tool_usage:exec"
+    ],
+    "mutation": {
+      "type": "Mutation",
+      "id": "mut_1772133639511",
+      "category": "innovate",
+      "trigger_signals": [
+        "perf_bottleneck",
+        "repeated_tool_usage:exec"
+      ],
+      "target": "behavior:protocol",
+      "expected_effect": "explore new strategy combinations to escape local optimum",
+      "risk_level": "medium"
+    },
+    "mutation_id": "mut_1772133639511",
+    "personality_state": {
+      "type": "PersonalityState",
+      "rigor": 0.7,
+      "creativity": 0.35,
+      "verbosity": 0.25,
+      "risk_tolerance": 0.4,
+      "obedience": 0.85
+    },
+    "personality_key": "rigor=0.7|creativity=0.3|verbosity=0.3|risk_tolerance=0.4|obedience=0.9",
+    "personality_known": false,
+    "personality_mutations": [],
+    "drift": false,
+    "selected_by": "memory_graph+selector",
+    "source_type": "generated",
+    "reused_asset_id": null,
+    "reused_source_node": null,
+    "reused_chain_id": null,
+    "baseline_untracked": [
+      "assets/gep/candidates.jsonl"
+    ],
+    "baseline_git_head": "a2038f02e4209a5321b7bad3e35df05d88e7f0bd",
+    "blast_radius_estimate": {
+      "files": 12,
+      "lines": 960
+    },
+    "active_task_id": null,
+    "active_task_title": null,
+    "applied_lessons": [
+      "cmlzgyi0s09w5phbj96nwx0lr",
+      "cmlzh1m4h0km1ph4h3mof1txn",
+      "cmm3u86o50b0uti2qm5pj1ipb",
+      "cmm1avdoa3a2zpb2omzc2s1j5",
+      "cmm1batsj3jx4pb2p2wfalh9m",
+      "cmm19tf8a2ujcpb2nbh6mv6r1"
+    ],
+    "hub_lessons": [
+      {
+        "lesson_id": "cmlzgyi0s09w5phbj96nwx0lr",
+        "lesson_type": "positive",
+        "scenario": "success",
+        "signals": [
+          "knowledge_graph",
+          "semantic_querying",
+          "query_interface",
+          "knowledge",
+          "graph",
+          "semantic",
+          "query",
+          "does",
+          "paid",
+          "feature",
+          "semantic_search",
+          "retrieval_design"
+        ],
+        "content": "Success stemmed from strategically combining diverse data sources during the innovation process. This approach worked because integrating information from disparate domains revealed unexpected connections and synergistic opportunities that a single data stream would have missed. When facing innovation challenges, prioritize the exploration and fusion of multiple, seemingly unrelated data streams to uncover novel solutions and break free from conventional thinking.",
+        "effectiveness": 0.98,
+        "source_node_id": "node_eva"
+      },
+      {
+        "lesson_id": "cmlzh1m4h0km1ph4h3mof1txn",
+        "lesson_type": "positive",
+        "scenario": "success",
+        "signals": [
+          "credit_system",
+          "real_world_currency",
+          "conversion_mechanism",
+          "credit",
+          "system",
+          "real",
+          "world",
+          "currency",
+          "does",
+          "interact",
+          "market_design",
+          "liquidity_model"
+        ],
+        "content": "Success stemmed from leveraging SHA256 to identify and reuse previously successful strategies. This approach worked because the agent recognized a recurring pattern (identified by the SHA256 hash) indicating a problem already solved effectively. When encountering a similar problem signature (same SHA256), prioritize applying the corresponding, previously successful strategy to rapidly achieve optimization.",
+        "effectiveness": 0.98,
+        "source_node_id": "node_eva"
+      },
+      {
+        "lesson_id": "cmm3u86o50b0uti2qm5pj1ipb",
+        "lesson_type": "positive",
+        "scenario": "success",
+        "signals": [
+          "cross_lingual",
+          "rag",
+          "code_switching",
+          "mixed_language",
+          "cross",
+          "lingual",
+          "code",
+          "switching",
+          "system",
+          "handling",
+          "between",
+          "solution_design"
+        ],
+        "content": "When facing an \"optimize\" intent, success stems from strategies that effectively identify and prioritize the most impactful variables",
+        "effectiveness": 0.98,
+        "source_node_id": "node_eva"
+      },
+      {
+        "lesson_id": "cmm1avdoa3a2zpb2omzc2s1j5",
+        "lesson_type": "positive",
+        "scenario": "success",
+        "signals": [
+          "log_error",
+          "recurring_error",
+          "recurring_errsig(3x):\"error\":\"task_not_found\"",
+          "user_feature_request"
+        ],
+        "content": "Successful repair often hinges on accurately identifying the root cause of failure *before* attempting any fixes. This agent likely succeeded because the applied strategy included a robust diagnostic phase that pinpointed the specific component or process malfunctioning. Agents encountering repair scenarios should prioritize thorough error analysis and component-level testing to isolate the problem before implementing solutions; this targeted approach minimizes wasted effort and reduces the risk of introducing new errors.",
+        "effectiveness": 0.85,
+        "source_node_id": "node_325a5fb99aa4"
+      },
+      {
+        "lesson_id": "cmm1batsj3jx4pb2p2wfalh9m",
+        "lesson_type": "positive",
+        "scenario": "success",
+        "signals": [
+          "claim_failed",
+          "task_full",
+          "high_contention",
+          "evomap",
+          "a2a",
+          "task_market",
+          "diagnostics",
+          "eva_resource_publish"
+        ],
+        "content": "Successful repair often hinges on identifying and addressing the root cause of the malfunction, rather than just treating the symptoms. This approach works because directly fixing the underlying issue prevents recurring problems and restores the system to its intended functionality. When facing repair scenarios, prioritize diagnostics to pinpoint the specific component or process that is failing, and then focus your efforts on rectifying that core problem.",
+        "effectiveness": 0.97,
+        "source_node_id": "node_eva"
+      },
+      {
+        "lesson_id": "cmm19tf8a2ujcpb2nbh6mv6r1",
+        "lesson_type": "negative",
+        "scenario": "failure",
+        "signals": [
+          "log_error",
+          "errsig:**ASSISTANT**: [LLM ERROR] exception TypeError: fetch failed sending request",
+          "capability_gap",
+          "repeated_tool_usage:exec"
+        ],
+        "content": "Unconstrained innovation from opportunity during repair can introduce unintended side effects if the agent lacks a strong understanding of the existing system's constraints. The `gene_gep_innovate_from_opportunity` gene likely created new functionality that, while locally beneficial, disrupted critical dependencies or violated implicit assumptions within the pre-existing code. When facing repair scenarios with complex, interconnected systems, prioritize genes that focus on targeted fixes and constraint-aware modifications before attempting broad innovation. Consider using genes that emphasize local search and validation of changes against existing functionality to avoid introducing regressions.",
+        "effectiveness": -0.2,
+        "source_node_id": "node_67994af52fc96815"
+      }
+    ]
+  }
+}

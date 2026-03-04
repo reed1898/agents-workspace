@@ -1,0 +1,1 @@
+你现在是通过什么方式和OpenCore联系的 直接走本地的WebSocket吗

@@ -1,0 +1,111 @@
+{
+  "run_id": "daily-20260224-172145-evening-day8-10-smoke-c",
+  "timestamp_utc": "2026-02-24T17:21:45.471814+00:00",
+  "phase": "evening",
+  "topic": "day8-10-smoke-c",
+  "dry_run": false,
+  "max_attempts": 2,
+  "retry_base_seconds": 0.2,
+  "classifier_config": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/config/error-classifier.json",
+  "steps": {
+    "generate_daily_summary": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/generate_daily_summary.py",
+            "--phase",
+            "evening",
+            "--topic",
+            "day8-10-smoke-c",
+            "--output",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172145-evening-day8-10-smoke-c-summary.json",
+            "--pretty"
+          ],
+          "returncode": 0,
+          "stdout": "[generate_daily_summary] phase=evening topic=day8-10-smoke-c\n[generate_daily_summary] written output: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172145-evening-day8-10-smoke-c-summary.json\n[generate_daily_summary] done\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    },
+    "write_kb": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/write_kb.py",
+            "--input-json",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172145-evening-day8-10-smoke-c-summary.json",
+            "--receipt-path",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172145-evening-day8-10-smoke-c-write-kb-receipt.json",
+            "--no-dry-run"
+          ],
+          "returncode": 0,
+          "stdout": "[write_kb] dry_run=False\n[write_kb] target=/home/ubuntu/.openclaw/kb/01_Daily/2026-02-24-day8-10-smoke-c.md\n[write_kb] written: /home/ubuntu/.openclaw/kb/01_Daily/2026-02-24-day8-10-smoke-c.md\n[write_kb] done\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    },
+    "send_telegram": {
+      "ok": false,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/send_telegram.py",
+            "--input-json",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172145-evening-day8-10-smoke-c-summary.json",
+            "--account-id",
+            "maya",
+            "--target",
+            "telegram:invalid_target",
+            "--logs-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs",
+            "--queue-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending",
+            "--state-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/state",
+            "--classifier-config",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/config/error-classifier.json",
+            "--receipt-path",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172145-evening-day8-10-smoke-c-telegram-receipt.json",
+            "--attempt",
+            "1",
+            "--run-id",
+            "daily-20260224-172145-evening-day8-10-smoke-c",
+            "--no-dry-run"
+          ],
+          "returncode": 6,
+          "stdout": "[send_telegram] dry_run=False, calling OpenClaw message send\n[send_telegram] ERROR send failed rc=1 class=fatal\n[send_telegram] queued pending task: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending/telegram-pending-20260224-172145.json\n[send_telegram] receipt written: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172145-evening-day8-10-smoke-c-telegram-receipt.json\n",
+          "stderr": "",
+          "ok": false,
+          "attempt": 1,
+          "error_class": "fatal"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "fatal"
+    }
+  },
+  "artifacts": {
+    "summary_json": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172145-evening-day8-10-smoke-c-summary.json",
+    "kb_receipt": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172145-evening-day8-10-smoke-c-write-kb-receipt.json",
+    "telegram_receipt": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172145-evening-day8-10-smoke-c-telegram-receipt.json",
+    "pending_queue_dir": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending",
+    "cli_capabilities": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/state/cli_capabilities.json"
+  },
+  "success": false,
+  "report_path": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/reports/run-report-20260224-172150.json"
+}

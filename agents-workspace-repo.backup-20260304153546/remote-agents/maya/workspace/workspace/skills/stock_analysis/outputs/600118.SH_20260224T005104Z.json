@@ -1,0 +1,69 @@
+{
+  "symbol": "600118",
+  "company": "中国卫星",
+  "as_of": "2026-02-24T00:51:04.453097+00:00",
+  "price": 0.0,
+  "currency": "CNY",
+  "change_percent": -100.0,
+  "valuation": {
+    "pe": 5164.42,
+    "pb": 16.06,
+    "market_cap": 101989687893,
+    "float_market_cap": 101989687893
+  },
+  "technical": {
+    "sma20": 94.52,
+    "sma50": 84.13,
+    "rsi14": 28.85,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-01-23 18:12:00:931",
+      "title": "中国卫星:中国卫星股票交易风险提示公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600118/AN202601231818334823.html"
+    },
+    {
+      "time": "2026-01-22 15:32:41:452",
+      "title": "中国卫星:中国卫星关于变更公司电子邮箱的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600118/AN202601221818272125.html"
+    },
+    {
+      "time": "2026-01-12 17:56:48:360",
+      "title": "中国卫星:中国卫星股票交易风险提示公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600118/AN202601121816948224.html"
+    },
+    {
+      "time": "2026-01-06 17:40:44:515",
+      "title": "中国卫星:中国卫星股票交易异常波动公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600118/AN202601061816126133.html"
+    },
+    {
+      "time": "2025-12-29 17:53:37:292",
+      "title": "中国卫星:中国东方红卫星股份有限公司股票交易风险提示公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600118/AN202512291810672843.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：中国卫星:中国卫星股票交易风险提示公告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 45,
+    "total": 53.5
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

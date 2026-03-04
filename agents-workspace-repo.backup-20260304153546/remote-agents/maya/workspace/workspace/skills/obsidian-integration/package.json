@@ -1,0 +1,12 @@
+{
+  "name": "obsidian-integration",
+  "version": "1.0.0",
+  "description": "将处理结果保存到 Obsidian 知识库",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": ["obsidian", "knowledge-base", "notes"],
+  "author": "RainAssistant",
+  "license": "MIT"
+}

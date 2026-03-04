@@ -1,0 +1,492 @@
+# Nightly Skills Security Scan — 2026-02-25 (UTC)
+
+## 今晚结论摘要
+- 扫描范围：/home/ubuntu/.openclaw/workspace/skills, /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills, /home/ubuntu/.openclaw/skills
+- 共识别 skills：49 个
+- 风险分级：high=14, medium=28, low=7
+- 结论：发现 high 风险项，请优先人工复核
+- 方法：静态模式扫描 + 可执行文件检查 + 变更摘要（git/non-git）
+
+## 详细结果（按风险优先）
+- skill: clawra-selfie
+  - path: /home/ubuntu/.openclaw/skills/clawra-selfie
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: child_process_exec(2); curl_wget(2); env_or_keys(3); suspicious_net(3)
+  - suspicious domains/urls: http://localhost:18789; http://localhost:18789/message; http://localhost:18789}; https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png; https://fal.ai/dashboard/keys; https://fal.run/xai/grok-imagine-image; https://fal.run/xai/grok-imagine-image/edit; https://v3b.fal.media/files/...
+  - script files: 1; executables: 1
+  - risk: high
+  - reason: contains external URLs outside common trusted domains; uses child_process/exec/spawn patterns; uses curl/wget patterns; references environment variables/secrets
+  - changes: non-git: latest_mtime=2026-02-11 17:10:45 UTC (/home/ubuntu/.openclaw/skills/clawra-selfie/scripts/clawra-selfie.ts); snapshot_hash=4559d08c6895
+- skill: Gmail
+  - path: /home/ubuntu/.openclaw/workspace/skills/Gmail
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: curl_wget(1); env_or_keys(1); suspicious_net(2)
+  - suspicious domains/urls: https://clawhub.ai; https://connect.maton.ai/?session_token=...; https://ctrl.maton.ai/connections; https://ctrl.maton.ai/connections/{connection_id}; https://ctrl.maton.ai/connections?app=google-mail&status=ACTIVE; https://ctrl.maton.ai`.; https://developers.google.com/gmail/api/reference/rest; https://developers.google.com/gmail/api/reference/rest/v1/users.drafts/create; https://developers.google.com/gmail/api/reference/rest/v1/users.labels/list; https://developers.google.com/gmail/api/reference/rest/v1/users.messages/get
+  - script files: 0; executables: 0
+  - risk: high
+  - reason: contains external URLs outside common trusted domains; uses curl/wget patterns; references environment variables/secrets
+  - changes: git: modified/untracked=1; last_commit=694d94c 2026-02-09 feat(knowledge): scaffold Obsidian knowledge system and templates
+- skill: Gmail.disabled-20260208-062106
+  - path: /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: curl_wget(1); env_or_keys(1); suspicious_net(2)
+  - suspicious domains/urls: https://clawhub.ai; https://connect.maton.ai/?session_token=...; https://ctrl.maton.ai/connections; https://ctrl.maton.ai/connections/{connection_id}; https://ctrl.maton.ai/connections?app=google-mail&status=ACTIVE; https://ctrl.maton.ai`.; https://developers.google.com/gmail/api/reference/rest; https://developers.google.com/gmail/api/reference/rest/v1/users.drafts/create; https://developers.google.com/gmail/api/reference/rest/v1/users.labels/list; https://developers.google.com/gmail/api/reference/rest/v1/users.messages/get
+  - script files: 0; executables: 0
+  - risk: high
+  - reason: contains external URLs outside common trusted domains; uses curl/wget patterns; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=694d94c 2026-02-09 feat(knowledge): scaffold Obsidian knowledge system and templates
+- skill: ai-daily-digest
+  - path: /home/ubuntu/.openclaw/workspace/skills/ai-daily-digest
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: child_process_exec(1); env_or_keys(3); suspicious_net(3)
+  - suspicious domains/urls: http://antirez.com; http://antirez.com/rss; http://www.aaronsw.com/2002/feeds/pgessays.rss; http://www.w3.org/2005/Atom; https://abortretry.fail; https://aistudio.google.com/apikey; https://anildash.com; https://anildash.com/feed.xml; https://api.anthropic.com/v1/messages`; https://api.deepseek.com/v1
+  - script files: 0; executables: 0
+  - risk: high
+  - reason: contains external URLs outside common trusted domains; uses child_process/exec/spawn patterns; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=961240f 2026-02-19 feat: default digest output to kb/02_AI
+- skill: avatarkit
+  - path: /home/ubuntu/.openclaw/workspace/skills/avatarkit
+  - SKILL.md: yes; package.json: yes
+  - files reviewed: 18
+  - pattern hits: env_or_keys(3); suspicious_net(7); base64_decode_exec(1)
+  - suspicious domains/urls: http://localhost:3000/v1; https://api.avatarkit.com; https://api.avatarkit.com/v1; https://avatarkit.com; https://img.shields.io/badge/License-MIT-yellow.svg; https://img.shields.io/badge/OpenClaw-Skill-green.svg; https://img.shields.io/badge/TypeScript-5.3-blue.svg; https://openapi.vercel.sh/vercel.json; https://openclaw.io; https://opensource.org/licenses/MIT
+  - script files: 0; executables: 0
+  - risk: high
+  - reason: contains base64 decode patterns; contains external URLs outside common trusted domains; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=5a17ff7 2026-02-11 feat: Redesign landing page with OpenClaw style + i18n
+- skill: browse
+  - path: /home/ubuntu/.openclaw/workspace/skills/browse
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 9
+  - pattern hits: curl_wget(3); env_or_keys(2); suspicious_net(6); eval_new_function(2)
+  - suspicious domains/urls: http://127.0.0.1:14113/v1/functions/my-automation/invoke; http://127.0.0.1:14113/v1/functions/my-function/invoke; http://127.0.0.1:14113`; https://api.browserbase.com/v1/functions/${functionId}/invoke`,; https://api.browserbase.com/v1/functions/<function-id>/invoke; https://api.browserbase.com/v1/functions/FUNCTION_ID/invoke; https://api.browserbase.com/v1/functions/invocations/${invocationId}`,; https://api.browserbase.com/v1/functions/invocations/INVOCATION_ID; https://browserbase.com; https://browserbase.com/settings
+  - script files: 0; executables: 0
+  - risk: high
+  - reason: uses eval/new Function patterns; contains external URLs outside common trusted domains; uses curl/wget patterns; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: functions
+  - path: /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 1
+  - pattern hits: curl_wget(1); env_or_keys(1); suspicious_net(1); eval_new_function(1)
+  - suspicious domains/urls: http://127.0.0.1:14113/v1/functions/my-function/invoke; http://127.0.0.1:14113`; https://api.browserbase.com/v1/functions/${functionId}/invoke`,; https://api.browserbase.com/v1/functions/FUNCTION_ID/invoke; https://api.browserbase.com/v1/functions/invocations/${invocationId}`,; https://api.browserbase.com/v1/functions/invocations/INVOCATION_ID; https://browserbase.com/settings; https://example.com; https://example.com/login; https://news.ycombinator.com
+  - script files: 0; executables: 0
+  - risk: high
+  - reason: uses eval/new Function patterns; contains external URLs outside common trusted domains; uses curl/wget patterns; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: clawra
+  - path: /home/ubuntu/.openclaw/workspace/skills/clawra
+  - SKILL.md: yes; package.json: yes
+  - files reviewed: 11
+  - pattern hits: child_process_exec(5); curl_wget(4); env_or_keys(6); suspicious_net(10)
+  - suspicious domains/urls: http://localhost:18789; http://localhost:18789/message; http://localhost:18789}; https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png; https://docs.python.org/3.11/library/codecs.html#standard-encodings; https://fal.ai; https://fal.ai/dashboard/keys; https://fal.run/xai/grok-imagine-image; https://fal.run/xai/grok-imagine-image/edit; https://oraios.github.io/serena/01-about/020_programming-languages.html#language-servers
+  - script files: 3; executables: 3
+  - risk: high
+  - reason: contains external URLs outside common trusted domains; uses child_process/exec/spawn patterns; uses curl/wget patterns; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=f9edfa7 2026-02-11 fix(clawra-selfie): update openclaw message CLI flags
+- skill: skill
+  - path: /home/ubuntu/.openclaw/workspace/skills/clawra/skill
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: child_process_exec(2); curl_wget(2); env_or_keys(3); suspicious_net(3)
+  - suspicious domains/urls: http://localhost:18789; http://localhost:18789/message; http://localhost:18789}; https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png; https://fal.ai/dashboard/keys; https://fal.run/xai/grok-imagine-image; https://fal.run/xai/grok-imagine-image/edit; https://v3b.fal.media/files/...
+  - script files: 1; executables: 1
+  - risk: high
+  - reason: contains external URLs outside common trusted domains; uses child_process/exec/spawn patterns; uses curl/wget patterns; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=f9edfa7 2026-02-11 fix(clawra-selfie): update openclaw message CLI flags
+- skill: evolver
+  - path: /home/ubuntu/.openclaw/workspace/skills/evolver
+  - SKILL.md: yes; package.json: yes
+  - files reviewed: 63
+  - pattern hits: child_process_exec(10); env_or_keys(10); suspicious_net(6)
+  - suspicious domains/urls: https://api.star-history.com/svg?repos=autogame-17/evolver&type=Date; https://evomap.ai; https://evomap.ai/wiki; https://mowen.cn; https://star-history.com/#autogame-17/evolver&Date; https://www.clawhub.ai
+  - script files: 20; executables: 0
+  - risk: high
+  - reason: contains external URLs outside common trusted domains; uses child_process/exec/spawn patterns; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=cca05d1 2026-02-24 feat(skills): install capability-evolver skill
+- skill: gmail
+  - path: /home/ubuntu/.openclaw/workspace/skills/gmail
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 4
+  - pattern hits: curl_wget(1); env_or_keys(1); suspicious_net(2)
+  - suspicious domains/urls: https://clawhub.ai; https://clawhub.ai/byungkyu/api-gateway; https://connect.maton.ai/?session_token=...; https://ctrl.maton.ai/connections; https://ctrl.maton.ai/connections/{connection_id}; https://ctrl.maton.ai/connections?app=google-mail&status=ACTIVE; https://ctrl.maton.ai`.; https://developers.google.com/gmail/api/reference/rest; https://developers.google.com/gmail/api/reference/rest/v1/users.drafts/create; https://developers.google.com/gmail/api/reference/rest/v1/users.labels/list
+  - script files: 0; executables: 0
+  - risk: high
+  - reason: contains external URLs outside common trusted domains; uses curl/wget patterns; references environment variables/secrets
+  - changes: git: modified/untracked=1; last_commit=n/a
+- skill: skill-vetter
+  - path: /home/ubuntu/.openclaw/workspace/skills/skill-vetter
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: child_process_exec(1); curl_wget(1); ssh_write(1); suspicious_net(2); eval_new_function(1); sudo(1)
+  - suspicious domains/urls: https://clawhub.ai
+  - script files: 0; executables: 0
+  - risk: high
+  - reason: contains sudo/privilege escalation command patterns; references SSH key paths/authorized_keys; uses eval/new Function patterns; contains external URLs outside common trusted domains; uses child_process/exec/spawn patterns; uses curl/wget patterns
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: stock_analysis
+  - path: /home/ubuntu/.openclaw/workspace/skills/stock_analysis
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 439
+  - pattern hits: curl_wget(1); suspicious_net(10); sudo(3)
+  - suspicious domains/urls: https://bootstrap.pypa.io/get-pip.py; https://data.eastmoney.com/notices/detail/SH600105/AN202512261808614890.html; https://data.eastmoney.com/notices/detail/SH600105/AN202601091816878680.html; https://data.eastmoney.com/notices/detail/SH600105/AN202601271818467559.html; https://data.eastmoney.com/notices/detail/SH600105/AN202601281818507232.html; https://data.eastmoney.com/notices/detail/SH600105/AN202602101819859036.html; https://data.eastmoney.com/notices/detail/SH600118/AN202512291810672843.html; https://data.eastmoney.com/notices/detail/SH600118/AN202601061816126133.html; https://data.eastmoney.com/notices/detail/SH600118/AN202601121816948224.html; https://data.eastmoney.com/notices/detail/SH600118/AN202601221818272125.html
+  - script files: 3; executables: 3
+  - risk: high
+  - reason: contains sudo/privilege escalation command patterns; contains external URLs outside common trusted domains; uses curl/wget patterns
+  - changes: git: modified/untracked=2; last_commit=ccb7bec 2026-02-11 feat(stock_analysis): support A-share fundamentals and announcements
+- skill: ui-ux-pro-max
+  - path: /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 9
+  - pattern hits: suspicious_net(2); sudo(2)
+  - suspicious domains/urls: https://api.star-history.com/svg?repos=nextlevelbuilder/ui-ux-pro-max-skill&type=Date; https://clawhub.ai; https://fonts.google.com/share?selection.family=...; https://img.shields.io/badge/PayPal-Donate-00457C?style=for-the-badge&logo=paypal&logoColor=white; https://img.shields.io/badge/PayPal-Support%20Development-00457C?style=flat-square&logo=paypal&logoColor=white; https://img.shields.io/badge/UI_styles-67-purple?style=for-the-badge; https://img.shields.io/badge/python-3.x-yellow?style=for-the-badge&logo=python&logoColor=white; https://img.shields.io/badge/reasoning_rules-100-green?style=for-the-badge; https://img.shields.io/github/license/nextlevelbuilder/ui-ux-pro-max-skill?style=for-the-badge&color=green; https://img.shields.io/github/stars/nextlevelbuilder/ui-ux-pro-max-skill?style=flat-square&logo=github
+  - script files: 4; executables: 0
+  - risk: high
+  - reason: contains sudo/privilege escalation command patterns; contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: find-skills
+  - path: /home/ubuntu/.openclaw/skills/find-skills
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: suspicious_net(2)
+  - suspicious domains/urls: https://clawhub.ai; https://skills.sh/; https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: non-git: latest_mtime=2026-02-12 15:56:02 UTC (/home/ubuntu/.openclaw/skills/find-skills/_meta.json); snapshot_hash=4c993ec5a18c
+- skill: knowledge-base-collector
+  - path: /home/ubuntu/.openclaw/skills/knowledge-base-collector
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 7
+  - pattern hits: env_or_keys(5); suspicious_net(1)
+  - suspicious domains/urls: https://r.jina.ai/; https://twitter.com/; https://x.com/
+  - script files: 6; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains; references environment variables/secrets
+  - changes: non-git: latest_mtime=2026-02-13 07:08:13 UTC (/home/ubuntu/.openclaw/skills/knowledge-base-collector/SKILL.md); snapshot_hash=18a2b5664d69
+- skill: x-tweet-fetcher
+  - path: /home/ubuntu/.openclaw/skills/x-tweet-fetcher
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 2
+  - pattern hits: suspicious_net(1)
+  - suspicious domains/urls: https://api.fxtwitter.com/{username}/status/{tweet_id}
+  - script files: 1; executables: 1
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: non-git: latest_mtime=2026-02-21 14:11:15 UTC (/home/ubuntu/.openclaw/skills/x-tweet-fetcher/scripts/fetch_tweet.py); snapshot_hash=17570013d865
+- skill: YouTube
+  - path: /home/ubuntu/.openclaw/workspace/skills/YouTube
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 4
+  - pattern hits: env_or_keys(2); suspicious_net(3)
+  - suspicious domains/urls: https://clawdbot.com; https://clawhub.ai; https://console.cloud.google.com
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: claw-roam.disabled-20260208-081734
+  - path: /home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 4
+  - pattern hits: suspicious_net(1)
+  - suspicious domains/urls: https://clawhub.ai
+  - script files: 1; executables: 1
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=694d94c 2026-02-09 feat(knowledge): scaffold Obsidian knowledge system and templates
+- skill: a-stock-analysis
+  - path: /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 5
+  - pattern hits: suspicious_net(2)
+  - suspicious domains/urls: https://clawhub.ai; https://finance.sina.com.cn; https://hq.sinajs.cn/list={codes_str}; https://quotes.sina.cn/cn/api/jsonp_v2.php/var%20_{symbol}=/CN_MarketDataService.getKLineData?symbol={symbol}&scale=1&ma=no&datalen={count}
+  - script files: 2; executables: 1
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=1; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: browser-automation
+  - path: /home/ubuntu/.openclaw/workspace/skills/browse/skills/browser-automation
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 1
+  - pattern hits: suspicious_net(1)
+  - suspicious domains/urls: https://example.com; https://example.com/login; https://slow-site.com
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: create
+  - path: /home/ubuntu/.openclaw/workspace/skills/browse/skills/create
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 1
+  - pattern hits: curl_wget(1); suspicious_net(1)
+  - suspicious domains/urls: http://127.0.0.1:14113/v1/functions/my-automation/invoke; https://example.com
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains; uses curl/wget patterns
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: fix
+  - path: /home/ubuntu/.openclaw/workspace/skills/browse/skills/fix
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 1
+  - pattern hits: suspicious_net(1)
+  - suspicious domains/urls: https://example.com/product/123
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: claw-roam
+  - path: /home/ubuntu/.openclaw/workspace/skills/claw-roam
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 4
+  - pattern hits: suspicious_net(1)
+  - suspicious domains/urls: https://clawhub.ai
+  - script files: 1; executables: 1
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=1; last_commit=694d94c 2026-02-09 feat(knowledge): scaffold Obsidian knowledge system and templates
+- skill: crypto-price
+  - path: /home/ubuntu/.openclaw/workspace/skills/crypto-price
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 7
+  - pattern hits: env_or_keys(1); suspicious_net(3)
+  - suspicious domains/urls: https://api.hyperliquid.xyz/info; https://api.hyperliquid.xyz/info`; https://clawdhub.com/evgyur/crypto-price; https://clawhub.ai; https://docs.clawd.bot
+  - script files: 1; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: crypto-watch
+  - path: /home/ubuntu/.openclaw/workspace/skills/crypto-watch
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 4
+  - pattern hits: suspicious_net(2)
+  - suspicious domains/urls: https://api.binance.com; https://www.okx.com; https://www.okx.com/api/v5/market/candles?instId=<INST>&bar=15m&limit=300`
+  - script files: 1; executables: 1
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=7a34fae 2026-02-07 feat(crypto-watch): add intrabar shock alerts for unfinished 15m swings
+- skill: deepwiki
+  - path: /home/ubuntu/.openclaw/workspace/skills/deepwiki
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 4
+  - pattern hits: suspicious_net(3)
+  - suspicious domains/urls: https://clawhub.ai; https://docs.devin.ai/work-with-devin/deepwiki-mcp; https://mcp.deepwiki.com; https://mcp.deepwiki.com/mcp`; https://mcp.deepwiki.com/sse
+  - script files: 1; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: deepwork-tracker
+  - path: /home/ubuntu/.openclaw/workspace/skills/deepwork-tracker
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: suspicious_net(2)
+  - suspicious domains/urls: https://clawhub.ai
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: find-skills
+  - path: /home/ubuntu/.openclaw/workspace/skills/find-skills
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: suspicious_net(2)
+  - suspicious domains/urls: https://clawhub.ai; https://skills.sh/; https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=1; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: github
+  - path: /home/ubuntu/.openclaw/workspace/skills/github
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: suspicious_net(1)
+  - suspicious domains/urls: https://clawhub.ai
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: gmail-inbox-zero-triage
+  - path: /home/ubuntu/.openclaw/workspace/skills/gmail-inbox-zero-triage
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 8
+  - pattern hits: suspicious_net(6)
+  - suspicious domains/urls: https://clawd.bot; https://clawdhub.com; https://clawhub.ai; https://docs.clawd.bot; https://gogcli.sh
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=1; last_commit=n/a
+- skill: google-workspace-mcp
+  - path: /home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: suspicious_net(1)
+  - suspicious domains/urls: https://clawhub.ai
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=694d94c 2026-02-09 feat(knowledge): scaffold Obsidian knowledge system and templates
+- skill: imap-smtp-email
+  - path: /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email
+  - SKILL.md: yes; package.json: yes
+  - files reviewed: 8
+  - pattern hits: env_or_keys(2); suspicious_net(1)
+  - suspicious domains/urls: https://clawhub.ai
+  - script files: 3; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: larksuite-wiki
+  - path: /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 4
+  - pattern hits: env_or_keys(4); suspicious_net(3)
+  - suspicious domains/urls: https://open.larksuite.com; https://open.larksuite.com/; https://open.larksuite.com/console; https://open.larksuite.com/document/uAjLw4CM/ukTMukTMukTM/reference/docx-v1/document/overview; https://open.larksuite.com/document/uAjLw4CM/ukTMukTMukTM/reference/wiki-v1/space/overview; https://open.larksuite.com/open-apis; https://xxx.larksuite.com/wiki/TDCZweBJ2iMFO4kI1LAlSE62gnd
+  - script files: 1; executables: 2
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=e600c2c 2026-02-06 feat: trading-journal + branch workflow
+- skill: reminder
+  - path: /home/ubuntu/.openclaw/workspace/skills/reminder
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 6
+  - pattern hits: suspicious_net(1)
+  - suspicious domains/urls: https://clawhub.ai
+  - script files: 1; executables: 1
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=4; last_commit=e803d1e 2026-02-12 chore(reminder): support telegram+discord delivery targets
+- skill: seedance-3x3-optimizer
+  - path: /home/ubuntu/.openclaw/workspace/skills/seedance-3x3-optimizer
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: suspicious_net(1)
+  - suspicious domains/urls: https://x.com/ponyodong/status/2021534195659816995>
+  - script files: 1; executables: 1
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=da0e8d6 2026-02-22 docs(skill): add source reference tweet for seedance 3x3 optimizer
+- skill: self-reflection
+  - path: /home/ubuntu/.openclaw/workspace/skills/self-reflection
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 5
+  - pattern hits: suspicious_net(3)
+  - suspicious domains/urls: https://clawhub.ai
+  - script files: 0; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: task-status
+  - path: /home/ubuntu/.openclaw/workspace/skills/task-status
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 10
+  - pattern hits: env_or_keys(3); suspicious_net(1)
+  - suspicious domains/urls: https://clawhub.ai
+  - script files: 5; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains; references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: technews
+  - path: /home/ubuntu/.openclaw/workspace/skills/technews
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 9
+  - pattern hits: suspicious_net(4)
+  - suspicious domains/urls: https://clawhub.ai; https://hn.algolia.com/api/v1/search; https://news.ycombinator.com/item?id={hit.get(; https://nitter.net/search; https://www.techmeme.com/feed.xml
+  - script files: 4; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: vercel-cli
+  - path: /home/ubuntu/.openclaw/workspace/skills/vercel-cli
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 2
+  - pattern hits: child_process_exec(1); env_or_keys(1)
+  - script files: 1; executables: 1
+  - risk: medium
+  - reason: uses child_process/exec/spawn patterns; references environment variables/secrets
+  - changes: git: modified/untracked=1; last_commit=n/a
+- skill: webapp-testing
+  - path: /home/ubuntu/.openclaw/workspace/skills/webapp-testing
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 8
+  - pattern hits: suspicious_net(5)
+  - suspicious domains/urls: http://localhost:5173; http://www.apache.org/licenses/; http://www.apache.org/licenses/LICENSE-2.0; https://clawhub.ai
+  - script files: 4; executables: 0
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: x-tweet-fetcher
+  - path: /home/ubuntu/.openclaw/workspace/skills/x-tweet-fetcher
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 2
+  - pattern hits: suspicious_net(1)
+  - suspicious domains/urls: https://api.fxtwitter.com/{username}/status/{tweet_id}
+  - script files: 1; executables: 1
+  - risk: medium
+  - reason: contains external URLs outside common trusted domains
+  - changes: git: modified/untracked=1; last_commit=n/a
+- skill: backend
+  - path: /home/ubuntu/.openclaw/workspace/skills/avatarkit/backend
+  - SKILL.md: no; package.json: yes
+  - files reviewed: 2
+  - pattern hits: env_or_keys(1)
+  - script files: 0; executables: 0
+  - risk: low
+  - reason: references environment variables/secrets
+  - changes: git: modified/untracked=0; last_commit=51fcc7b 2026-02-11 feat: Add flexible backend configuration and provider support
+- skill: auth
+  - path: /home/ubuntu/.openclaw/workspace/skills/browse/skills/auth
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 1
+  - pattern hits: none
+  - script files: 0; executables: 0
+  - risk: low
+  - reason: no high-risk patterns found in static scan
+  - changes: git: modified/untracked=0; last_commit=fb7d41f 2026-02-06 initial: claw-roam setup
+- skill: db-readonly
+  - path: /home/ubuntu/.openclaw/workspace/skills/db-readonly
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 3
+  - pattern hits: none
+  - script files: 1; executables: 1
+  - risk: low
+  - reason: no high-risk patterns found in static scan
+  - changes: git: modified/untracked=0; last_commit=843624d 2026-02-09 feat(skill): add db-readonly skill for safe MySQL/Postgres reads
+- skill: gmail-auto-processor
+  - path: /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor
+  - SKILL.md: yes; package.json: yes
+  - files reviewed: 17
+  - pattern hits: child_process_exec(10)
+  - script files: 13; executables: 2
+  - risk: low
+  - reason: uses child_process/exec/spawn patterns
+  - changes: git: modified/untracked=1; last_commit=n/a
+- skill: obsidian-integration
+  - path: /home/ubuntu/.openclaw/workspace/skills/obsidian-integration
+  - SKILL.md: yes; package.json: yes
+  - files reviewed: 4
+  - pattern hits: child_process_exec(1)
+  - script files: 1; executables: 0
+  - risk: low
+  - reason: uses child_process/exec/spawn patterns
+  - changes: git: modified/untracked=1; last_commit=n/a
+- skill: todo-kb
+  - path: /home/ubuntu/.openclaw/workspace/skills/todo-kb
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 2
+  - pattern hits: none
+  - script files: 1; executables: 1
+  - risk: low
+  - reason: no high-risk patterns found in static scan
+  - changes: git: modified/untracked=0; last_commit=ed9b416 2026-02-24 feat(skill): add todo-kb skill with KB-backed todo manager
+- skill: trading-journal
+  - path: /home/ubuntu/.openclaw/workspace/skills/trading-journal
+  - SKILL.md: yes; package.json: no
+  - files reviewed: 2
+  - pattern hits: none
+  - script files: 1; executables: 1
+  - risk: low
+  - reason: no high-risk patterns found in static scan
+  - changes: git: modified/untracked=0; last_commit=434c59e 2026-02-06 feat(trading-journal): echo saved entry + commentary

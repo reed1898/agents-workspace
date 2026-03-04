@@ -1,0 +1,69 @@
+{
+  "symbol": "300136",
+  "company": "信维通信",
+  "as_of": "2026-02-23T07:21:26.480073+00:00",
+  "price": 73.2,
+  "currency": "CNY",
+  "change_percent": -2.59,
+  "valuation": {
+    "pe": 109.19,
+    "pb": 9.22,
+    "market_cap": 70826024301,
+    "float_market_cap": 60358372183
+  },
+  "technical": {
+    "sma20": 80.48,
+    "sma50": 63.16,
+    "rsi14": 36.64,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-01-12 20:35:05:599",
+      "title": "信维通信:关于公司股东减持股份的预披露公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300136/AN202601121816952639.html"
+    },
+    {
+      "time": "2025-12-25 20:33:10:746",
+      "title": "信维通信:股票交易异常波动公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300136/AN202512251808027538.html"
+    },
+    {
+      "time": "2025-12-02 17:34:17:310",
+      "title": "信维通信:第三期员工持股计划第一次持有人会议决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300136/AN202512021792567949.html"
+    },
+    {
+      "time": "2025-11-12 15:44:17:396",
+      "title": "信维通信:关于第三期员工持股计划非交易过户完成的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300136/AN202511121779935302.html"
+    },
+    {
+      "time": "2025-10-28 18:28:05:508",
+      "title": "信维通信:第六届董事会第二次会议决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300136/AN202510281770715915.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：信维通信:关于公司股东减持股份的预披露公告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 50,
+    "total": 55.3
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

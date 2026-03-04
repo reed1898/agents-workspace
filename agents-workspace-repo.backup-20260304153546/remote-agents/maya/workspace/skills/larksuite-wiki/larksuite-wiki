@@ -1,0 +1,23 @@
+#!/bin/bash
+# Wrapper script for larksuite-wiki
+# Credentials should be set in LOCAL_CONFIG.md or environment variables
+
+# Check if credentials are available
+if [ -z "$LARK_APP_ID" ] || [ -z "$LARK_APP_SECRET" ]; then
+    # Try to read from LOCAL_CONFIG.md
+    if [ -f ~/.openclaw/workspace/LOCAL_CONFIG.md ]; then
+        LARK_APP_ID=$(grep -A1 "## LarkSuite Wiki Configuration" ~/.openclaw/workspace/LOCAL_CONFIG.md | grep "App ID" | sed 's/.*`\(.*\)`/\1/')
+        LARK_APP_SECRET=$(grep "App Secret" ~/.openclaw/workspace/LOCAL_CONFIG.md | sed 's/.*`\(.*\)`/\1/')
+    fi
+fi
+
+# Check if we have credentials
+if [ -z "$LARK_APP_ID" ] || [ -z "$LARK_APP_SECRET" ]; then
+    echo "Error: LARK_APP_ID and LARK_APP_SECRET not set."
+    echo "Please add them to LOCAL_CONFIG.md or set as environment variables."
+    exit 1
+fi
+
+export LARK_APP_ID
+export LARK_APP_SECRET
+python3 ~/.openclaw/workspace/skills/larksuite-wiki/larksuite-wiki.py "$@"

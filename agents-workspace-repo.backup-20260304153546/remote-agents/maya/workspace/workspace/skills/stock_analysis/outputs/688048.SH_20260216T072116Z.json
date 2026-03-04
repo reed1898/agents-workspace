@@ -1,0 +1,69 @@
+{
+  "symbol": "688048",
+  "company": "长光华芯",
+  "as_of": "2026-02-16T07:21:16.319193+00:00",
+  "price": 134.05,
+  "currency": "CNY",
+  "change_percent": -7.51,
+  "valuation": {
+    "pe": 1210.41,
+    "pb": 7.86,
+    "market_cap": 23630326359,
+    "float_market_cap": 23630326359
+  },
+  "technical": {
+    "sma20": 130.26,
+    "sma50": 134.09,
+    "rsi14": 56.47,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-11 17:40:40:638",
+      "title": "长光华芯:2025年度业绩快报",
+      "link": "https://data.eastmoney.com/notices/detail/SH688048/AN202602111819881212.html"
+    },
+    {
+      "time": "2026-01-28 17:01:31:387",
+      "title": "长光华芯:2025年度业绩预告",
+      "link": "https://data.eastmoney.com/notices/detail/SH688048/AN202601281818506417.html"
+    },
+    {
+      "time": "2026-01-20 18:33:21:317",
+      "title": "长光华芯:持股5%以上股东及董事、高级管理人员减持股份计划公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH688048/AN202601201818160499.html"
+    },
+    {
+      "time": "2026-01-16 16:43:50:595",
+      "title": "长光华芯:关于提起诉讼的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH688048/AN202601161817763131.html"
+    },
+    {
+      "time": "2025-12-12 16:08:49:272",
+      "title": "长光华芯:关于获得政府补助的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH688048/AN202512121798977005.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：长光华芯:2025年度业绩快报"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 70,
+    "total": 62.3
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 地址测速（直连）</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: #111933;
+        --text: #e8eefc;
+        --muted: #9fb0d9;
+        --line: #263459;
+        --ok: #39d98a;
+        --warn: #ffb74d;
+        --bad: #ff6b6b;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text);
+        background: radial-gradient(circle at 20% 0%, #142347 0%, var(--bg) 45%);
+      }
+      .wrap { max-width: 1050px; margin: 28px auto; padding: 0 16px; }
+      .card {
+        background: rgba(17, 25, 51, 0.92);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 14px;
+      }
+      h1 { margin: 0 0 8px; font-size: 22px; }
+      .sub { color: var(--muted); margin: 0; font-size: 13px; }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 160px 160px 160px;
+        gap: 10px;
+        align-items: end;
+      }
+      label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px; }
+      textarea, input, select, button {
+        width: 100%;
+        border: 1px solid var(--line);
+        background: #0b1430;
+        color: var(--text);
+        border-radius: 8px;
+        padding: 9px 10px;
+      }
+      textarea { min-height: 128px; resize: vertical; }
+      button { cursor: pointer; font-weight: 600; background: linear-gradient(135deg, #1d53ff, #1376cc); border: none; }
+      button:disabled { opacity: 0.6; cursor: not-allowed; }
+      .hint { font-size: 12px; color: var(--muted); margin-top: 8px; }
+      table { width: 100%; border-collapse: collapse; font-size: 13px; }
+      th, td { border-bottom: 1px solid var(--line); padding: 8px 6px; text-align: right; white-space: nowrap; }
+      th:first-child, td:first-child { text-align: left; }
+      .ok { color: var(--ok); }
+      .bad { color: var(--bad); }
+      .warn { color: var(--warn); }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      @media (max-width: 920px) {
+        .grid { grid-template-columns: 1fr 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h1>AI 供应商地址测速（强制直连）</h1>
+        <p class="sub">后端固定不走系统代理：自动清空代理环境变量并使用 <span class="mono">--noproxy '*'</span></p>
+      </div>
+
+      <div class="card">
+        <div class="grid">
+          <div style="grid-row: span 3">
+            <label>基础地址（每行一个）</label>
+            <textarea id="targets">https://claude-code.club
+https://sz.ai-code.club
+https://hk.claude-code.club
+https://jp.claude-code.club</textarea>
+          </div>
+          <div>
+            <label>请求路径</label>
+            <input id="path" value="/api/health" />
+          </div>
+          <div>
+            <label>请求方法</label>
+            <select id="method">
+              <option value="GET">GET</option>
+              <option value="POST">POST</option>
+            </select>
+          </div>
+          <div>
+            <label>每地址次数</label>
+            <input id="runs" type="number" min="1" max="200" value="40" />
+          </div>
+          <div>
+            <label>连接超时(秒)</label>
+            <input id="connectTimeoutSec" type="number" min="1" max="30" value="5" />
+          </div>
+          <div>
+            <label>总超时(秒)</label>
+            <input id="maxTimeSec" type="number" min="2" max="120" value="20" />
+          </div>
+          <div>
+            <label>POST Body(JSON)</label>
+            <input id="requestBody" value="{}" />
+          </div>
+          <div style="grid-column: span 3">
+            <button id="runBtn">开始测速</button>
+          </div>
+        </div>
+        <div class="hint" id="status">就绪</div>
+      </div>
+
+      <div class="card">
+        <div style="overflow-x:auto">
+          <table id="resultTable">
+            <thead>
+              <tr>
+                <th>地址</th>
+                <th>执行成功</th>
+                <th>执行失败</th>
+                <th>非2xx</th>
+                <th>avg(s)</th>
+                <th>std(s)</th>
+                <th>p50(s)</th>
+                <th>p95(s)</th>
+                <th>p99(s)</th>
+                <th>min(s)</th>
+                <th>max(s)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const runBtn = document.getElementById("runBtn");
+      const statusEl = document.getElementById("status");
+      const tbody = document.querySelector("#resultTable tbody");
+
+      function fmt(num) {
+        if (num === null || num === undefined || Number.isNaN(num)) return "-";
+        return Number(num).toFixed(3);
+      }
+
+      function setStatus(text, cls = "") {
+        statusEl.className = `hint ${cls}`.trim();
+        statusEl.textContent = text;
+      }
+
+      function render(results) {
+        tbody.innerHTML = "";
+        for (const r of results) {
+          const tr = document.createElement("tr");
+          const failRate = r.runs ? (r.failedExec / r.runs) : 0;
+          tr.innerHTML = `
+            <td class="mono">${r.baseUrl}</td>
+            <td class="${r.successExec > 0 ? "ok" : "bad"}">${r.successExec}/${r.runs}</td>
+            <td class="${r.failedExec === 0 ? "ok" : "bad"}">${r.failedExec}</td>
+            <td class="${r.non2xx === 0 ? "ok" : "warn"}">${r.non2xx}</td>
+            <td>${fmt(r.stats.avg)}</td>
+            <td>${fmt(r.stats.std)}</td>
+            <td>${fmt(r.stats.p50)}</td>
+            <td>${fmt(r.stats.p95)}</td>
+            <td>${fmt(r.stats.p99)}</td>
+            <td>${fmt(r.stats.min)}</td>
+            <td>${fmt(r.stats.max)}</td>
+          `;
+          if (failRate > 0) tr.style.background = "rgba(255, 107, 107, 0.08)";
+          tbody.appendChild(tr);
+        }
+      }
+
+      async function run() {
+        runBtn.disabled = true;
+        setStatus("测速中，请稍候...");
+        try {
+          const rawTargets = document.getElementById("targets").value
+            .split("\n")
+            .map((s) => s.trim())
+            .filter(Boolean);
+          const payload = {
+            targets: rawTargets,
+            path: document.getElementById("path").value.trim(),
+            method: document.getElementById("method").value,
+            runs: Number(document.getElementById("runs").value || 40),
+            connectTimeoutSec: Number(document.getElementById("connectTimeoutSec").value || 5),
+            maxTimeSec: Number(document.getElementById("maxTimeSec").value || 20),
+            requestBody: document.getElementById("requestBody").value || "{}",
+          };
+          const resp = await fetch("/api/test", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const data = await resp.json();
+          if (!resp.ok) throw new Error(data.error || "测速失败");
+          render(data.results || []);
+          setStatus(
+            `完成：${data.startedAt || ""} -> ${data.finishedAt || ""}（模式: 直连）`,
+            "ok"
+          );
+        } catch (err) {
+          setStatus(`错误：${err.message}`, "bad");
+        } finally {
+          runBtn.disabled = false;
+        }
+      }
+
+      runBtn.addEventListener("click", run);
+    </script>
+  </body>
+</html>

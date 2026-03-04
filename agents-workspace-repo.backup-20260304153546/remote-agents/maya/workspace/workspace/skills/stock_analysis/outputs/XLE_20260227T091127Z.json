@@ -1,0 +1,39 @@
+{
+  "symbol": "XLE",
+  "company": "State Street Energy Select Sect",
+  "as_of": "2026-02-27T09:11:27.024396+00:00",
+  "price": 55.05,
+  "currency": "USD",
+  "change_percent": 0.33,
+  "valuation": {
+    "pe": 21.97,
+    "market_cap": 10262640640
+  },
+  "technical": {
+    "sma20": 53.54,
+    "sma50": 49.18,
+    "rsi14": 69.4,
+    "trend": "uptrend"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行",
+    "技术面维持多头结构"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 65,
+    "total": 66.8
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。 当前技术趋势偏强。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

@@ -1,0 +1,14 @@
+*.log
+
+# Machine-specific configuration (local/VPS differences)
+LOCAL_CONFIG.md
+
+# Generated digest (can be regenerated anytime)
+trading/weekly-digest.md
+
+# Local heartbeat state (do not sync)
+memory/heartbeat-state.json
+
+# Python bytecode
+__pycache__/
+*.pyc

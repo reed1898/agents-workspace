@@ -1,0 +1,39 @@
+{
+  "symbol": "AAPL",
+  "company": "Apple Inc.",
+  "as_of": "2026-02-27T09:11:15.674873+00:00",
+  "price": 272.95,
+  "currency": "USD",
+  "change_percent": -0.47,
+  "valuation": {
+    "pe": 34.59,
+    "market_cap": 4011799085056
+  },
+  "technical": {
+    "sma20": 268.31,
+    "sma50": 265.39,
+    "rsi14": 47.55,
+    "trend": "uptrend"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行",
+    "技术面维持多头结构"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 85,
+    "total": 73.8
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。 当前技术趋势偏强。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

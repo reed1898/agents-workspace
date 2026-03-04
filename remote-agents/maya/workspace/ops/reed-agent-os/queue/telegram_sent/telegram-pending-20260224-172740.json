@@ -1,0 +1,11 @@
+{
+  "created_at_utc": "2026-02-24T17:27:45.360749+00:00",
+  "run_id": "daily-20260224-172740-morning-daily-morning",
+  "attempt": 1,
+  "next_attempt": 2,
+  "error_class": "fatal",
+  "last_error": "error: unknown option '--account-id'\n(Did you mean --account?)",
+  "account_id": "maya",
+  "target": "telegram:869269685",
+  "text": "日报 2026-02-24 | daily-morning | morning\n\nHighlights:\n- [skeleton] 今日重点待补充\n- [skeleton] 风险项待补充\n- [skeleton] 明日建议待补充\n\nRisks:\n- (none)\n\nActions:\n- (none)"
+}

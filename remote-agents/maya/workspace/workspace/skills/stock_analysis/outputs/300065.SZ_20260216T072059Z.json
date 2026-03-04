@@ -1,0 +1,69 @@
+{
+  "symbol": "300065",
+  "company": "海兰信",
+  "as_of": "2026-02-16T07:20:59.330902+00:00",
+  "price": 28.81,
+  "currency": "CNY",
+  "change_percent": 6.9,
+  "valuation": {
+    "pe": 391.64,
+    "pb": 11.82,
+    "market_cap": 20787543199,
+    "float_market_cap": 18925037402
+  },
+  "technical": {
+    "sma20": 25.5,
+    "sma50": 21.74,
+    "rsi14": 67.0,
+    "trend": "uptrend"
+  },
+  "news": [
+    {
+      "time": "2026-01-29 17:33:12:433",
+      "title": "海兰信:2025年度业绩预告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300065/AN202601291818545491.html"
+    },
+    {
+      "time": "2026-01-12 17:41:16:393",
+      "title": "海兰信:关于股价异动的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300065/AN202601121816947708.html"
+    },
+    {
+      "time": "2026-01-06 19:43:06:596",
+      "title": "海兰信:北京德恒律师事务所关于北京海兰信数据科技股份有限公司发行股份及支付现金购买资产并募集配套资金暨关联交易的补充法律意见(更新稿)",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300065/AN202601061816166182.html"
+    },
+    {
+      "time": "2026-01-06 19:43:06:439",
+      "title": "海兰信:沃克森(北京)国际资产评估有限公司关于北京海兰信数据科技股份有限公司申请发行股份、现金购买资产并募集配套资金的审核问询函的回复",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300065/AN202601061816166180.html"
+    },
+    {
+      "time": "2026-01-06 19:43:06:439",
+      "title": "海兰信:天健会计师事务所(特殊普通合伙)关于海兰信公司申请发行股份购买资产并募集配套资金的审核问询函中有关财务事项的说明",
+      "link": "https://data.eastmoney.com/notices/detail/SZ300065/AN202601061816166181.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：海兰信:2025年度业绩预告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 65,
+    "total": 60.5
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。 当前技术趋势偏强。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "timezone": "Asia/Shanghai",
+  "runAt": "13:00",
+  "sources": ["top", "show"],
+  "maxItems": 8,
+  "keywords": [
+    "AI", "LLM", "GPT", "agent", "agents", "RAG", "inference", "diffusion",
+    "transformer", "multimodal", "copilot", "OpenAI", "Anthropic", "DeepSeek",
+    "Qwen", "Llama", "Ollama", "vLLM", "CUDA", "MLX"
+  ],
+  "preferShowHN": true,
+  "language": "zh"
+}

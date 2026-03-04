@@ -1,0 +1,69 @@
+{
+  "symbol": "603919",
+  "company": "金徽酒",
+  "as_of": "2026-02-20T07:21:26.603140+00:00",
+  "price": 21.23,
+  "currency": "CNY",
+  "change_percent": -3.02,
+  "valuation": {
+    "pe": 24.95,
+    "pb": 3.26,
+    "market_cap": 10769129736,
+    "float_market_cap": 10769129736
+  },
+  "technical": {
+    "sma20": 21.55,
+    "sma50": 20.68,
+    "rsi14": 58.26,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-03 16:50:44:686",
+      "title": "金徽酒:金徽酒股份有限公司2025年前三季度权益分派实施公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH603919/AN202602031819621646.html"
+    },
+    {
+      "time": "2026-02-03 16:50:44:682",
+      "title": "金徽酒:北京卓纬律师事务所关于金徽酒股份有限公司差异化分红事项之法律意见书(2025年前三季度)",
+      "link": "https://data.eastmoney.com/notices/detail/SH603919/AN202602031819621647.html"
+    },
+    {
+      "time": "2026-02-02 17:46:23:169",
+      "title": "金徽酒:金徽酒股份有限公司股票交易异常波动公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH603919/AN202602021819358715.html"
+    },
+    {
+      "time": "2026-01-19 16:49:38:212",
+      "title": "金徽酒:北京卓纬律师事务所关于金徽酒股份有限公司2026年第一次临时股东会之法律意见书",
+      "link": "https://data.eastmoney.com/notices/detail/SH603919/AN202601191818109428.html"
+    },
+    {
+      "time": "2026-01-19 16:49:38:200",
+      "title": "金徽酒:金徽酒股份有限公司2026年第一次临时股东会决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH603919/AN202601191818109427.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：金徽酒:金徽酒股份有限公司2025年前三季度权益分派实施"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 70,
+    "total": 68.6
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

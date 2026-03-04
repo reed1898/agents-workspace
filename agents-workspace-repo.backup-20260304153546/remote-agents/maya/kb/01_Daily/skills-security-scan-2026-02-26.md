@@ -1,0 +1,796 @@
+# Skills Security Scan - 2026-02-26 (UTC)
+
+## 今晚结论摘要
+- 扫描范围：workspace + npm 全局 + ~/.openclaw skills，共 **98** 个 skill。
+- 风险分布：**high 4 / medium 9 / low 85**。
+- 发现 **4 个 high**（主要命中 `sudo`/`eval`/`.ssh`/执行链等高危原语），建议优先人工复核。
+- medium 主要是 `exec/spawn`、`curl/wget`、环境变量读取、或存在可执行文件。
+- 其余 low 未发现明确高危原语（基于静态扫描，不代表 100% 安全）。
+- 变更检测：git 仓库用 `git status/log`，非 git 目录使用 mtime。
+- 本次仅静态审计，无破坏性操作。
+
+## 按 Skill 详细结果（项目符号）
+- **stock_analysis**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/stock_analysis`
+  - SKILL.md: yes; package.json: no
+  - scripts: 3; executables/binaries: 3
+  - pattern hits: curl_wget:1, sudo:3, suspicious_domain:5, url:715; suspicious domains: bootstrap.pypa.io, data.eastmoney.com, np-anotice-stock.eastmoney.com, push2.eastmoney.com
+  - risk: **high** (score 9) — sudo; curl/wget usage; multiple untrusted domains; executable/binary present
+  - change: git changes:2
+- **clawra**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/clawra`
+  - SKILL.md: yes; package.json: yes
+  - scripts: 5; executables/binaries: 3
+  - pattern hits: child_process:3, curl_wget:4, env_secret:22, suspicious_domain:6, url:21; suspicious domains: cdn.jsdelivr.net, docs.python.org, fal.ai, fal.run
+  - risk: **high** (score 8) — process spawn/exec; curl/wget usage; env/secret refs; multiple untrusted domains
+  - change: last commit 2026-02-11 f9edfa7
+- **clawra-selfie**
+  - source: `/home/ubuntu/.openclaw/skills`
+  - path: `/home/ubuntu/.openclaw/skills/clawra-selfie`
+  - SKILL.md: yes; package.json: no
+  - scripts: 2; executables/binaries: 1
+  - pattern hits: child_process:1, curl_wget:2, env_secret:11, suspicious_domain:3, url:7; suspicious domains: fal.ai, fal.run, localhost
+  - risk: **high** (score 8) — process spawn/exec; curl/wget usage; env/secret refs; multiple untrusted domains
+  - change: mtime 2026-02-11 17:10 UTC
+- **ai-daily-digest**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/ai-daily-digest`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 20
+  - pattern hits: child_process:2, env_secret:12, suspicious_domain:114, url:192; suspicious domains: abortretry.fail, aistudio.google.com, anildash.com, antirez.com
+  - risk: **high** (score 6) — process spawn/exec; env/secret refs; multiple untrusted domains; executable/binary present
+  - change: last commit 2026-02-19 961240f
+- **x-search**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/x-search`
+  - SKILL.md: yes; package.json: no
+  - scripts: 2; executables/binaries: 2
+  - pattern hits: curl_wget:2, env_secret:9, suspicious_domain:1, url:2; suspicious domains: api.x.ai}
+  - risk: **medium** (score 5) — curl/wget usage; env/secret refs; untrusted domain; executable/binary present
+  - change: last commit 2026-02-07 c6ffc49
+- **avatarkit**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/avatarkit`
+  - SKILL.md: yes; package.json: yes
+  - scripts: 10; executables/binaries: 53
+  - pattern hits: env_secret:1, suspicious_domain:3, url:7; suspicious domains: api.avatarkit.com, avatarkit.com, openapi.vercel.sh
+  - risk: **medium** (score 4) — env/secret refs; multiple untrusted domains; executable/binary present
+  - change: last commit 2026-02-11 5a17ff7
+- **evolver**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/evolver`
+  - SKILL.md: yes; package.json: yes
+  - scripts: 56; executables/binaries: 0
+  - pattern hits: child_process:19, env_secret:182, suspicious_domain:2, url:4; suspicious domains: evomap.ai, www.clawhub.ai
+  - risk: **medium** (score 4) — process spawn/exec; env/secret refs; untrusted domain
+  - change: last commit 2026-02-24 cca05d1
+- **a-stock-analysis**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis`
+  - SKILL.md: yes; package.json: no
+  - scripts: 2; executables/binaries: 2
+  - pattern hits: suspicious_domain:4, url:5; suspicious domains: clawhub.ai, finance.sina.com.cn, hq.sinajs.cn, quotes.sina.cn
+  - risk: **medium** (score 3) — multiple untrusted domains; executable/binary present
+  - change: git changes:1
+- **gmail-auto-processor**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor`
+  - SKILL.md: yes; package.json: yes
+  - scripts: 13; executables/binaries: 2
+  - pattern hits: child_process:11
+  - risk: **medium** (score 3) — process spawn/exec; executable/binary present
+  - change: git changes:1
+- **knowledge-base-collector**
+  - source: `/home/ubuntu/.openclaw/skills`
+  - path: `/home/ubuntu/.openclaw/skills/knowledge-base-collector`
+  - SKILL.md: yes; package.json: no
+  - scripts: 6; executables/binaries: 6
+  - pattern hits: env_secret:5, suspicious_domain:1, url:3; suspicious domains: r.jina.ai
+  - risk: **medium** (score 3) — env/secret refs; untrusted domain; executable/binary present
+  - change: mtime 2026-02-13 07:08 UTC
+- **larksuite-wiki**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 2
+  - pattern hits: env_secret:3, suspicious_domain:1, url:1; suspicious domains: open.larksuite.com
+  - risk: **medium** (score 3) — env/secret refs; untrusted domain; executable/binary present
+  - change: last commit 2026-02-06 e600c2c
+- **openai-whisper-api**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 0
+  - pattern hits: curl_wget:1, env_secret:3, url:1
+  - risk: **medium** (score 3) — curl/wget usage; env/secret refs
+  - change: mtime 2026-02-25 15:35 UTC
+- **vercel-cli**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/vercel-cli`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: child_process:1
+  - risk: **medium** (score 3) — process spawn/exec; executable/binary present
+  - change: git changes:1
+- **_disabled**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/_disabled`
+  - SKILL.md: no; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: suspicious_domain:1, url:2; suspicious domains: clawhub.ai
+  - risk: **low** (score 2) — untrusted domain; executable/binary present
+  - change: last commit 2026-02-09 694d94c
+- **claw-roam**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/claw-roam`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 2) — untrusted domain; executable/binary present
+  - change: git changes:1
+- **crypto-price**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/crypto-price`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 0
+  - pattern hits: env_secret:2, suspicious_domain:1, url:7; suspicious domains: clawhub.ai
+  - risk: **low** (score 2) — env/secret refs; untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **crypto-watch**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/crypto-watch`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 2
+  - pattern hits: suspicious_domain:2, url:2; suspicious domains: api.binance.com, www.okx.com
+  - risk: **low** (score 2) — untrusted domain; executable/binary present
+  - change: last commit 2026-02-07 7a34fae
+- **google-workspace**
+  - source: `/home/ubuntu/.openclaw/skills`
+  - path: `/home/ubuntu/.openclaw/skills/google-workspace`
+  - SKILL.md: yes; package.json: no
+  - scripts: 10; executables/binaries: 0
+  - pattern hits: env_secret:2, suspicious_domain:1, url:6; suspicious domains: mail.google.com
+  - risk: **low** (score 2) — env/secret refs; untrusted domain
+  - change: mtime 2026-02-08 06:27 UTC
+- **imap-smtp-email**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email`
+  - SKILL.md: yes; package.json: yes
+  - scripts: 3; executables/binaries: 0
+  - pattern hits: env_secret:21, suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 2) — env/secret refs; untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **nano-banana-pro**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: env_secret:4
+  - risk: **low** (score 2) — env/secret refs; executable/binary present
+  - change: mtime 2026-02-25 15:35 UTC
+- **obsidian-integration**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/obsidian-integration`
+  - SKILL.md: yes; package.json: yes
+  - scripts: 1; executables/binaries: 0
+  - pattern hits: child_process:1
+  - risk: **low** (score 2) — process spawn/exec
+  - change: git changes:1
+- **reminder**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/reminder`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 2) — untrusted domain; executable/binary present
+  - change: git changes:4
+- **task-status**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/task-status`
+  - SKILL.md: yes; package.json: no
+  - scripts: 5; executables/binaries: 0
+  - pattern hits: env_secret:15, suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 2) — env/secret refs; untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **technews**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/technews`
+  - SKILL.md: yes; package.json: no
+  - scripts: 4; executables/binaries: 0
+  - pattern hits: suspicious_domain:5, url:5; suspicious domains: clawhub.ai, hn.algolia.com, news.ycombinator.com, nitter.net
+  - risk: **low** (score 2) — multiple untrusted domains
+  - change: last commit 2026-02-06 fb7d41f
+- **walkie**
+  - source: `/home/ubuntu/.openclaw/skills`
+  - path: `/home/ubuntu/.openclaw/skills/walkie`
+  - SKILL.md: yes; package.json: no
+  - scripts: 4; executables/binaries: 3
+  - pattern hits: env_secret:10
+  - risk: **low** (score 2) — env/secret refs; executable/binary present
+  - change: mtime 2026-02-20 14:19 UTC
+- **x-tweet-fetcher**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/x-tweet-fetcher`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: api.fxtwitter.com
+  - risk: **low** (score 2) — untrusted domain; executable/binary present
+  - change: git changes:1
+- **x-tweet-fetcher**
+  - source: `/home/ubuntu/.openclaw/skills`
+  - path: `/home/ubuntu/.openclaw/skills/x-tweet-fetcher`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: api.fxtwitter.com
+  - risk: **low** (score 2) — untrusted domain; executable/binary present
+  - change: mtime 2026-02-21 14:11 UTC
+- **browse**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/browse`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **db-readonly**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/db-readonly`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: none
+  - risk: **low** (score 1) — executable/binary present
+  - change: last commit 2026-02-09 843624d
+- **deepwiki**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/deepwiki`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 0
+  - pattern hits: suspicious_domain:2, url:3; suspicious domains: clawhub.ai, mcp.deepwiki.com
+  - risk: **low** (score 1) — untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **deepwork-tracker**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **find-skills**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/find-skills`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: git changes:1
+- **find-skills**
+  - source: `/home/ubuntu/.openclaw/skills`
+  - path: `/home/ubuntu/.openclaw/skills/find-skills`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: mtime 2026-02-12 15:56 UTC
+- **github**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/github`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **Gmail**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/Gmail`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: git changes:1
+- **gmail**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/gmail`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: git changes:1
+- **gmail-inbox-zero-triage**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/gmail-inbox-zero-triage`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: git changes:1
+- **google-workspace-mcp**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: last commit 2026-02-09 694d94c
+- **openai-image-gen**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen`
+  - SKILL.md: yes; package.json: no
+  - scripts: 2; executables/binaries: 0
+  - pattern hits: env_secret:3, url:1
+  - risk: **low** (score 1) — env/secret refs
+  - change: mtime 2026-02-25 15:35 UTC
+- **seedance-3x3-optimizer**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/seedance-3x3-optimizer`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: none
+  - risk: **low** (score 1) — executable/binary present
+  - change: last commit 2026-02-22 da0e8d6
+- **self-reflection**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/self-reflection`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **sherpa-onnx-tts**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 1
+  - pattern hits: none
+  - risk: **low** (score 1) — executable/binary present
+  - change: mtime 2026-02-25 15:35 UTC
+- **skill-vetter**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/skill-vetter`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **tmux**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux`
+  - SKILL.md: yes; package.json: no
+  - scripts: 2; executables/binaries: 2
+  - pattern hits: none
+  - risk: **low** (score 1) — executable/binary present
+  - change: mtime 2026-02-25 15:35 UTC
+- **todo-kb**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/todo-kb`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: none
+  - risk: **low** (score 1) — executable/binary present
+  - change: last commit 2026-02-24 ed9b416
+- **trading-journal**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/trading-journal`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 1
+  - pattern hits: none
+  - risk: **low** (score 1) — executable/binary present
+  - change: last commit 2026-02-06 434c59e
+- **ui-ux-pro-max**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max`
+  - SKILL.md: yes; package.json: no
+  - scripts: 4; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **webapp-testing**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/webapp-testing`
+  - SKILL.md: yes; package.json: no
+  - scripts: 4; executables/binaries: 0
+  - pattern hits: suspicious_domain:2, url:3; suspicious domains: clawhub.ai, localhost
+  - risk: **low** (score 1) — untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **YouTube**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/YouTube`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: suspicious_domain:1, url:1; suspicious domains: clawhub.ai
+  - risk: **low** (score 1) — untrusted domain
+  - change: last commit 2026-02-06 fb7d41f
+- **1password**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **ai-video-generation**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/ai-video-generation`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: last commit 2026-02-07 c6ffc49
+- **apple-notes**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **apple-reminders**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **bear-notes**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **blogwatcher**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **blucli**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **bluebubbles**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **camsnap**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **canvas**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **clawhub**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **coding-agent**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **discord**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **eightctl**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **gemini**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **gh-issues**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **gifgrep**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **github**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **gog**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **goplaces**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **healthcheck**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **himalaya**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **imsg**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **mcporter**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **model-usage**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage`
+  - SKILL.md: yes; package.json: no
+  - scripts: 2; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **nano-pdf**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **notion**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **obsidian**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **openai-whisper**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **openhue**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **oracle**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **ordercli**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **peekaboo**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **sag**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **session-logs**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **skill-creator**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator`
+  - SKILL.md: yes; package.json: no
+  - scripts: 5; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **slack**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **songsee**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **sonoscli**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **spotify-player**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **summarize**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **things-mac**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **trello**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **video-frames**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames`
+  - SKILL.md: yes; package.json: no
+  - scripts: 1; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **voice-call**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **wacli**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **weather**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC
+- **xai-x-search**
+  - source: `/home/ubuntu/.openclaw/workspace/skills`
+  - path: `/home/ubuntu/.openclaw/workspace/skills/xai-x-search`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: last commit 2026-02-07 c6ffc49
+- **xurl**
+  - source: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - path: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/xurl`
+  - SKILL.md: yes; package.json: no
+  - scripts: 0; executables/binaries: 0
+  - pattern hits: none
+  - risk: **low** (score 0) — no notable red flags
+  - change: mtime 2026-02-25 15:35 UTC

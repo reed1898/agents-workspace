@@ -1,0 +1,41 @@
+{
+  "timezone": "UTC",
+  "jobs": [
+    {
+      "name": "daily-morning-brief",
+      "cron": "0 1 * * *",
+      "command": "/home/ubuntu/.openclaw/workspace/scripts/run_daily_orchestrator.sh morning >> /home/ubuntu/.openclaw/workspace/orchestrator/logs/cron.log 2>&1",
+      "purpose": "每日 01:00 生成早间简报并触发双写"
+    },
+    {
+      "name": "daily-midday-checkpoint",
+      "cron": "0 9 * * *",
+      "command": "/home/ubuntu/.openclaw/workspace/scripts/run_daily_orchestrator.sh midday >> /home/ubuntu/.openclaw/workspace/orchestrator/logs/cron.log 2>&1",
+      "purpose": "每日 09:00 同步中段状态"
+    },
+    {
+      "name": "daily-evening-wrapup",
+      "cron": "30 16 * * *",
+      "command": "/home/ubuntu/.openclaw/workspace/scripts/run_daily_orchestrator.sh evening >> /home/ubuntu/.openclaw/workspace/orchestrator/logs/cron.log 2>&1",
+      "purpose": "每日 16:30 输出收口摘要"
+    },
+    {
+      "name": "weekly-review",
+      "cron": "30 2 * * 1",
+      "command": "/home/ubuntu/.openclaw/workspace/scripts/run_weekly_orchestrator.sh >> /home/ubuntu/.openclaw/workspace/orchestrator/logs/cron.log 2>&1",
+      "purpose": "每周一 02:30 生成周复盘"
+    },
+    {
+      "name": "retry-telegram-delivery",
+      "cron": "*/20 * * * *",
+      "command": "/home/ubuntu/.openclaw/workspace/scripts/retry_telegram_delivery.sh >> /home/ubuntu/.openclaw/workspace/orchestrator/logs/retry.log 2>&1",
+      "purpose": "每 20 分钟补偿 Telegram 失败队列"
+    },
+    {
+      "name": "health-check",
+      "cron": "*/30 * * * *",
+      "command": "/home/ubuntu/.openclaw/workspace/scripts/health_check.sh >> /home/ubuntu/.openclaw/workspace/orchestrator/logs/health.log 2>&1",
+      "purpose": "每 30 分钟进行健康检查"
+    }
+  ]
+}

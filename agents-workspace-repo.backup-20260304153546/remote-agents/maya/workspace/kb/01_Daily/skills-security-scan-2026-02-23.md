@@ -1,0 +1,750 @@
+# Skills 安全扫描日报 - 2026-02-23
+
+## 今晚结论摘要（<=10行）
+- 扫描总数：92 个 skills（3 个目录全量覆盖）。
+- 风险分布：high 6 / medium 32 / low 54。
+- 发现 high 风险：clawra、gmail-auto-processor、obsidian-integration、stock_analysis、vercel-cli、clawra-selfie
+- high 主要由代码中的 child_process/exec/spawn/sudo 等模式触发；其中部分为安装/自动化脚本场景。
+- medium 主要是文档示例里的 curl、环境变量、API key 描述或可执行文件存在。
+- 未发现明确写入 ~/.ssh 或直接读取私钥文件的实锤代码命中（本次基于静态 grep）。
+- workspace/skills（git）: 变更 17 项；示例： M skills/find-skills/.clawhub/origin.json； M skills/stock_analysis/SKILL.md；?? skills/Gmail/；?? skills/a-stock-analysis/scripts/a-stock-analysis；?? skills/avatarkit/
+- /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills（非 git）: 最近修改 2026-02-22 04:09 UTC，文件 /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator/license.txt
+- /home/ubuntu/.openclaw/skills（非 git）: 最近修改 2026-02-21 14:11 UTC，文件 /home/ubuntu/.openclaw/skills/x-tweet-fetcher/scripts/fetch_tweet.py
+
+## 按 skill 详细结果（项目符号）
+- clawra
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/clawra
+  - SKILL.md: yes
+  - package.json: yes
+  - 可执行/脚本: exec=3, scripts=3
+  - 风险等级: high
+  - 理由: 代码中出现命令执行/子进程/提权相关模式，若输入未严格约束可能被滥用
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/clawra/bin/cli.js:12:const { execSync, spawn } = require("child_process");；/home/ubuntu/.openclaw/workspace/skills/clawra/SKILL.md:107:curl -X POST "https://fal.run/xai/grok-imagine-image/edit" \
+- clawra-selfie
+  - 来源路径: /home/ubuntu/.openclaw/skills/clawra-selfie
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: high
+  - 理由: 代码中出现命令执行/子进程/提权相关模式，若输入未严格约束可能被滥用
+  - 命中样例: /home/ubuntu/.openclaw/skills/clawra-selfie/SKILL.md:107:curl -X POST "https://fal.run/xai/grok-imagine-image/edit" \；/home/ubuntu/.openclaw/skills/clawra-selfie/SKILL.md:142:curl -X POST "http://localhost:18789/message" \
+- gmail-auto-processor
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor
+  - SKILL.md: yes
+  - package.json: yes
+  - 可执行/脚本: exec=2, scripts=13
+  - 风险等级: high
+  - 理由: 代码中出现命令执行/子进程/提权相关模式，若输入未严格约束可能被滥用
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/archive-promotions.js:1:const { execSync } = require('child_process');；/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/gmail-processor.js:7:const { execSync } = require('child_process');
+- obsidian-integration
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/obsidian-integration
+  - SKILL.md: yes
+  - package.json: yes
+  - 可执行/脚本: exec=0, scripts=1
+  - 风险等级: high
+  - 理由: 代码中出现命令执行/子进程/提权相关模式，若输入未严格约束可能被滥用
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/obsidian-integration/index.js:3:const { execSync } = require('child_process');
+- stock_analysis
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/stock_analysis
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=3, scripts=3
+  - 风险等级: high
+  - 理由: 代码中出现命令执行/子进程/提权相关模式，若输入未严格约束可能被滥用
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/stock_analysis/PRE_RELEASE_CHECKLIST.md:13:sudo apt-get update && sudo apt-get install -y python3 python3-pip python3-venv git；/home/ubuntu/.openclaw/workspace/skills/stock_analysis/PRE_RELEASE_CHECKLIST.md:16:无 sudo 降级：
+- vercel-cli
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/vercel-cli
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: high
+  - 理由: 代码中出现命令执行/子进程/提权相关模式，若输入未严格约束可能被滥用
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/vercel-cli/vercel-skill.js:7:const { execSync } = require('child_process');
+- _disabled
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/_disabled
+  - SKILL.md: no
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/SKILL.md:19:curl -s -X GET 'https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10' \；/home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/SKILL.md:58:curl -s -X GET 'https://ctrl.maton.ai/connections?app=google-mail&status=ACTIVE' \
+- a-stock-analysis
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=2
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- ai-daily-digest
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/ai-daily-digest
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=14, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/ai-daily-digest/SKILL.md:133:    question: "推荐提供 Gemini API Key 作为主模型（可选再配置 OPENAI_API_KEY 兜底）\n\n获取方式：访问 https://aistudio.google.com/apikey 创建免费 API Key",；/home/ubuntu/.openclaw/workspace/skills/ai-daily-digest/SKILL.md:149:export OPENAI_API_KEY="<fallback-key>"
+- avatarkit
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/avatarkit
+  - SKILL.md: yes
+  - package.json: yes
+  - 可执行/脚本: exec=14, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/avatarkit/src/api.ts:146:    return Buffer.from(response.data);；/home/ubuntu/.openclaw/workspace/skills/avatarkit/src/api.ts:154:      formData.append('audio', Buffer.from(options.audioData, 'base64'), {
+- browse
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/browse
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/browse/SKILL.md:157:curl -X POST http://127.0.0.1:14113/v1/functions/my-automation/invoke \；/home/ubuntu/.openclaw/workspace/skills/browse/SKILL.md:188:curl -X POST https://api.browserbase.com/v1/functions/<function-id>/invoke \
+- canvas
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas/SKILL.md:161:3. Test URL directly: `curl http://<hostname>:18793/__openclaw__/canvas/<file>.html`
+- claw-roam
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/claw-roam
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- crypto-watch
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/crypto-watch
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- db-readonly
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/db-readonly
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- gh-issues
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues/SKILL.md:13:IMPORTANT — No `gh` CLI dependency. This skill uses curl + the GitHub REST API exclusively. The GH_TOKEN env var is already injected by OpenClaw. Pass it as a Bearer token in all API calls:；/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues/SKILL.md:16:curl -s -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" ...
+- Gmail
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/Gmail
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/Gmail/SKILL.md:19:curl -s -X GET 'https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10' \；/home/ubuntu/.openclaw/workspace/skills/Gmail/SKILL.md:58:curl -s -X GET 'https://ctrl.maton.ai/connections?app=google-mail&status=ACTIVE' \
+- gmail
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/gmail
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/gmail/SKILL.md:267:      'Authorization': `Bearer ${process.env.MATON_API_KEY}`；/home/ubuntu/.openclaw/workspace/skills/gmail/SKILL.md:291:- IMPORTANT: When using curl commands, use `curl -g` when URLs contain brackets (`fields[]`, `sort[]`, `records[]`) to disable glob parsing
+- imap-smtp-email
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email
+  - SKILL.md: yes
+  - package.json: yes
+  - 可执行/脚本: exec=0, scripts=3
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:38:    host: process.env.SMTP_HOST,；/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:39:    port: parseInt(process.env.SMTP_PORT) || 587,
+- larksuite-wiki
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=2, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- nano-banana-pro
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- notion
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion/SKILL.md:35:curl -X GET "https://api.notion.com/v1/..." \；/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion/SKILL.md:48:curl -X POST "https://api.notion.com/v1/search" \
+- openai-image-gen
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen/SKILL.md:10:        "requires": { "bins": ["python3"], "env": ["OPENAI_API_KEY"] },；/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen/SKILL.md:11:        "primaryEnv": "OPENAI_API_KEY",
+- openai-whisper-api
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api/SKILL.md:10:        "requires": { "bins": ["curl"], "env": ["OPENAI_API_KEY"] },；/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api/SKILL.md:11:        "primaryEnv": "OPENAI_API_KEY",
+- oracle
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle/SKILL.md:86:- Auto-pick: `api` when `OPENAI_API_KEY` is set; otherwise `browser`.
+- reminder
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/reminder
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- seedance-3x3-optimizer
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/seedance-3x3-optimizer
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- sherpa-onnx-tts
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts/bin/sherpa-onnx-tts:5:const { spawnSync } = require("node:child_process");；/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts/bin/sherpa-onnx-tts:19:  const value = explicit || process.env.SHERPA_ONNX_RUNTIME_DIR || "";
+- skill-vetter
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/skill-vetter
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:38:• curl/wget to unknown URLs；/home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:41:• Reads ~/.ssh, ~/.aws, ~/.config without clear reason
+- summarize
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize/SKILL.md:60:- OpenAI: `OPENAI_API_KEY`
+- tmux
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=2, scripts=2
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- trading-journal
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/trading-journal
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- trello
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello/SKILL.md:28:All commands use curl to hit the Trello REST API.；/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello/SKILL.md:33:curl -s "https://api.trello.com/1/members/me/boards?key=$TRELLO_API_KEY&token=$TRELLO_TOKEN" | jq '.[] | {name, id}'
+- ui-ux-pro-max
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=4
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/assets/data/stacks/nextjs.csv:37:36,Environment,Validate env vars,Check required env vars exist,Validate on startup,Undefined env at runtime,if (!process.env.DATABASE_URL) throw,process.env.DATABASE_URL (might be undefined),High,；/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/assets/data/stacks/nuxtjs.csv:53:52,Environment,Use runtimeConfig for env vars,Access environment variables safely,runtimeConfig in nuxt.config,process.env directly,"runtimeConfig: { apiSecret: '', public: { apiBase: '' } }",process.env.API_SECRET in components,High,https://nuxt.com/docs/guide/going-further/runtime-config
+- weather
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md:42:curl "wttr.in/London?format=3"；/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md:45:curl "wttr.in/London?0"
+- x-tweet-fetcher
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/x-tweet-fetcher
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- x-tweet-fetcher
+  - 来源路径: /home/ubuntu/.openclaw/skills/x-tweet-fetcher
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=1, scripts=1
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: 无关键命中
+- xurl
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/xurl
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: medium
+  - 理由: 存在敏感关键词、网络调用示例或可执行文件，建议人工复核
+  - 命中样例: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/xurl/SKILL.md:54:curl -fsSL https://raw.githubusercontent.com/xdevplatform/xurl/main/install.sh | bash
+- 1password
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- apple-notes
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- apple-reminders
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- bear-notes
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- blogwatcher
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- blucli
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- bluebubbles
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- camsnap
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- clawhub
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- coding-agent
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- crypto-price
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/crypto-price
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=1
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- deepwiki
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/deepwiki
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=1
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- deepwork-tracker
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/deepwork-tracker
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- discord
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- eightctl
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- find-skills
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/find-skills
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- find-skills
+  - 来源路径: /home/ubuntu/.openclaw/skills/find-skills
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- food-order
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/food-order
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- gemini
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- gifgrep
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- github
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/github
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- github
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- gmail-inbox-zero-triage
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/gmail-inbox-zero-triage
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- gog
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- google-workspace-mcp
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- goplaces
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- healthcheck
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- himalaya
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- imsg
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- knowledge-base-collector
+  - 来源路径: /home/ubuntu/.openclaw/skills/knowledge-base-collector
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=6
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- mcporter
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- model-usage
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=1
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- nano-pdf
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- obsidian
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- openai-whisper
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- openhue
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- ordercli
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- peekaboo
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- sag
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- self-reflection
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/self-reflection
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- session-logs
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- skill-creator
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=4
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- slack
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- songsee
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- sonoscli
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- spotify-player
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- task-status
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/task-status
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=5
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- technews
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/technews
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=4
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- things-mac
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- video-frames
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=1
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- voice-call
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- wacli
+  - 来源路径: /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- webapp-testing
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/webapp-testing
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=4
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中
+- YouTube
+  - 来源路径: /home/ubuntu/.openclaw/workspace/skills/YouTube
+  - SKILL.md: yes
+  - package.json: no
+  - 可执行/脚本: exec=0, scripts=0
+  - 风险等级: low
+  - 理由: 未发现明显高风险模式
+  - 命中样例: 无关键命中

@@ -1,0 +1,15 @@
+{
+  "key": "16eef8ef8bec32aa",
+  "imageKey": "409c16fbe0f8e22a",
+  "title": "Screenshot: file_5---6f102087-bbae-4e01-9f3c-84a81f71df66.jpg",
+  "source": "image",
+  "createdAt": "2026-02-13T04:33:43Z",
+  "tags": [
+    "#source:image",
+    "#type:screenshot",
+    "#trading"
+  ],
+  "status": "ok",
+  "imageFile": "image.jpg",
+  "extractor": "external-vision"
+}

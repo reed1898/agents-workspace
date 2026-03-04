@@ -1,0 +1,20 @@
+--- a/node_modules/@buape/carbon/dist/src/classes/RequestClient.js
++++ b/node_modules/@buape/carbon/dist/src/classes/RequestClient.js
+@@ -1,5 +1,8 @@
+ import { DiscordError } from "../errors/DiscordError.js";
+ import { RateLimitError } from "../errors/RatelimitError.js";
++import { ProxyAgent } from "undici";
++const _proxyUrl = process.env.https_proxy || process.env.HTTPS_PROXY || process.env.http_proxy || process.env.HTTP_PROXY || "";
++const _proxyDispatcher = _proxyUrl ? new ProxyAgent(_proxyUrl) : null;
+ const defaultOptions = {
+     tokenHeader: "Bot",
+     baseUrl: "https://discord.com/api",
+@@ -189,7 +192,8 @@
+             response = await fetch(url, {
+                 method,
+                 headers,
+                 body,
+-                signal: this.abortController.signal
++                signal: this.abortController.signal,
++                ...(_proxyDispatcher ? { dispatcher: _proxyDispatcher } : {})
+             });

@@ -1,0 +1,15 @@
+{
+  "key": "0a0f40fb5abfcc07",
+  "url": "https://mp.weixin.qq.com/s/9JEbDDGSpd_p9O1UoxkaLQ",
+  "title": "toC 的 AI 社交产品，终于出来一个「有胆有趣」的",
+  "source": "wechat",
+  "createdAt": "2026-02-13T05:49:10Z",
+  "tags": [
+    "#source:wechat",
+    "#type:article",
+    "#ai",
+    "#social"
+  ],
+  "status": "ok",
+  "extractor": "reed-mac:requests+bs4"
+}

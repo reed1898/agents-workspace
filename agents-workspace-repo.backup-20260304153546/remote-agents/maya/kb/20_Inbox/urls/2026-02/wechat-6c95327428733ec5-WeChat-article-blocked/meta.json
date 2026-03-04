@@ -1,0 +1,18 @@
+{
+  "key": "6c95327428733ec5",
+  "url": "https://mp.weixin.qq.com/s/RSx59kahNkXEnuvI80GT4w",
+  "title": "马斯克的 AI 狂想，意外救活了沉寂三年的「钙钛矿」",
+  "source": "wechat",
+  "createdAt": "2026-02-14T09:59:11Z",
+  "updatedAt": "2026-02-14T10:01:40Z",
+  "tags": [
+    "#source:wechat",
+    "#type:article",
+    "#wechat",
+    "#mp",
+    "#fetched-via:reed-mac"
+  ],
+  "status": "ok",
+  "extractor": "nodes.run+regex",
+  "note": "from Telegram message_id:2039"
+}

@@ -1,0 +1,2959 @@
+{
+  "https://andre.arko.net/2026/03/03/four-months-of-ruby-central-moving-ruby-backward/": {
+    "fp": [
+      "backward",
+      "central",
+      "four",
+      "months",
+      "moving",
+      "ruby"
+    ],
+    "ne": [
+      "central",
+      "four",
+      "ruby"
+    ],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "Four months of Ruby Central moving Ruby backward",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://arstechnica.com/security/2026/03/llms-can-unmask-pseudonymous-users-at-scale-with-surprising-accuracy/": {
+    "fp": [
+      "accuracy",
+      "llms",
+      "pseudonymous",
+      "scale",
+      "surprising",
+      "unmask",
+      "users"
+    ],
+    "ne": [
+      "llms"
+    ],
+    "source": "Ars Technica Security",
+    "tier": 1,
+    "title": "LLMs can unmask pseudonymous users at scale with surprising accuracy",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://bitcoinmagazine.com/featured/paraguay-miners-bitcoin-mining": {
+    "fp": [
+      "bitcoin",
+      "exploring",
+      "miners",
+      "operation",
+      "paraguay",
+      "run",
+      "seized",
+      "state"
+    ],
+    "ne": [
+      "bitcoin",
+      "exploring",
+      "miners",
+      "operation",
+      "paraguay",
+      "run",
+      "seized",
+      "state"
+    ],
+    "source": "Bitcoin Magazine",
+    "tier": 3,
+    "title": "Paraguay Exploring Using Seized Miners for State-Run Bitcoin Operation",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://bitcoinmagazine.com/news/ai-agents-show-strong-preference-bitcoin": {
+    "fp": [
+      "agents",
+      "bitcoin",
+      "bpi",
+      "fiat",
+      "finds",
+      "preference",
+      "show",
+      "strong",
+      "study"
+    ],
+    "ne": [
+      "agents",
+      "ai",
+      "bitcoin",
+      "bpi",
+      "fiat",
+      "finds",
+      "preference",
+      "show",
+      "strong",
+      "study"
+    ],
+    "source": "Bitcoin Magazine",
+    "tier": 3,
+    "title": "AI Agents Show Strong Preference for Bitcoin Over Fiat, BPI Study Finds",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://bitcoinmagazine.com/news/arthur-hayes-confirmed-as-a-bitcoin-2026-speaker": {
+    "fp": [
+      "2026",
+      "arthur",
+      "bitcoin",
+      "confirmed",
+      "hayes",
+      "speaker"
+    ],
+    "ne": [
+      "arthur",
+      "bitcoin",
+      "confirmed",
+      "hayes",
+      "speaker"
+    ],
+    "source": "Bitcoin Magazine",
+    "tier": 3,
+    "title": "Arthur Hayes Confirmed As A Bitcoin 2026 Speaker",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://bitcoinmagazine.com/news/former-lapd-officer-convicted-in-350000-bitcoin-kidnapping-and-home-invasion": {
+    "fp": [
+      "000",
+      "350",
+      "bitcoin",
+      "convicted",
+      "former",
+      "home",
+      "invasion",
+      "kidnapping",
+      "lapd",
+      "officer"
+    ],
+    "ne": [
+      "000",
+      "350",
+      "bitcoin",
+      "convicted",
+      "former",
+      "home",
+      "invasion",
+      "kidnapping",
+      "lapd",
+      "officer"
+    ],
+    "source": "Bitcoin Magazine",
+    "tier": 3,
+    "title": "Former LAPD Officer Convicted in $350,000 Bitcoin Kidnapping and Home Invasion",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://bitcoinmagazine.com/news/indiana-governor-signs-bill-bitcoin": {
+    "fp": [
+      "allowing",
+      "bill",
+      "bitcoin",
+      "governor",
+      "indiana",
+      "plans",
+      "retirement",
+      "signs",
+      "state"
+    ],
+    "ne": [
+      "allowing",
+      "bill",
+      "bitcoin",
+      "governor",
+      "indiana",
+      "plans",
+      "retirement",
+      "signs",
+      "state"
+    ],
+    "source": "Bitcoin Magazine",
+    "tier": 3,
+    "title": "Indiana Governor Signs Bill Allowing Bitcoin in State Retirement Plans",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://bitcoinmagazine.com/news/iran-bitcoin-outflows-surge-post-strikes": {
+    "fp": [
+      "airstrikes",
+      "bitcoin",
+      "chain",
+      "data",
+      "iran",
+      "israel",
+      "outflows",
+      "shows",
+      "surge"
+    ],
+    "ne": [
+      "airstrikes",
+      "bitcoin",
+      "chain",
+      "data",
+      "iran",
+      "israel",
+      "outflows",
+      "shows",
+      "surge",
+      "us"
+    ],
+    "source": "Bitcoin Magazine",
+    "tier": 3,
+    "title": "Iran Bitcoin Outflows Surge After US-Israel Airstrikes, On-Chain Data Shows",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://bitcoinmagazine.com/news/tether-and-lugano-launch-plan-%e2%82%bf": {
+    "fp": [
+      "digital",
+      "global",
+      "infrastructure",
+      "launch",
+      "leadership",
+      "lugano",
+      "phase",
+      "plan",
+      "targeting",
+      "tether"
+    ],
+    "ne": [
+      "digital",
+      "global",
+      "ii",
+      "infrastructure",
+      "launch",
+      "leadership",
+      "lugano",
+      "phase",
+      "plan",
+      "targeting",
+      "tether"
+    ],
+    "source": "Bitcoin Magazine",
+    "tier": 3,
+    "title": "Tether and Lugano Launch Plan ₿ Phase II, Targeting Global Leadership in Digital Infrastructure",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://bitcoinmagazine.com/news/trump-linked-american-bitcoin-abtc-2": {
+    "fp": [
+      "abtc",
+      "american",
+      "bitcoin",
+      "capacity",
+      "expands",
+      "fleet",
+      "linked",
+      "mining",
+      "production",
+      "trump"
+    ],
+    "ne": [
+      "abtc",
+      "american",
+      "bitcoin",
+      "capacity",
+      "expands",
+      "fleet",
+      "linked",
+      "mining",
+      "production",
+      "trump"
+    ],
+    "source": "Bitcoin Magazine",
+    "tier": 3,
+    "title": "Trump-Linked American Bitcoin (ABTC) Expands Mining Fleet, Bitcoin Production Capacity",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://bitcoinmagazine.com/print/the-core-issue-why-bitcoin-needed-a-remodel-with-segwit-and-taproot": {
+    "fp": [
+      "bitcoin",
+      "core",
+      "issue",
+      "needed",
+      "remodel",
+      "segwit",
+      "taproot"
+    ],
+    "ne": [
+      "bitcoin",
+      "core",
+      "issue",
+      "needed",
+      "remodel",
+      "segwit",
+      "taproot"
+    ],
+    "source": "Bitcoin Magazine",
+    "tier": 3,
+    "title": "The Core Issue: Why Bitcoin Needed A Remodel With Segwit and Taproot",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://bitcoinmagazine.com/technical/bitcoin-is-the-collateral-it-just-needs-the-credit-markets": {
+    "fp": [
+      "bitcoin",
+      "collateral",
+      "credit",
+      "markets",
+      "needs"
+    ],
+    "ne": [
+      "bitcoin",
+      "collateral",
+      "credit",
+      "markets",
+      "needs"
+    ],
+    "source": "Bitcoin Magazine",
+    "tier": 3,
+    "title": "Bitcoin Is The Collateral, It Just Needs The Credit Markets",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/bitgo-expands-mica-compliant-crypto-as-a-service-across-the-eea?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "across",
+      "bitgo",
+      "compliant",
+      "crypto",
+      "eea",
+      "expands",
+      "mica",
+      "service"
+    ],
+    "ne": [
+      "bitgo",
+      "eea",
+      "mica"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "BitGo expands MiCA-compliant crypto-as-a-service across EEA",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/cftc-chair-crypto-perpetual-futures?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "cftc",
+      "chair",
+      "crypto",
+      "futures",
+      "month",
+      "next",
+      "perpetual",
+      "teases"
+    ],
+    "ne": [
+      "cftc"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "CFTC chair teases crypto perpetual futures in ‘the next month or so‘",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/crypto-laws-states-party-primaries?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "crypto",
+      "kick",
+      "off",
+      "party",
+      "primaries",
+      "stake",
+      "states"
+    ],
+    "ne": [
+      "us"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "What's at stake for crypto as 3 US states kick off party primaries?",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/ether-supply-on-exchanges-drops-to-multi-year-lows-here-s-why-it-matters?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "drops",
+      "ether",
+      "exchanges",
+      "here",
+      "lows",
+      "matters",
+      "multi",
+      "supply",
+      "year"
+    ],
+    "ne": [
+      "ether",
+      "here"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "Ether supply on exchanges drops to multi-year lows: Here’s why it matters",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/mara-bitcoin-sell-off-claims-fact-check-treasury-strategy?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "back",
+      "bitcoin",
+      "exec",
+      "mara",
+      "narrative",
+      "off",
+      "pushes",
+      "sell",
+      "treasury"
+    ],
+    "ne": [
+      "bitcoin",
+      "mara"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "MARA exec pushes back on Bitcoin treasury sell-off narrative",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/ray-dalio-cautions-bitcoin-safe-haven-asset?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "bitcoin",
+      "cautions",
+      "dalio",
+      "gold",
+      "only",
+      "ray",
+      "there"
+    ],
+    "ne": [
+      "bitcoin",
+      "dalio",
+      "ray"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "Ray Dalio cautions on Bitcoin, says ‘there is only one gold’",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/ripple-expands-institutional-stablecoin-payments-platform?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "banks",
+      "expands",
+      "fintechs",
+      "payments",
+      "ripple",
+      "stablecoin",
+      "stack"
+    ],
+    "ne": [
+      "ripple"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "Ripple expands stablecoin payments stack for banks, fintechs",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/sofi-and-mastercard-move-stablecoin-settlement-into-global-card-network?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "adds",
+      "card",
+      "issuers",
+      "mastercard",
+      "option",
+      "settlement",
+      "sofiusd"
+    ],
+    "ne": [
+      "mastercard",
+      "sofiusd"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "Mastercard adds SoFiUSD as settlement option for card issuers",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/trump-takes-swipe-banks-over-stalled-crypto-bill?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "banks",
+      "bill",
+      "crypto",
+      "donald",
+      "stalled",
+      "swipe",
+      "takes",
+      "trump"
+    ],
+    "ne": [
+      "donald",
+      "trump"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "Donald Trump takes swipe at banks over stalled crypto bill",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/us-dollar-index-nears-3-month-high-is-this-good-or-bad-for-bitcoin?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "bad",
+      "bitcoin",
+      "dollar",
+      "good",
+      "high",
+      "index",
+      "month",
+      "nears"
+    ],
+    "ne": [
+      "bitcoin",
+      "dollar",
+      "index",
+      "us"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "US Dollar Index nears 3-month high: Is this good or bad for Bitcoin?",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "crypto",
+      "happened",
+      "here",
+      "today"
+    ],
+    "ne": [
+      "here"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "Here’s what happened in crypto today",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://cointelegraph.com/news/where-i-come-from-bitcoin-is-money-says-africa-bitcoin-corp-chair-stafford-masie?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound": {
+    "fp": [
+      "africa",
+      "bitcoin",
+      "chair",
+      "dollars",
+      "locals",
+      "masie",
+      "prefer",
+      "satoshis",
+      "stafford"
+    ],
+    "ne": [
+      "africa",
+      "bitcoin",
+      "locals",
+      "masie",
+      "stafford"
+    ],
+    "source": "CoinTelegraph",
+    "tier": 2,
+    "title": "Locals prefer satoshis to dollars, says Africa Bitcoin chair Stafford Masie",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359700/image-ai-leap-google-bytedances-latest-models": {
+    "fp": [
+      "banana",
+      "best",
+      "bytedance",
+      "generator",
+      "google",
+      "image",
+      "lite",
+      "nano",
+      "seedream"
+    ],
+    "ne": [
+      "ai",
+      "banana",
+      "best",
+      "bytedance",
+      "generator",
+      "google",
+      "image",
+      "lite",
+      "nano",
+      "seedream"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "Google Nano Banana 2 vs ByteDance Seedream 5.0 Lite: Which AI Image Generator Is Best?",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359799/jpmorgan-ceo-jamie-dimon-slams-stablecoin-yield-demands": {
+    "fp": [
+      "ceo",
+      "demands",
+      "dimon",
+      "jamie",
+      "jpmorgan",
+      "pay",
+      "public",
+      "slams",
+      "stablecoin",
+      "yield"
+    ],
+    "ne": [
+      "ceo",
+      "demands",
+      "dimon",
+      "jamie",
+      "jpmorgan",
+      "pay",
+      "public",
+      "slams",
+      "stablecoin",
+      "yield"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "JPMorgan CEO Jamie Dimon Slams Stablecoin Yield Demands: 'The Public Will Pay'",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359802/trump-brothers-american-bitcoin-boosts-mining-capacity-q4-loss": {
+    "fp": [
+      "american",
+      "bitcoin",
+      "boosts",
+      "brothers",
+      "capacity",
+      "following",
+      "loss",
+      "mining",
+      "trump"
+    ],
+    "ne": [
+      "american",
+      "bitcoin",
+      "boosts",
+      "brothers",
+      "capacity",
+      "following",
+      "loss",
+      "mining",
+      "trump"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "Trump Brothers' American Bitcoin Boosts Mining Capacity Following Q4 Loss",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359806/bitcoin-miner-mara-may-sell-btc-strategy-shift": {
+    "fp": [
+      "bitcoin",
+      "btc",
+      "holdings",
+      "mara",
+      "miner",
+      "sell",
+      "shift",
+      "strategy"
+    ],
+    "ne": [
+      "bitcoin",
+      "btc",
+      "holdings",
+      "mara",
+      "miner",
+      "sell",
+      "shift",
+      "strategy"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "Bitcoin Miner MARA Says It May Sell BTC Holdings in Strategy Shift",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359808/core-scientific-may-sell-all-bitcoin-finance-ai-pivot": {
+    "fp": [
+      "bitcoin",
+      "core",
+      "finance",
+      "pivot",
+      "scientific",
+      "sell"
+    ],
+    "ne": [
+      "ai",
+      "bitcoin",
+      "core",
+      "finance",
+      "pivot",
+      "scientific",
+      "sell"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "Core Scientific May Sell 'All' Bitcoin to Finance AI Pivot",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359818/ex-lapd-officer-found-guilty-350k-wrench-attack-bitcoin": {
+    "fp": [
+      "350k",
+      "attack",
+      "bitcoin",
+      "found",
+      "guilty",
+      "lapd",
+      "officer",
+      "robbery",
+      "wrench"
+    ],
+    "ne": [
+      "attack",
+      "bitcoin",
+      "found",
+      "guilty",
+      "lapd",
+      "officer",
+      "robbery",
+      "wrench"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "Ex-LAPD Officer Found Guilty of $350K ‘Wrench Attack’ Bitcoin Robbery",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359829/bitcoin-climbs-stocks-gold-drop-iran-conflict-stokes-uncertainty": {
+    "fp": [
+      "bitcoin",
+      "climbs",
+      "conflict",
+      "drop",
+      "gold",
+      "iran",
+      "stocks",
+      "stokes",
+      "uncertainty"
+    ],
+    "ne": [
+      "bitcoin",
+      "climbs",
+      "conflict",
+      "drop",
+      "gold",
+      "iran",
+      "stocks",
+      "stokes",
+      "uncertainty"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "Bitcoin Climbs, Stocks and Gold Drop as Iran Conflict Stokes Uncertainty",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359837/more-accurate-less-cringe-openai-gpt-5-3-instant-chatgpt": {
+    "fp": [
+      "accurate",
+      "chatgpt",
+      "cringe",
+      "gpt",
+      "instant",
+      "less",
+      "openai",
+      "rolls"
+    ],
+    "ne": [
+      "accurate",
+      "chatgpt",
+      "cringe",
+      "gpt",
+      "instant",
+      "less",
+      "openai",
+      "rolls"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "'More Accurate, Less Cringe': OpenAI Rolls Out GPT-5.3 Instant in ChatGPT",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359862/south-koreans-paid-crypto-revenge-attacks-human-waste-police-report": {
+    "fp": [
+      "attacks",
+      "crypto",
+      "human",
+      "involving",
+      "koreans",
+      "paid",
+      "police",
+      "report",
+      "revenge",
+      "south",
+      "waste"
+    ],
+    "ne": [
+      "attacks",
+      "crypto",
+      "human",
+      "involving",
+      "koreans",
+      "paid",
+      "police",
+      "report",
+      "revenge",
+      "south",
+      "waste"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "South Koreans Paid in Crypto for 'Revenge' Attacks Involving Human Waste, Say Police: Report",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359866/trump-urges-congress-move-on-crypto-rules-banking-clash": {
+    "fp": [
+      "amid",
+      "banking",
+      "clash",
+      "congress",
+      "crypto",
+      "move",
+      "rules",
+      "trump",
+      "urges"
+    ],
+    "ne": [
+      "amid",
+      "banking",
+      "clash",
+      "congress",
+      "crypto",
+      "move",
+      "rules",
+      "trump",
+      "urges"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "Trump Urges Congress to Move on Crypto Rules Amid Banking Clash",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359869/colombian-court-rejects-appeal-for-ai-writing-then-gets-flagged-by-its-own-ai-detector": {
+    "fp": [
+      "appeal",
+      "colombian",
+      "court",
+      "detector",
+      "flagged",
+      "gets",
+      "own",
+      "rejects",
+      "writing"
+    ],
+    "ne": [
+      "ai",
+      "appeal",
+      "colombian",
+      "court",
+      "detector",
+      "flagged",
+      "gets",
+      "own",
+      "rejects",
+      "writing"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "Colombian Court Rejects Appeal for AI Writing, Then Gets Flagged By Its Own AI Detector",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://decrypt.co/359880/x-suspend-creator-payouts-undisclosed-ai-war-videos": {
+    "fp": [
+      "against",
+      "creator",
+      "payouts",
+      "undisclosed",
+      "videos",
+      "war",
+      "warns"
+    ],
+    "ne": [
+      "against",
+      "ai",
+      "creator",
+      "payouts",
+      "undisclosed",
+      "videos",
+      "war",
+      "warns"
+    ],
+    "source": "Decrypt",
+    "tier": 3,
+    "title": "X Warns Against Creator Payouts Over Undisclosed AI War Videos",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://devops.com/context-engineering-is-the-key-to-unlocking-ai-agents-in-devops-2/": {
+    "fp": [
+      "agents",
+      "context",
+      "devops",
+      "engineering",
+      "key",
+      "unlocking"
+    ],
+    "ne": [
+      "agents",
+      "ai",
+      "context",
+      "devops",
+      "engineering",
+      "key",
+      "unlocking"
+    ],
+    "source": "DevOps.com",
+    "tier": 3,
+    "title": "Context Engineering is the Key to Unlocking AI Agents in DevOps",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://devops.com/eclipse-foundation-extends-scope-and-reach-of-open-vsx-registry/": {
+    "fp": [
+      "eclipse",
+      "extends",
+      "foundation",
+      "open",
+      "reach",
+      "registry",
+      "scope",
+      "vsx"
+    ],
+    "ne": [
+      "eclipse",
+      "extends",
+      "foundation",
+      "open",
+      "reach",
+      "registry",
+      "scope",
+      "vsx"
+    ],
+    "source": "DevOps.com",
+    "tier": 3,
+    "title": "Eclipse Foundation Extends Scope and Reach of Open VSX Registry",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://devops.com/n-korean-famous-chollima-hackers-use-malicious-npm-packages-to-steal-data/": {
+    "fp": [
+      "chollima",
+      "data",
+      "famous",
+      "hackers",
+      "korean",
+      "malicious",
+      "npm",
+      "packages",
+      "steal"
+    ],
+    "ne": [
+      "chollima",
+      "data",
+      "famous",
+      "hackers",
+      "korean",
+      "malicious",
+      "packages",
+      "steal"
+    ],
+    "source": "DevOps.com",
+    "tier": 3,
+    "title": "N. Korean Famous Chollima Hackers Use Malicious npm Packages to Steal Data",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://editor.p5js.org/isohedral/full/vJa5RiZWs": {
+    "fp": [
+      "interactive",
+      "thing",
+      "xkcd"
+    ],
+    "ne": [
+      "xkcd"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "The Xkcd thing, now interactive",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://elbowgreasegames.substack.com/p/voxray-games-pushes-major-update": {
+    "fp": [
+      "engine",
+      "game",
+      "language",
+      "made",
+      "own",
+      "programming",
+      "ray",
+      "traced",
+      "voxile"
+    ],
+    "ne": [
+      "voxile"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "Voxile: A ray-traced game made in its own engine and programming language",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://gamehistory.org/cookies-bustle/": {
+    "fp": [
+      "bustle",
+      "cookie",
+      "copyright",
+      "freed",
+      "hell"
+    ],
+    "ne": [
+      "bustle",
+      "cookie"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "We've freed Cookie's Bustle from copyright hell",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://github.com/yjeanrenaud/yj_nearbyglasses": {
+    "fp": [
+      "attempting",
+      "detect",
+      "glasses",
+      "nearby",
+      "smart",
+      "warn",
+      "yj_nearbyglasses",
+      "you"
+    ],
+    "ne": [],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "yj_nearbyglasses: attempting to detect smart glasses nearby and warn you",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://huggingface.co/blog/Photoroom/prx-part3": {
+    "fp": [
+      "24h",
+      "image",
+      "model",
+      "part",
+      "prx",
+      "text",
+      "training"
+    ],
+    "ne": [
+      "image",
+      "model",
+      "part",
+      "prx",
+      "text",
+      "training"
+    ],
+    "source": "Hugging Face Blog",
+    "tier": 2,
+    "title": "PRX Part 3 — Training a Text-to-Image Model in 24h!",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://jakelazaroff.com/words/an-interactive-intro-to-crdts/": {
+    "fp": [
+      "2023",
+      "crdts",
+      "interactive",
+      "intro"
+    ],
+    "ne": [
+      "crdts",
+      "interactive",
+      "intro"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "An Interactive Intro to CRDTs (2023)",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://laurmaedje.github.io/posts/evolving-typst/": {
+    "fp": [
+      "evolving",
+      "typst"
+    ],
+    "ne": [
+      "evolving",
+      "typst"
+    ],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "Evolving Typst",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://leodemoura.github.io/blog/2026/02/28/when-ai-writes-the-worlds-software.html": {
+    "fp": [
+      "software",
+      "verifies",
+      "world",
+      "writes"
+    ],
+    "ne": [
+      "ai",
+      "software",
+      "verifies",
+      "world",
+      "writes"
+    ],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "When AI Writes the World's Software, Who Verifies It?",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://lilaq.org/": {
+    "fp": [
+      "advanced",
+      "data",
+      "lilaq",
+      "typst",
+      "visualization"
+    ],
+    "ne": [
+      "advanced",
+      "lilaq",
+      "typst"
+    ],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "Lilaq: Advanced data visualization in Typst",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://newsletter.manager.dev/p/dont-become-an-engineering-manager": {
+    "fp": [
+      "become",
+      "don",
+      "engineering",
+      "manager"
+    ],
+    "ne": [
+      "don"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "Don't become an engineering manager",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://openai.com/index/gpt-5-3-instant/": {
+    "fp": [
+      "gpt",
+      "instant"
+    ],
+    "ne": [
+      "gpt",
+      "instant"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "GPT‑5.3 Instant",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://sethmlarson.dev/deprecate-confusing-apis-like-os-path-commonprefix": {
+    "fp": [
+      "apis",
+      "commonprefix",
+      "confusing",
+      "deprecate",
+      "like",
+      "path"
+    ],
+    "ne": [
+      "apis",
+      "deprecate"
+    ],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "Deprecate confusing APIs like “os.path.commonprefix()”",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://spritely.institute/news/hoot-0-8-0-released.html": {
+    "fp": [
+      "hoot",
+      "released",
+      "scheme",
+      "wasm"
+    ],
+    "ne": [
+      "hoot",
+      "scheme",
+      "wasm"
+    ],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "Hoot 0.8.0 released! - Scheme in WASM",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://terriblesoftware.org/2026/03/03/nobody-gets-promoted-for-simplicity/": {
+    "fp": [
+      "gets",
+      "nobody",
+      "promoted",
+      "simplicity"
+    ],
+    "ne": [
+      "gets",
+      "nobody",
+      "promoted",
+      "simplicity"
+    ],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "Nobody Gets Promoted for Simplicity",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://the-decoder.com/a-calendar-invite-is-all-it-took-to-hijack-perplexitys-comet-browser-and-steal-1password-credentials/": {
+    "fp": [
+      "1password",
+      "browser",
+      "calendar",
+      "comet",
+      "credentials",
+      "hijack",
+      "invite",
+      "perplexity",
+      "steal",
+      "took"
+    ],
+    "ne": [
+      "comet",
+      "perplexity"
+    ],
+    "source": "The Decoder",
+    "tier": 2,
+    "title": "A calendar invite is all it took to hijack Perplexity's Comet browser and steal 1Password credentials",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://the-decoder.com/after-leaks-and-massive-criticism-openai-adds-safeguard-clauses-to-pentagon-contract/": {
+    "fp": [
+      "adds",
+      "clauses",
+      "contract",
+      "criticism",
+      "leaks",
+      "massive",
+      "openai",
+      "pentagon",
+      "safeguard"
+    ],
+    "ne": [
+      "openai",
+      "pentagon"
+    ],
+    "source": "The Decoder",
+    "tier": 2,
+    "title": "After leaks and massive criticism, OpenAI adds safeguard clauses to Pentagon contract",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://the-decoder.com/anthropic-pitched-claude-for-pentagon-drone-swarm-competition/": {
+    "fp": [
+      "anthropic",
+      "claude",
+      "competition",
+      "drone",
+      "pentagon",
+      "pitched",
+      "swarm"
+    ],
+    "ne": [
+      "anthropic",
+      "claude",
+      "pentagon"
+    ],
+    "source": "The Decoder",
+    "tier": 2,
+    "title": "Anthropic pitched Claude for Pentagon drone swarm competition",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://the-decoder.com/federal-ai-shakeup-state-department-swaps-claude-for-aging-gpt-4-1/": {
+    "fp": [
+      "aging",
+      "claude",
+      "department",
+      "federal",
+      "gpt",
+      "shakeup",
+      "state",
+      "swaps"
+    ],
+    "ne": [
+      "ai",
+      "claude",
+      "department",
+      "federal",
+      "gpt",
+      "state"
+    ],
+    "source": "The Decoder",
+    "tier": 2,
+    "title": "Federal AI shakeup: State Department swaps Claude for aging GPT-4.1",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://the-decoder.com/googles-fastest-and-cheapest-model-gemini-3-1-flash-lite-got-smarter-but-also-tripled-the-price/": {
+    "fp": [
+      "cheapest",
+      "fastest",
+      "flash",
+      "gemini",
+      "google",
+      "lite",
+      "model",
+      "price",
+      "smarter",
+      "tripled"
+    ],
+    "ne": [
+      "flash",
+      "gemini",
+      "google",
+      "lite"
+    ],
+    "source": "The Decoder",
+    "tier": 2,
+    "title": "Google's fastest and cheapest model Gemini 3.1 Flash-Lite got smarter but also tripled the price",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://the-decoder.com/meta-sends-private-ai-glasses-footage-to-kenya-with-few-safeguards-and-europes-privacy-regulators-may-come-knocking/": {
+    "fp": [
+      "come",
+      "europe",
+      "few",
+      "footage",
+      "glasses",
+      "kenya",
+      "knocking",
+      "meta",
+      "privacy",
+      "private",
+      "regulators",
+      "safeguards",
+      "sends"
+    ],
+    "ne": [
+      "ai",
+      "europe",
+      "kenya",
+      "meta"
+    ],
+    "source": "The Decoder",
+    "tier": 2,
+    "title": "Meta sends private AI glasses footage to Kenya with few safeguards - and Europe's privacy regulators may come knocking",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://the-decoder.com/meta-tests-ai-powered-shopping-search-to-compete-with-chatgpt-and-gemini/": {
+    "fp": [
+      "chatgpt",
+      "compete",
+      "gemini",
+      "meta",
+      "powered",
+      "search",
+      "shopping",
+      "tests"
+    ],
+    "ne": [
+      "ai",
+      "chatgpt",
+      "gemini",
+      "meta"
+    ],
+    "source": "The Decoder",
+    "tier": 2,
+    "title": "Meta tests AI-powered shopping search to compete with ChatGPT and Gemini",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://the-decoder.com/openai-releases-gpt-5-3-instant-for-smoother-everyday-conversations-and-better-search/": {
+    "fp": [
+      "better",
+      "conversations",
+      "everyday",
+      "gpt",
+      "instant",
+      "openai",
+      "releases",
+      "search",
+      "smoother"
+    ],
+    "ne": [
+      "gpt",
+      "instant",
+      "openai"
+    ],
+    "source": "The Decoder",
+    "tier": 2,
+    "title": "OpenAI releases GPT-5.3 Instant for smoother everyday conversations and better search",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thehackernews.com/2026/03/ai-agents-next-wave-identity-dark.html": {
+    "fp": [
+      "agents",
+      "dark",
+      "identity",
+      "invisible",
+      "matter",
+      "next",
+      "powerful",
+      "unmanaged",
+      "wave"
+    ],
+    "ne": [
+      "agents",
+      "ai",
+      "dark",
+      "identity",
+      "invisible",
+      "matter",
+      "next",
+      "powerful",
+      "unmanaged",
+      "wave"
+    ],
+    "source": "The Hacker News",
+    "tier": 1,
+    "title": "AI Agents: The Next Wave Identity Dark Matter - Powerful, Invisible, and Unmanaged",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thehackernews.com/2026/03/building-high-impact-tier-1-3-steps.html": {
+    "fp": [
+      "building",
+      "cisos",
+      "follow",
+      "high",
+      "impact",
+      "must",
+      "steps",
+      "tier"
+    ],
+    "ne": [
+      "building",
+      "cisos",
+      "follow",
+      "high",
+      "impact",
+      "must",
+      "steps",
+      "tier"
+    ],
+    "source": "The Hacker News",
+    "tier": 1,
+    "title": "Building a High-Impact Tier 1: The 3 Steps CISOs Must Follow",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thehackernews.com/2026/03/fake-tech-support-spam-deploys.html": {
+    "fp": [
+      "across",
+      "customized",
+      "deploys",
+      "fake",
+      "havoc",
+      "organizations",
+      "spam",
+      "support",
+      "tech"
+    ],
+    "ne": [
+      "across",
+      "customized",
+      "deploys",
+      "fake",
+      "havoc",
+      "organizations",
+      "spam",
+      "support",
+      "tech"
+    ],
+    "source": "The Hacker News",
+    "tier": 1,
+    "title": "Fake Tech Support Spam Deploys Customized Havoc C2 Across Organizations",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thehackernews.com/2026/03/google-confirms-cve-2026-21385-in.html": {
+    "fp": [
+      "2026",
+      "21385",
+      "android",
+      "component",
+      "confirms",
+      "cve",
+      "exploited",
+      "google",
+      "qualcomm"
+    ],
+    "ne": [
+      "21385",
+      "android",
+      "component",
+      "confirms",
+      "cve",
+      "cve-2026-21385",
+      "exploited",
+      "google",
+      "qualcomm"
+    ],
+    "source": "The Hacker News",
+    "tier": 1,
+    "title": "Google Confirms CVE-2026-21385 in Qualcomm Android Component Exploited",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thehackernews.com/2026/03/microsoft-warns-oauth-redirect-abuse.html": {
+    "fp": [
+      "abuse",
+      "delivers",
+      "government",
+      "malware",
+      "microsoft",
+      "oauth",
+      "redirect",
+      "targets",
+      "warns"
+    ],
+    "ne": [
+      "abuse",
+      "delivers",
+      "government",
+      "malware",
+      "microsoft",
+      "oauth",
+      "redirect",
+      "targets",
+      "warns"
+    ],
+    "source": "The Hacker News",
+    "tier": 1,
+    "title": "Microsoft Warns OAuth Redirect Abuse Delivers Malware to Government Targets",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thehackernews.com/2026/03/open-source-cyberstrikeai-deployed-in.html": {
+    "fp": [
+      "across",
+      "attacks",
+      "countries",
+      "cyberstrikeai",
+      "deployed",
+      "driven",
+      "fortigate",
+      "open",
+      "source"
+    ],
+    "ne": [
+      "across",
+      "ai",
+      "attacks",
+      "countries",
+      "cyberstrikeai",
+      "deployed",
+      "driven",
+      "fortigate",
+      "open",
+      "source"
+    ],
+    "source": "The Hacker News",
+    "tier": 1,
+    "title": "Open-Source CyberStrikeAI Deployed in AI-Driven FortiGate Attacks Across 55 Countries",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thehackernews.com/2026/03/sloppylemming-targets-pakistan-and.html": {
+    "fp": [
+      "bangladesh",
+      "chains",
+      "dual",
+      "governments",
+      "malware",
+      "pakistan",
+      "sloppylemming",
+      "targets"
+    ],
+    "ne": [
+      "bangladesh",
+      "chains",
+      "dual",
+      "governments",
+      "malware",
+      "pakistan",
+      "sloppylemming",
+      "targets"
+    ],
+    "source": "The Hacker News",
+    "tier": 1,
+    "title": "SloppyLemming Targets Pakistan and Bangladesh Governments Using Dual Malware Chains",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thehackernews.com/2026/03/starkiller-phishing-suite-uses-aitm.html": {
+    "fp": [
+      "aitm",
+      "authentication",
+      "bypass",
+      "factor",
+      "multi",
+      "phishing",
+      "proxy",
+      "reverse",
+      "starkiller",
+      "suite",
+      "uses"
+    ],
+    "ne": [
+      "aitm",
+      "authentication",
+      "bypass",
+      "factor",
+      "multi",
+      "phishing",
+      "proxy",
+      "reverse",
+      "starkiller",
+      "suite",
+      "uses"
+    ],
+    "source": "The Hacker News",
+    "tier": 1,
+    "title": "Starkiller Phishing Suite Uses AitM Reverse Proxy to Bypass Multi-Factor Authentication",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thenewstack.io/confluent-kafka-a2a-agents/": {
+    "fp": [
+      "a2a",
+      "adds",
+      "anomaly",
+      "confluent",
+      "detection",
+      "kafka",
+      "major",
+      "platform",
+      "queues",
+      "support",
+      "update"
+    ],
+    "ne": [
+      "confluent",
+      "kafka",
+      "queues"
+    ],
+    "source": "The New Stack",
+    "tier": 2,
+    "title": "Confluent adds A2A support, anomaly detection, and Queues for Kafka in major platform update",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thenewstack.io/developers-coding-moving-target-ai/": {
+    "fp": [
+      "coding",
+      "developers",
+      "knows",
+      "lands",
+      "moving",
+      "next",
+      "nobody",
+      "target"
+    ],
+    "ne": [
+      "ai",
+      "developers"
+    ],
+    "source": "The New Stack",
+    "tier": 2,
+    "title": "Developers are coding to a moving target, and nobody knows where AI lands next",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thenewstack.io/google-gemini-3-1-flash-lite/": {
+    "fp": [
+      "fastest",
+      "flash",
+      "gemini",
+      "google",
+      "launches",
+      "lite",
+      "model",
+      "yet"
+    ],
+    "ne": [
+      "flash",
+      "gemini",
+      "google",
+      "lite"
+    ],
+    "source": "The New Stack",
+    "tier": 2,
+    "title": "Google launches Gemini 3.1 Flash-Lite, its fastest Gemini 3 model yet",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thenewstack.io/how-to-clone-a-drive-to-an-image-with-clonezilla/": {
+    "fp": [
+      "clone",
+      "clonezilla",
+      "drive",
+      "image"
+    ],
+    "ne": [
+      "clonezilla"
+    ],
+    "source": "The New Stack",
+    "tier": 2,
+    "title": "How to clone a drive to an image with Clonezilla",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thenewstack.io/how-webassembly-plugins-are-simplifying-kubernetes-extensibility/": {
+    "fp": [
+      "extensibility",
+      "kubernetes",
+      "plugins",
+      "simplify",
+      "webassembly"
+    ],
+    "ne": [
+      "kubernetes",
+      "webassembly"
+    ],
+    "source": "The New Stack",
+    "tier": 2,
+    "title": "How WebAssembly plugins simplify Kubernetes extensibility",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thenewstack.io/openai-gpt-5-1-instant/": {
+    "fp": [
+      "cringe",
+      "dial",
+      "down",
+      "gpt",
+      "instant",
+      "openai",
+      "promises"
+    ],
+    "ne": [
+      "gpt",
+      "instant",
+      "openai"
+    ],
+    "source": "The New Stack",
+    "tier": 2,
+    "title": "OpenAI’s GPT-5.3 Instant promises to dial down the cringe",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thenewstack.io/openclaw-github-stars-security/": {
+    "fp": [
+      "github",
+      "most",
+      "openclaw",
+      "rocks",
+      "safe",
+      "starred",
+      "status"
+    ],
+    "ne": [
+      "github",
+      "openclaw"
+    ],
+    "source": "The New Stack",
+    "tier": 2,
+    "title": "OpenClaw rocks to GitHub’s most-starred status, but is it safe?",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thenewstack.io/react-foundation-open-source-governance/": {
+    "fp": [
+      "foundation",
+      "gave",
+      "letting",
+      "meta",
+      "own",
+      "react",
+      "yet"
+    ],
+    "ne": [
+      "meta",
+      "react"
+    ],
+    "source": "The New Stack",
+    "tier": 2,
+    "title": "Meta gave React its own foundation. But it’s not letting go just yet.",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://thenewstack.io/why-83-of-organizations-reportedly-trust-open-source-with-their-most-sensitive-assets/": {
+    "fp": [
+      "assets",
+      "most",
+      "open",
+      "organizations",
+      "reportedly",
+      "sensitive",
+      "source",
+      "trust"
+    ],
+    "ne": [],
+    "source": "The New Stack",
+    "tier": 2,
+    "title": "Why 83% of organizations reportedly trust open source with their most sensitive assets",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://tonsky.me/blog/fall-of-native/": {
+    "fp": [
+      "app",
+      "because",
+      "claude",
+      "electron",
+      "lost",
+      "native"
+    ],
+    "ne": [
+      "app",
+      "claude",
+      "electron"
+    ],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "Claude is an Electron App because we’ve lost native",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://turbopuffer.com/blog/zero-cost": {
+    "fp": [
+      "abstractions",
+      "cost",
+      "rust",
+      "simd",
+      "zero"
+    ],
+    "ne": [
+      "rust",
+      "simd"
+    ],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "Rust zero-cost abstractions vs. SIMD",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www-cs-faculty.stanford.edu/~knuth/papers/claude-cycles.pdf": {
+    "fp": [
+      "claude",
+      "cycles",
+      "pdf"
+    ],
+    "ne": [
+      "claude",
+      "cycles"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "Claude's Cycles [pdf]",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.apple.com/newsroom/2026/03/apple-introduces-macbook-pro-with-all-new-m5-pro-and-m5-max/": {
+    "fp": [
+      "macbook",
+      "max",
+      "pro"
+    ],
+    "ne": [
+      "macbook",
+      "max",
+      "pro"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "MacBook Pro with M5 Pro and M5 Max",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/security/cisa-flags-vmware-aria-operations-rce-flaw-as-exploited-in-attacks/": {
+    "fp": [
+      "aria",
+      "attacks",
+      "cisa",
+      "exploited",
+      "flags",
+      "flaw",
+      "operations",
+      "rce",
+      "vmware"
+    ],
+    "ne": [
+      "aria",
+      "cisa",
+      "operations",
+      "rce",
+      "vmware"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "CISA flags VMware Aria Operations RCE flaw as exploited in attacks",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/security/compromised-site-management-panels-are-a-hot-item-in-cybercrime-markets/": {
+    "fp": [
+      "compromised",
+      "cybercrime",
+      "hot",
+      "item",
+      "management",
+      "markets",
+      "panels",
+      "site"
+    ],
+    "ne": [
+      "compromised",
+      "cybercrime",
+      "hot",
+      "item",
+      "management",
+      "markets",
+      "panels",
+      "site"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "Compromised Site Management Panels are a Hot Item in Cybercrime Markets",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/security/google-chrome-shifts-to-two-week-release-cycle-for-increased-stability/": {
+    "fp": [
+      "chrome",
+      "cycle",
+      "google",
+      "increased",
+      "release",
+      "shifts",
+      "stability",
+      "week"
+    ],
+    "ne": [
+      "chrome",
+      "google"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "Google Chrome shifts to two-week release cycle for increased stability",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/security/google-patches-android-zero-day-actively-exploited-in-attacks/": {
+    "fp": [
+      "android",
+      "attacks",
+      "day",
+      "exploited",
+      "gets",
+      "patches",
+      "qualcomm",
+      "zero"
+    ],
+    "ne": [
+      "android",
+      "qualcomm"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "Android gets patches for Qualcomm zero-day exploited in attacks",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/security/lexisnexis-confirms-data-breach-as-hackers-leak-stolen-files/": {
+    "fp": [
+      "breach",
+      "confirms",
+      "data",
+      "files",
+      "hackers",
+      "leak",
+      "lexisnexis",
+      "stolen"
+    ],
+    "ne": [
+      "lexisnexis"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "LexisNexis confirms data breach as hackers leak stolen files",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/security/microsoft-hackers-abuse-oauth-error-flows-to-spread-malware/": {
+    "fp": [
+      "abuse",
+      "error",
+      "flows",
+      "hackers",
+      "malware",
+      "microsoft",
+      "oauth",
+      "spread"
+    ],
+    "ne": [
+      "hackers",
+      "microsoft",
+      "oauth"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "Microsoft: Hackers abuse OAuth error flows to spread malware",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/security/paint-maker-giant-akzonobel-confirms-cyberattack-on-us-site/": {
+    "fp": [
+      "akzonobel",
+      "confirms",
+      "cyberattack",
+      "giant",
+      "maker",
+      "paint",
+      "site"
+    ],
+    "ne": [
+      "akzonobel",
+      "paint"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "Paint maker giant AkzoNobel confirms cyberattack on U.S. site",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/security/star-citizen-game-dev-discloses-breach-affecting-user-data/": {
+    "fp": [
+      "affecting",
+      "breach",
+      "citizen",
+      "data",
+      "dev",
+      "discloses",
+      "game",
+      "star",
+      "user"
+    ],
+    "ne": [
+      "citizen",
+      "star"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "Star Citizen game dev discloses breach affecting user data",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/security/university-of-hawaii-cancer-center-ransomware-attack-affects-nearly-12-million-people/": {
+    "fp": [
+      "affects",
+      "breach",
+      "cancer",
+      "center",
+      "data",
+      "million",
+      "nearly",
+      "people"
+    ],
+    "ne": [
+      "cancer",
+      "center",
+      "uh"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "UH Cancer Center data breach affects nearly 1.2 million people",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/technology/amazon-drone-strikes-damaged-aws-data-centers-in-middle-east/": {
+    "fp": [
+      "amazon",
+      "aws",
+      "centers",
+      "damaged",
+      "data",
+      "drone",
+      "east",
+      "middle",
+      "strikes"
+    ],
+    "ne": [
+      "amazon",
+      "aws",
+      "drone",
+      "east",
+      "middle"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "Amazon: Drone strikes damaged AWS data centers in Middle East",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.bleepingcomputer.com/news/technology/facebook-hit-with-worldwide-outage-stating-accounts-are-unavailable/": {
+    "fp": [
+      "accounts",
+      "facebook",
+      "outage",
+      "unavailable",
+      "worldwide"
+    ],
+    "ne": [
+      "facebook"
+    ],
+    "source": "BleepingComputer",
+    "tier": 1,
+    "title": "Facebook accounts unavailable in worldwide outage",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/business/2026/03/03/bank-of-japan-expands-blockchain-settlement-sandbox-as-2026-cbdc-decision-nears": {
+    "fp": [
+      "bank",
+      "blockchain",
+      "cbdc",
+      "efforts",
+      "expands",
+      "japan",
+      "ongoing",
+      "sandbox",
+      "settlement"
+    ],
+    "ne": [
+      "bank",
+      "cbdc",
+      "japan"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "Bank of Japan expands blockchain settlement sandbox and says CBDC efforts are ongoing",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/business/2026/03/03/eric-trump-s-american-bitcoin-buys-11-298-asic-miners-increasing-capacity-by-12": {
+    "fp": [
+      "298",
+      "american",
+      "asic",
+      "bitcoin",
+      "buys",
+      "capacity",
+      "eric",
+      "increasing",
+      "miners",
+      "mining",
+      "trump"
+    ],
+    "ne": [
+      "298",
+      "american",
+      "asic",
+      "bitcoin",
+      "eric",
+      "trump"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "Eric Trump’s American Bitcoin buys 11,298 ASIC miners, increasing mining capacity by 12%",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/markets/2026/03/03/bitcoin-attempting-to-make-a-stand-as-global-stock-markets-melt-down-on-iran-war": {
+    "fp": [
+      "attempting",
+      "bitcoin",
+      "down",
+      "global",
+      "iran",
+      "make",
+      "markets",
+      "melt",
+      "stand",
+      "stock",
+      "war"
+    ],
+    "ne": [
+      "bitcoin",
+      "iran"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "Bitcoin attempting to make a stand as global stock markets melt down on Iran war",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/markets/2026/03/03/circle-shares-boosted-by-middle-east-tensions-rising-oil-fading-rate-cut-hopes-says-mizuho": {
+    "fp": [
+      "boosted",
+      "circle",
+      "cut",
+      "east",
+      "fading",
+      "hopes",
+      "middle",
+      "mizuho",
+      "oil",
+      "rate",
+      "rising",
+      "shares",
+      "tensions"
+    ],
+    "ne": [
+      "circle",
+      "east",
+      "middle",
+      "mizuho"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "Circle shares boosted by Middle East tensions, rising oil, fading rate cut hopes, says Mizuho",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/markets/2026/03/03/end-of-bitcoin-hodl-public-miners-going-all-in-on-ai-signaling-more-btc-selling": {
+    "fp": [
+      "bitcoin",
+      "btc",
+      "end",
+      "going",
+      "hodl",
+      "miners",
+      "public",
+      "selling",
+      "signaling"
+    ],
+    "ne": [
+      "ai",
+      "btc",
+      "end",
+      "hodl"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "End of bitcoin 'HODL': public miners going all-in on AI, signaling more BTC selling",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/opinion/2026/03/03/donald-trump-s-crypto-legacy-in-two-words-paul-atkins": {
+    "fp": [
+      "atkins",
+      "crypto",
+      "donald",
+      "legacy",
+      "paul",
+      "trump",
+      "words"
+    ],
+    "ne": [
+      "atkins",
+      "donald",
+      "paul",
+      "trump"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "Donald Trump's crypto legacy in two words: Paul Atkins",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/policy/2026/03/03/cftc-chief-selig-to-clear-path-for-u-s-perpetual-futures-in-coming-weeks": {
+    "fp": [
+      "cftc",
+      "chief",
+      "clear",
+      "coming",
+      "futures",
+      "path",
+      "perpetual",
+      "selig",
+      "weeks"
+    ],
+    "ne": [
+      "cftc",
+      "selig"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "CFTC chief Selig to clear path for U.S. perpetual futures in coming weeks",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/policy/2026/03/03/international-financial-watchdog-warns-stablecoins-are-increasingly-used-in-sanctions-evasion-and-money-laundering": {
+    "fp": [
+      "evasion",
+      "finance",
+      "increasingly",
+      "international",
+      "laundering",
+      "money",
+      "sanctions",
+      "stablecoins",
+      "warns",
+      "watchdog"
+    ],
+    "ne": [
+      "international"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "International finance watchdog warns stablecoins are increasingly used in sanctions evasion and money laundering",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/policy/2026/03/03/jp-morgan-ceo-jamie-dimon-says-stablecoin-issuers-paying-interest-should-be-regulated-as-banks": {
+    "fp": [
+      "banks",
+      "ceo",
+      "dimon",
+      "interest",
+      "issuers",
+      "jamie",
+      "morgan",
+      "paying",
+      "regulated",
+      "stablecoin"
+    ],
+    "ne": [
+      "ceo",
+      "dimon",
+      "jamie",
+      "jp",
+      "morgan"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "JP Morgan CEO Jamie Dimon says stablecoin issuers paying interest should be regulated as banks",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/policy/2026/03/03/trump-urges-passage-of-u-s-clarity-act-attacks-banks-for-undercutting-genius": {
+    "fp": [
+      "act",
+      "attacks",
+      "banks",
+      "clarity",
+      "genius",
+      "passage",
+      "trump",
+      "undercutting",
+      "urges"
+    ],
+    "ne": [
+      "act",
+      "clarity",
+      "genius",
+      "trump"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "Trump urges passage of U.S. Clarity Act, attacks banks for 'undercutting' GENIUS",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/tech/2026/03/03/ai-agents-will-be-primary-users-of-blockchain-near-co-founder-says": {
+    "fp": [
+      "agents",
+      "blockchain",
+      "founder",
+      "near",
+      "primary",
+      "users"
+    ],
+    "ne": [
+      "ai",
+      "near"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "AI agents will be primary users of blockchain, NEAR co-founder says",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.coindesk.com/web3/2026/03/03/aave-governance-rift-deepens-as-major-governance-group-exits-usd26-billion-defi-protocol": {
+    "fp": [
+      "aave",
+      "billion",
+      "deepens",
+      "defi",
+      "exits",
+      "governance",
+      "group",
+      "major",
+      "protocol",
+      "rift"
+    ],
+    "ne": [
+      "aave",
+      "defi"
+    ],
+    "source": "CoinDesk",
+    "tier": 2,
+    "title": "Aave governance rift deepens as major governance group exits $26 billion DeFi protocol",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.ifixit.com/News/115827/new-thinkpads-score-perfect-10-repairability": {
+    "fp": [
+      "lenovo",
+      "repairability",
+      "score",
+      "thinkpads"
+    ],
+    "ne": [
+      "lenovo",
+      "repairability",
+      "score",
+      "thinkpads"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "Lenovo's New ThinkPads Score 10/10 for Repairability",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.reuters.com/legal/government/us-supreme-court-declines-hear-dispute-over-copyrights-ai-generated-material-2026-03-02/": {
+    "fp": [
+      "copyrights",
+      "court",
+      "declines",
+      "dispute",
+      "generated",
+      "hear",
+      "material",
+      "supreme"
+    ],
+    "ne": [
+      "ai",
+      "court",
+      "supreme",
+      "us"
+    ],
+    "source": "Lobste.rs",
+    "tier": 2,
+    "title": "US Supreme Court declines to hear dispute over copyrights for AI-generated material",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392023/cz-backed-yzi-labs-invests-100-million-into-hash-globals-bnb-fund?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "100",
+      "backed",
+      "bnb",
+      "fund",
+      "global",
+      "hash",
+      "invests",
+      "labs",
+      "million",
+      "yzi"
+    ],
+    "ne": [
+      "100",
+      "bnb",
+      "cz",
+      "global",
+      "hash",
+      "labs",
+      "yzi"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "CZ–backed YZi Labs invests $100 million into Hash Global’s BNB fund",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392041/can-ethos-solve-the-bot-problem-with-founder-trevor-thompson?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "bot",
+      "ethos",
+      "founder",
+      "problem",
+      "solve",
+      "thompson",
+      "trevor"
+    ],
+    "ne": [
+      "ethos",
+      "thompson",
+      "trevor"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "Can Ethos solve the bot problem? With founder Trevor Thompson",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392053/us-government-moves-23000-bitcoin-villanueva-forfeiture-wallet?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "000",
+      "bitcoin",
+      "forfeiture",
+      "government",
+      "moves",
+      "roughly",
+      "villanueva",
+      "wallet"
+    ],
+    "ne": [
+      "000",
+      "us",
+      "villanueva"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "US government moves roughly $23,000 in bitcoin from ‘Villanueva’ forfeiture wallet",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392060/paypal-usd-expand-tcs-blockchain-onchain-trade-financing-trucking-industry?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "blockchain",
+      "expand",
+      "financing",
+      "industry",
+      "onchain",
+      "paypal",
+      "tapped",
+      "tcs",
+      "trade",
+      "trucking",
+      "usd"
+    ],
+    "ne": [
+      "blockchain",
+      "paypal",
+      "tcs",
+      "usd"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "PayPal USD tapped to expand TCS Blockchain’s onchain trade financing for trucking industry",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392065/the-daily-marc-zellers-aci-to-exit-aave-dao-mara-opens-door-to-selling-balance-sheet-bitcoin-and-more?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "aave",
+      "aci",
+      "balance",
+      "bitcoin",
+      "daily",
+      "dao",
+      "door",
+      "exit",
+      "mara",
+      "marc",
+      "opens",
+      "selling",
+      "sheet",
+      "zeller"
+    ],
+    "ne": [
+      "aave",
+      "aci",
+      "daily",
+      "dao",
+      "mara",
+      "marc",
+      "zeller"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "The Daily: Marc Zeller’s ACI to exit Aave DAO, MARA opens door to selling balance sheet bitcoin, and more",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392077/analysts-lift-circle-price-target-oil-spike-rate-outlook-buoy-stablecoin-trade?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "analysts",
+      "buoy",
+      "circle",
+      "lift",
+      "oil",
+      "outlook",
+      "price",
+      "rate",
+      "spike",
+      "stablecoin",
+      "target",
+      "trade"
+    ],
+    "ne": [
+      "analysts",
+      "circle"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "Analysts lift Circle’s price target as oil spike and rate outlook buoy stablecoin trade",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392079/ethereum-vitalik-buterin-sanctuary-tech-forget-emulating-apple-or-google?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "apple",
+      "build",
+      "buterin",
+      "emulating",
+      "ethereum",
+      "forget",
+      "google",
+      "sanctuary",
+      "tech",
+      "vitalik"
+    ],
+    "ne": [
+      "apple",
+      "buterin",
+      "ethereum",
+      "google",
+      "vitalik"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "Ethereum’s Vitalik Buterin: build ‘sanctuary tech,’ forget emulating Apple or Google",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392080/coinbase-ceo-brian-armstrong-says-base-apps-socialfi-features-didnt-quite-work?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "app",
+      "armstrong",
+      "base",
+      "brian",
+      "ceo",
+      "coinbase",
+      "didn",
+      "features",
+      "quite",
+      "socialfi",
+      "work"
+    ],
+    "ne": [
+      "app",
+      "armstrong",
+      "base",
+      "brian",
+      "ceo",
+      "coinbase",
+      "socialfi"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "Coinbase CEO Brian Armstrong says Base App’s SocialFi features ‘didn’t quite work’",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392085/td-cowen-banks-likely-to-lose-stablecoin-yield-fight-crypto-bill-at-risk?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "banks",
+      "bill",
+      "cowen",
+      "crypto",
+      "dispute",
+      "fight",
+      "likely",
+      "lose",
+      "prolonged",
+      "put",
+      "risk",
+      "stablecoin",
+      "yield"
+    ],
+    "ne": [
+      "cowen",
+      "td"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "TD Cowen says banks likely to lose stablecoin yield fight, but prolonged dispute could put crypto bill at risk",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392098/a16z-crypto-updates-jolt-zkvm-challenges-loose-use-of-zk-label?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "a16z",
+      "challenges",
+      "crypto",
+      "jolt",
+      "label",
+      "loose",
+      "updates",
+      "zkvm"
+    ],
+    "ne": [
+      "crypto",
+      "jolt",
+      "zk"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "A16z Crypto updates Jolt zkVM, challenges loose use of ‘ZK’ label",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theblock.co/post/392103/french-hill-urges-senate-take-house-crypto-bill-stablecoin-yield-fight?utm_source=rss&utm_medium=rss": {
+    "fp": [
+      "amid",
+      "bill",
+      "crypto",
+      "fight",
+      "french",
+      "hill",
+      "house",
+      "senate",
+      "stablecoin",
+      "take",
+      "urges",
+      "yield"
+    ],
+    "ne": [
+      "french",
+      "hill",
+      "house",
+      "senate"
+    ],
+    "source": "The Block",
+    "tier": 3,
+    "title": "French Hill urges Senate to take up House crypto bill amid stablecoin yield fight",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/accenture_buys_ookla_downdetector_ziff_davis/": {
+    "fp": [
+      "accenture",
+      "billion",
+      "buy",
+      "deal",
+      "down",
+      "downdetector",
+      "part"
+    ],
+    "ne": [
+      "accenture",
+      "downdetector"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "Accenture down to buy Downdetector as part of $1.2 billion deal",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/apples_m5_pro_max_macbooks/": {
+    "fp": [
+      "apple",
+      "debut",
+      "jacks",
+      "macbook",
+      "max",
+      "pricing",
+      "pro"
+    ],
+    "ne": [
+      "apple",
+      "macbook",
+      "max",
+      "pro"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "Apple jacks up MacBook pricing with M5 Pro, Max debut",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/ayar_labs_500m/": {
+    "fp": [
+      "ayar",
+      "backed",
+      "chiplets",
+      "cpo",
+      "fills",
+      "labs",
+      "mass",
+      "nvidia",
+      "photonics",
+      "produce",
+      "startup",
+      "wallet"
+    ],
+    "ne": [
+      "ayar",
+      "cpo",
+      "labs",
+      "nvidia"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "Nvidia-backed photonics startup Ayar Labs fills its wallet to mass-produce CPO chiplets",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/bunsenlabs_carbon/": {
+    "fp": [
+      "alive",
+      "bunsenlabs",
+      "carbon",
+      "crunchbang",
+      "debian",
+      "flame",
+      "keeps"
+    ],
+    "ne": [
+      "bunsenlabs",
+      "carbon",
+      "crunchbang",
+      "debian"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "BunsenLabs Carbon keeps the CrunchBang flame alive with Debian 13",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/chatbot_data_harvesting_personal_info/": {
+    "fp": [
+      "bot",
+      "brokers",
+      "chat",
+      "data",
+      "deeply",
+      "own",
+      "personal",
+      "risk",
+      "selling",
+      "transcripts"
+    ],
+    "ne": [
+      "chat",
+      "data"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "Chat at your own risk! Data brokers are selling deeply personal bot transcripts",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/cyberwarriors_us_iran_war/": {
+    "fp": [
+      "big",
+      "cyberwarriors",
+      "elevated",
+      "iran",
+      "leagues",
+      "war"
+    ],
+    "ne": [
+      "cyberwarriors",
+      "iran",
+      "us"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "Cyberwarriors elevated to big leagues in US war with Iran",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/facebook_outage/": {
+    "fp": [
+      "ads",
+      "business",
+      "down",
+      "facebook",
+      "hours",
+      "interrupting",
+      "meta",
+      "poking",
+      "three",
+      "went"
+    ],
+    "ne": [
+      "facebook",
+      "meta"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "Facebook went down for about three hours, interrupting your poking and Meta's ads business",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/gemini_api_key_82314_dollar_charge/": {
+    "fp": [
+      "82k",
+      "api",
+      "bill",
+      "dev",
+      "gemini",
+      "goes",
+      "key",
+      "stunned",
+      "thief",
+      "town",
+      "unknown"
+    ],
+    "ne": [
+      "api",
+      "dev",
+      "gemini"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "Dev stunned by $82K Gemini bill after unknown API key thief goes to town",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/need_more_liver_mit_boffins/": {
+    "fp": [
+      "aim",
+      "boffins",
+      "build",
+      "damaged",
+      "fill",
+      "injectable",
+      "liver",
+      "mini",
+      "mit",
+      "organs"
+    ],
+    "ne": [
+      "mit"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "MIT boffins aim to build injectable mini-organs that can fill in for a damaged liver",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/turns_out_most_cybercriminals_are/": {
+    "fp": [
+      "better",
+      "cybercriminals",
+      "enough",
+      "know",
+      "most",
+      "old",
+      "turns"
+    ],
+    "ne": [
+      "turns"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "Turns out most cybercriminals are old enough to know better",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/03/us_lawmakers_ice_data_purchases/": {
+    "fp": [
+      "ice",
+      "lawmakers",
+      "location",
+      "pick",
+      "purchases",
+      "take",
+      "tracking",
+      "warrantless"
+    ],
+    "ne": [
+      "ice",
+      "lawmakers"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "Lawmakers take pick to ICE's warrantless location tracking purchases",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.theregister.com/2026/03/04/openai_dow_reset_gpt53_instant/": {
+    "fp": [
+      "around",
+      "beat",
+      "bush",
+      "latest",
+      "less",
+      "likely",
+      "model",
+      "openai"
+    ],
+    "ne": [
+      "openai"
+    ],
+    "source": "The Register",
+    "tier": 2,
+    "title": "OpenAI says its latest model is less likely to beat around the bush",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.tomshardware.com/pc-components/cpus/intels-make-or-break-18a-process-node-debuts-for-data-center-with-288-core-xeon-6-cpu-multi-chip-monster-sports-12-channels-of-ddr5-8000-foveros-direct-3d-packaging-tech": {
+    "fp": [
+      "18a",
+      "288",
+      "break",
+      "center",
+      "core",
+      "data",
+      "debuts",
+      "intel",
+      "make",
+      "node",
+      "process",
+      "xeon"
+    ],
+    "ne": [
+      "288",
+      "intel",
+      "xeon"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "Intel's make-or-break 18A process node debuts for data center with 288-core Xeon",
+    "ts": "2026-03-04T09:32:29"
+  },
+  "https://www.youtube.com/watch?v=B3m3AMRlYfc": {
+    "fp": [
+      "detecting",
+      "girl",
+      "imaging",
+      "kamiokande",
+      "neutrinos",
+      "physics",
+      "sun",
+      "super",
+      "video"
+    ],
+    "ne": [
+      "girl",
+      "imaging",
+      "kamiokande",
+      "physics",
+      "super"
+    ],
+    "source": "Hacker News",
+    "tier": 2,
+    "title": "Physics Girl: Super-Kamiokande – Imaging the sun by detecting neutrinos [video]",
+    "ts": "2026-03-04T09:32:29"
+  }
+}

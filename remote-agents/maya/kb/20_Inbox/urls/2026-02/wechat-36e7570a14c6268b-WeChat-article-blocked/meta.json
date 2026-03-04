@@ -1,0 +1,18 @@
+{
+  "key": "36e7570a14c6268b",
+  "url": "https://mp.weixin.qq.com/s/fK4j8tUlZQ-q6w2aqXVKLA",
+  "title": "龙虾生态观察V2：创业分层与演进路径",
+  "source": "wechat",
+  "createdAt": "2026-02-21T14:01:05Z",
+  "tags": [
+    "#source:wechat",
+    "#type:article",
+    "#wechat",
+    "#openclaw",
+    "#ecosystem"
+  ],
+  "status": "ok",
+  "extractor": "node-wechat-direct",
+  "note": "Reed 要求学习并分析行业动态",
+  "updatedAt": "2026-02-22T02:46:17Z"
+}

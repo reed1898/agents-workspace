@@ -1,0 +1,26 @@
+{
+  "key": "6f57421b89aa1a35",
+  "url": "https://openclaw.ai/showcase",
+  "title": "Showcase — What People Are Building with OpenClaw",
+  "source": "web",
+  "createdAt": "2026-02-25T17:05:51Z",
+  "tags": [
+    "#source:web",
+    "#type:page",
+    "#openclaw",
+    "#showcase",
+    "#ecosystem",
+    "#product",
+    "#lang:en",
+    "#ai",
+    "#agent",
+    "#coding-agent",
+    "#mcp",
+    "#devtools",
+    "#pricing",
+    "#startup"
+  ],
+  "status": "ok",
+  "extractor": "r.jina.ai",
+  "note": "用户要求每日两次跟踪 showcase，并提炼总结入KB"
+}

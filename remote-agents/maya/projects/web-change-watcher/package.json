@@ -1,0 +1,19 @@
+{
+  "name": "web-change-watcher",
+  "version": "0.1.1",
+  "description": "Minimal web page change watcher (OpenClaw skill MVP)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./scripts/selftest.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bin": {
+    "oc-webwatch": "./src/oc-webwatch.js"
+  },
+  "dependencies": {
+    "node-html-parser": "^7.0.1"
+  }
+}

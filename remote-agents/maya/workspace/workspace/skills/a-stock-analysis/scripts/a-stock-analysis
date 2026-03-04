@@ -1,0 +1,46 @@
+#!/bin/bash
+# A股盘后分析 wrapper
+
+SCRIPT_DIR="/Users/rain/.openclaw/workspace/skills/a-stock-analysis/scripts"
+
+show_help() {
+    echo "A股分析工具"
+    echo ""
+    echo "Usage:"
+    echo "  a-stock-analysis stock <code> [--minute]     # 分析单只股票"
+    echo "  a-stock-analysis portfolio show              # 显示持仓"
+    echo "  a-stock-analysis portfolio analyze           # 分析所有持仓"
+    echo ""
+    echo "Examples:"
+    echo "  a-stock-analysis stock 600789                # 分析股票"
+    echo "  a-stock-analysis stock 000001 --minute       # 上证指数分时"
+}
+
+if [ $# -eq 0 ]; then
+    show_help
+    exit 0
+fi
+
+COMMAND="$1"
+shift
+
+case "$COMMAND" in
+    stock|analyze)
+        python3 "$SCRIPT_DIR/analyze.py" "$@"
+        ;;
+    portfolio)
+        python3 "$SCRIPT_DIR/portfolio.py" "$@"
+        ;;
+    daily|brief)
+        echo "Error: '$COMMAND' mode not implemented in this skill version"
+        echo "Use 'portfolio analyze' to analyze your holdings"
+        exit 1
+        ;;
+    help|--help|-h)
+        show_help
+        ;;
+    *)
+        # Default: treat as stock code
+        python3 "$SCRIPT_DIR/analyze.py" "$COMMAND" "$@"
+        ;;
+esac

@@ -1,0 +1,8 @@
+{
+  "name": "stock_analysis",
+  "version": "0.1.0",
+  "description": "单只股票深度分析 skill（可供持仓总任务调用）",
+  "author": "OpenClaw Assistant",
+  "tags": ["stock", "analysis", "finance", "portfolio"],
+  "entry": "scripts/analyze_stock.sh"
+}

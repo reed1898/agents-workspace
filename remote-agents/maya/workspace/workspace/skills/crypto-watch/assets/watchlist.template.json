@@ -1,0 +1,17 @@
+{
+  "exchange": "binance",
+  "symbols": [
+    {"symbol": "BTCUSDT", "name": "BTC"},
+    {"symbol": "ETHUSDT", "name": "ETH"}
+  ],
+  "intervalMinutes": 5,
+  "thresholds": {
+    "crash15mPct": -2.0,
+    "spike15mPct": 2.0,
+    "crash1hPct": -4.0,
+    "spike1hPct": 4.0,
+    "bounceFromLowPct": 1.8,
+    "crashWindowHours": 6,
+    "cooldownMinutes": 60
+  }
+}

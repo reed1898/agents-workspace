@@ -1,0 +1,109 @@
+{
+  "run_id": "daily-20260224-172111-morning-day8-10-smoke-a",
+  "timestamp_utc": "2026-02-24T17:21:11.193502+00:00",
+  "phase": "morning",
+  "topic": "day8-10-smoke-a",
+  "dry_run": true,
+  "max_attempts": 2,
+  "retry_base_seconds": 0.2,
+  "classifier_config": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/config/error-classifier.json",
+  "steps": {
+    "generate_daily_summary": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/generate_daily_summary.py",
+            "--phase",
+            "morning",
+            "--topic",
+            "day8-10-smoke-a",
+            "--output",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172111-morning-day8-10-smoke-a-summary.json",
+            "--pretty"
+          ],
+          "returncode": 0,
+          "stdout": "[generate_daily_summary] phase=morning topic=day8-10-smoke-a\n[generate_daily_summary] written output: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172111-morning-day8-10-smoke-a-summary.json\n[generate_daily_summary] done\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    },
+    "write_kb": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/write_kb.py",
+            "--input-json",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172111-morning-day8-10-smoke-a-summary.json",
+            "--receipt-path",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172111-morning-day8-10-smoke-a-write-kb-receipt.json"
+          ],
+          "returncode": 0,
+          "stdout": "[write_kb] dry_run=True\n[write_kb] target=/home/ubuntu/.openclaw/kb/01_Daily/2026-02-24-day8-10-smoke-a.md\n[write_kb] dry-run preview (first 20 lines):\n# 2026-02-24 day8-10-smoke-a (morning)\n\n- generated_at_utc: 2026-02-24T17:21:11.232817+00:00\n- status: success\n\n## Highlights\n- [skeleton] 今日重点待补充\n- [skeleton] 风险项待补充\n- [skeleton] 明日建议待补充\n\n## Risks\n- (none)\n\n## Actions\n- (none)\n\n## Raw JSON\n```json\n{\n  \"status\": \"success\",\n[write_kb] done (no file written)\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    },
+    "send_telegram": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/send_telegram.py",
+            "--input-json",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172111-morning-day8-10-smoke-a-summary.json",
+            "--account-id",
+            "maya",
+            "--target",
+            "telegram:869269685",
+            "--logs-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs",
+            "--queue-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending",
+            "--state-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/state",
+            "--classifier-config",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/config/error-classifier.json",
+            "--receipt-path",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172111-morning-day8-10-smoke-a-telegram-receipt.json",
+            "--attempt",
+            "1",
+            "--run-id",
+            "daily-20260224-172111-morning-day8-10-smoke-a"
+          ],
+          "returncode": 0,
+          "stdout": "[send_telegram] dry_run=True\n[send_telegram] target=telegram:869269685\n[send_telegram] dry-run preview (first 10 lines):\n日报 2026-02-24 | day8-10-smoke-a | morning\n\nHighlights:\n- [skeleton] 今日重点待补充\n- [skeleton] 风险项待补充\n- [skeleton] 明日建议待补充\n\nRisks:\n- (none)\n\n[send_telegram] receipt written: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172111-morning-day8-10-smoke-a-telegram-receipt.json\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    }
+  },
+  "artifacts": {
+    "summary_json": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172111-morning-day8-10-smoke-a-summary.json",
+    "kb_receipt": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172111-morning-day8-10-smoke-a-write-kb-receipt.json",
+    "telegram_receipt": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-172111-morning-day8-10-smoke-a-telegram-receipt.json",
+    "pending_queue_dir": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending",
+    "cli_capabilities": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/state/cli_capabilities.json"
+  },
+  "success": true,
+  "report_path": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/reports/run-report-20260224-172113.json"
+}

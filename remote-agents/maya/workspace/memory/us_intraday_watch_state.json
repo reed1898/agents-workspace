@@ -1,0 +1,23 @@
+{
+  "last_check_utc": "2026-02-12T21:02:00Z",
+  "source": "finviz",
+  "symbols": {
+    "CEG": {
+      "last_seen_headlines": [
+        "NANO Nuclear to Post Q1 Earnings: Time to Buy, Hold or Sell the Stock?",
+        "Constellation to Post Q4 Earnings: What's in Store for the Stock?"
+      ]
+    },
+    "TDY": {
+      "last_seen_headlines": [
+        "Teledyne to Participate at the TD Cowen Aerospace & Defense Conference",
+        "2 Industrials Stocks for Long-Term Investors and 1 We Turn Down"
+      ]
+    },
+    "TQQQ": {
+      "last_seen_headlines": [
+        "Bitcoin's latest selloff is shattering many of its most enduring myths"
+      ]
+    }
+  }
+}

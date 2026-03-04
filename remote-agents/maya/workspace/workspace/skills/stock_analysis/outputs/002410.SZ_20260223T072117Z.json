@@ -1,0 +1,69 @@
+{
+  "symbol": "002410",
+  "company": "广联达",
+  "as_of": "2026-02-23T07:21:17.881911+00:00",
+  "price": 14.09,
+  "currency": "CNY",
+  "change_percent": -1.67,
+  "valuation": {
+    "pe": 56.11,
+    "pb": 3.91,
+    "market_cap": 23275895778,
+    "float_market_cap": 22376062403
+  },
+  "technical": {
+    "sma20": 14.14,
+    "sma50": 13.39,
+    "rsi14": 45.43,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-01-26 17:05:06:462",
+      "title": "广联达:2025年度业绩预告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002410/AN202601261818428884.html"
+    },
+    {
+      "time": "2026-01-16 15:13:06:618",
+      "title": "广联达:002410广联达投资者关系管理信息20260116",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002410/AN202601161817708115.html"
+    },
+    {
+      "time": "2025-12-11 17:42:12:340",
+      "title": "广联达:关于控股股东部分股份解除质押的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002410/AN202512111798354328.html"
+    },
+    {
+      "time": "2025-11-17 20:31:13:351",
+      "title": "广联达:公司章程(2025年11月)",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002410/AN202511171783176790.html"
+    },
+    {
+      "time": "2025-11-17 20:31:13:351",
+      "title": "广联达:北京市君合律师事务所关于广联达科技股份有限公司2025年度第二次临时股东会的法律意见书",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002410/AN202511171783176789.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：广联达:2025年度业绩预告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 70,
+    "total": 62.3
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "key": "a3366fb7c89c4936",
+  "imageKey": "03c699b15590cf74",
+  "title": "Screenshot: file_21---05ec1eae-10df-4f39-b8ce-23621ce4c1f6.jpg",
+  "source": "image",
+  "createdAt": "2026-02-13T04:33:33Z",
+  "tags": [
+    "#source:image",
+    "#type:screenshot",
+    "#ai"
+  ],
+  "status": "ok",
+  "imageFile": "image.jpg",
+  "extractor": "external-vision"
+}

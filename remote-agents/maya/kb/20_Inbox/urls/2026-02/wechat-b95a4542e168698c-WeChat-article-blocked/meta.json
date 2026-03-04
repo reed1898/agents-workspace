@@ -1,0 +1,14 @@
+{
+  "key": "b95a4542e168698c",
+  "url": "https://mp.weixin.qq.com/s/tDvIMmSH2BMyWQbTvwlOQA",
+  "title": "Seedance 2.0 火了，但 90% 的人都在浪费它",
+  "source": "wechat",
+  "createdAt": "2026-02-21T18:13:48Z",
+  "tags": [
+    "#source:wechat",
+    "#type:article"
+  ],
+  "status": "ok",
+  "extractor": "node-wechat-direct",
+  "updatedAt": "2026-02-22T02:46:17Z"
+}

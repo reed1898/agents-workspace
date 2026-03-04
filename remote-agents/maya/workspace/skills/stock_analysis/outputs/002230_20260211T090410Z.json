@@ -1,0 +1,70 @@
+{
+  "symbol": "002230",
+  "company": "科大讯飞",
+  "as_of": "2026-02-11T09:04:10.219206+00:00",
+  "price": 56.47,
+  "currency": "CNY",
+  "change_percent": -0.69,
+  "valuation": {
+    "pe": -1468.49,
+    "pb": 7.33,
+    "market_cap": 130550027929,
+    "float_market_cap": 123626970822
+  },
+  "technical": {
+    "sma20": 58.43,
+    "sma50": 54.0,
+    "rsi14": 43.95,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-01-28 16:43:05:394",
+      "title": "科大讯飞:2025年度业绩预告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002230/AN202601281818505521.html"
+    },
+    {
+      "time": "2026-01-09 17:28:07:395",
+      "title": "科大讯飞:第七届董事会第一次会议决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002230/AN202601091816882472.html"
+    },
+    {
+      "time": "2026-01-09 17:28:07:346",
+      "title": "科大讯飞:第二期员工持股计划摘要",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002230/AN202601091816882481.html"
+    },
+    {
+      "time": "2026-01-09 17:28:07:313",
+      "title": "科大讯飞:第二期员工持股计划",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002230/AN202601091816882480.html"
+    },
+    {
+      "time": "2026-01-09 17:28:07:313",
+      "title": "科大讯飞:2026年第一次临时股东会决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002230/AN202601091816882475.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位",
+    "当前PE为负，盈利稳定性需持续跟踪"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：科大讯飞:2025年度业绩预告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 78,
+    "momentum": 50,
+    "total": 66.1
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

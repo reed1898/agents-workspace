@@ -1,0 +1,1470 @@
+# Nightly Skills Security Scan — 2026-02-18 (UTC)
+
+## 今晚结论摘要
+- 扫描时间：2026-02-18 16:01:22 UTC
+- 扫描范围：/home/ubuntu/.openclaw/workspace/skills, /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills, /home/ubuntu/.openclaw/skills
+- 共扫描 skills：89 个（low=73, medium=11, high=5）
+- 结论：**发现 high 风险 skill，需优先复核**。
+- 本次为静态审计（grep/抽样 + 元数据检查），未执行破坏性操作。
+
+## 按 Skill 详细结果（项目符号）
+- **browse**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/browse`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：9 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：14 条（抽样上限每类 5）
+    - curl_wget: 5
+      - `SKILL.md:157: curl -X POST http://127.0.0.1:14113/v1/functions/my-automation/invoke \`
+      - `SKILL.md:188: curl -X POST https://api.browserbase.com/v1/functions/<function-id>/invoke \`
+      - `skills/create/SKILL.md:130: curl -X POST http://127.0.0.1:14113/v1/functions/my-automation/invoke \`
+    - env_or_secret_read: 2
+      - `skills/functions/SKILL.md:174: 'x-bb-api-key': process.env.BROWSERBASE_API_KEY!,`
+      - `skills/functions/SKILL.md:187: { headers: { 'x-bb-api-key': process.env.BROWSERBASE_API_KEY! } }`
+    - suspicious_network: 5
+      - `SKILL.md:4: homepage: https://browserbase.com`
+      - `SKILL.md:25: stagehand fn auth login   # If needed - get credentials from https://browserbase.com/settings`
+      - `SKILL.md:36: stagehand goto https://example.com`
+    - eval_dynamic_code: 2
+      - `SKILL.md:253: const data = await page.$$eval(selector, els =>`
+      - `skills/functions/SKILL.md:209: const items = await page.$$eval(params.selector, els =>`
+  - 风险等级：**high**
+  - 判定理由：uses eval/new Function; invokes curl/wget; reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **clawra**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/clawra`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：yes (`clawra@1.1.1`)
+  - 文件统计：14 files；可执行/二进制线索 5；脚本线索 5
+  - 可执行/二进制样本：
+    - `bin/cli.js`
+    - `assets/clawra.png`
+    - `scripts/clawra-selfie.sh`
+    - `skill/assets/clawra.png`
+    - `skill/scripts/clawra-selfie.sh`
+  - 风险模式命中：20 条（抽样上限每类 5）
+    - child_process_exec: 5
+      - `SKILL.md:240: import { exec } from "child_process";`
+      - `bin/cli.js:12: const { execSync, spawn } = require("child_process");`
+      - `scripts/clawra-selfie.ts:16: import { exec } from "child_process";`
+    - curl_wget: 5
+      - `SKILL.md:107: curl -X POST "https://fal.run/xai/grok-imagine-image/edit" \`
+      - `SKILL.md:142: curl -X POST "http://localhost:18789/message" \`
+      - `SKILL.md:209: RESPONSE=$(curl -s -X POST "https://fal.run/xai/grok-imagine-image/edit" \`
+    - env_or_secret_read: 5
+      - `SKILL.md:33: OPENCLAW_GATEWAY_TOKEN=your_token  # From: openclaw doctor --generate-gateway-token`
+      - `SKILL.md:143: -H "Authorization: Bearer $OPENCLAW_GATEWAY_TOKEN" \`
+      - `SKILL.md:283: credentials: process.env.FAL_KEY!`
+    - suspicious_network: 5
+      - `SKILL.md:16: https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png`
+      - `SKILL.md:32: FAL_KEY=your_fal_api_key          # Get from https://fal.ai/dashboard/keys`
+      - `SKILL.md:93: REFERENCE_IMAGE="https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png"`
+  - 风险等级：**high**
+  - 判定理由：uses child_process/exec/spawn; invokes curl/wget; reads env vars/secrets patterns; contains non-whitelisted outbound URLs; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`f9edfa7 2026-02-11 17:31:27 +0000 fix(clawra-selfie): update openclaw message CLI flags`
+
+- **clawra-selfie**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/clawra-selfie`
+  - Source Root：`/home/ubuntu/.openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：4 files；可执行/二进制线索 2；脚本线索 2
+  - 可执行/二进制样本：
+    - `assets/clawra.png`
+    - `scripts/clawra-selfie.sh`
+  - 风险模式命中：17 条（抽样上限每类 5）
+    - child_process_exec: 2
+      - `SKILL.md:240: import { exec } from "child_process";`
+      - `scripts/clawra-selfie.ts:16: import { exec } from "child_process";`
+    - curl_wget: 5
+      - `SKILL.md:107: curl -X POST "https://fal.run/xai/grok-imagine-image/edit" \`
+      - `SKILL.md:142: curl -X POST "http://localhost:18789/message" \`
+      - `SKILL.md:209: RESPONSE=$(curl -s -X POST "https://fal.run/xai/grok-imagine-image/edit" \`
+    - env_or_secret_read: 5
+      - `SKILL.md:33: OPENCLAW_GATEWAY_TOKEN=your_token  # From: openclaw doctor --generate-gateway-token`
+      - `SKILL.md:143: -H "Authorization: Bearer $OPENCLAW_GATEWAY_TOKEN" \`
+      - `SKILL.md:283: credentials: process.env.FAL_KEY!`
+    - suspicious_network: 5
+      - `SKILL.md:16: https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png`
+      - `SKILL.md:32: FAL_KEY=your_fal_api_key          # Get from https://fal.ai/dashboard/keys`
+      - `SKILL.md:93: REFERENCE_IMAGE="https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png"`
+  - 风险等级：**high**
+  - 判定理由：uses child_process/exec/spawn; invokes curl/wget; reads env vars/secrets patterns; contains non-whitelisted outbound URLs; has executable/binary files
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：2026-02-11 17:10:45 UTC (`scripts/clawra-selfie.ts`)
+    - sample hash：`7d30d37d2a03e47e`（sampled 4/4 files）
+
+- **skill-vetter**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/skill-vetter`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：3 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：11 条（抽样上限每类 5）
+    - child_process_exec: 1
+      - `SKILL.md:44: • Uses eval() or exec() with external input`
+    - curl_wget: 4
+      - `SKILL.md:38: • curl/wget to unknown URLs`
+      - `SKILL.md:112: curl -s "https://api.github.com/repos/OWNER/REPO" | jq '{stars: .stargazers_count, forks: .forks_count, updated: .updated_at}'`
+      - `SKILL.md:115: curl -s "https://api.github.com/repos/OWNER/REPO/contents/skills/SKILL_NAME" | jq '.[].name'`
+    - ssh_write: 1
+      - `SKILL.md:41: • Reads ~/.ssh, ~/.aws, ~/.config without clear reason`
+    - env_or_secret_read: 1
+      - `SKILL.md:40: • Requests credentials/tokens/API keys`
+    - suspicious_network: 1
+      - `.clawhub/origin.json:3: "registry": "https://clawhub.ai",`
+    - eval_dynamic_code: 1
+      - `SKILL.md:44: • Uses eval() or exec() with external input`
+    - base64_exec: 1
+      - `SKILL.md:43: • Uses base64 decode on anything`
+    - sudo_or_privilege: 1
+      - `SKILL.md:49: • Requests elevated/sudo permissions`
+  - 风险等级：**high**
+  - 判定理由：uses eval/new Function; contains sudo/privilege escalation patterns; contains base64 decode/execution-like patterns; uses child_process/exec/spawn; references ~/.ssh or key material paths; invokes curl/wget
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **stock_analysis**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/stock_analysis`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：197 files；可执行/二进制线索 3；脚本线索 3
+  - 可执行/二进制样本：
+    - `scripts/analyze_stock.sh`
+    - `scripts/install_deps.sh`
+    - `scripts/stock_analyzer.py`
+  - 风险模式命中：11 条（抽样上限每类 5）
+    - curl_wget: 1
+      - `scripts/install_deps.sh:36: echo "1) curl -sS https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py"`
+    - suspicious_network: 5
+      - `outputs/601698.SH_20260216T072113Z.json:24: "link": "https://data.eastmoney.com/notices/detail/SH601698/AN202602121819899073.html"`
+      - `outputs/601698.SH_20260216T072113Z.json:29: "link": "https://data.eastmoney.com/notices/detail/SH601698/AN202601231818334590.html"`
+      - `outputs/601698.SH_20260216T072113Z.json:34: "link": "https://data.eastmoney.com/notices/detail/SH601698/AN202601221818277857.html"`
+    - sudo_or_privilege: 5
+      - `PRE_RELEASE_CHECKLIST.md:13: sudo apt-get update && sudo apt-get install -y python3 python3-pip python3-venv git`
+      - `PRE_RELEASE_CHECKLIST.md:16: 无 sudo 降级：`
+      - `SKILL.md:46: If your system lacks `python3-pip` or you don't have sudo access, the script will suggest fallback options:`
+  - 风险等级：**high**
+  - 判定理由：contains sudo/privilege escalation patterns; invokes curl/wget; contains non-whitelisted outbound URLs; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status --porcelain:
+      - `M skills/stock_analysis/SKILL.md`
+      - `?? skills/stock_analysis/outputs/`
+    - git diff --name-only:
+      - `skills/stock_analysis/SKILL.md`
+    - 最近提交：`ccb7bec 2026-02-11 08:44:43 +0000 feat(stock_analysis): support A-share fundamentals and announcements`
+
+- **_disabled**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/_disabled`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：no
+  - package.json：no
+  - 文件统计：7 files；可执行/二进制线索 1；脚本线索 1
+  - 可执行/二进制样本：
+    - `claw-roam.disabled-20260208-081734/scripts/claw-roam.sh`
+  - 风险模式命中：15 条（抽样上限每类 5）
+    - curl_wget: 5
+      - `Gmail.disabled-20260208-062106/SKILL.md:19: curl -s -X GET 'https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10' \`
+      - `Gmail.disabled-20260208-062106/SKILL.md:58: curl -s -X GET 'https://ctrl.maton.ai/connections?app=google-mail&status=ACTIVE' \`
+      - `Gmail.disabled-20260208-062106/SKILL.md:65: curl -s -X POST 'https://ctrl.maton.ai/connections' \`
+    - env_or_secret_read: 5
+      - `claw-roam.disabled-20260208-081734/SKILL.md:233: 4. Continue using alternative bot token on VPS`
+      - `claw-roam.disabled-20260208-081734/SKILL.md:270: Ensure your Git remote is configured with proper authentication (SSH key or token).`
+      - `Gmail.disabled-20260208-062106/SKILL.md:29: The gateway proxies requests to `gmail.googleapis.com` and automatically injects your OAuth token.`
+    - suspicious_network: 5
+      - `Gmail.disabled-20260208-062106/SKILL.md:19: curl -s -X GET 'https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10' \`
+      - `Gmail.disabled-20260208-062106/SKILL.md:26: https://gateway.maton.ai/google-mail/gmail/v1/users/me/{endpoint}`
+      - `Gmail.disabled-20260208-062106/SKILL.md:47: 1. Sign in at [maton.ai](https://maton.ai)`
+  - 风险等级：**medium**
+  - 判定理由：invokes curl/wget; reads env vars/secrets patterns; contains non-whitelisted outbound URLs; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`694d94c 2026-02-09 07:42:47 +0000 feat(knowledge): scaffold Obsidian knowledge system and templates`
+
+- **avatarkit**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/avatarkit`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：yes (`openclaw-avatarkit@0.1.0`)
+  - 文件统计：21 files；可执行/二进制线索 0；脚本线索 10
+  - 风险模式命中：6 条（抽样上限每类 5）
+    - suspicious_network: 5
+      - `DEVELOPMENT.md:37: | **自建后端** | 部署自己的 API 服务 | `baseUrl: "https://your-api.com/v1"` |`
+      - `DEVELOPMENT.md:39: | **官方云服务** | 即将推出 | `baseUrl: "https://api.avatarkit.com/v1"` |`
+      - `SKILL.md:118: "baseUrl": "https://your-backend.com/v1",`
+    - base64_exec: 1
+      - `src/api.ts:154: formData.append('audio', Buffer.from(options.audioData, 'base64'), {`
+  - 风险等级：**medium**
+  - 判定理由：contains base64 decode/execution-like patterns; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace/skills/avatarkit`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`5a17ff7 2026-02-11 15:35:16 +0800 feat: Redesign landing page with OpenClaw style + i18n`
+
+- **claw-roam**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/claw-roam`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：4 files；可执行/二进制线索 1；脚本线索 1
+  - 可执行/二进制样本：
+    - `scripts/claw-roam.sh`
+  - 风险模式命中：3 条（抽样上限每类 5）
+    - env_or_secret_read: 2
+      - `SKILL.md:233: 4. Continue using alternative bot token on VPS`
+      - `SKILL.md:270: Ensure your Git remote is configured with proper authentication (SSH key or token).`
+    - suspicious_network: 1
+      - `.clawhub/origin.json:3: "registry": "https://clawhub.ai",`
+  - 风险等级：**medium**
+  - 判定理由：reads env vars/secrets patterns; contains non-whitelisted outbound URLs; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status --porcelain:
+      - `?? skills/claw-roam/`
+    - 最近提交：`694d94c 2026-02-09 07:42:47 +0000 feat(knowledge): scaffold Obsidian knowledge system and templates`
+
+- **Gmail**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/Gmail`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：3 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：14 条（抽样上限每类 5）
+    - curl_wget: 5
+      - `SKILL.md:19: curl -s -X GET 'https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10' \`
+      - `SKILL.md:58: curl -s -X GET 'https://ctrl.maton.ai/connections?app=google-mail&status=ACTIVE' \`
+      - `SKILL.md:65: curl -s -X POST 'https://ctrl.maton.ai/connections' \`
+    - env_or_secret_read: 4
+      - `SKILL.md:29: The gateway proxies requests to `gmail.googleapis.com` and automatically injects your OAuth token.`
+      - `SKILL.md:84: "url": "https://connect.maton.ai/?session_token=...",`
+      - `SKILL.md:223: 'Authorization': `Bearer ${process.env.MATON_API_KEY}``
+    - suspicious_network: 5
+      - `SKILL.md:19: curl -s -X GET 'https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10' \`
+      - `SKILL.md:26: https://gateway.maton.ai/google-mail/gmail/v1/users/me/{endpoint}`
+      - `SKILL.md:47: 1. Sign in at [maton.ai](https://maton.ai)`
+  - 风险等级：**medium**
+  - 判定理由：invokes curl/wget; reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status --porcelain:
+      - `?? skills/Gmail/`
+    - 最近提交：`694d94c 2026-02-09 07:42:47 +0000 feat(knowledge): scaffold Obsidian knowledge system and templates`
+
+- **gmail-auto-processor**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：yes (`gmail-auto-processor@1.0.0`)
+  - 文件统计：17 files；可执行/二进制线索 2；脚本线索 13
+  - 可执行/二进制样本：
+    - `gmail-processor.js`
+    - `archive-promotions.sh`
+  - 风险模式命中：5 条（抽样上限每类 5）
+    - child_process_exec: 5
+      - `archive-promotions.js:1: const { execSync } = require('child_process');`
+      - `gmail-processor.js:7: const { execSync } = require('child_process');`
+      - `index-anxiety-free.js:8: const { execSync } = require('child_process');`
+  - 风险等级：**medium**
+  - 判定理由：uses child_process/exec/spawn; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status --porcelain:
+      - `?? skills/gmail-auto-processor/`
+
+- **google-workspace**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/google-workspace`
+  - Source Root：`/home/ubuntu/.openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：12 files；可执行/二进制线索 0；脚本线索 10
+  - 风险模式命中：12 条（抽样上限每类 5）
+    - env_or_secret_read: 5
+      - `SKILL.md:49: Run any script - it will open a browser for OAuth consent. A `token.json` is saved for future use.`
+      - `scripts/calendar_auth.py:5: Can share token.json with Gmail skill if both are set up.`
+      - `scripts/calendar_auth.py:30: env_path = os.environ.get("GOOGLE_CREDENTIALS_PATH")`
+    - suspicious_network: 5
+      - `SKILL.md:21: 1. Go to https://console.cloud.google.com/`
+      - `SKILL.md:30: - `https://www.googleapis.com/auth/gmail.readonly``
+      - `SKILL.md:31: - `https://www.googleapis.com/auth/gmail.compose``
+    - base64_exec: 2
+      - `scripts/read_email.py:25: return base64.urlsafe_b64decode(data).decode("utf-8")`
+      - `scripts/create_draft.py:77: raw = base64.urlsafe_b64encode(message.as_bytes()).decode("utf-8")`
+  - 风险等级：**medium**
+  - 判定理由：contains base64 decode/execution-like patterns; reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：2026-02-08 06:27:12 UTC (`scripts/gmail_auth.py`)
+    - sample hash：`8683e50da0610182`（sampled 12/12 files）
+
+- **larksuite-wiki**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：5 files；可执行/二进制线索 2；脚本线索 1
+  - 可执行/二进制样本：
+    - `larksuite-wiki.py`
+    - `larksuite-wiki`
+  - 风险模式命中：10 条（抽样上限每类 5）
+    - env_or_secret_read: 5
+      - `larksuite-wiki.py:17: def __init__(self, app_id=None, app_secret=None):`
+      - `larksuite-wiki.py:19: self.app_id = app_id or os.getenv("LARK_APP_ID") or "cli_a90f6c8bf8f8ded4"`
+      - `larksuite-wiki.py:20: self.app_secret = app_secret or os.getenv("LARK_APP_SECRET") or "xtSodRRMmiU1R4oikynlFbBoEu3T2Wgo"`
+    - suspicious_network: 5
+      - `larksuite-wiki.py:14: LARK_API_BASE = "https://open.larksuite.com/open-apis"`
+      - `SKILL.md:4: homepage: https://open.larksuite.com`
+      - `SKILL.md:23: 1. Create a Lark/Feishu app at https://open.larksuite.com/console`
+  - 风险等级：**medium**
+  - 判定理由：reads env vars/secrets patterns; contains non-whitelisted outbound URLs; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`e600c2c 2026-02-06 16:43:10 +0000 feat: trading-journal + branch workflow`
+
+- **reminder**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/reminder`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：6 files；可执行/二进制线索 1；脚本线索 1
+  - 可执行/二进制样本：
+    - `scripts/reminder-scheduler.sh`
+  - 风险模式命中：6 条（抽样上限每类 5）
+    - env_or_secret_read: 5
+      - `SKILL.md:4: description: Natural-language reminder secretary: capture events into git-synced workspace (data/logic separated), schedule reminder notifications via OpenClaw cron (Telegram+Disco`
+      - `SKILL.md:5: tags: [reminder, schedule, cron, telegram, discord, secretary]`
+      - `SKILL.md:8: # Reminder (secretary)`
+    - suspicious_network: 1
+      - `.clawhub/origin.json:3: "registry": "https://clawhub.ai",`
+  - 风险等级：**medium**
+  - 判定理由：reads env vars/secrets patterns; contains non-whitelisted outbound URLs; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status --porcelain:
+      - `?? skills/reminder/.clawhub/`
+      - `?? skills/reminder/SKILL.sync-conflict-20260208-083216-R4LZGWG.md`
+      - `?? skills/reminder/_meta.json`
+      - `?? skills/reminder/scripts/`
+    - 最近提交：`e803d1e 2026-02-12 17:54:40 +0000 chore(reminder): support telegram+discord delivery targets`
+
+- **ui-ux-pro-max**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：57 files；可执行/二进制线索 0；脚本线索 4
+  - 风险模式命中：12 条（抽样上限每类 5）
+    - env_or_secret_read: 5
+      - `SKILL.md:3: description: UI/UX design intelligence and implementation guidance for building polished interfaces. Use when the user asks for UI design, UX flows, information architecture, visua`
+      - `SKILL.md:22: - **Design system**: Tokens (color/typography/spacing/radius/shadow), component rules, accessibility notes.`
+      - `SKILL.md:32: If you need to quickly generate tokens and page-specific overrides, use the bundled script:`
+    - suspicious_network: 5
+      - `data/typography.csv:2: 1,Classic Elegant,"Serif + Sans",Playfair Display,Inter,"elegant, luxury, sophisticated, timeless, premium, editorial","Luxury brands, fashion, spa, beauty, editorial, magazines, h`
+      - `data/typography.csv:3: 2,Modern Professional,"Sans + Sans",Poppins,Open Sans,"modern, professional, clean, corporate, friendly, approachable","SaaS, corporate sites, business apps, startups, professional`
+      - `data/typography.csv:4: 3,Tech Startup,"Sans + Sans",Space Grotesk,DM Sans,"tech, startup, modern, innovative, bold, futuristic","Tech companies, startups, SaaS, developer tools, AI products","https://fon`
+    - sudo_or_privilege: 2
+      - `references/upstream-README.md:304: sudo apt update && sudo apt install python3`
+      - `references/upstream-skill-content.md:22: sudo apt update && sudo apt install python3`
+  - 风险等级：**medium**
+  - 判定理由：contains sudo/privilege escalation patterns; reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **vercel-cli**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/vercel-cli`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：2 files；可执行/二进制线索 1；脚本线索 1
+  - 可执行/二进制样本：
+    - `vercel-skill.js`
+  - 风险模式命中：2 条（抽样上限每类 5）
+    - child_process_exec: 1
+      - `vercel-skill.js:7: const { execSync } = require('child_process');`
+    - env_or_secret_read: 1
+      - `SKILL.md:28: - VERCEL_TOKEN: Optional, for non-interactive auth`
+  - 风险等级：**medium**
+  - 判定理由：uses child_process/exec/spawn; reads env vars/secrets patterns; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status --porcelain:
+      - `?? skills/vercel-cli/`
+
+- **x-search**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/x-search`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：3 files；可执行/二进制线索 2；脚本线索 2
+  - 可执行/二进制样本：
+    - `scripts/x_search.sync-conflict-20260208-163216-3MIRDQS.sh`
+    - `scripts/x_search.sh`
+  - 风险模式命中：13 条（抽样上限每类 5）
+    - curl_wget: 3
+      - `SKILL.md:106: - The script uses curl to query the xAI Responses API endpoint`
+      - `scripts/x_search.sync-conflict-20260208-163216-3MIRDQS.sh:87: RESPONSE=$(curl -s "${API_HOST}/v1/responses" \`
+      - `scripts/x_search.sh:93: RESPONSE=$(curl -s "${API_HOST}/v1/responses" \`
+    - env_or_secret_read: 5
+      - `scripts/x_search.sh:4: # Options: --from-date YYYY-MM-DD --to-date YYYY-MM-DD --allowed-handles handle1,handle2 --excluded-handles handle1,handle2 --enable-images --enable-videos --thinking --max-tokens `
+      - `scripts/x_search.sh:15: MAX_OUTPUT_TOKENS="280"`
+      - `scripts/x_search.sh:58: --max-tokens)`
+    - suspicious_network: 5
+      - `SKILL.md:22: - `XAI_API_HOST`: API host URL (optional, defaults to https://api.x.ai)`
+      - `SKILL.md:98: [1] https://x.com/i/status/...`
+      - `SKILL.md:99: [2] https://x.com/i/status/...`
+  - 风险等级：**medium**
+  - 判定理由：invokes curl/wget; reads env vars/secrets patterns; contains non-whitelisted outbound URLs; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`c6ffc49 2026-02-07 18:26:11 +0000 feat(skills): add x-search skills and catpaw video generation scaffold`
+
+- **1password**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **a-stock-analysis**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：6 files；可执行/二进制线索 1；脚本线索 2
+  - 可执行/二进制样本：
+    - `scripts/a-stock-analysis`
+  - 风险模式命中：5 条（抽样上限每类 5）
+    - suspicious_network: 5
+      - `scripts/analyze.py:78: url = f"https://hq.sinajs.cn/list={codes_str}"`
+      - `scripts/analyze.py:81: "Referer": "https://finance.sina.com.cn",`
+      - `scripts/analyze.py:178: url = f"https://quotes.sina.cn/cn/api/jsonp_v2.php/var%20_{symbol}=/CN_MarketDataService.getKLineData?symbol={symbol}&scale=1&ma=no&datalen={count}"`
+  - 风险等级：**low**
+  - 判定理由：contains non-whitelisted outbound URLs; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status --porcelain:
+      - `?? skills/a-stock-analysis/scripts/a-stock-analysis`
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **ai-video-generation**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ai-video-generation`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：1 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：6 条（抽样上限每类 5）
+    - curl_wget: 1
+      - `SKILL.md:24: curl -fsSL https://cli.inference.sh | sh && infsh login`
+    - suspicious_network: 5
+      - `SKILL.md:16: ![AI Video Generation](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kg2c0egyg243mnyth4y6g51q.jpeg)`
+      - `SKILL.md:18: Generate videos with 40+ AI models via [inference.sh](https://inference.sh) CLI.`
+      - `SKILL.md:24: curl -fsSL https://cli.inference.sh | sh && infsh login`
+  - 风险等级：**low**
+  - 判定理由：invokes curl/wget; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`c6ffc49 2026-02-07 18:26:11 +0000 feat(skills): add x-search skills and catpaw video generation scaffold`
+
+- **apple-notes**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **apple-reminders**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **bear-notes**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **blogwatcher**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **blucli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **bluebubbles**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **camsnap**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **canvas**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **clawhub**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **coding-agent**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **crypto-price**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/crypto-price`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：7 files；可执行/二进制线索 0；脚本线索 1
+  - 风险模式命中：10 条（抽样上限每类 5）
+    - env_or_secret_read: 5
+      - `SKILL.md:3: description: Get cryptocurrency token price and generate candlestick charts via CoinGecko API or Hyperliquid API. Use when user asks for token price, crypto price, price chart, or `
+      - `SKILL.md:9: Get cryptocurrency token price and generate candlestick charts.`
+      - `SKILL.md:13: Execute the script with token symbol and optional duration:`
+    - suspicious_network: 5
+      - `README.md:130: 1. **Hyperliquid API** (`https://api.hyperliquid.xyz/info`)`
+      - `README.md:134: 2. **CoinGecko API** (`https://api.coingecko.com/api/v3/`)`
+      - `README.md:184: - [ClawdHub](https://clawdhub.com/evgyur/crypto-price)`
+  - 风险等级：**low**
+  - 判定理由：reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **crypto-watch**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/crypto-watch`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：4 files；可执行/二进制线索 1；脚本线索 1
+  - 可执行/二进制样本：
+    - `scripts/crypto_watch.py`
+  - 风险模式命中：3 条（抽样上限每类 5）
+    - suspicious_network: 3
+      - `references/OKX.md:5: - `GET https://www.okx.com/api/v5/market/candles?instId=<INST>&bar=15m&limit=300``
+      - `scripts/crypto_watch.py:25: BINANCE_BASE = "https://api.binance.com"`
+      - `scripts/crypto_watch.py:26: OKX_BASE = "https://www.okx.com"`
+  - 风险等级：**low**
+  - 判定理由：contains non-whitelisted outbound URLs; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`7a34fae 2026-02-07 18:13:44 +0000 feat(crypto-watch): add intrabar shock alerts for unfinished 15m swings`
+
+- **db-readonly**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/db-readonly`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：3 files；可执行/二进制线索 1；脚本线索 1
+  - 可执行/二进制样本：
+    - `scripts/db_readonly.sh`
+  - 风险模式命中：1 条（抽样上限每类 5）
+    - env_or_secret_read: 1
+      - `SKILL.md:51: 4. Avoid printing secrets from env vars.`
+  - 风险等级：**low**
+  - 判定理由：reads env vars/secrets patterns; has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`843624d 2026-02-09 10:41:36 +0000 feat(skill): add db-readonly skill for safe MySQL/Postgres reads`
+
+- **deepwiki**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/deepwiki`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：4 files；可执行/二进制线索 0；脚本线索 1
+  - 风险模式命中：4 条（抽样上限每类 5）
+    - suspicious_network: 4
+      - `SKILL.md:44: - Base Server: `https://mcp.deepwiki.com/mcp``
+      - `scripts/deepwiki.js:15: const SSE_URL = 'https://mcp.deepwiki.com/sse';`
+      - `scripts/deepwiki.js:39: messageUrl = 'https://mcp.deepwiki.com' + data;`
+  - 风险等级：**low**
+  - 判定理由：contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **deepwork-tracker**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：3 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：1 条（抽样上限每类 5）
+    - suspicious_network: 1
+      - `.clawhub/origin.json:3: "registry": "https://clawhub.ai",`
+  - 风险等级：**low**
+  - 判定理由：contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **discord**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **eightctl**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **find-skills**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/find-skills`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：3 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：4 条（抽样上限每类 5）
+    - suspicious_network: 4
+      - `SKILL.md:32: **Browse skills at:** https://skills.sh/`
+      - `SKILL.md:64: └ https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices`
+      - `SKILL.md:84: Learn more: https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices`
+  - 风险等级：**low**
+  - 判定理由：contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status --porcelain:
+      - `M skills/find-skills/.clawhub/origin.json`
+    - git diff --name-only:
+      - `skills/find-skills/.clawhub/origin.json`
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **find-skills**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/find-skills`
+  - Source Root：`/home/ubuntu/.openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：3 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：4 条（抽样上限每类 5）
+    - suspicious_network: 4
+      - `SKILL.md:32: **Browse skills at:** https://skills.sh/`
+      - `SKILL.md:64: └ https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices`
+      - `SKILL.md:84: Learn more: https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices`
+  - 风险等级：**low**
+  - 判定理由：contains non-whitelisted outbound URLs
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：2026-02-12 15:56:02 UTC (`_meta.json`)
+    - sample hash：`79d04c3a3739fc6b`（sampled 3/3 files）
+
+- **food-order**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/food-order`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **gemini**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **gh-issues**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **gifgrep**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **github**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/github`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：3 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：1 条（抽样上限每类 5）
+    - suspicious_network: 1
+      - `.clawhub/origin.json:3: "registry": "https://clawhub.ai",`
+  - 风险等级：**low**
+  - 判定理由：contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **github**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **gog**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **google-workspace-mcp**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：3 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：6 条（抽样上限每类 5）
+    - env_or_secret_read: 5
+      - `SKILL.md:9: **Why this skill?** Traditional Google API access requires creating a project in Google Cloud Console, enabling APIs, creating OAuth credentials, and downloading client_secret.json`
+      - `SKILL.md:20: | Download client_secret.json | ❌ Not needed |`
+      - `SKILL.md:102: **Auth:** auth.clear, auth.refreshToken`
+    - suspicious_network: 1
+      - `.clawhub/origin.json:3: "registry": "https://clawhub.ai",`
+  - 风险等级：**low**
+  - 判定理由：reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`694d94c 2026-02-09 07:42:47 +0000 feat(knowledge): scaffold Obsidian knowledge system and templates`
+
+- **goplaces**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **healthcheck**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **himalaya**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **imap-smtp-email**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：yes (`imap-smtp-email-skill@1.0.0`)
+  - 文件统计：8 files；可执行/二进制线索 0；脚本线索 3
+  - 风险模式命中：6 条（抽样上限每类 5）
+    - env_or_secret_read: 5
+      - `scripts/smtp.js:38: host: process.env.SMTP_HOST,`
+      - `scripts/smtp.js:39: port: parseInt(process.env.SMTP_PORT) || 587,`
+      - `scripts/smtp.js:40: secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports`
+    - suspicious_network: 1
+      - `.clawhub/origin.json:3: "registry": "https://clawhub.ai",`
+  - 风险等级：**low**
+  - 判定理由：reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **imsg**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **knowledge-base-collector**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/knowledge-base-collector`
+  - Source Root：`/home/ubuntu/.openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：7 files；可执行/二进制线索 0；脚本线索 6
+  - 风险模式命中：7 条（抽样上限每类 5）
+    - env_or_secret_read: 5
+      - `SKILL.md:79: - 截图/网页可能包含 token/验证码/密钥：入库前应做脱敏（替换为 `REDACTED`）。`
+      - `scripts/weekly_digest.py:67: kb_root = Path(os.environ.get("KB_ROOT", KB_DEFAULT))`
+      - `scripts/wechat_backlog.py:57: kb_root = Path(os.environ.get("KB_ROOT", KB_DEFAULT))`
+    - suspicious_network: 2
+      - `scripts/ingest_url.py:65: url = url.replace("https://twitter.com/", "https://x.com/")`
+      - `scripts/ingest_url.py:99: rurl = "https://r.jina.ai/" + url`
+  - 风险等级：**low**
+  - 判定理由：reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：2026-02-13 07:08:13 UTC (`SKILL.md`)
+    - sample hash：`758ef7baf3fd2da5`（sampled 7/7 files）
+
+- **mcporter**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **model-usage**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **nano-banana-pro**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **nano-pdf**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **notion**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **obsidian**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **obsidian-integration**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/obsidian-integration`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：yes (`obsidian-integration@1.0.0`)
+  - 文件统计：4 files；可执行/二进制线索 0；脚本线索 1
+  - 风险模式命中：1 条（抽样上限每类 5）
+    - child_process_exec: 1
+      - `index.js:3: const { execSync } = require('child_process');`
+  - 风险等级：**low**
+  - 判定理由：uses child_process/exec/spawn
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status --porcelain:
+      - `?? skills/obsidian-integration/`
+
+- **openai-image-gen**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **openai-whisper**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **openai-whisper-api**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **openhue**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **oracle**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **ordercli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **peekaboo**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **sag**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **self-reflection**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/self-reflection`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：5 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：1 条（抽样上限每类 5）
+    - suspicious_network: 1
+      - `.clawhub/origin.json:3: "registry": "https://clawhub.ai",`
+  - 风险等级：**low**
+  - 判定理由：contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **session-logs**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **sherpa-onnx-tts**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **skill-creator**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **slack**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **songsee**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **sonoscli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **spotify-player**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **summarize**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **task-status**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/task-status`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：10 files；可执行/二进制线索 0；脚本线索 5
+  - 风险模式命中：6 条（抽样上限每类 5）
+    - env_or_secret_read: 5
+      - `scripts/send_status_websocket.py:47: gateway_port = os.environ.get("CLAWDBOT_GATEWAY_PORT", "18789")`
+      - `scripts/send_status_websocket.py:48: gateway_token = os.environ.get("CLAWDBOT_GATEWAY_TOKEN")`
+      - `scripts/send_status_websocket.py:49: target = os.environ.get("TELEGRAM_TARGET", "7590912486")`
+    - suspicious_network: 1
+      - `.clawhub/origin.json:3: "registry": "https://clawhub.ai",`
+  - 风险等级：**low**
+  - 判定理由：reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **technews**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/technews`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：9 files；可执行/二进制线索 0；脚本线索 4
+  - 风险模式命中：6 条（抽样上限每类 5）
+    - env_or_secret_read: 1
+      - `SKILL.md:22: - Optional: `tiktoken` for token-aware truncation`
+    - suspicious_network: 5
+      - `scripts/techmeme_scraper.py:13: TECHMEME_RSS = "https://www.techmeme.com/feed.xml"`
+      - `scripts/social_reactions.py:13: TWITTER_SEARCH = "https://nitter.net/search"`
+      - `scripts/social_reactions.py:53: hn_api = "https://hn.algolia.com/api/v1/search"`
+  - 风险等级：**low**
+  - 判定理由：reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **things-mac**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **tmux**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **trading-journal**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/trading-journal`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：2 files；可执行/二进制线索 1；脚本线索 1
+  - 可执行/二进制样本：
+    - `scripts/trade-log.sh`
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：has executable/binary files
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`434c59e 2026-02-06 17:10:27 +0000 feat(trading-journal): echo saved entry + commentary`
+
+- **trello**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **video-frames**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **voice-call**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **wacli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **weather**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather`
+  - Source Root：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：0 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：0 条（抽样上限每类 5）
+  - 风险等级：**low**
+  - 判定理由：no high-risk pattern hit beyond typical tooling scripts
+  - 变更信息（非 git，mtime/hash 近似）：
+    - latest mtime：n/a (`None`)
+    - sample hash：`e3b0c44298fc1c14`（sampled 0/0 files）
+
+- **webapp-testing**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/webapp-testing`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：8 files；可执行/二进制线索 0；脚本线索 4
+  - 风险模式命中：3 条（抽样上限每类 5）
+    - suspicious_network: 3
+      - `LICENSE.txt:4: http://www.apache.org/licenses/`
+      - `LICENSE.txt:196: http://www.apache.org/licenses/LICENSE-2.0`
+      - `.clawhub/origin.json:3: "registry": "https://clawhub.ai",`
+  - 风险等级：**low**
+  - 判定理由：contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`
+
+- **xai-x-search**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/xai-x-search`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：1 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：3 条（抽样上限每类 5）
+    - env_or_secret_read: 1
+      - `SKILL.md:18: api_key=os.getenv("XAI_API_KEY"),`
+    - suspicious_network: 2
+      - `SKILL.md:19: base_url="https://api.x.ai/v1"`
+      - `SKILL.md:310: - [Agent Tools API](https://x.ai/news/grok-4-1-fast/)`
+  - 风险等级：**low**
+  - 判定理由：reads env vars/secrets patterns; contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`c6ffc49 2026-02-07 18:26:11 +0000 feat(skills): add x-search skills and catpaw video generation scaffold`
+
+- **YouTube**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/YouTube`
+  - Source Root：`/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md：yes
+  - package.json：no
+  - 文件统计：4 files；可执行/二进制线索 0；脚本线索 0
+  - 风险模式命中：5 条（抽样上限每类 5）
+    - suspicious_network: 5
+      - `SKILL.md:36: 1. Go to [Google Cloud Console](https://console.cloud.google.com)`
+      - `SKILL.md:131: "https://youtube.com/watch?v=Z-FRe5AKmCU"`
+      - `SKILL.md:139: "https://youtube.com/watch?v=VIDEO_ID" 2>&1 | grep -A1000 "WEBVTT"`
+  - 风险等级：**low**
+  - 判定理由：contains non-whitelisted outbound URLs
+  - 变更信息（git）：repo=`/home/ubuntu/.openclaw/workspace`
+    - git status：clean（该 skill 路径下无未提交变更）
+    - 最近提交：`fb7d41f 2026-02-06 21:45:24 +0800 initial: claw-roam setup`

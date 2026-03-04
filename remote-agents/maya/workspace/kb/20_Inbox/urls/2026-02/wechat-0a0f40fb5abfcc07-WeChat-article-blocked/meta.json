@@ -1,0 +1,17 @@
+{
+  "key": "0a0f40fb5abfcc07",
+  "url": "https://mp.weixin.qq.com/s/9JEbDDGSpd_p9O1UoxkaLQ",
+  "title": "WeChat article (blocked)",
+  "source": "wechat",
+  "createdAt": "2026-02-13T05:36:37Z",
+  "tags": [
+    "#source:wechat",
+    "#type:article",
+    "#needs-manual",
+    "#ai",
+    "#social"
+  ],
+  "status": "blocked_verification",
+  "extractor": "placeholder",
+  "note": "用户要求测试：云端直抓；结果命中环境异常，需要本地/后续补抓"
+}

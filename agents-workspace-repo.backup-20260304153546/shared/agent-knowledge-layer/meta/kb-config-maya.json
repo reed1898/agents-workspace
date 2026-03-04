@@ -1,0 +1,7 @@
+{
+  "repo_url": "https://github.com/reed1898/agent-knowledge-layer.git",
+  "local_path": "/home/ubuntu/.openclaw/shared/agent-knowledge-layer",
+  "branch": "agent/maya",
+  "private_root": "private",
+  "shared_root": "shared"
+}

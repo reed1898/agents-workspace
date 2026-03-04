@@ -1,0 +1,14 @@
+{
+  "key": "45a6311e163d7f1a",
+  "imageKey": "93485d252bb1df8c",
+  "title": "Screenshot: file_34---aed4dd53-8b15-454b-80ce-534d2ae1b49a.jpg",
+  "source": "image",
+  "createdAt": "2026-02-13T04:32:13Z",
+  "tags": [
+    "#source:image",
+    "#type:screenshot"
+  ],
+  "status": "ok",
+  "imageFile": "image.jpg",
+  "extractor": "external-vision"
+}

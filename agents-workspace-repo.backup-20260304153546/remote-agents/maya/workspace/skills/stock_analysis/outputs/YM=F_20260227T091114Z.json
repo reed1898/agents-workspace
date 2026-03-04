@@ -1,0 +1,38 @@
+{
+  "symbol": "YM=F",
+  "company": "Mini Dow Jones Indus.-$5 Mar 26",
+  "as_of": "2026-02-27T09:11:14.607310+00:00",
+  "price": 49347.0,
+  "currency": "USD",
+  "change_percent": -0.37,
+  "valuation": {
+    "pe": null,
+    "market_cap": null
+  },
+  "technical": {
+    "sma20": 49571.25,
+    "sma50": 49247.0,
+    "rsi14": 36.57,
+    "trend": "sideways"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 50,
+    "momentum": 50,
+    "total": 57.7
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

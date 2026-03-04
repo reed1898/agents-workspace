@@ -1,0 +1,18 @@
+{
+  "key": "b127c8247b90967b",
+  "imageKey": "d158c3d41659b98b",
+  "title": "Elys：AI 社交/AI 分身（截图·自动OCR）",
+  "source": "image",
+  "createdAt": "2026-02-13T04:31:00Z",
+  "tags": [
+    "#source:image",
+    "#type:screenshot",
+    "#ai",
+    "#social",
+    "#product"
+  ],
+  "status": "ok",
+  "imageFile": "image.jpg",
+  "extractor": "external-vision",
+  "note": "自动OCR入库测试"
+}

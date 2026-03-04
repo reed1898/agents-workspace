@@ -1,0 +1,33 @@
+{
+  "auto_archive": {
+    "categories": ["promotions"],
+    "keywords": ["促销", "优惠", "限时", "团购", "折扣", "免费试用", "立即购买", "优惠码"],
+    "senders": ["newsletter@", "no-reply@", "marketing@", "noreply@"]
+  },
+  "important_alerts": {
+    "senders": [
+      "mexc.com",
+      "binance.com",
+      "okx.com",
+      "matrixport.com",
+      "google.com",
+      "github.com"
+    ],
+    "keywords": ["下架", "冻结", "安全", "密码", "验证", "提币", "登录", "异常", "警告", "风险"],
+    "notify_via": "telegram"
+  },
+  "newsletter": {
+    "senders": [
+      "substack.com",
+      "ycombinator.com",
+      "seekingalpha.com",
+      "diamandis.com"
+    ],
+    "action": "summarize",
+    "max_summary_length": 500
+  },
+  "telegram": {
+    "enabled": true,
+    "summary_enabled": true
+  }
+}

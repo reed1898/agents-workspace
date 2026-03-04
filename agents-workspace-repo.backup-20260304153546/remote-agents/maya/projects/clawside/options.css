@@ -1,0 +1,186 @@
+:root {
+  --oc-bg: #f7f8fa;
+  --oc-card: #ffffff;
+  --oc-border: #dde2ea;
+  --oc-text: #1a1d24;
+  --oc-muted: #667085;
+  --oc-primary: #2563eb;
+  --oc-primary-hover: #1d4ed8;
+
+  --oc-radius-sm: 8px;
+  --oc-radius-md: 12px;
+  --oc-radius-lg: 16px;
+
+  --oc-font-xs: 11px;
+  --oc-font-sm: 13px;
+  --oc-font-base: 14px;
+  --oc-font-title: 20px;
+
+  --oc-btn-h: 36px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--oc-bg);
+  color: var(--oc-text);
+  font-family: -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  font-size: var(--oc-font-base);
+}
+
+.oc-options-page {
+  width: min(720px, 100% - 40px);
+  margin: 24px auto 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.oc-options-header {
+  padding: 6px 0;
+}
+
+.oc-options-header h1 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.oc-options-header p {
+  margin: 0;
+  color: var(--oc-muted);
+  font-size: var(--oc-font-sm);
+}
+
+.oc-card {
+  background: var(--oc-card);
+  border: 1px solid var(--oc-border);
+  border-radius: var(--oc-radius-lg);
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.oc-card-head {
+  margin-bottom: 14px;
+}
+
+.oc-card-head h2 {
+  margin: 0 0 4px;
+  font-size: var(--oc-font-base);
+  font-weight: 600;
+}
+
+.oc-card-head p {
+  margin: 0;
+  font-size: var(--oc-font-sm);
+  color: var(--oc-muted);
+}
+
+.oc-grid-one {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.oc-grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.oc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.oc-field span {
+  font-size: var(--oc-font-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--oc-muted);
+  font-weight: 500;
+}
+
+.oc-field input,
+.oc-field select {
+  width: 100%;
+  height: var(--oc-btn-h);
+  border: 1px solid var(--oc-border);
+  border-radius: var(--oc-radius-sm);
+  padding: 0 10px;
+  background: #fff;
+  color: var(--oc-text);
+  font-size: var(--oc-font-base);
+  outline: none;
+}
+
+.oc-field input:focus,
+.oc-field select:focus {
+  border-color: #93b4fd;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.oc-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.oc-btn {
+  height: var(--oc-btn-h);
+  border: 1px solid var(--oc-border);
+  border-radius: var(--oc-radius-sm);
+  background: #fff;
+  color: var(--oc-text);
+  font-size: var(--oc-font-sm);
+  font-weight: 600;
+  padding: 0 14px;
+  cursor: pointer;
+  transition: background 130ms ease, border-color 130ms ease;
+}
+
+.oc-btn:hover {
+  background: #f0f4ff;
+  border-color: #c6d4f7;
+}
+
+.oc-btn-primary {
+  background: var(--oc-primary);
+  color: #fff;
+  border-color: var(--oc-primary);
+}
+
+.oc-btn-primary:hover {
+  background: var(--oc-primary-hover);
+  border-color: var(--oc-primary-hover);
+}
+
+.oc-status {
+  margin: 0;
+  min-height: var(--oc-btn-h);
+  padding: 8px 10px;
+  border-radius: var(--oc-radius-sm);
+  border: 1px solid var(--oc-border);
+  background: #f8fafc;
+  color: var(--oc-text);
+  font-size: var(--oc-font-sm);
+  white-space: pre-wrap;
+}
+
+@media (max-width: 640px) {
+  .oc-grid-two {
+    grid-template-columns: 1fr;
+  }
+
+  .oc-options-page {
+    width: min(720px, 100% - 24px);
+    margin-top: 16px;
+  }
+}

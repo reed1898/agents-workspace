@@ -1,0 +1,105 @@
+{
+  "run_id": "daily-20260224-171656-evening-day6-7-reliability",
+  "timestamp_utc": "2026-02-24T17:16:56.071199+00:00",
+  "phase": "evening",
+  "topic": "day6-7-reliability",
+  "dry_run": false,
+  "max_attempts": 3,
+  "retry_base_seconds": 0.2,
+  "steps": {
+    "generate_daily_summary": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/generate_daily_summary.py",
+            "--phase",
+            "evening",
+            "--topic",
+            "day6-7-reliability",
+            "--output",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-171656-evening-day6-7-reliability-summary.json",
+            "--pretty"
+          ],
+          "returncode": 0,
+          "stdout": "[generate_daily_summary] phase=evening topic=day6-7-reliability\n[generate_daily_summary] written output: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-171656-evening-day6-7-reliability-summary.json\n[generate_daily_summary] done\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    },
+    "write_kb": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/write_kb.py",
+            "--input-json",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-171656-evening-day6-7-reliability-summary.json",
+            "--receipt-path",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-171656-evening-day6-7-reliability-write-kb-receipt.json",
+            "--no-dry-run"
+          ],
+          "returncode": 0,
+          "stdout": "[write_kb] dry_run=False\n[write_kb] target=/home/ubuntu/.openclaw/kb/01_Daily/2026-02-24-day6-7-reliability.md\n[write_kb] written: /home/ubuntu/.openclaw/kb/01_Daily/2026-02-24-day6-7-reliability.md\n[write_kb] done\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    },
+    "send_telegram": {
+      "ok": false,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/send_telegram.py",
+            "--input-json",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-171656-evening-day6-7-reliability-summary.json",
+            "--account-id",
+            "maya",
+            "--target",
+            "telegram:invalid_target",
+            "--logs-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs",
+            "--queue-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending",
+            "--receipt-path",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-171656-evening-day6-7-reliability-telegram-receipt.json",
+            "--attempt",
+            "1",
+            "--run-id",
+            "daily-20260224-171656-evening-day6-7-reliability",
+            "--no-dry-run"
+          ],
+          "returncode": 6,
+          "stdout": "[send_telegram] dry_run=False, calling OpenClaw message send\n[send_telegram] ERROR send failed rc=1 class=fatal\n[send_telegram] queued pending task: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending/telegram-pending-20260224-171656.json\n[send_telegram] receipt written: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-171656-evening-day6-7-reliability-telegram-receipt.json\n",
+          "stderr": "",
+          "ok": false,
+          "attempt": 1,
+          "error_class": "fatal"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "fatal"
+    }
+  },
+  "artifacts": {
+    "summary_json": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-171656-evening-day6-7-reliability-summary.json",
+    "kb_receipt": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-171656-evening-day6-7-reliability-write-kb-receipt.json",
+    "telegram_receipt": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260224-171656-evening-day6-7-reliability-telegram-receipt.json",
+    "pending_queue_dir": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending"
+  },
+  "success": false,
+  "report_path": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/reports/run-report-20260224-171658.json"
+}

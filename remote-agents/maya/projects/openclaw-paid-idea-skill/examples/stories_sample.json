@@ -1,0 +1,37 @@
+[
+  {
+    "id": 100001,
+    "title": "Open-source API monitoring for AI agents",
+    "url": "https://example.com/api-monitoring",
+    "score": 182,
+    "by": "maker1"
+  },
+  {
+    "id": 100002,
+    "title": "Workflow automation toolkit for developer teams",
+    "url": "https://example.com/workflow-toolkit",
+    "score": 145,
+    "by": "maker2"
+  },
+  {
+    "id": 100003,
+    "title": "Security scanner for cloud startups",
+    "url": "https://example.com/security-scanner",
+    "score": 121,
+    "by": "maker3"
+  },
+  {
+    "id": 100004,
+    "title": "AI coding assistant usage analytics",
+    "url": "https://example.com/coding-analytics",
+    "score": 134,
+    "by": "maker4"
+  },
+  {
+    "id": 100005,
+    "title": "Productivity dashboard for subscription SaaS",
+    "url": "https://example.com/productivity-dashboard",
+    "score": 116,
+    "by": "maker5"
+  }
+]

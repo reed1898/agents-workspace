@@ -1,0 +1,847 @@
+# Skills Security Scan Report
+
+- 扫描时间(UTC): 2026-02-16T16:02:47.582576Z
+- 扫描范围:
+  - `/home/ubuntu/.openclaw/workspace/skills`
+  - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - `/home/ubuntu/.openclaw/skills`
+- 总技能目录数: 97
+- 风险分布: low=71, medium=19, high=7
+
+## 今晚结论摘要
+
+1. 本次共扫描 **97** 个 skill 目录，发现 **7 个 high 风险**（均为静态规则命中，需人工复核上下文）。
+2. high 风险主要来自：文档示例中出现 `eval/new Function`、`sudo`、`child_process`、`curl/wget` 关键词，或脚本确实调用外部命令。
+3. 未发现明确恶意的隐蔽下载执行链（如远程payload+直接执行）证据；但部分 skill 具备较强执行能力，应继续最小权限运行。
+4. 建议优先复核 high 列表中的脚本与说明文档，区分“文档提及”与“真实代码路径可达”。
+
+## 高风险清单 (high)
+- `/home/ubuntu/.openclaw/skills/clawra-selfie`：包含 exec/spawn/child_process；包含 curl/wget 调用；读取环境变量/密钥标识；包含二进制文件
+- `/home/ubuntu/.openclaw/workspace/skills/browse`：出现 eval/new Function 动态执行；包含 curl/wget 调用；读取环境变量/密钥标识
+- `/home/ubuntu/.openclaw/workspace/skills/browse/skills/functions`：出现 eval/new Function 动态执行；包含 curl/wget 调用；读取环境变量/密钥标识
+- `/home/ubuntu/.openclaw/workspace/skills/clawra`：包含 exec/spawn/child_process；包含 curl/wget 调用；读取环境变量/密钥标识；包含二进制文件
+- `/home/ubuntu/.openclaw/workspace/skills/clawra/skill`：包含 exec/spawn/child_process；包含 curl/wget 调用；读取环境变量/密钥标识；包含二进制文件
+- `/home/ubuntu/.openclaw/workspace/skills/skill-vetter`：出现 sudo/权限提升痕迹；出现 eval/new Function 动态执行；出现 base64 解码相关逻辑；涉及 .ssh/密钥文件路径
+- `/home/ubuntu/.openclaw/workspace/skills/stock_analysis`：出现 sudo/权限提升痕迹；包含 curl/wget 调用
+
+## 按 skill 列表详细结果
+
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `158ccef0c69d6a6f`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `db0a73dfbd06acfa`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `c54e9a11b606b75c`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `cef6f4e8455e765e`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `e4e82e5a9546ae71`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `196e92a9979cb866`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **medium**
+  - why: 出现 base64 解码相关逻辑
+  - matched_patterns: base64_exec
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `4a5fc1e5217b9ccd`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `a120fb5dea4d49d9`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **medium**
+  - why: 包含 curl/wget 调用；存在 http 明文或未知外部域名请求
+  - matched_patterns: curl_wget, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `1013bb38d077d968`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `7fbfc9142d6aab6f`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `1d79cc5d63da9bb2`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `5de6739ce760b258`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `8ca4183c8ff43a77`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/food-order`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `e2cc5e65e49ee50c`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `f65801d4dbc43493`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `21d7270cdd4e9684`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: none
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `c30addee8b6523c5`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `ff6172e83775d88f`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `b05081e808586867`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `d859d3a922ba547c`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `acb4cb6bc166cecc`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `c073d36b1fcdcd40`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/local-places`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 7; scripts: 4; binaries: 0
+  - risk: **medium**
+  - why: 包含 curl/wget 调用；读取环境变量/密钥标识；存在 http 明文或未知外部域名请求
+  - matched_patterns: curl_wget, env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `95781cb005061af1`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 存在 http 明文或未知外部域名请求
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `70ab20549cefc984`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `c4466819e5041c7c`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 2; scripts: 1; binaries: 0
+  - risk: **medium**
+  - why: 出现 base64 解码相关逻辑；读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net, base64_exec
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `54f01307fafdcbea`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `c32102821e9b5363`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **medium**
+  - why: 包含 curl/wget 调用；读取环境变量/密钥标识
+  - matched_patterns: curl_wget, env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `ae37d971ced545c0`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `1ba2bcf670154c99`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 2; scripts: 1; binaries: 0
+  - risk: **medium**
+  - why: 出现 base64 解码相关逻辑；读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net, base64_exec
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `6dde5a160009fe84`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `1ac08b014e21812d`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 2; scripts: 1; binaries: 0
+  - risk: **medium**
+  - why: 包含 curl/wget 调用；读取环境变量/密钥标识
+  - matched_patterns: curl_wget, env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `2b02ed57fd812acb`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `9811b1ef370e43a7`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `27f3bdd0964f2c2e`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `9c076e562d1822aa`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `08318aafcee33245`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `41c0dad6e3215e20`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `6bb6f6be72504f8e`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 2; scripts: 0; binaries: 0
+  - risk: **medium**
+  - why: 包含 exec/spawn/child_process；读取环境变量/密钥标识
+  - matched_patterns: child_process, env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `7fb91c0906fe5044`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 6; scripts: 3; binaries: 1
+  - risk: **medium**
+  - why: 读取环境变量/密钥标识；包含二进制文件；存在 http 明文或未知外部域名请求
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-13 05:55 UTC; content_hash16: `e844f61849041c8f`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `1f853d72f855ea25`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `5ad49c286b699608`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `7c7cc08fe74cea2e`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `b6f7ae3ab4777f4d`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `9d5836335a9cab04`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `bb202ceb2ab68396`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 2; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: none
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `8433cc6c84f5a13a`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **medium**
+  - why: 包含 curl/wget 调用；读取环境变量/密钥标识
+  - matched_patterns: curl_wget, env_secret, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `667e69af743d0a3a`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 2; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `f25ec1ee840c0901`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `ec9add51254f2ef1`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `120cbb0bfb06beff`
+- `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather`
+  - source_root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 包含 curl/wget 调用
+  - matched_patterns: curl_wget, suspicious_net
+  - latest_mtime: 2026-02-07 10:10 UTC; content_hash16: `98f7308f369634d0`
+- `/home/ubuntu/.openclaw/skills/clawra-selfie`
+  - source_root: `/home/ubuntu/.openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 4; scripts: 2; binaries: 1
+  - risk: **high**
+  - why: 包含 exec/spawn/child_process；包含 curl/wget 调用；读取环境变量/密钥标识；包含二进制文件
+  - matched_patterns: child_process, curl_wget, env_secret, suspicious_net
+  - latest_mtime: 2026-02-11 17:10 UTC; content_hash16: `169436ccafcef7f7`
+- `/home/ubuntu/.openclaw/skills/find-skills`
+  - source_root: `/home/ubuntu/.openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-12 15:56 UTC; content_hash16: `ac07bc1b441fa434`
+- `/home/ubuntu/.openclaw/skills/google-workspace`
+  - source_root: `/home/ubuntu/.openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 12; scripts: 10; binaries: 0
+  - risk: **medium**
+  - why: 出现 base64 解码相关逻辑；读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net, base64_exec
+  - latest_mtime: 2026-02-08 06:27 UTC; content_hash16: `77fc0da64ba4cbd6`
+- `/home/ubuntu/.openclaw/skills/knowledge-base-collector`
+  - source_root: `/home/ubuntu/.openclaw/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 13; scripts: 6; binaries: 6
+  - risk: **medium**
+  - why: 读取环境变量/密钥标识；包含二进制文件
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-13 07:08 UTC; content_hash16: `00ec04bff7392624`
+- `/home/ubuntu/.openclaw/workspace/skills/Gmail`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 0; binaries: 0
+  - risk: **medium**
+  - why: 出现 base64 解码相关逻辑；包含 curl/wget 调用；读取环境变量/密钥标识
+  - matched_patterns: curl_wget, env_secret, suspicious_net, base64_exec
+  - latest_mtime: 2026-02-03 08:35 UTC; content_hash16: `2002353793bbd298`
+- `/home/ubuntu/.openclaw/workspace/skills/YouTube`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 4; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `499baa828a9b78cf`
+- `/home/ubuntu/.openclaw/workspace/skills/_disabled`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: no; package.json: no
+  - files: 7; scripts: 1; binaries: 0
+  - risk: **medium**
+  - why: 出现 base64 解码相关逻辑；包含 curl/wget 调用；读取环境变量/密钥标识
+  - matched_patterns: curl_wget, env_secret, suspicious_net, base64_exec
+  - latest_mtime: 2026-02-08 03:43 UTC; content_hash16: `b64283b43a92c850`
+- `/home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 0; binaries: 0
+  - risk: **medium**
+  - why: 出现 base64 解码相关逻辑；包含 curl/wget 调用；读取环境变量/密钥标识
+  - matched_patterns: curl_wget, env_secret, suspicious_net, base64_exec
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `2002353793bbd298`
+- `/home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 4; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-08 03:43 UTC; content_hash16: `475fae3f6e96b154`
+- `/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 6; scripts: 2; binaries: 1
+  - risk: **low**
+  - why: 包含二进制文件
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-10 02:52 UTC; content_hash16: `fdac6352f64d23e0`
+- `/home/ubuntu/.openclaw/workspace/skills/ai-video-generation`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 包含 curl/wget 调用
+  - matched_patterns: curl_wget, suspicious_net
+  - latest_mtime: 2026-02-08 03:45 UTC; content_hash16: `58d5031de9e6ac14`
+- `/home/ubuntu/.openclaw/workspace/skills/avatarkit`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: yes
+  - files: 21; scripts: 10; binaries: 0
+  - risk: **medium**
+  - why: 出现 base64 解码相关逻辑；读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net, base64_exec
+  - latest_mtime: 2026-02-11 07:35 UTC; content_hash16: `1844456319a9bf8c`
+- `/home/ubuntu/.openclaw/workspace/skills/browse`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 9; scripts: 0; binaries: 0
+  - risk: **high**
+  - why: 出现 eval/new Function 动态执行；包含 curl/wget 调用；读取环境变量/密钥标识
+  - matched_patterns: curl_wget, env_secret, suspicious_net, eval
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `9aa667cf82b47c18`
+- `/home/ubuntu/.openclaw/workspace/skills/browse/skills/auth`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: none
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `3212959692dd2a19`
+- `/home/ubuntu/.openclaw/workspace/skills/browse/skills/browser-automation`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `0c42a52c45b03ef3`
+- `/home/ubuntu/.openclaw/workspace/skills/browse/skills/create`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 包含 curl/wget 调用
+  - matched_patterns: curl_wget, suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `40b7342b1a29859d`
+- `/home/ubuntu/.openclaw/workspace/skills/browse/skills/fix`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `e632fb8d0600199e`
+- `/home/ubuntu/.openclaw/workspace/skills/browse/skills/functions`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **high**
+  - why: 出现 eval/new Function 动态执行；包含 curl/wget 调用；读取环境变量/密钥标识
+  - matched_patterns: curl_wget, env_secret, suspicious_net, eval
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `fff52b58cf345dba`
+- `/home/ubuntu/.openclaw/workspace/skills/claw-roam`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 4; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-06 17:49 UTC; content_hash16: `475fae3f6e96b154`
+- `/home/ubuntu/.openclaw/workspace/skills/clawra`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: yes
+  - files: 14; scripts: 5; binaries: 2
+  - risk: **high**
+  - why: 包含 exec/spawn/child_process；包含 curl/wget 调用；读取环境变量/密钥标识；包含二进制文件
+  - matched_patterns: child_process, curl_wget, env_secret, suspicious_net
+  - latest_mtime: 2026-02-11 17:30 UTC; content_hash16: `f4ce4bf7b4c0c33b`
+- `/home/ubuntu/.openclaw/workspace/skills/clawra/skill`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 4; scripts: 2; binaries: 1
+  - risk: **high**
+  - why: 包含 exec/spawn/child_process；包含 curl/wget 调用；读取环境变量/密钥标识；包含二进制文件
+  - matched_patterns: child_process, curl_wget, env_secret, suspicious_net
+  - latest_mtime: 2026-02-11 17:30 UTC; content_hash16: `c60feee4c9b6431b`
+- `/home/ubuntu/.openclaw/workspace/skills/crypto-price`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 7; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `cf45dc6c566c0fbc`
+- `/home/ubuntu/.openclaw/workspace/skills/crypto-watch`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 5; scripts: 1; binaries: 1
+  - risk: **low**
+  - why: 包含二进制文件
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-08 03:45 UTC; content_hash16: `9567b4cc0b8ac669`
+- `/home/ubuntu/.openclaw/workspace/skills/db-readonly`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret
+  - latest_mtime: 2026-02-09 10:41 UTC; content_hash16: `50c98159c8c2d067`
+- `/home/ubuntu/.openclaw/workspace/skills/deepwiki`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 4; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `aaad57c4fe710700`
+- `/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `7948cbbf5d90971b`
+- `/home/ubuntu/.openclaw/workspace/skills/find-skills`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-12 15:56 UTC; content_hash16: `f63a08c850297d7d`
+- `/home/ubuntu/.openclaw/workspace/skills/github`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `218878e31a3b5532`
+- `/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: yes
+  - files: 17; scripts: 13; binaries: 0
+  - risk: **low**
+  - why: 包含 exec/spawn/child_process
+  - matched_patterns: child_process
+  - latest_mtime: 2026-02-16 12:35 UTC; content_hash16: `d648f34e0f6710ac`
+- `/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-08 07:52 UTC; content_hash16: `b04ee0d717171d6f`
+- `/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: yes
+  - files: 8; scripts: 3; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `791f76594921df6e`
+- `/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 5; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-06 17:04 UTC; content_hash16: `5fd2d3fdb113d812`
+- `/home/ubuntu/.openclaw/workspace/skills/obsidian-integration`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: yes
+  - files: 4; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 包含 exec/spawn/child_process
+  - matched_patterns: child_process
+  - latest_mtime: 2026-02-09 08:28 UTC; content_hash16: `03c6c25a021e1114`
+- `/home/ubuntu/.openclaw/workspace/skills/reminder`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 6; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-12 17:54 UTC; content_hash16: `58994fc1e74204d1`
+- `/home/ubuntu/.openclaw/workspace/skills/self-reflection`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 5; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `6a9b145784f8c3d3`
+- `/home/ubuntu/.openclaw/workspace/skills/skill-vetter`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 0; binaries: 0
+  - risk: **high**
+  - why: 出现 sudo/权限提升痕迹；出现 eval/new Function 动态执行；出现 base64 解码相关逻辑；涉及 .ssh/密钥文件路径
+  - matched_patterns: child_process, curl_wget, ssh_write, env_secret, suspicious_net, eval, base64_exec, sudo
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `d233428b8bb4d13a`
+- `/home/ubuntu/.openclaw/workspace/skills/stock_analysis`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 133; scripts: 3; binaries: 0
+  - risk: **high**
+  - why: 出现 sudo/权限提升痕迹；包含 curl/wget 调用
+  - matched_patterns: curl_wget, suspicious_net, sudo
+  - latest_mtime: 2026-02-16 14:02 UTC; content_hash16: `e5d6d2785d2c7902`
+- `/home/ubuntu/.openclaw/workspace/skills/task-status`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 10; scripts: 5; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `4fd8cab0a5b609d0`
+- `/home/ubuntu/.openclaw/workspace/skills/technews`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 9; scripts: 4; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `dd8a424d8a596fb5`
+- `/home/ubuntu/.openclaw/workspace/skills/trading-journal`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 2; scripts: 1; binaries: 0
+  - risk: **low**
+  - why: 未命中高危模式
+  - matched_patterns: none
+  - latest_mtime: 2026-02-08 03:43 UTC; content_hash16: `b764bd8fa7e72e0b`
+- `/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 57; scripts: 4; binaries: 0
+  - risk: **medium**
+  - why: 出现 sudo/权限提升痕迹；读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net, sudo
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `f9e2ed53dea85708`
+- `/home/ubuntu/.openclaw/workspace/skills/vercel-cli`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 2; scripts: 1; binaries: 0
+  - risk: **medium**
+  - why: 包含 exec/spawn/child_process；读取环境变量/密钥标识
+  - matched_patterns: child_process, env_secret
+  - latest_mtime: 2026-02-11 07:23 UTC; content_hash16: `a4a75091e38cede6`
+- `/home/ubuntu/.openclaw/workspace/skills/webapp-testing`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 8; scripts: 4; binaries: 0
+  - risk: **low**
+  - why: 存在 http 明文或未知外部域名请求
+  - matched_patterns: suspicious_net
+  - latest_mtime: 2026-02-06 15:37 UTC; content_hash16: `b03548cd9f2654bb`
+- `/home/ubuntu/.openclaw/workspace/skills/x-search`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 3; scripts: 2; binaries: 0
+  - risk: **medium**
+  - why: 包含 curl/wget 调用；读取环境变量/密钥标识
+  - matched_patterns: curl_wget, env_secret, suspicious_net
+  - latest_mtime: 2026-02-08 05:42 UTC; content_hash16: `095a86f9af557fe4`
+- `/home/ubuntu/.openclaw/workspace/skills/xai-x-search`
+  - source_root: `/home/ubuntu/.openclaw/workspace/skills`
+  - SKILL.md: yes; package.json: no
+  - files: 1; scripts: 0; binaries: 0
+  - risk: **low**
+  - why: 读取环境变量/密钥标识
+  - matched_patterns: env_secret, suspicious_net
+  - latest_mtime: 2026-02-08 03:45 UTC; content_hash16: `f675abbb76b6af72`
+
+## 新增/变化检查
+- root: `/home/ubuntu/.openclaw/workspace/skills`
+  - git repo: `/home/ubuntu/.openclaw/workspace`
+  - git status changes: 13 项
+    - ` M skills/find-skills/.clawhub/origin.json`
+    - ` M skills/stock_analysis/SKILL.md`
+    - `?? skills/Gmail/`
+    - `?? skills/avatarkit/`
+    - `?? skills/claw-roam/`
+    - `?? skills/gmail-auto-processor/`
+    - `?? skills/obsidian-integration/`
+    - `?? skills/reminder/.clawhub/`
+    - `?? skills/reminder/SKILL.sync-conflict-20260208-083216-R4LZGWG.md`
+    - `?? skills/reminder/_meta.json`
+    - ... +3 more
+  - git diff files: 2 项
+    - `skills/find-skills/.clawhub/origin.json`
+    - `skills/stock_analysis/SKILL.md`
+- root: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills`
+  - 非 git 仓库，按最近 mtime 采样:
+    - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator/scripts/__pycache__/quick_validate.cpython-312.pyc` @ 2026-02-13 05:55 UTC
+    - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator/license.txt` @ 2026-02-07 10:10 UTC
+    - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/local-places/pyproject.toml` @ 2026-02-07 10:10 UTC
+    - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux/scripts/wait-for-text.sh` @ 2026-02-07 10:10 UTC
+    - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api/scripts/transcribe.sh` @ 2026-02-07 10:10 UTC
+    - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames/scripts/frame.sh` @ 2026-02-07 10:10 UTC
+    - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux/scripts/find-sessions.sh` @ 2026-02-07 10:10 UTC
+    - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/local-places/src/local_places/schemas.py` @ 2026-02-07 10:10 UTC
+    - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator/scripts/quick_validate.py` @ 2026-02-07 10:10 UTC
+    - `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py` @ 2026-02-07 10:10 UTC
+- root: `/home/ubuntu/.openclaw/skills`
+  - 非 git 仓库，按最近 mtime 采样:
+    - `/home/ubuntu/.openclaw/skills/knowledge-base-collector/SKILL.md` @ 2026-02-13 07:08 UTC
+    - `/home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/__pycache__/weekly_digest.cpython-312.pyc` @ 2026-02-13 07:07 UTC
+    - `/home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/__pycache__/wechat_backlog.cpython-312.pyc` @ 2026-02-13 07:07 UTC
+    - `/home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/weekly_digest.py` @ 2026-02-13 07:07 UTC
+    - `/home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/wechat_backlog.py` @ 2026-02-13 07:07 UTC
+    - `/home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/__pycache__/search_kb.cpython-312.pyc` @ 2026-02-13 06:49 UTC
+    - `/home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/search_kb.py` @ 2026-02-13 06:49 UTC
+    - `/home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/__pycache__/ingest_image.cpython-312.pyc` @ 2026-02-13 06:41 UTC
+    - `/home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/__pycache__/ingest_url.cpython-312.pyc` @ 2026-02-13 06:41 UTC
+    - `/home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/__pycache__/tagger.cpython-312.pyc` @ 2026-02-13 06:41 UTC

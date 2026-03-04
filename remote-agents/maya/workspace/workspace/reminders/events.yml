@@ -1,0 +1,40 @@
+- id: publish-stock-analysis-daily
+  title: 发布 stock_analysis skill 到 clawhub
+  start: '2026-02-12T15:00:00+08:00'
+  notes: GitHub用户名修改后同步延迟，需要重试发布
+  reminders:
+  - 0
+  repeat: daily
+- id: social-20260215-1400
+  title: 和朋友聚聚
+  start: '2026-02-15T14:00:00+08:00'
+  notes: 找个地方聚聚
+  reminders:
+  - 1440
+  - 60
+  - 10
+
+- id: todo-digest-morning-daily
+  title: 推送今日待办摘要（早）
+  start: '2026-02-25T09:00:00+08:00'
+  notes: 读取 /home/ubuntu/.openclaw/kb/20_Inbox/todo-list.json，发送 open 状态任务摘要到 Telegram
+  reminders:
+  - 0
+  repeat: daily
+
+- id: todo-digest-evening-daily
+  title: 推送今日待办摘要（晚）
+  start: '2026-02-24T21:00:00+08:00'
+  notes: 读取 /home/ubuntu/.openclaw/kb/20_Inbox/todo-list.json，发送 open 状态任务摘要到 Telegram
+  reminders:
+  - 0
+  repeat: daily
+
+- id: muaythai-20260227-1730
+  title: 泰拳课
+  start: '2026-02-27T17:30:00+08:00'
+  notes: 本周五下午课程
+  reminders:
+  - 1440
+  - 60
+  - 10

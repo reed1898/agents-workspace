@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "skills": {
+    "Gmail": {
+      "version": "1.0.0",
+      "installedAt": 1770107743292
+    },
+    "find-skills": {
+      "version": "0.1.0",
+      "installedAt": 1770911809084
+    },
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1770367634576
+    },
+    "browse": {
+      "version": "1.0.1",
+      "installedAt": 1770367636980
+    },
+    "webapp-testing": {
+      "version": "0.1.0",
+      "installedAt": 1770367638899
+    },
+    "task-status": {
+      "version": "1.0.0",
+      "installedAt": 1770367641369
+    },
+    "deepwork-tracker": {
+      "version": "0.1.1",
+      "installedAt": 1770367651972
+    },
+    "technews": {
+      "version": "1.0.0",
+      "installedAt": 1770367654053
+    },
+    "deepwiki": {
+      "version": "1.0.0",
+      "installedAt": 1770367655910
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1770367660144
+    },
+    "imap-smtp-email": {
+      "version": "0.0.2",
+      "installedAt": 1770368470792
+    },
+    "YouTube": {
+      "version": "1.0.1",
+      "installedAt": 1770368478013
+    },
+    "ui-ux-pro-max": {
+      "version": "0.1.0",
+      "installedAt": 1770368530074
+    },
+    "crypto-price": {
+      "version": "0.2.2",
+      "installedAt": 1770368532671
+    },
+    "self-reflection": {
+      "version": "1.1.1",
+      "installedAt": 1770368534967
+    },
+    "a-stock-analysis": {
+      "version": "1.0.0",
+      "installedAt": 1770369843381
+    },
+    "claw-roam": {
+      "version": "1.0.1",
+      "installedAt": 1770393513700
+    },
+    "google-workspace-mcp": {
+      "version": "1.0.0",
+      "installedAt": 1770537137043
+    },
+    "gmail": {
+      "version": "1.0.6",
+      "installedAt": 1771483236654
+    },
+    "gmail-inbox-zero-triage": {
+      "version": "1.0.1",
+      "installedAt": 1771637042568
+    }
+  }
+}

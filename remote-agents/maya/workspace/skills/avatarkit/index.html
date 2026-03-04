@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AvatarKit - Give Your OpenClaw Agent a Face</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --bg-dark: #0F0F0F;
+            --bg-card: #1A1A1A;
+            --bg-hover: #252525;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --text-muted: #666666;
+            --border: #333333;
+            --gradient-start: #FF6B35;
+            --gradient-end: #FF8E53;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .lang-switch {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .lang-switch:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge span {
+            color: var(--primary);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-subtitle:lang(en) {
+            display: none;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+            border-color: var(--text-muted);
+        }
+
+        /* Features */
+        .features {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: var(--bg-hover);
+            border-color: var(--text-muted);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .feature-card p:lang(en) {
+            display: none;
+        }
+
+        /* Code Block */
+        .install-section {
+            padding: 4rem 2rem;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .install-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .install-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .install-section > .install-container > p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .code-block {
+            background: #0D0D0D;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #E6E6E6;
+            text-align: left;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: '$';
+            color: var(--primary);
+            margin-right: 0.75rem;
+        }
+
+        .code-block .comment {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        /* English mode */
+        body.en .hero-subtitle:lang(zh) {
+            display: none;
+        }
+
+        body.en .hero-subtitle:lang(en) {
+            display: block;
+        }
+
+        body.en .feature-card p:lang(zh) {
+            display: none;
+        }
+
+        body.en .feature-card p:lang(en) {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🎭 AvatarKit</div>
+            <div class="nav-links">
+                <a href="#features" data-zh="功能" data-en="Features">功能</a>
+                <a href="#install" data-zh="安装" data-en="Install">安装</a>
+                <a href="https://github.com/reed1898/avatarkit" target="_blank">GitHub</a>
+                <button class="lang-switch" onclick="toggleLang()">中/En</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-badge">
+            <span>🦞</span>
+            <span data-zh="OpenClaw 官方生态" data-en="OpenClaw Ecosystem">OpenClaw 官方生态</span>
+        </div>
+        
+        <h1>
+            <span data-zh="给你的 Agent" data-en="Give Your Agent">给你的 Agent</span>
+            <span class="highlight" data-zh="一个真实的形象" data-en="a Real Face">一个真实的形象</span>
+        </h1>
+        
+        <p class="hero-subtitle" lang="zh">
+            AvatarKit 让 OpenClaw Agent 拥有统一的外貌、声音和动态表达。
+            不再是冷冰冰的文字回复，而是有温度、有记忆、有形象的 AI 伴侣。
+        </p>
+        <p class="hero-subtitle" lang="en">
+            AvatarKit gives your OpenClaw Agent a consistent appearance, voice, and dynamic presence.
+            No more cold text responses — meet an AI companion with warmth, memory, and personality.
+        </p>
+        
+        <div class="hero-actions">
+            <a href="#install" class="btn btn-primary" data-zh="开始使用" data-en="Get Started">开始使用</a>
+            <a href="https://github.com/reed1898/avatarkit" class="btn btn-secondary" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span data-zh="查看源码" data-en="View Source">查看源码</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2 data-zh="核心功能" data-en="Core Features">核心功能</h2>
+            <p data-zh="让每一次对话都充满惊喜" data-en="Make every conversation delightful">让每一次对话都充满惊喜</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🖼️</div>
+                <h3 data-zh="统一形象" data-en="Unified Appearance">统一形象</h3>
+                <p lang="zh">上传照片创建专属形象，跨场景保持一致。无论是海边、咖啡厅还是办公室，你的 Agent 始终是那个"TA"。</p>
+                <p lang="en">Upload photos to create a unique avatar that stays consistent across all scenes — beach, café, or office.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎙️</div>
+                <h3 data-zh="专属声音" data-en="Unique Voice">专属声音</h3>
+                <p lang="zh">克隆你的声音，或选择预设声线。让 Agent 用温暖的声音回复，不再只是冰冷的文字。</p>
+                <p lang="en">Clone your voice or choose from presets. Let your Agent respond with warmth, not just cold text.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎬</div>
+                <h3 data-zh="动态视频" data-en="Dynamic Video">动态视频</h3>
+                <p lang="zh">口型同步的视频消息，让 Agent 真正"开口说话"。分享故事、播报天气，栩栩如生。</p>
+                <p lang="en">Lip-synced video messages bring your Agent to life. Share stories, report weather — vividly real.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 data-zh="角色记忆" data-en="Character Memory">角色记忆</h3>
+                <p lang="zh">Agent 记住你们的对话习惯、喜欢的场景和互动方式。每一次聊天都更懂你。</p>
+                <p lang="en">Your Agent remembers conversation habits, favorite scenes, and interaction styles. Every chat feels more personal.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 data-zh="自然交互" data-en="Natural Interaction">自然交互</h3>
+                <p lang="zh">无需命令，Agent 根据对话主动发图、发语音。像朋友一样自然分享"生活"。</p>
+                <p lang="en">No commands needed — your Agent proactively shares images and voice based on conversation context.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 data-zh="风格多样" data-en="Style Variety">风格多样</h3>
+                <p lang="zh">写实、动漫、像素、赛博朋克... 多种风格可选，打造独一无二的视觉体验。</p>
+                <p lang="en">Realistic, anime, pixel art, cyberpunk — choose your style for a unique visual experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="install-section" id="install">
+        <div class="install-container">
+            <h2 data-zh="快速开始" data-en="Quick Start">快速开始</h2>
+            <p data-zh="一条命令，为你的 OpenClaw Agent 启用 AvatarKit" data-en="One command to enable AvatarKit for your OpenClaw Agent">一条命令，为你的 OpenClaw Agent 启用 AvatarKit</p>
+            
+            <div class="code-block">
+                openclaw skill install https://github.com/reed1898/avatarkit/raw/main/SKILL.md
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            <span data-zh="由" data-en="Made by">由</span> 
+            <a href="https://github.com/reed1898" target="_blank">@reed1898</a> 
+            <span data-zh="为 OpenClaw 生态开发" data-en="for the OpenClaw ecosystem">为 OpenClaw 生态开发</span>
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+            🦞 <a href="https://openclaw.ai" target="_blank">OpenClaw</a> · 
+            <a href="https://github.com/reed1898/avatarkit" target="_blank">GitHub</a>
+        </p>
+    </footer>
+
+    <script>
+        // Language toggle
+        function toggleLang() {
+            document.body.classList.toggle('en');
+            const isEn = document.body.classList.contains('en');
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-zh]').forEach(el => {
+                el.textContent = isEn ? el.getAttribute('data-en') : el.getAttribute('data-zh');
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

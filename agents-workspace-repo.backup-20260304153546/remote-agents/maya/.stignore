@@ -1,0 +1,3 @@
+// macOS 大小写不敏感导致的冲突目录
+// 远端有 Gmail (大写G) 和 gmail (小写)，macOS 无法区分
+workspace/skills/Gmail

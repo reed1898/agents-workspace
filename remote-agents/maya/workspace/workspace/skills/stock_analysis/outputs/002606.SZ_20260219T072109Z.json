@@ -1,0 +1,69 @@
+{
+  "symbol": "002606",
+  "company": "大连电瓷",
+  "as_of": "2026-02-19T07:21:09.753841+00:00",
+  "price": 11.61,
+  "currency": "CNY",
+  "change_percent": -3.33,
+  "valuation": {
+    "pe": 33.13,
+    "pb": 2.8,
+    "market_cap": 5097640084,
+    "float_market_cap": 4889459258
+  },
+  "technical": {
+    "sma20": 11.38,
+    "sma50": 9.94,
+    "rsi14": 57.43,
+    "trend": "uptrend"
+  },
+  "news": [
+    {
+      "time": "2026-02-06 18:20:15:412",
+      "title": "大连电瓷:关于国家电网预中标的提示性公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002606/AN202602061819812371.html"
+    },
+    {
+      "time": "2026-02-06 18:17:13:266",
+      "title": "大连电瓷:关于公司董事、高级管理人员减持计划的预披露公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002606/AN202602061819812262.html"
+    },
+    {
+      "time": "2025-12-25 16:17:05:340",
+      "title": "大连电瓷:关于国家电网预中标的提示性公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002606/AN202512251807903289.html"
+    },
+    {
+      "time": "2025-11-13 18:30:15:654",
+      "title": "大连电瓷:2025年第一次临时股东会决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002606/AN202511131780634318.html"
+    },
+    {
+      "time": "2025-11-13 18:30:15:590",
+      "title": "大连电瓷:大连电瓷2025年第一次临时股东会法律意见书",
+      "link": "https://data.eastmoney.com/notices/detail/SZ002606/AN202511131780634308.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：大连电瓷:关于国家电网预中标的提示性公告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 85,
+    "total": 73.8
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。 当前技术趋势偏强。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

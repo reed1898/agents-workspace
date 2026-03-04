@@ -1,0 +1,39 @@
+{
+  "symbol": "TSLA",
+  "company": "Tesla, Inc.",
+  "as_of": "2026-02-27T09:11:21.795604+00:00",
+  "price": 408.58,
+  "currency": "USD",
+  "change_percent": -2.11,
+  "valuation": {
+    "pe": 385.45,
+    "market_cap": 1533168582656
+  },
+  "technical": {
+    "sma20": 414.55,
+    "sma50": 437.6,
+    "rsi14": 56.39,
+    "trend": "downtrend"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险",
+    "高PE对业绩兑现要求较高"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 55,
+    "total": 57.0
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。 当前技术趋势偏弱。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "skills": {
+    "find-skills": {
+      "version": "0.1.0",
+      "installedAt": 1772369550396
+    },
+    "reed-agent-network": {
+      "version": "0.2.2",
+      "installedAt": 1772467219117
+    },
+    "evolver": {
+      "version": "1.20.4",
+      "installedAt": 1772369610390
+    },
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1772369621079
+    },
+    "larksuite-wiki": {
+      "version": "1.0.0",
+      "installedAt": 1772369631313
+    },
+    "reminder": {
+      "version": "0.1.1",
+      "installedAt": 1772369644894
+    },
+    "seedance-3x3-optimizer": {
+      "version": "0.1.1",
+      "installedAt": 1772369654477
+    },
+    "task-status": {
+      "version": "1.0.0",
+      "installedAt": 1772369671756
+    },
+    "x-tweet-fetcher": {
+      "version": "0.1.0",
+      "installedAt": 1772369688612
+    },
+    "ai-daily-digest": {
+      "version": "1.0.0",
+      "installedAt": 1772369715361
+    },
+    "browse": {
+      "version": "1.0.1",
+      "installedAt": 1772369740886
+    },
+    "db-readonly": {
+      "version": "1.0.0",
+      "installedAt": 1772369752274
+    },
+    "volcengine-stt": {
+      "version": "0.2.0",
+      "installedAt": 1772453166827
+    }
+  }
+}

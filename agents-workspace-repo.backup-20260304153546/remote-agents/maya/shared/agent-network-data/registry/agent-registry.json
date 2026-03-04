@@ -1,0 +1,50 @@
+{
+  "version": 20,
+  "updated_at": "2026-03-03T16:45:12Z",
+  "agents": {
+    "linus": {
+      "agent_id": "linus",
+      "name": "Linus",
+      "role": "build-partner",
+      "gateway": "gw-rain2018",
+      "node": "rain2018",
+      "discord_user_id": "1471350647751315456",
+      "discord_channel_id": "1471363336192131276",
+      "status": "online",
+      "last_seen": "2026-03-01T14:17:00Z"
+    },
+    "maya": {
+      "agent_id": "maya",
+      "name": "Maya",
+      "role": "orchestrator",
+      "gateway": "gw-vps",
+      "node": "ip-172-31-21-161",
+      "discord_user_id": "1471167332133900351",
+      "discord_channel_id": "1471363336192131276",
+      "status": "online",
+      "last_seen": "2026-03-01T13:47:01Z"
+    },
+    "jesse": {
+      "agent_id": "jesse",
+      "name": "Jesse",
+      "role": "trading-assistant",
+      "gateway": "gw-rain",
+      "node": "rain-win",
+      "discord_user_id": "1471349080847548466",
+      "discord_channel_id": "1471363336192131276",
+      "status": "online",
+      "last_seen": "2026-03-03T16:45:12Z"
+    },
+    "xiaohong": {
+      "agent_id": "xiaohong",
+      "name": "小洪",
+      "role": "observer",
+      "gateway": "xiaohong-mac",
+      "node": "RaindeMacBook-Pro.local",
+      "discord_user_id": "1477276136600895518",
+      "discord_channel_id": "1471363336192131276",
+      "status": "online",
+      "last_seen": "2026-03-01T14:21:16Z"
+    }
+  }
+}

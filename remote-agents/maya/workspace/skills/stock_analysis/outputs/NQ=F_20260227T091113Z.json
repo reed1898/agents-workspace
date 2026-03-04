@@ -1,0 +1,38 @@
+{
+  "symbol": "NQ=F",
+  "company": "Nasdaq 100 Mar 26",
+  "as_of": "2026-02-27T09:11:13.595175+00:00",
+  "price": 25066.0,
+  "currency": "USD",
+  "change_percent": -0.06,
+  "valuation": {
+    "pe": null,
+    "market_cap": null
+  },
+  "technical": {
+    "sma20": 25109.4,
+    "sma50": 25429.77,
+    "rsi14": 48.21,
+    "trend": "downtrend"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 50,
+    "momentum": 55,
+    "total": 59.5
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。 当前技术趋势偏弱。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

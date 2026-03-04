@@ -1,0 +1,7 @@
+{
+  "mode": "echo_saved_entry",
+  "defaultStyle": "A,B",
+  "autoClassify": true,
+  "askClarifying": "only_if_needed",
+  "echoFormat": "markdown"
+}

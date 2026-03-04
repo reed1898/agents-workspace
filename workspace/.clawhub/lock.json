@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "skills": {
+    "agent-network": {
+      "version": "1.1.0",
+      "installedAt": 1772369230327
+    },
+    "reminder": {
+      "version": "0.1.1",
+      "installedAt": 1772369357538
+    },
+    "x-tweet-fetcher": {
+      "version": "0.1.0",
+      "installedAt": 1772369409967
+    },
+    "reed-agent-network": {
+      "version": "0.1.0",
+      "installedAt": 1772369764088
+    },
+    "find-skills": {
+      "version": "0.1.0",
+      "installedAt": 1772369827041
+    },
+    "evolver": {
+      "version": "1.20.4",
+      "installedAt": 1772369831181
+    },
+    "ai-daily-digest": {
+      "version": "1.0.0",
+      "installedAt": 1772369896162
+    },
+    "browse": {
+      "version": "1.0.1",
+      "installedAt": 1772370308124
+    },
+    "knowledgebase-share": {
+      "version": "0.1.0",
+      "installedAt": 1772375590343
+    },
+    "volcengine-stt": {
+      "version": "0.2.1",
+      "installedAt": 1772466672548
+    },
+    "content-writing-thought-leadership": {
+      "version": "1.0.0",
+      "installedAt": 1772481794220
+    },
+    "x-post-automation": {
+      "version": "1.0.0",
+      "installedAt": 1772485267436
+    },
+    "social-media-management": {
+      "version": "1.0.0",
+      "installedAt": 1772492471792
+    },
+    "veille": {
+      "version": "1.2.5",
+      "installedAt": 1772492523461
+    },
+    "reddit-search-but-free": {
+      "version": "1.0.0",
+      "installedAt": 1772492527339
+    },
+    "multi-source-news-digest": {
+      "version": "1.0.0",
+      "installedAt": 1772492540122
+    },
+    "feishu-evolver-wrapper": {
+      "version": "1.7.1",
+      "installedAt": 1772564468954
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "symbol": "688102",
+  "company": "斯瑞新材",
+  "as_of": "2026-02-17T07:21:48.753636+00:00",
+  "price": 38.27,
+  "currency": "CNY",
+  "change_percent": -0.16,
+  "valuation": {
+    "pe": 206.46,
+    "pb": 16.26,
+    "market_cap": 29676772991,
+    "float_market_cap": 28079971898
+  },
+  "technical": {
+    "sma20": 41.53,
+    "sma50": 39.16,
+    "rsi14": 26.88,
+    "trend": "sideways"
+  },
+  "news": [
+    {
+      "time": "2026-02-09 15:41:40:592",
+      "title": "斯瑞新材:关于2023年股票期权激励计划限制行权期间的提示性公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH688102/AN202602091819832752.html"
+    },
+    {
+      "time": "2026-01-30 15:53:02:348",
+      "title": "斯瑞新材:国浩律师(西安)事务所关于陕西斯瑞新材料股份有限公司2023年股票期权激励计划调整相关事项之法律意见书",
+      "link": "https://data.eastmoney.com/notices/detail/SH688102/AN202601301818580957.html"
+    },
+    {
+      "time": "2026-01-30 15:53:02:350",
+      "title": "斯瑞新材:第四届董事会第九次会议决议公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH688102/AN202601301818580956.html"
+    },
+    {
+      "time": "2026-01-30 15:53:02:254",
+      "title": "斯瑞新材:关于调整公司2023年股票期权激励计划行权价格的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH688102/AN202601301818580955.html"
+    },
+    {
+      "time": "2026-01-28 17:49:32:371",
+      "title": "斯瑞新材:国泰海通证券股份有限公司关于陕西斯瑞新材料股份有限公司差异化分红事项的核查意见",
+      "link": "https://data.eastmoney.com/notices/detail/SH688102/AN202601281818508629.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：斯瑞新材:关于2023年股票期权激励计划限制行权期间的提"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 42,
+    "momentum": 45,
+    "total": 53.5
+  },
+  "conclusion": "综合偏弱，优先观察等待更优风险收益比。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

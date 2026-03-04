@@ -1,0 +1,698 @@
+# Skills Security Scan — 2026-02-24
+
+## 今晚结论摘要
+- 扫描完成：共 98 个 skills（3 个路径范围）
+- 风险分级：high 1 / medium 8 / low 89
+- 发现 high 风险项：skill-vetter
+- 主要高风险触发点：动态执行(eval/new Function)、提权(sudo)、可执行二进制、base64+exec 组合
+- 变更检查：优先使用 git status；无 git 的目录以最新 mtime 给出近似变更时效
+
+## 详细结果（按 skill）
+- **skill-vetter**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/skill-vetter`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：child_process_exec:1 files; curl_wget:1 files; write_ssh:1 files; suspicious_network:2 files; dynamic_eval:1 files; sudo:1 files; suspicious_urls:1
+  - 可疑域名/URL：https://raw.githubusercontent.com/OWNER/REPO/main/skills/SKILL_NAME/SKILL.md
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**high**
+- **sherpa-onnx-tts**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files; child_process_exec:1 files; env_or_keys:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**medium**
+- **xurl**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/xurl`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:1 files; suspicious_network:1 files; suspicious_urls:1
+  - 可疑域名/URL：https://raw.githubusercontent.com/xdevplatform/xurl/main/install.sh
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**medium**
+- **clawra-selfie**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/clawra-selfie`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：child_process_exec:2 files; curl_wget:2 files; env_or_keys:2 files; suspicious_network:3 files
+  - 文件类型检查：2 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 13.0 days ago
+  - 风险等级：**medium**
+- **ai-daily-digest**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ai-daily-digest`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：env_or_keys:3 files; suspicious_network:8 files; child_process_exec:1 files
+  - 文件类型检查：15 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**medium**
+- **browse**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/browse`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:3 files; suspicious_network:6 files; dynamic_eval:2 files; env_or_keys:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**medium**
+- **clawra**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/clawra`
+  - SKILL.md：yes；package.json：yes（clawra）
+  - 可疑模式：child_process_exec:5 files; curl_wget:4 files; env_or_keys:4 files; suspicious_network:10 files
+  - 文件类型检查：5 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**medium**
+- **stock_analysis**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/stock_analysis`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：sudo:3 files; suspicious_network:147 files; curl_wget:1 files
+  - 文件类型检查：3 个脚本，无二进制可执行
+  - 最近变更：git changes: 2
+  - 风险等级：**medium**
+- **ui-ux-pro-max**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:32 files; sudo:2 files; env_or_keys:4 files
+  - 文件类型检查：4 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**medium**
+- **1password**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **apple-notes**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **apple-reminders**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **bear-notes**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **blogwatcher**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **blucli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **bluebubbles**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **camsnap**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **canvas**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:1 files; suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **clawhub**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **coding-agent**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **discord**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **eightctl**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **food-order**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/food-order`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **gemini**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **gh-issues**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:1 files; suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **gifgrep**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **github**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **gog**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **goplaces**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **healthcheck**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **himalaya**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:2 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **imsg**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **mcporter**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **model-usage**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **nano-banana-pro**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files; env_or_keys:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **nano-pdf**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **notion**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:1 files; suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **obsidian**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **openai-image-gen**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：env_or_keys:2 files; suspicious_network:2 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **openai-whisper**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **openai-whisper-api**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:2 files; env_or_keys:2 files; suspicious_network:2 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **openhue**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **oracle**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：env_or_keys:1 files; suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **ordercli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **peekaboo**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **sag**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **session-logs**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **skill-creator**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：4 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **slack**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **songsee**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **sonoscli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **spotify-player**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **summarize**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：env_or_keys:1 files; suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **things-mac**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：env_or_keys:1 files; suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **tmux**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：2 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **trello**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:1 files; suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **video-frames**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **voice-call**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **wacli**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **weather**
+  - 来源路径：`/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:1 files; suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 2.5 days ago
+  - 风险等级：**low**
+- **find-skills**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/find-skills`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:2 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 12.0 days ago
+  - 风险等级：**low**
+- **google-workspace**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/google-workspace`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:4 files; env_or_keys:2 files
+  - 文件类型检查：10 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 16.4 days ago
+  - 风险等级：**low**
+- **knowledge-base-collector**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/knowledge-base-collector`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：env_or_keys:5 files; suspicious_network:1 files
+  - 文件类型检查：6 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 11.4 days ago
+  - 风险等级：**low**
+- **walkie**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/walkie`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：4 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 4.1 days ago
+  - 风险等级：**low**
+- **x-tweet-fetcher**
+  - 来源路径：`/home/ubuntu/.openclaw/skills/x-tweet-fetcher`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：no git; latest mtime 3.1 days ago
+  - 风险等级：**low**
+- **Gmail**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/Gmail`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:1 files; env_or_keys:1 files; suspicious_network:2 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git changes: 1
+  - 风险等级：**low**
+- **YouTube**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/YouTube`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:3 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **_disabled**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/_disabled`
+  - SKILL.md：no；package.json：no（-）
+  - 可疑模式：curl_wget:1 files; env_or_keys:1 files; suspicious_network:3 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **a-stock-analysis**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:2 files
+  - 文件类型检查：3 个脚本，无二进制可执行
+  - 最近变更：git changes: 1
+  - 风险等级：**low**
+- **ai-video-generation**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/ai-video-generation`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:1 files; suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **avatarkit**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/avatarkit`
+  - SKILL.md：yes；package.json：yes（openclaw-avatarkit）
+  - 可疑模式：suspicious_network:10 files
+  - 文件类型检查：24 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **claw-roam**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/claw-roam`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git changes: 1
+  - 风险等级：**low**
+- **crypto-price**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/crypto-price`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:3 files; env_or_keys:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **crypto-watch**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/crypto-watch`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:2 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **db-readonly**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/db-readonly`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **deepwiki**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/deepwiki`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:3 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **deepwork-tracker**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:2 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **find-skills**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/find-skills`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:2 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git changes: 1
+  - 风险等级：**low**
+- **github**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/github`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **gmail**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/gmail`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:1 files; env_or_keys:1 files; suspicious_network:2 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git changes: 1
+  - 风险等级：**low**
+- **gmail-auto-processor**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor`
+  - SKILL.md：yes；package.json：yes（gmail-auto-processor）
+  - 可疑模式：child_process_exec:11 files
+  - 文件类型检查：13 个脚本，无二进制可执行
+  - 最近变更：git changes: 1
+  - 风险等级：**low**
+- **gmail-inbox-zero-triage**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/gmail-inbox-zero-triage`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:6 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git changes: 1
+  - 风险等级：**low**
+- **google-workspace-mcp**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **imap-smtp-email**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email`
+  - SKILL.md：yes；package.json：yes（imap-smtp-email-skill）
+  - 可疑模式：env_or_keys:2 files; suspicious_network:1 files
+  - 文件类型检查：3 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **larksuite-wiki**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:3 files
+  - 文件类型检查：2 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **obsidian-integration**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/obsidian-integration`
+  - SKILL.md：yes；package.json：yes（obsidian-integration）
+  - 可疑模式：child_process_exec:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git changes: 1
+  - 风险等级：**low**
+- **reminder**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/reminder`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git changes: 4
+  - 风险等级：**low**
+- **seedance-3x3-optimizer**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/seedance-3x3-optimizer`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **self-reflection**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/self-reflection`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:3 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **task-status**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/task-status`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：env_or_keys:3 files; suspicious_network:1 files
+  - 文件类型检查：5 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **technews**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/technews`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:4 files
+  - 文件类型检查：4 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **todo-kb**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/todo-kb`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **trading-journal**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/trading-journal`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：无明显高风险模式
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **vercel-cli**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/vercel-cli`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：child_process_exec:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git changes: 1
+  - 风险等级：**low**
+- **webapp-testing**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/webapp-testing`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:5 files
+  - 文件类型检查：4 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **x-search**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/x-search`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：curl_wget:3 files; suspicious_network:3 files
+  - 文件类型检查：2 个脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**
+- **x-tweet-fetcher**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/x-tweet-fetcher`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：1 个脚本，无二进制可执行
+  - 最近变更：git changes: 1
+  - 风险等级：**low**
+- **xai-x-search**
+  - 来源路径：`/home/ubuntu/.openclaw/workspace/skills/xai-x-search`
+  - SKILL.md：yes；package.json：no（-）
+  - 可疑模式：suspicious_network:1 files
+  - 文件类型检查：无脚本，无二进制可执行
+  - 最近变更：git clean
+  - 风险等级：**low**

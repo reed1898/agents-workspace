@@ -1,0 +1,352 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "f0faa5fc-02a3-4cce-bc0d-687cd2f27e44",
+      "name": "agent-network-sync",
+      "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
+      "enabled": true,
+      "createdAtMs": 1772474656179,
+      "updatedAtMs": 1772604468768,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 14400000,
+        "anchorMs": 1772474656179
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行以下任务：1) cd ~/.openclaw/shared/agent-network-data && git pull origin main; 2) 如果 ~/.openclaw/shared/agent-knowledge-layer 目录存在，也执行 git pull；3) 简单汇报同步结果（几个文件更新）",
+        "timeoutSeconds": 60
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772618849179,
+        "lastRunAtMs": 1772604449179,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 19589,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "acec8c74-f4f4-4d00-8c90-73389a86bad8",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "daily-agent-summary",
+      "enabled": true,
+      "createdAtMs": 1772475266617,
+      "updatedAtMs": 1772560846365,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 2 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行每日 Agent 工作总结。运行脚本 ~/.openclaw/workspace/scripts/daily-summary.sh，将输出内容整理成中文摘要，包含：1) 每个 Agent（Maya、Jesse、Linus）昨天做了什么；2) 关键决策或进展；3) 值得关注的问题或风险。总结完后通过 Telegram 发送给 Reed，并确认知识库已同步。",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce"
+      },
+      "state": {
+        "nextRunAtMs": 1772647200000,
+        "lastRunAtMs": 1772560800008,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 46357,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "e74423be-af02-4a42-b381-02a3d1d12428",
+      "name": "skill-discovery",
+      "description": "凌晨3-7点每小时自动探索并安装适合小洪的新 skill",
+      "enabled": false,
+      "createdAtMs": 1772475735025,
+      "updatedAtMs": 1772492614303,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3,4,5,6,7 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是小洪，Reed 的数字分身，角色是 observer/协同者。任务：1) 用 clawhub 搜索热门 skill：执行 clawhub search 列出热门 skills；2) 筛选与小洪定位相关的 skill（协同、观察、内容提炼、KOL辅助、社交媒体、记忆管理等方向）；3) 对感兴趣的 skill 执行 clawhub install；4) 把今天探索结果（发现了什么、安装了什么、为什么）写入 ~/workspace/memory/skill-updates.md（追加格式：## YYYY-MM-DD HH:MM\\n内容）；5) 通过 Telegram 私聊发给 Reed 今日更新摘要（一句话结论 + 安装了什么）。",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "lastRunAtMs": 1772492400010,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 214293,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 5,
+        "lastError": "⚠️ ✉️ Message failed",
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "eb8efc78-e9b4-49af-a5b7-c348586c8ea6",
+      "name": "daily-report",
+      "description": "每天早上8:15 生成并发送工作日报到 Reed Telegram 私聊",
+      "enabled": true,
+      "createdAtMs": 1772476674474,
+      "updatedAtMs": 1772583330559,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是小洪，Reed 的数字分身。任务：生成今日工作日报。步骤：1) 读取最近2天的 memory 日志文件（~/workspace/memory/YYYY-MM-DD.md）；2) 读取 MEMORY.md 了解长期任务；3) 读取 memory/skill-updates.md 了解最近 skill 更新；4) 整理成日报格式：\\n\\n【小洪日报 YYYY-MM-DD】\\n\\n✅ 昨天做了什么\\n- ...\\n\\n📋 今天计划做什么\\n- ...\\n\\n⏳ 长期待执行任务\\n- ...\\n\\n5) 通过 Telegram 私聊发给 Reed（chatId: 869269685）。不要发到群聊。",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772669700000,
+        "lastRunAtMs": 1772583300019,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 30540,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "0d873b11-bc82-4e4d-8ce9-07b33f4da3cf",
+      "name": "security-scan-morning",
+      "description": "每天早上7点安全巡检（系统/OpenClaw漏洞/不安全skills），写入知识库并通过Telegram汇报",
+      "enabled": true,
+      "createdAtMs": 1772508056718,
+      "updatedAtMs": 1772578943956,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是小洪。执行每日7:00安全巡检，必须完成并输出报告：1) 系统安全问题巡检（主机暴露面、服务状态、异常端口、权限风险）；2) OpenClaw 漏洞/风险巡检（版本更新、安全审计告警、配置风险、认证与暴露策略）；3) 不安全 skill 巡检（来源可信度、可疑脚本、危险命令、权限越界）。\n处理要求：\n- 按严重级别输出 High/Medium/Low。\n- 能自动修复的低风险项先修复并记录。\n- 形成完整报告写入知识库：~/.openclaw/shared/agent-knowledge-layer/shared/security/YYYY-MM-DD-morning-security-report.md（目录不存在就先创建）。\n- 同时在 workspace 记一份：~/workspace/memory/security-report-YYYY-MM-DD-morning.md。\n- 最后通过 Telegram 发给 Reed（chatId: 869269685）摘要与报告路径。",
+        "timeoutSeconds": 240
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772665200000,
+        "lastRunAtMs": 1772578800018,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 143938,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "01381edf-2220-4485-a563-c9c44250867d",
+      "name": "security-scan-evening",
+      "description": "每天晚上9:20安全扫描并报告",
+      "enabled": true,
+      "createdAtMs": 1772508063062,
+      "updatedAtMs": 1772544136508,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是小洪，Reed 的数字分身。任务：执行 OpenClaw 安全扫描。步骤：1) 运行 'openclaw status' 检查整体健康状态；2) 检查 gateway 配置安全性（端口、bind、auth token 是否泄漏等）；3) 检查 ~/.openclaw/openclaw.json 中是否有敏感信息暴露风险；4) 检查 skills 目录是否有异常文件或权限问题；5) 检查 cron 任务是否有异常新增；6) 把发现的问题按严重程度（高/中/低）列出，并尝试自动修复低风险问题；7) 把完整报告写入 ~/workspace/memory/security-report-YYYY-MM-DD-evening.md；8) 通过 Telegram 私聊发给 Reed 摘要（严重问题必须标红说明，无问题也要确认一句「安全检查通过」）。",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772630400000,
+        "lastRunAtMs": 1772544000011,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 136497,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "3d2c931d-90ac-4017-adc5-c692eb41ad8a",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1471363336192131276",
+      "name": "evolver-hourly",
+      "enabled": true,
+      "createdAtMs": 1772560611996,
+      "updatedAtMs": 1772575315802,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3,4,5,6 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行自我进化任务：优先使用 evolver skill（若未安装先尝试 clawhub install evolver）。每次运行输出：1) 本轮进化目标；2) 做了哪些改进；3) 结果与下一步。将记录追加写入 ~/.openclaw/shared/agent-knowledge-layer/shared/evolution/YYYY-MM-DD-evolution-log.md（目录不存在先创建）。最后通过 Telegram 私聊给 Reed（chatId: 869269685）发送本轮简报。",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772650800000,
+        "lastRunAtMs": 1772575200032,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 115770,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "06f31f5c-61a0-4e01-939c-9dae50b3fd69",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1471363336192131276",
+      "name": "evolver-daily-summary",
+      "enabled": true,
+      "createdAtMs": 1772560618132,
+      "updatedAtMs": 1772575838560,
+      "schedule": {
+        "kind": "cron",
+        "expr": "10 6 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "生成当日进化总结：汇总今天 3:00-6:00 的 evolver 运行记录（知识库中的 evolution log），输出：1) 今日完成；2) 关键改进；3) 未完成项；4) 明日计划。将总结写入 ~/.openclaw/shared/agent-knowledge-layer/shared/evolution/YYYY-MM-DD-evolution-summary.md，并通过 Telegram 私聊发送给 Reed（chatId: 869269685）。",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772662200000,
+        "lastRunAtMs": 1772575800018,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 38542,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "c7fbf6ae-4fbb-443d-b175-fc365111eb85",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1471363336192131276",
+      "name": "kb-hourly-closed-loop-xiaohong",
+      "enabled": true,
+      "createdAtMs": 1772587819080,
+      "updatedAtMs": 1772607920000,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 xiaohong。执行知识库每小时闭环（仓库：~/.openclaw/shared/agent-knowledge-layer，分支：agent/xiaohong）。步骤：1) 进入仓库并确认当前分支为 agent/xiaohong；2) fetch origin 并将 origin/main 同步到当前分支（优先 rebase，失败则 merge，冲突按保留双方原则处理并记录）；3) 检查是否有本地改动，若有则按最小粒度 commit 并 push 到 origin/agent/xiaohong；4) 检查相对 main 是否有有效变更：若有则创建或更新到 main 的 PR，标题格式必须为 kb(xiaohong): <summary>；若无则记录 no changes；5) 输出结果摘要（sync/commit/push/pr/no changes）；6) 通过 Telegram 发送给 Reed（chatId:869269685）。禁止直接改 main。",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772611437495,
+        "lastRunAtMs": 1772607837504,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 82496,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      },
+      "description": "每小时闭环：同步main->个人分支、提交push、按需PR"
+    },
+    {
+      "id": "a037ff4c-c032-4ada-a60e-4b4a8e8d4120",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "reed-hourly-proactive-checkin",
+      "description": "If Reed has not messaged in the last hour, send a proactive status update; otherwise stay silent.",
+      "enabled": true,
+      "createdAtMs": 1772604495794,
+      "updatedAtMs": 1772604495794,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是小洪。每小时执行一次：\n1) 检查 Reed 在 Telegram 私聊（chatId: 869269685）最近一条用户消息时间。\n2) 如果距离现在 < 60 分钟：仅输出 NO_REPLY。\n3) 如果 >= 60 分钟：主动汇报“你正在做什么/最近完成了什么/下一步准备做什么”，3-6行，简洁直接；若当前无任务，就给出你将执行的 1-2 个有价值待办（例如知识库整理、代理工作审查、日报素材提炼），然后说明“等待 Reed 最新指令”。\n4) 语气自然，不要官话。",
+        "timeoutSeconds": 90
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772607876835,
+        "runningAtMs": 1772607922008
+      }
+    }
+  ]
+}

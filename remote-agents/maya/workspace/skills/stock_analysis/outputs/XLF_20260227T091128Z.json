@@ -1,0 +1,38 @@
+{
+  "symbol": "XLF",
+  "company": "State Street Financial Select S",
+  "as_of": "2026-02-27T09:11:28.089317+00:00",
+  "price": 52.5,
+  "currency": "USD",
+  "change_percent": 1.21,
+  "valuation": {
+    "pe": 17.68,
+    "market_cap": 46380863488
+  },
+  "technical": {
+    "sma20": 52.76,
+    "sma50": 53.91,
+    "rsi14": 45.53,
+    "trend": "downtrend"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 78,
+    "momentum": 55,
+    "total": 67.8
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。 当前技术趋势偏弱。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "symbol": "TDY",
+  "company": "Teledyne Technologies Incorpora",
+  "as_of": "2026-02-16T14:02:13.640696+00:00",
+  "price": 660.29,
+  "currency": "USD",
+  "change_percent": 2.16,
+  "valuation": {
+    "pe": 34.97,
+    "market_cap": 31001266176
+  },
+  "technical": {
+    "sma20": 626.76,
+    "sma50": 565.27,
+    "rsi14": 70.12,
+    "trend": "uptrend"
+  },
+  "news": [],
+  "risks": [
+    "宏观波动影响风险偏好",
+    "估值高位回撤风险"
+  ],
+  "catalysts": [
+    "财报超预期",
+    "行业景气度上行",
+    "技术面维持多头结构"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 65,
+    "total": 66.8
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。 当前技术趋势偏强。",
+  "confidence": "medium",
+  "data_sources": [
+    "yfinance"
+  ]
+}

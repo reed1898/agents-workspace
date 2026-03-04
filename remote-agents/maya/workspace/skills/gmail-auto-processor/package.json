@@ -1,0 +1,21 @@
+{
+  "name": "gmail-auto-processor",
+  "version": "1.0.0",
+  "description": "自动处理 Gmail 邮件：归档促销、提醒重要、总结 Newsletter",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dry-run": "node index.js --dry-run",
+    "config": "node index.js --config",
+    "subagent": "node subagent-run.js",
+    "subagent-dry": "node subagent-run.js --dry-run",
+    "smart": "node smart-run.js",
+    "smart-dry": "node smart-run.js --dry-run"
+  },
+  "keywords": ["gmail", "email", "automation", "openclaw"],
+  "author": "RainAssistant",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

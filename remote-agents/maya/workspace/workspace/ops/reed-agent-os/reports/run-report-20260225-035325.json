@@ -1,0 +1,109 @@
+{
+  "run_id": "daily-20260225-035323-morning-fix-realdata-test",
+  "timestamp_utc": "2026-02-25T03:53:23.202525+00:00",
+  "phase": "morning",
+  "topic": "fix-realdata-test",
+  "dry_run": true,
+  "max_attempts": 3,
+  "retry_base_seconds": 1.0,
+  "classifier_config": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/config/error-classifier.json",
+  "steps": {
+    "generate_daily_summary": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/generate_daily_summary.py",
+            "--phase",
+            "morning",
+            "--topic",
+            "fix-realdata-test",
+            "--output",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-035323-morning-fix-realdata-test-summary.json",
+            "--pretty"
+          ],
+          "returncode": 0,
+          "stdout": "[generate_daily_summary] phase=morning topic=fix-realdata-test\n[generate_daily_summary] written output: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-035323-morning-fix-realdata-test-summary.json\n[generate_daily_summary] done status=success exit_code=0\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    },
+    "write_kb": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/write_kb.py",
+            "--input-json",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-035323-morning-fix-realdata-test-summary.json",
+            "--receipt-path",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-035323-morning-fix-realdata-test-write-kb-receipt.json"
+          ],
+          "returncode": 0,
+          "stdout": "[write_kb] dry_run=True\n[write_kb] target=/home/ubuntu/.openclaw/kb/01_Daily/2026-02-25-fix-realdata-test.md\n[write_kb] dry-run preview (first 20 lines):\n# 2026-02-25 fix-realdata-test (morning)\n\n- generated_at_utc: 2026-02-25T03:53:23.241867+00:00\n- status: success\n\n## Highlights\n- 窗口内运行 6 次，成功 2 次（成功率 33.33%）。\n- KB 写入成功 6 次；生成步骤成功 6 次。\n- Telegram 发送尝试 6 次，成功 2 次，失败 4 次（成功率 33.33%）。\n\n## Risks\n- 当前待重放 Telegram 队列 10 条，存在消息延迟风险。\n- 窗口内总链路成功率 33.33%，低于 90% 目标。\n- Telegram 发送成功率 33.33%，需排查账号/参数/网络。\n\n## Actions\n- 优先清理 pending 队列（当前 10 条），执行 replay 并核对 receipt。\n- 检查最近失败 run-report 的 error_class 与 stderr 关键字，确认是否可重试故障。\n- 持续跟踪 send_telegram 参数探测结果（cli_capabilities.json），避免 CLI 参数漂移。\n\n[write_kb] done (no file written)\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    },
+    "send_telegram": {
+      "ok": true,
+      "attempts": [
+        {
+          "command": [
+            "python3",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/scripts/send_telegram.py",
+            "--input-json",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-035323-morning-fix-realdata-test-summary.json",
+            "--account-id",
+            "maya",
+            "--target",
+            "telegram:869269685",
+            "--logs-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs",
+            "--queue-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending",
+            "--state-dir",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/state",
+            "--classifier-config",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/config/error-classifier.json",
+            "--receipt-path",
+            "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-035323-morning-fix-realdata-test-telegram-receipt.json",
+            "--attempt",
+            "1",
+            "--run-id",
+            "daily-20260225-035323-morning-fix-realdata-test"
+          ],
+          "returncode": 0,
+          "stdout": "[send_telegram] dry_run=True\n[send_telegram] target=telegram:869269685\n[send_telegram] dry-run preview (first 10 lines):\n日报 2026-02-25 | fix-realdata-test | morning\n\nHighlights:\n- 窗口内运行 6 次，成功 2 次（成功率 33.33%）。\n- KB 写入成功 6 次；生成步骤成功 6 次。\n- Telegram 发送尝试 6 次，成功 2 次，失败 4 次（成功率 33.33%）。\n\nRisks:\n- 当前待重放 Telegram 队列 10 条，存在消息延迟风险。\n- 窗口内总链路成功率 33.33%，低于 90% 目标。\n[send_telegram] receipt written: /home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-035323-morning-fix-realdata-test-telegram-receipt.json\n",
+          "stderr": "",
+          "ok": true,
+          "attempt": 1,
+          "error_class": "none"
+        }
+      ],
+      "attempt_count": 1,
+      "final_error_class": "none"
+    }
+  },
+  "artifacts": {
+    "summary_json": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-035323-morning-fix-realdata-test-summary.json",
+    "kb_receipt": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-035323-morning-fix-realdata-test-write-kb-receipt.json",
+    "telegram_receipt": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/logs/daily-20260225-035323-morning-fix-realdata-test-telegram-receipt.json",
+    "pending_queue_dir": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/queue/telegram_pending",
+    "cli_capabilities": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/state/cli_capabilities.json"
+  },
+  "success": true,
+  "report_path": "/home/ubuntu/.openclaw/workspace/ops/reed-agent-os/reports/run-report-20260225-035325.json"
+}

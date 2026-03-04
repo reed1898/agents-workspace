@@ -1,0 +1,663 @@
+# Skills Security Scan - 2026-02-22
+
+扫描时间(UTC): 2026-02-22 16:00:39
+
+扫描范围:
+- /home/ubuntu/.openclaw/workspace/skills/**
+- /home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/**
+- /home/ubuntu/.openclaw/skills/**
+
+总计 skills: 97；风险分布: high 8 / medium 19 / low 70
+
+## 今晚结论摘要
+
+- 1) 已完成 97 个 skills 的静态安全扫描。
+- 2) high 风险: 8 个；medium: 19 个；low: 70 个。
+- 3) 主要命中集中在脚本执行/子进程调用与环境变量读取（多为工具型 skill 的常见模式）。
+- 4) 本轮未执行任何破坏性动作，仅做文件级静态审计与抽样。
+- 5) 建议优先复核 high/medium 项中含 eval/base64 解码执行/sudo 关键字的 skills。
+
+## 按 Skill 详细结果（项目符号）
+
+- **Gmail**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/Gmail`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 3 处(抽样)；env/local secrets read 命中 2 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 变更情况: git 变更 1 项
+- **YouTube**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/YouTube`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **_disabled**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/_disabled`
+  - SKILL.md: no；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 3 处(抽样)；env/local secrets read 命中 2 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: claw-roam.disabled-20260208-081734/scripts/claw-roam.sh
+  - 二进制/可执行文件抽样: claw-roam.disabled-20260208-081734/scripts/claw-roam.sh
+  - 变更情况: git 最近提交: 694d94c 2026-02-09
+- **a-stock-analysis**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: scripts/portfolio.py, scripts/analyze.py
+  - 二进制/可执行文件抽样: scripts/a-stock-analysis
+  - 变更情况: git 变更 1 项
+- **ai-daily-digest**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/ai-daily-digest`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: child_process/exec/spawn 命中 2 处(抽样)；env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: scripts/digest.ts
+  - 二进制/可执行文件抽样: .git/hooks/pre-commit.sample, .git/hooks/pre-receive.sample, .git/hooks/push-to-checkout.sample, .git/hooks/pre-applypatch.sample
+  - 变更情况: git 最近提交: 961240f 2026-02-19
+- **ai-video-generation**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/ai-video-generation`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 1 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 变更情况: git 最近提交: c6ffc49 2026-02-07
+- **avatarkit**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/avatarkit`
+  - SKILL.md: yes；package.json: yes
+  - 风险等级: **high**
+  - 理由: suspicious network 命中 3 处(抽样)；base64 decode exec 命中 1 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: example.ts, src/image.ts, src/SKILL.ts, src/avatar.ts
+  - 二进制/可执行文件抽样: .git/hooks/pre-commit.sample, .git/hooks/pre-receive.sample, .git/hooks/push-to-checkout.sample, .git/hooks/pre-applypatch.sample
+  - 变更情况: git 最近提交: 5a17ff7 2026-02-11
+- **browse**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/browse`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **high**
+  - 理由: curl/wget 命中 3 处(抽样)；env/local secrets read 命中 2 处(抽样)；suspicious network 命中 3 处(抽样)；eval/new Function 命中 2 处(抽样)
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **claw-roam**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/claw-roam`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 可疑/可执行脚本抽样: scripts/claw-roam.sh
+  - 二进制/可执行文件抽样: scripts/claw-roam.sh
+  - 变更情况: git 变更 1 项
+- **clawra**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/clawra`
+  - SKILL.md: yes；package.json: yes
+  - 风险等级: **medium**
+  - 理由: child_process/exec/spawn 命中 3 处(抽样)；curl/wget 命中 3 处(抽样)；env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)
+  - 可疑/可执行脚本抽样: bin/cli.js, scripts/clawra-selfie.ts, scripts/clawra-selfie.sh, skill/scripts/clawra-selfie.ts
+  - 二进制/可执行文件抽样: bin/cli.js, scripts/clawra-selfie.sh, skill/scripts/clawra-selfie.sh
+  - 变更情况: git 最近提交: f9edfa7 2026-02-11
+- **crypto-price**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/crypto-price`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 2 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: scripts/get_price_chart.py
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **crypto-watch**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/crypto-watch`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 4 条
+  - 可疑/可执行脚本抽样: scripts/crypto_watch.py
+  - 二进制/可执行文件抽样: scripts/crypto_watch.py
+  - 变更情况: git 最近提交: 7a34fae 2026-02-07
+- **db-readonly**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/db-readonly`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: 未发现高风险关键模式
+  - 可疑/可执行脚本抽样: scripts/db_readonly.sh
+  - 二进制/可执行文件抽样: scripts/db_readonly.sh
+  - 变更情况: git 最近提交: 843624d 2026-02-09
+- **deepwiki**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/deepwiki`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: scripts/deepwiki.js
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **deepwork-tracker**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 2 处(抽样)；外联 URL 抽样 2 条
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **find-skills**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/find-skills`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 4 条
+  - 变更情况: git 变更 1 项
+- **github**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/github`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **gmail**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/gmail`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 3 处(抽样)；env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 变更情况: git 变更 1 项
+- **gmail-auto-processor**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor`
+  - SKILL.md: yes；package.json: yes
+  - 风险等级: **medium**
+  - 理由: child_process/exec/spawn 命中 3 处(抽样)
+  - 可疑/可执行脚本抽样: archive-promotions.js, gmail-processor.js, generate-report.js, archive-promotions.sh
+  - 二进制/可执行文件抽样: gmail-processor.js, archive-promotions.sh
+  - 变更情况: git 变更 1 项
+- **gmail-inbox-zero-triage**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/gmail-inbox-zero-triage`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 变更情况: git 变更 1 项
+- **google-workspace-mcp**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: git 最近提交: 694d94c 2026-02-09
+- **imap-smtp-email**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email`
+  - SKILL.md: yes；package.json: yes
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 3 处(抽样)；suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 可疑/可执行脚本抽样: setup.sh, scripts/smtp.js, scripts/imap.js
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **larksuite-wiki**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: larksuite-wiki.py
+  - 二进制/可执行文件抽样: larksuite-wiki.py, larksuite-wiki
+  - 变更情况: git 最近提交: e600c2c 2026-02-06
+- **obsidian-integration**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/obsidian-integration`
+  - SKILL.md: yes；package.json: yes
+  - 风险等级: **medium**
+  - 理由: child_process/exec/spawn 命中 1 处(抽样)
+  - 可疑/可执行脚本抽样: index.js
+  - 变更情况: git 变更 1 项
+- **reminder**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/reminder`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 可疑/可执行脚本抽样: scripts/reminder-scheduler.sh
+  - 二进制/可执行文件抽样: scripts/reminder-scheduler.sh
+  - 变更情况: git 变更 4 项
+- **seedance-3x3-optimizer**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/seedance-3x3-optimizer`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 可疑/可执行脚本抽样: scripts/optimize_story.py
+  - 二进制/可执行文件抽样: scripts/optimize_story.py
+  - 变更情况: git 最近提交: da0e8d6 2026-02-22
+- **self-reflection**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/self-reflection`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **skill-vetter**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/skill-vetter`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **high**
+  - 理由: child_process/exec/spawn 命中 1 处(抽样)；curl/wget 命中 3 处(抽样)；write ~/.ssh 命中 1 处(抽样)；suspicious network 命中 3 处(抽样)
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **stock_analysis**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/stock_analysis`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **high**
+  - 理由: curl/wget 命中 1 处(抽样)；suspicious network 命中 3 处(抽样)；sudo/privilege 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: scripts/analyze_stock.sh, scripts/install_deps.sh, scripts/stock_analyzer.py
+  - 二进制/可执行文件抽样: scripts/analyze_stock.sh, scripts/install_deps.sh, scripts/stock_analyzer.py
+  - 变更情况: git 变更 2 项
+- **task-status**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/task-status`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 3 处(抽样)；suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 可疑/可执行脚本抽样: scripts/monitor_task.py, scripts/test_send_status.py, scripts/send_status_websocket.py, scripts/send_status_with_logging.py
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **technews**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/technews`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: scripts/article_fetcher.py, scripts/techmeme_scraper.py, scripts/social_reactions.py, scripts/technews.py
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **trading-journal**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/trading-journal`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: 未发现高风险关键模式
+  - 可疑/可执行脚本抽样: scripts/trade-log.sh
+  - 二进制/可执行文件抽样: scripts/trade-log.sh
+  - 变更情况: git 最近提交: 434c59e 2026-02-06
+- **ui-ux-pro-max**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **high**
+  - 理由: env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；sudo/privilege 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: scripts/design_system.py, scripts/core.py, scripts/__init__.py, scripts/search.py
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **vercel-cli**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/vercel-cli`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: child_process/exec/spawn 命中 1 处(抽样)；env/local secrets read 命中 1 处(抽样)
+  - 可疑/可执行脚本抽样: vercel-skill.js
+  - 二进制/可执行文件抽样: vercel-skill.js
+  - 变更情况: git 变更 1 项
+- **webapp-testing**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/webapp-testing`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 3 条
+  - 可疑/可执行脚本抽样: examples/element_discovery.py, examples/console_logging.py, examples/static_html_automation.py, scripts/with_server.py
+  - 变更情况: git 最近提交: fb7d41f 2026-02-06
+- **x-search**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/x-search`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 3 处(抽样)；env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: scripts/x_search.sync-conflict-20260208-163216-3MIRDQS.sh, scripts/x_search.sh
+  - 二进制/可执行文件抽样: scripts/x_search.sync-conflict-20260208-163216-3MIRDQS.sh, scripts/x_search.sh
+  - 变更情况: git 最近提交: c6ffc49 2026-02-07
+- **x-tweet-fetcher**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/x-tweet-fetcher`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 可疑/可执行脚本抽样: scripts/fetch_tweet.py
+  - 二进制/可执行文件抽样: scripts/fetch_tweet.py
+  - 变更情况: git 变更 1 项
+- **xai-x-search**
+  - 来源路径: `/home/ubuntu/.openclaw/workspace/skills/xai-x-search`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 1 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 3 条
+  - 变更情况: git 最近提交: c6ffc49 2026-02-07
+- **1password**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/1password`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 826ac39fe863
+- **apple-notes**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-notes`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 4ccce0ffd94a
+- **apple-reminders**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/apple-reminders`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 87bfbdfc9554
+- **bear-notes**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bear-notes`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 2 处(抽样)；suspicious network 命中 2 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 368f5763e65d
+- **blogwatcher**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blogwatcher`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 2 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 7c9b1507b99e
+- **blucli**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/blucli`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 d580bfe06f92
+- **bluebubbles**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/bluebubbles`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: 未发现高风险关键模式
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 055a662d0f3c
+- **camsnap**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/camsnap`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 c6fd485232a2
+- **canvas**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/canvas`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 1 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 0886fdb8b59c
+- **clawhub**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/clawhub`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 7104c8011b21
+- **coding-agent**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/coding-agent`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 53cc2e72de93
+- **discord**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/discord`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: 未发现高风险关键模式
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 ee02f2268eec
+- **eightctl**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/eightctl`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 d95878edba8b
+- **food-order**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/food-order`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 2 处(抽样)；外联 URL 抽样 2 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 83ad09a53dee
+- **gemini**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gemini`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 42bea000b8b9
+- **gh-issues**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gh-issues`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: child_process/exec/spawn 命中 1 处(抽样)；curl/wget 命中 3 处(抽样)；env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 ab93fc8ed9aa
+- **gifgrep**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gifgrep`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 c96e58abd035
+- **github**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/github`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 c61bd23a0305
+- **gog**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/gog`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 87cb2848a7fc
+- **goplaces**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/goplaces`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 1 处(抽样)；suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 a2800c992f6d
+- **healthcheck**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/healthcheck`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: 未发现高风险关键模式
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 0555bd7c4569
+- **himalaya**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/himalaya`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 3 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 dba91b0ae867
+- **imsg**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/imsg`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 b18971905c9b
+- **mcporter**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/mcporter`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 d66181b96f57
+- **model-usage**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/model-usage`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: 未发现高风险关键模式
+  - 可疑/可执行脚本抽样: scripts/model_usage.py
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 39270616021b
+- **nano-banana-pro**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-banana-pro`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **high**
+  - 理由: env/local secrets read 命中 1 处(抽样)；suspicious network 命中 1 处(抽样)；base64 decode exec 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 可疑/可执行脚本抽样: scripts/generate_image.py
+  - 二进制/可执行文件抽样: scripts/generate_image.py
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 8f91064e942a
+- **nano-pdf**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/nano-pdf`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 9913a0f5aaeb
+- **notion**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/notion`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 be177801b4e1
+- **obsidian**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/obsidian`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 57bcdc41921d
+- **openai-image-gen**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-image-gen`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **high**
+  - 理由: env/local secrets read 命中 3 处(抽样)；suspicious network 命中 2 处(抽样)；base64 decode exec 命中 1 处(抽样)；外联 URL 抽样 2 条
+  - 可疑/可执行脚本抽样: scripts/gen.py
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 d05ad0764fdd
+- **openai-whisper**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 8f1f14aa5596
+- **openai-whisper-api**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openai-whisper-api`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 3 处(抽样)；env/local secrets read 命中 3 处(抽样)；suspicious network 命中 2 处(抽样)；外联 URL 抽样 2 条
+  - 可疑/可执行脚本抽样: scripts/transcribe.sh
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 55e6ebff13c0
+- **openhue**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/openhue`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 37da978a5458
+- **oracle**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/oracle`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 1 处(抽样)；suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 e603f35334bf
+- **ordercli**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/ordercli`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 1 处(抽样)；suspicious network 命中 2 处(抽样)；外联 URL 抽样 2 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 a9f119782f40
+- **peekaboo**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/peekaboo`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 2 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 c06b4224a79e
+- **sag**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sag`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 6058c381312e
+- **session-logs**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/session-logs`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: 未发现高风险关键模式
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 7da7ff4d9fac
+- **sherpa-onnx-tts**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sherpa-onnx-tts`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: child_process/exec/spawn 命中 1 处(抽样)；env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 4 条
+  - 二进制/可执行文件抽样: bin/sherpa-onnx-tts
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 79b1d35d5c20
+- **skill-creator**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/skill-creator`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 2 处(抽样)；外联 URL 抽样 2 条
+  - 可疑/可执行脚本抽样: scripts/quick_validate.py, scripts/test_package_skill.py, scripts/init_skill.py, scripts/package_skill.py
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 52464a3faeba
+- **slack**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/slack`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: 未发现高风险关键模式
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 8ae4f3e83780
+- **songsee**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/songsee`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 62a6cb924889
+- **sonoscli**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/sonoscli`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 1 处(抽样)；suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 1db6d0ad1652
+- **spotify-player**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/spotify-player`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 5c5f06003acd
+- **summarize**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/summarize`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 3 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 e21b802ecf0e
+- **things-mac**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/things-mac`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 3 处(抽样)；suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 4719cc35e54f
+- **tmux**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/tmux`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: 未发现高风险关键模式
+  - 可疑/可执行脚本抽样: scripts/find-sessions.sh, scripts/wait-for-text.sh
+  - 二进制/可执行文件抽样: scripts/find-sessions.sh, scripts/wait-for-text.sh
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 2c95a5ec64be
+- **trello**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/trello`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 3 处(抽样)；env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 dcbd62858077
+- **video-frames**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/video-frames`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 可疑/可执行脚本抽样: scripts/frame.sh
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 fc73039c517d
+- **voice-call**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/voice-call`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: 未发现高风险关键模式
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 829eee4921e5
+- **wacli**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/wacli`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 ec3daf92fcbb
+- **weather**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/weather`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 3 处(抽样)；suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 3efb9d7e51f7
+- **xurl**
+  - 来源路径: `/home/ubuntu/.npm-global/lib/node_modules/openclaw/skills/xurl`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: curl/wget 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 变更情况: 非 git；最新 mtime 2026-02-22 04:09 UTC；结构指纹 46737c91fdf0
+- **clawra-selfie**
+  - 来源路径: `/home/ubuntu/.openclaw/skills/clawra-selfie`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **medium**
+  - 理由: child_process/exec/spawn 命中 2 处(抽样)；curl/wget 命中 3 处(抽样)；env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)
+  - 可疑/可执行脚本抽样: scripts/clawra-selfie.ts, scripts/clawra-selfie.sh
+  - 二进制/可执行文件抽样: scripts/clawra-selfie.sh
+  - 变更情况: 非 git；最新 mtime 2026-02-11 17:10 UTC；结构指纹 4559d08c6895
+- **find-skills**
+  - 来源路径: `/home/ubuntu/.openclaw/skills/find-skills`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 3 处(抽样)；外联 URL 抽样 4 条
+  - 变更情况: 非 git；最新 mtime 2026-02-12 15:56 UTC；结构指纹 9b4017288256
+- **google-workspace**
+  - 来源路径: `/home/ubuntu/.openclaw/skills/google-workspace`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **high**
+  - 理由: env/local secrets read 命中 2 处(抽样)；suspicious network 命中 3 处(抽样)；base64 decode exec 命中 2 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: scripts/read_email.py, scripts/list_calendars.py, scripts/create_draft.py, scripts/search_emails.py
+  - 变更情况: 非 git；最新 mtime 2026-02-08 06:27 UTC；结构指纹 8d9935f49c5c
+- **knowledge-base-collector**
+  - 来源路径: `/home/ubuntu/.openclaw/skills/knowledge-base-collector`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 3 处(抽样)；suspicious network 命中 3 处(抽样)；外联 URL 抽样 5 条
+  - 可疑/可执行脚本抽样: scripts/tagger.py, scripts/weekly_digest.py, scripts/wechat_backlog.py, scripts/ingest_url.py
+  - 变更情况: 非 git；最新 mtime 2026-02-13 07:08 UTC；结构指纹 674f9f505d98
+- **walkie**
+  - 来源路径: `/home/ubuntu/.openclaw/skills/walkie`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: env/local secrets read 命中 3 处(抽样)
+  - 可疑/可执行脚本抽样: templates/two-agent-collab.sh, templates/monitoring.sh, templates/same-machine-collab.sh, templates/delegated-task.sh
+  - 二进制/可执行文件抽样: templates/two-agent-collab.sh, templates/monitoring.sh, templates/delegated-task.sh
+  - 变更情况: 非 git；最新 mtime 2026-02-20 14:19 UTC；结构指纹 d45f866155b6
+- **x-tweet-fetcher**
+  - 来源路径: `/home/ubuntu/.openclaw/skills/x-tweet-fetcher`
+  - SKILL.md: yes；package.json: no
+  - 风险等级: **low**
+  - 理由: suspicious network 命中 1 处(抽样)；外联 URL 抽样 1 条
+  - 可疑/可执行脚本抽样: scripts/fetch_tweet.py
+  - 二进制/可执行文件抽样: scripts/fetch_tweet.py
+  - 变更情况: 非 git；最新 mtime 2026-02-21 14:11 UTC；结构指纹 17570013d865

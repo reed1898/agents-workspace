@@ -1,0 +1,45 @@
+--- a/node_modules/@buape/carbon/dist/src/classes/RequestClient.js
++++ b/node_modules/@buape/carbon/dist/src/classes/RequestClient.js
+@@ -1,5 +1,32 @@
+ import { DiscordError } from "../errors/DiscordError.js";
+ import { RateLimitError } from "../errors/RatelimitError.js";
++import fs from "node:fs";
++import os from "node:os";
++import path from "node:path";
++import { ProxyAgent } from "undici";
++const _readDiscordProxyFromConfig = () => {
++    const configCandidates = [
++        process.env.OPENCLAW_CONFIG_PATH || "",
++        process.env.OPENCLAW_STATE_DIR ? path.join(process.env.OPENCLAW_STATE_DIR, "openclaw.json") : "",
++        path.join(os.homedir(), ".openclaw", "openclaw.json")
++    ].filter(Boolean);
++    for (const configPath of configCandidates) {
++        try {
++            const raw = fs.readFileSync(configPath, "utf8");
++            const cfg = JSON.parse(raw);
++            const proxy = cfg?.channels?.discord?.proxy;
++            if (typeof proxy === "string" && proxy.trim()) {
++                return proxy.trim();
++            }
++        }
++        catch {
++            continue;
++        }
++    }
++    return "";
++};
++const _proxyUrl = _readDiscordProxyFromConfig() || process.env.https_proxy || process.env.HTTPS_PROXY || process.env.http_proxy || process.env.HTTP_PROXY;
++const _proxyDispatcher = _proxyUrl ? new ProxyAgent(_proxyUrl) : null;
+ const defaultOptions = {
+     tokenHeader: "Bot",
+     baseUrl: "https://discord.com/api",
+@@ -193,7 +220,8 @@
+                 method,
+                 headers,
+                 body,
+-                signal: this.abortController.signal
++                signal: this.abortController.signal,
++                ...(_proxyDispatcher ? { dispatcher: _proxyDispatcher } : {})
+             });
+         }
+         finally {

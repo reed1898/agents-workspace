@@ -1,0 +1,748 @@
+# Skills Security Scan — 2026-02-13
+
+这是每晚例行安全扫描（日报风格）。静态审计：枚举 skill 元数据 + 关键字/模式 grep 抽样。
+
+## 今晚结论摘要
+
+- 【Skills 夜间安全扫描】2026-02-13（静态审计）
+- 扫描范围：workspace/skills、npm-global/openclaw/skills、~/.openclaw/skills
+- 技能数量（按 SKILL.md 或 package.json 识别）：41
+- 风险分布：high 4 / medium 13 / low 24
+- 结论：发现 high 风险技能（见详细列表），建议优先人工复核其命令执行/密钥处理/外部网络访问逻辑。
+- 备注：本次扫描不执行任何代码、不做破坏性操作；结果可能包含文档/示例的误报。
+
+## 扫描方法（简述）
+
+- 识别 skill 目录：包含 `SKILL.md` 或 `package.json` 的目录
+- 模式扫描：child_process/exec/spawn、curl/wget、process.env/dotenv、eval/new Function、base64、~/.ssh、sudo/pkexec、webhook/可疑域名等
+- 可执行文件：查找可执行位文件 + `file` 识别（如可用）
+- 变更检测：若目录本身是 git repo → git status/diff；否则记录最近 mtime + 简单 fingerprint
+
+## Skills 详细清单（按风险从高到低）
+
+- **/home/ubuntu/.openclaw/workspace/skills/avatarkit**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/avatarkit
+  - SKILL.md：✅；package.json：✅
+  - package：openclaw-avatarkit @ 0.1.0（private=None）
+  - 风险等级：**high**
+    - 理由：出现高危关键模式（如 eval/base64/.ssh/sudo/webhook 等）
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更：git repo（HEAD 5a17ff7），dirty=False 
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/avatarkit/backend/package.json:17 — `"axios": "^1.6.0",`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/avatarkit/package.json:23 — `"axios": "^1.6.0"`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/avatarkit/src/api.ts:6 — `import axios, { AxiosInstance, AxiosResponse } from 'axios';`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/avatarkit/src/api.ts:50 — `this.client = axios.create({`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/avatarkit/src/api.ts:205 — `const response = await axios.post(endpoint, {`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/avatarkit/src/api.ts:232 — `const response = await axios.post(endpoint, {`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/avatarkit/backend/package.json:16 — `"dotenv": "^16.3.1",`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/avatarkit/src/api.ts:154 — `formData.append('audio', Buffer.from(options.audioData, 'base64'), {`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/avatarkit/src/types.ts:22 — `referenceImage?: string; // URL or base64`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/avatarkit/src/types.ts:67 — `audioData: Buffer | string; // Buffer or base64`
+- **/home/ubuntu/.openclaw/workspace/skills/skill-vetter**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/skill-vetter
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**high**
+    - 理由：出现高危关键模式（如 eval/base64/.ssh/sudo/webhook 等）
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：7061c41c56145abe
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/skill-vetter/_meta.json  (131 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md  (4561 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/skill-vetter/.clawhub/origin.json  (144 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:38 — `• curl/wget to unknown URLs`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:112 — `curl -s "https://api.github.com/repos/OWNER/REPO" | jq '{stars: .stargazers_count, forks: .forks_count, updated: .updated_at}'`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:115 — `curl -s "https://api.github.com/repos/OWNER/REPO/contents/skills/SKILL_NAME" | jq '.[].name'`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:118 — `curl -s "https://raw.githubusercontent.com/OWNER/REPO/main/skills/SKILL_NAME/SKILL.md"`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:38 — `• curl/wget to unknown URLs`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:41 — `• Reads ~/.ssh, ~/.aws, ~/.config without clear reason`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:41 — `• Reads ~/.ssh, ~/.aws, ~/.config without clear reason`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:43 — `• Uses base64 decode on anything`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/skill-vetter/SKILL.md:49 — `• Requests elevated/sudo permissions`
+- **/home/ubuntu/.openclaw/workspace/skills/stock_analysis**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/stock_analysis
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**high**
+    - 理由：出现高危关键模式（如 eval/base64/.ssh/sudo/webhook 等）
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=True 
+    - git status（该目录相关，节选）：
+      - `M skills/stock_analysis/SKILL.md`
+      - `?? skills/stock_analysis/outputs/`
+  - 变更（mtime fingerprint）：4dc3db4b165bf3bd
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-13 07:00:53 UTC  /home/ubuntu/.openclaw/workspace/skills/stock_analysis/outputs/AAPL_20260213T070053Z.txt  (683 bytes)
+      - 2026-02-13 07:00:53 UTC  /home/ubuntu/.openclaw/workspace/skills/stock_analysis/outputs/AAPL_20260213T070053Z.json  (940 bytes)
+      - 2026-02-13 00:51:17 UTC  /home/ubuntu/.openclaw/workspace/skills/stock_analysis/outputs/688102.SH_20260213T005117Z.txt  (688 bytes)
+      - 2026-02-13 00:51:17 UTC  /home/ubuntu/.openclaw/workspace/skills/stock_analysis/outputs/688102.SH_20260213T005117Z.json  (945 bytes)
+      - 2026-02-13 00:51:17 UTC  /home/ubuntu/.openclaw/workspace/skills/stock_analysis/outputs/688048.SH_20260213T005117Z.txt  (688 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/stock_analysis/scripts/install_deps.sh:36 — `echo "1) curl -sS https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py"`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/stock_analysis/scripts/stock_analyzer.py:133 — `data = requests.get(url, timeout=10).json().get("data")`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/stock_analysis/scripts/stock_analyzer.py:167 — `data = requests.get(url, params=params, timeout=10).json().get("data")`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/stock_analysis/scripts/stock_analyzer.py:192 — `data = requests.get(url, params=params, timeout=10).json().get("data", {})`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/stock_analysis/PRE_RELEASE_CHECKLIST.md:13 — `sudo apt-get update && sudo apt-get install -y python3 python3-pip python3-venv git`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/stock_analysis/PRE_RELEASE_CHECKLIST.md:16 — `无 sudo 降级：`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/stock_analysis/SKILL.md:46 — `If your system lacks `python3-pip` or you don't have sudo access, the script will suggest fallback options:`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/stock_analysis/SKILL.md:49 — `# User-level installation without sudo`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/stock_analysis/scripts/install_deps.sh:23 — `echo "sudo apt-get update && sudo apt-get install -y python3 python3-pip python3-venv git"`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/stock_analysis/scripts/install_deps.sh:35 — `echo "\n无法 sudo 时的降级路径（推荐）："`
+- **/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**high**
+    - 理由：出现高危关键模式（如 eval/base64/.ssh/sudo/webhook 等）
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：2b072eeb79a917e5
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/scripts/search.py  (5383 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/scripts/design_system.py  (43778 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/scripts/core.py  (10227 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/scripts/__init__.py  (0 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/references/upstream-skill-content.md  (10051 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/references/upstream-README.md:322 — `> **Trae**: Switch to **SOLO** mode first. The skill will activate for UI/UX requests.`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/assets/data/stacks/nextjs.csv:37 — `36,Environment,Validate env vars,Check required env vars exist,Validate on startup,Undefined env at runtime,if (!process.env.DATABASE_URL) throw,process.env.DATABASE_URL (might be undefined),High,`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/assets/data/stacks/nuxtjs.csv:53 — `52,Environment,Use runtimeConfig for env vars,Access environment variables safely,runtimeConfig in nuxt.config,process.env directly,"runtimeConfig: { apiSecret: '', public: { apiBase: '' } }",process.env.API_SECRET in components,High,https:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/assets/data/stacks/nuxtjs.csv:55 — `54,Environment,Access public config with useRuntimeConfig,Get public config in components,useRuntimeConfig().public,Direct process.env access,const config = useRuntimeConfig(); config.public.apiBase,process.env.NUXT_PUBLIC_API_BASE,High,htt`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/data/stacks/nextjs.csv:37 — `36,Environment,Validate env vars,Check required env vars exist,Validate on startup,Undefined env at runtime,if (!process.env.DATABASE_URL) throw,process.env.DATABASE_URL (might be undefined),High,`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/data/stacks/nuxtjs.csv:53 — `52,Environment,Use runtimeConfig for env vars,Access environment variables safely,runtimeConfig in nuxt.config,process.env directly,"runtimeConfig: { apiSecret: '', public: { apiBase: '' } }",process.env.API_SECRET in components,High,https:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/data/stacks/nuxtjs.csv:55 — `54,Environment,Access public config with useRuntimeConfig,Get public config in components,useRuntimeConfig().public,Direct process.env access,const config = useRuntimeConfig(); config.public.apiBase,process.env.NUXT_PUBLIC_API_BASE,High,htt`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/references/upstream-README.md:304 — `sudo apt update && sudo apt install python3`
+    - [high] /home/ubuntu/.openclaw/workspace/skills/ui-ux-pro-max/references/upstream-skill-content.md:22 — `sudo apt update && sudo apt install python3`
+- **/home/ubuntu/.openclaw/skills/clawra-selfie**
+  - 来源：/home/ubuntu/.openclaw/skills/clawra-selfie
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**medium**
+    - 理由：包含进程执行/命令调用代码（child_process/exec/spawn）
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更（mtime fingerprint）：5760d665ef09cccf
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-11 17:10:45 UTC  /home/ubuntu/.openclaw/skills/clawra-selfie/scripts/clawra-selfie.ts  (6835 bytes)
+      - 2026-02-11 17:10:45 UTC  /home/ubuntu/.openclaw/skills/clawra-selfie/scripts/clawra-selfie.sh  (4470 bytes)
+      - 2026-02-11 17:10:45 UTC  /home/ubuntu/.openclaw/skills/clawra-selfie/assets/clawra.png  (1247229 bytes)
+      - 2026-02-11 17:10:45 UTC  /home/ubuntu/.openclaw/skills/clawra-selfie/SKILL.md  (12611 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/skills/clawra-selfie/SKILL.md:240 — `import { exec } from "child_process";`
+    - [medium] /home/ubuntu/.openclaw/skills/clawra-selfie/scripts/clawra-selfie.ts:16 — `import { exec } from "child_process";`
+    - [medium] /home/ubuntu/.openclaw/skills/clawra-selfie/SKILL.md:4 — `allowed-tools: Bash(npm:*) Bash(npx:*) Bash(openclaw:*) Bash(curl:*) Read Write WebFetch`
+    - [medium] /home/ubuntu/.openclaw/skills/clawra-selfie/SKILL.md:107 — `curl -X POST "https://fal.run/xai/grok-imagine-image/edit" \`
+    - [medium] /home/ubuntu/.openclaw/skills/clawra-selfie/SKILL.md:142 — `curl -X POST "http://localhost:18789/message" \`
+    - [medium] /home/ubuntu/.openclaw/skills/clawra-selfie/SKILL.md:209 — `RESPONSE=$(curl -s -X POST "https://fal.run/xai/grok-imagine-image/edit" \`
+    - [medium] /home/ubuntu/.openclaw/skills/clawra-selfie/scripts/clawra-selfie.sh:82 — `RESPONSE=$(curl -s -X POST "https://fal.run/xai/grok-imagine-image" \`
+    - [medium] /home/ubuntu/.openclaw/skills/clawra-selfie/scripts/clawra-selfie.sh:137 — `curl -s -X POST "$GATEWAY_URL/message" \`
+    - [medium] /home/ubuntu/.openclaw/skills/clawra-selfie/SKILL.md:283 — `credentials: process.env.FAL_KEY!`
+    - [medium] /home/ubuntu/.openclaw/skills/clawra-selfie/scripts/clawra-selfie.ts:99 — `const falKey = process.env.FAL_KEY;`
+- **/home/ubuntu/.openclaw/workspace/skills/Gmail**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/Gmail
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**medium**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=True 
+    - git status（该目录相关，节选）：
+      - `?? skills/Gmail/`
+  - 变更（mtime fingerprint）：fbae5bd336743245
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-03 08:35:43 UTC  /home/ubuntu/.openclaw/workspace/skills/Gmail/.clawhub/origin.json  (137 bytes)
+      - 2026-02-03 08:35:43 UTC  /home/ubuntu/.openclaw/workspace/skills/Gmail/LICENSE.txt  (1072 bytes)
+      - 2026-02-03 08:35:43 UTC  /home/ubuntu/.openclaw/workspace/skills/Gmail/SKILL.md  (5744 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/Gmail/SKILL.md:19 — `curl -s -X GET 'https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10' \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/Gmail/SKILL.md:58 — `curl -s -X GET 'https://ctrl.maton.ai/connections?app=google-mail&status=ACTIVE' \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/Gmail/SKILL.md:65 — `curl -s -X POST 'https://ctrl.maton.ai/connections' \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/Gmail/SKILL.md:74 — `curl -s -X GET 'https://ctrl.maton.ai/connections/{connection_id}' \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/Gmail/SKILL.md:95 — `curl -s -X DELETE 'https://ctrl.maton.ai/connections/{connection_id}' \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/Gmail/SKILL.md:235 — `response = requests.get(`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/Gmail/SKILL.md:223 — `'Authorization': `Bearer ${process.env.MATON_API_KEY}``
+- **/home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**medium**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：6000beac4e378cee
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/SKILL.md  (5744 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/LICENSE.txt  (1072 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/.clawhub/origin.json  (137 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/SKILL.md:19 — `curl -s -X GET 'https://gateway.maton.ai/google-mail/gmail/v1/users/me/messages?maxResults=10' \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/SKILL.md:58 — `curl -s -X GET 'https://ctrl.maton.ai/connections?app=google-mail&status=ACTIVE' \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/SKILL.md:65 — `curl -s -X POST 'https://ctrl.maton.ai/connections' \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/SKILL.md:74 — `curl -s -X GET 'https://ctrl.maton.ai/connections/{connection_id}' \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/SKILL.md:95 — `curl -s -X DELETE 'https://ctrl.maton.ai/connections/{connection_id}' \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/SKILL.md:235 — `response = requests.get(`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/_disabled/Gmail.disabled-20260208-062106/SKILL.md:223 — `'Authorization': `Bearer ${process.env.MATON_API_KEY}``
+- **/home/ubuntu/.openclaw/workspace/skills/browse**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/browse
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**medium**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：c840bca310da5919
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md  (7060 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/browse/skills/fix/SKILL.md  (4867 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/browse/skills/create/SKILL.md  (4607 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md  (10841 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/browse/skills/auth/SKILL.md  (4294 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/SKILL.md:155 — `Invoke with curl:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/SKILL.md:157 — `curl -X POST http://127.0.0.1:14113/v1/functions/my-automation/invoke \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/SKILL.md:188 — `curl -X POST https://api.browserbase.com/v1/functions/<function-id>/invoke \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/SKILL.md:376 — `- [ ] Verify with curl`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/create/SKILL.md:128 — `Then invoke locally via curl:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/create/SKILL.md:130 — `curl -X POST http://127.0.0.1:14113/v1/functions/my-automation/invoke \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:119 — `curl -X POST http://127.0.0.1:14113/v1/functions/my-function/invoke \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:147 — `### Via curl`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:151 — `curl -X POST "https://api.browserbase.com/v1/functions/FUNCTION_ID/invoke" \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:159 — `curl "https://api.browserbase.com/v1/functions/invocations/INVOCATION_ID" \`
+- **/home/ubuntu/.openclaw/workspace/skills/browse/skills/functions**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/browse/skills/functions
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**medium**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：364354c6f05cf64f
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md  (7060 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:119 — `curl -X POST http://127.0.0.1:14113/v1/functions/my-function/invoke \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:147 — `### Via curl`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:151 — `curl -X POST "https://api.browserbase.com/v1/functions/FUNCTION_ID/invoke" \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:159 — `curl "https://api.browserbase.com/v1/functions/invocations/INVOCATION_ID" \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:174 — `'x-bb-api-key': process.env.BROWSERBASE_API_KEY!,`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:187 — `{ headers: { 'x-bb-api-key': process.env.BROWSERBASE_API_KEY! } }`
+    - [info] /home/ubuntu/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:14 — `- User needs a webhook endpoint for browser automation`
+- **/home/ubuntu/.openclaw/workspace/skills/clawra**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/clawra
+  - SKILL.md：✅；package.json：✅
+  - package：clawra @ 1.1.1（private=None）
+  - 风险等级：**medium**
+    - 理由：包含进程执行/命令调用代码（child_process/exec/spawn）
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：26247a8c4a348333
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-11 17:30:58 UTC  /home/ubuntu/.openclaw/workspace/skills/clawra/scripts/clawra-selfie.sh  (4445 bytes)
+      - 2026-02-11 17:30:58 UTC  /home/ubuntu/.openclaw/workspace/skills/clawra/skill/scripts/clawra-selfie.sh  (4445 bytes)
+      - 2026-02-11 17:10:45 UTC  /home/ubuntu/.openclaw/workspace/skills/clawra/templates/soul-injection.md  (2202 bytes)
+      - 2026-02-11 17:10:45 UTC  /home/ubuntu/.openclaw/workspace/skills/clawra/skill/scripts/clawra-selfie.ts  (6835 bytes)
+      - 2026-02-11 17:10:45 UTC  /home/ubuntu/.openclaw/workspace/skills/clawra/skill/assets/clawra.png  (1247229 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/bin/cli.js:12 — `const { execSync, spawn } = require("child_process");`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/SKILL.md:240 — `import { exec } from "child_process";`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/scripts/clawra-selfie.ts:16 — `import { exec } from "child_process";`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/SKILL.md:240 — `import { exec } from "child_process";`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/scripts/clawra-selfie.ts:16 — `import { exec } from "child_process";`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/bin/cli.js:12 — `const { execSync, spawn } = require("child_process");`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/bin/cli.js:88 — `execSync(`which ${cmd}`, { stdio: "ignore" });`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/bin/cli.js:109 — `execSync(cmd, { stdio: "ignore" });`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/SKILL.md:4 — `allowed-tools: Bash(npm:*) Bash(npx:*) Bash(openclaw:*) Bash(curl:*) Read Write WebFetch`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/SKILL.md:107 — `curl -X POST "https://fal.run/xai/grok-imagine-image/edit" \`
+- **/home/ubuntu/.openclaw/workspace/skills/clawra/skill**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/clawra/skill
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**medium**
+    - 理由：包含进程执行/命令调用代码（child_process/exec/spawn）
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：c6c4a96379acde59
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-11 17:30:58 UTC  /home/ubuntu/.openclaw/workspace/skills/clawra/skill/scripts/clawra-selfie.sh  (4445 bytes)
+      - 2026-02-11 17:10:45 UTC  /home/ubuntu/.openclaw/workspace/skills/clawra/skill/scripts/clawra-selfie.ts  (6835 bytes)
+      - 2026-02-11 17:10:45 UTC  /home/ubuntu/.openclaw/workspace/skills/clawra/skill/assets/clawra.png  (1247229 bytes)
+      - 2026-02-11 17:10:45 UTC  /home/ubuntu/.openclaw/workspace/skills/clawra/skill/SKILL.md  (12611 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/SKILL.md:240 — `import { exec } from "child_process";`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/scripts/clawra-selfie.ts:16 — `import { exec } from "child_process";`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/SKILL.md:4 — `allowed-tools: Bash(npm:*) Bash(npx:*) Bash(openclaw:*) Bash(curl:*) Read Write WebFetch`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/SKILL.md:107 — `curl -X POST "https://fal.run/xai/grok-imagine-image/edit" \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/SKILL.md:142 — `curl -X POST "http://localhost:18789/message" \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/SKILL.md:209 — `RESPONSE=$(curl -s -X POST "https://fal.run/xai/grok-imagine-image/edit" \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/scripts/clawra-selfie.sh:82 — `RESPONSE=$(curl -s -X POST "https://fal.run/xai/grok-imagine-image" \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/scripts/clawra-selfie.sh:136 — `curl -s -X POST "$GATEWAY_URL/message" \`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/SKILL.md:283 — `credentials: process.env.FAL_KEY!`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/clawra/skill/scripts/clawra-selfie.ts:99 — `const falKey = process.env.FAL_KEY;`
+- **/home/ubuntu/.openclaw/workspace/skills/crypto-price**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/crypto-price
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**medium**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：3e1cf99bf3e7ec3f
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py  (34795 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/crypto-price/requirements.txt  (18 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/crypto-price/_meta.json  (131 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/crypto-price/SKILL.md  (1958 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/crypto-price/README.md  (4872 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py:8 — `import urllib.error`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py:9 — `import urllib.parse`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py:10 — `import urllib.request`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py:66 — `req = urllib.request.Request(`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py:74 — `with urllib.request.urlopen(req, timeout=15) as resp:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py:80 — `except urllib.error.HTTPError as exc:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py:86 — `except urllib.error.URLError as exc:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py:96 — `req = urllib.request.Request(`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py:105 — `with urllib.request.urlopen(req, timeout=15) as resp:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-price/scripts/get_price_chart.py:111 — `except urllib.error.HTTPError as exc:`
+- **/home/ubuntu/.openclaw/workspace/skills/crypto-watch**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/crypto-watch
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**medium**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：f684867229a41aa9
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-08 03:45:04 UTC  /home/ubuntu/.openclaw/workspace/skills/crypto-watch/scripts/crypto_watch.py  (16729 bytes)
+      - 2026-02-08 03:45:04 UTC  /home/ubuntu/.openclaw/workspace/skills/crypto-watch/references/OKX.md  (289 bytes)
+      - 2026-02-08 03:45:04 UTC  /home/ubuntu/.openclaw/workspace/skills/crypto-watch/assets/watchlist.template.json  (356 bytes)
+      - 2026-02-08 03:45:04 UTC  /home/ubuntu/.openclaw/workspace/skills/crypto-watch/SKILL.md  (1744 bytes)
+      - 2026-02-07 18:13:34 UTC  /home/ubuntu/.openclaw/workspace/skills/crypto-watch/scripts/__pycache__/crypto_watch.cpython-312.pyc  (24839 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-watch/scripts/crypto_watch.py:20 — `import urllib.parse`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-watch/scripts/crypto_watch.py:21 — `import urllib.request`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-watch/scripts/crypto_watch.py:34 — `req = urllib.request.Request(url, headers={"User-Agent": "openclaw-crypto-watch/0.4"})`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-watch/scripts/crypto_watch.py:35 — `with urllib.request.urlopen(req, timeout=timeout) as resp:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-watch/scripts/crypto_watch.py:43 — `qs = urllib.parse.urlencode({"symbol": symbol, "interval": interval, "limit": str(limit)})`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/crypto-watch/scripts/crypto_watch.py:61 — `qs = urllib.parse.urlencode({"instId": inst_id, "bar": bar, "limit": str(limit)})`
+- **/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor
+  - SKILL.md：✅；package.json：✅
+  - package：gmail-auto-processor @ 1.0.0（private=None）
+  - 风险等级：**medium**
+    - 理由：包含进程执行/命令调用代码（child_process/exec/spawn）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=True 
+    - git status（该目录相关，节选）：
+      - `?? skills/gmail-auto-processor/`
+  - 变更（mtime fingerprint）：47f5dd1a2d64c403
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-10 05:23:29 UTC  /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/generate-report.js  (6987 bytes)
+      - 2026-02-10 05:21:35 UTC  /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/gmail-quick.js  (5928 bytes)
+      - 2026-02-10 05:17:46 UTC  /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/gmail-processor.js  (7496 bytes)
+      - 2026-02-10 05:15:42 UTC  /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/package-lock.json  (282 bytes)
+      - 2026-02-09 09:22:59 UTC  /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/index-anxiety-free.js  (6765 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/archive-promotions.js:1 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/gmail-processor.js:7 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/index-anxiety-free.js:8 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/smart-run.js:8 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/index-fixed.js:8 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/index.js:10 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/task-monitor.js:3 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/batch-process.js:8 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/gmail-quick.js:6 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/gmail-auto-processor/test-archive.js:7 — `const { execSync } = require('child_process');`
+- **/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/imap-smtp-email
+  - SKILL.md：✅；package.json：✅
+  - package：imap-smtp-email-skill @ 1.0.0（private=None）
+  - 风险等级：**medium**
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：e523f7e76bb52e01
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/setup.sh  (4066 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js  (5882 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/imap.js  (14530 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/package.json  (764 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/_meta.json  (134 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:38 — `host: process.env.SMTP_HOST,`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:39 — `port: parseInt(process.env.SMTP_PORT) || 587,`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:40 — `secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:42 — `user: process.env.SMTP_USER,`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:43 — `pass: process.env.SMTP_PASS,`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:46 — `rejectUnauthorized: process.env.SMTP_REJECT_UNAUTHORIZED !== 'false',`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:70 — `from: options.from || process.env.SMTP_FROM || process.env.SMTP_USER,`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:125 — `from: process.env.SMTP_FROM || process.env.SMTP_USER,`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/smtp.js:126 — `to: process.env.SMTP_USER, // Send to self`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/imap-smtp-email/scripts/imap.js:23 — `const DEFAULT_MAILBOX = process.env.IMAP_MAILBOX || 'INBOX';`
+- **/home/ubuntu/.openclaw/workspace/skills/technews**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/technews
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**medium**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：9e3e6e39bd78fc3f
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/technews/scripts/technews.py  (2984 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/technews/scripts/techmeme_scraper.py  (4791 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/technews/scripts/social_reactions.py  (4427 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/technews/scripts/article_fetcher.py  (4731 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/technews/requirements.txt  (40 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/technews/scripts/article_fetcher.py:24 — `"""Get a random user agent for requests."""`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/technews/scripts/article_fetcher.py:48 — `response = requests.get(url, headers=headers, timeout=timeout)`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/technews/scripts/article_fetcher.py:94 — `except requests.exceptions.Timeout:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/technews/scripts/article_fetcher.py:96 — `except requests.exceptions.RequestException as e:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/technews/scripts/techmeme_scraper.py:102 — `response = requests.get(TECHMEME_RSS, headers=headers, timeout=30)`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/technews/scripts/social_reactions.py:62 — `response = requests.get(`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/technews/scripts/technews.py:82 — `except requests.exceptions.RequestException as e:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/technews/scripts/social_reactions.py:8 — `from urllib.parse import quote`
+- **/home/ubuntu/.openclaw/workspace/skills/vercel-cli**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/vercel-cli
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**medium**
+    - 理由：包含进程执行/命令调用代码（child_process/exec/spawn）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=True 
+    - git status（该目录相关，节选）：
+      - `?? skills/vercel-cli/`
+  - 变更（mtime fingerprint）：ede89db28ebbae59
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-11 07:23:24 UTC  /home/ubuntu/.openclaw/workspace/skills/vercel-cli/vercel-skill.js  (3339 bytes)
+      - 2026-02-11 07:22:58 UTC  /home/ubuntu/.openclaw/workspace/skills/vercel-cli/SKILL.md  (910 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/vercel-cli/vercel-skill.js:7 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/vercel-cli/vercel-skill.js:7 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/vercel-cli/vercel-skill.js:17 — `const result = execSync(`vercel ${args}`, {`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/vercel-cli/vercel-skill.js:30 — `execSync('which vercel', { stdio: 'pipe' });`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/vercel-cli/vercel-skill.js:43 — `execSync('npm install -g vercel', { stdio: 'inherit' });`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/vercel-cli/vercel-skill.js:56 — `execSync('vercel login', { stdio: 'inherit' });`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/vercel-cli/vercel-skill.js:90 — `execSync('vercel logs', { stdio: 'inherit', cwd: projectPath });`
+- **/home/ubuntu/.openclaw/skills/find-skills**
+  - 来源：/home/ubuntu/.openclaw/skills/find-skills
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更（mtime fingerprint）：59a8cebf987cb782
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-12 15:56:02 UTC  /home/ubuntu/.openclaw/skills/find-skills/_meta.json  (130 bytes)
+      - 2026-02-12 15:56:02 UTC  /home/ubuntu/.openclaw/skills/find-skills/.clawhub/origin.json  (143 bytes)
+      - 2026-02-12 15:56:02 UTC  /home/ubuntu/.openclaw/skills/find-skills/SKILL.md  (4635 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/skills/knowledge-base-collector**
+  - 来源：/home/ubuntu/.openclaw/skills/knowledge-base-collector
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+  - 变更（mtime fingerprint）：c5c94241a24a80ad
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-13 07:08:13 UTC  /home/ubuntu/.openclaw/skills/knowledge-base-collector/SKILL.md  (3771 bytes)
+      - 2026-02-13 07:07:59 UTC  /home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/__pycache__/weekly_digest.cpython-312.pyc  (5779 bytes)
+      - 2026-02-13 07:07:59 UTC  /home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/__pycache__/wechat_backlog.cpython-312.pyc  (3649 bytes)
+      - 2026-02-13 07:07:59 UTC  /home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/weekly_digest.py  (3177 bytes)
+      - 2026-02-13 07:07:59 UTC  /home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/wechat_backlog.py  (2161 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/skills/knowledge-base-collector/scripts/ingest_url.py:101 — `r = requests.get(rurl, headers=headers, timeout=timeout)`
+- **/home/ubuntu/.openclaw/workspace/skills/YouTube**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/YouTube
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：eb67211b7defa595
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/YouTube/_meta.json  (126 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/YouTube/SKILL.md  (7510 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/YouTube/README.md  (1313 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/YouTube/.clawhub/origin.json  (139 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：存在少量敏感关键字命中（需人工确认是否仅为文档/示例）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：c59d14d512172661
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-08 03:43:57 UTC  /home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734/scripts/claw-roam.sh  (7762 bytes)
+      - 2026-02-08 03:43:57 UTC  /home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734/SKILL.md  (7214 bytes)
+      - 2026-02-06 16:43:10 UTC  /home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734/_meta.json  (128 bytes)
+      - 2026-02-06 16:43:10 UTC  /home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734/.clawhub/origin.json  (141 bytes)
+  - 关键模式命中（节选）：
+    - [info] /home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734/SKILL.md:232 — `3. Update Telegram webhook to point to VPS (if using webhook mode)`
+    - [info] /home/ubuntu/.openclaw/workspace/skills/_disabled/claw-roam.disabled-20260208-081734/SKILL.md:238 — `3. Update Telegram webhook back to local (if needed)`
+- **/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/a-stock-analysis
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：9a3734e5e8d49728
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-10 02:52:52 UTC  /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis/scripts/__pycache__/analyze.cpython-312.pyc  (16746 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis/scripts/portfolio.py  (7763 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis/scripts/analyze.py  (14889 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis/_meta.json  (135 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis/SKILL.md  (3573 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis/scripts/analyze.py:23 — `import urllib.request`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis/scripts/analyze.py:80 — `req = urllib.request.Request(url, headers={`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis/scripts/analyze.py:84 — `resp = urllib.request.urlopen(req, timeout=10)`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis/scripts/analyze.py:181 — `req = urllib.request.Request(url, headers={`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/a-stock-analysis/scripts/analyze.py:185 — `resp = urllib.request.urlopen(req, timeout=10)`
+- **/home/ubuntu/.openclaw/workspace/skills/avatarkit/backend**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/avatarkit/backend
+  - SKILL.md：❌；package.json：✅
+  - package：avatarkit-backend @ 0.1.0（private=True）
+  - 风险等级：**low**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+    - 理由：读取环境变量/可能涉及密钥（process.env/dotenv/token）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace/skills/avatarkit（HEAD 5a17ff7），path-dirty=False 
+  - 变更（mtime fingerprint）：7100bd2c81b4412d
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-11 07:05:08 UTC  /home/ubuntu/.openclaw/workspace/skills/avatarkit/backend/README.md  (2095 bytes)
+      - 2026-02-11 07:04:35 UTC  /home/ubuntu/.openclaw/workspace/skills/avatarkit/backend/package.json  (721 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/avatarkit/backend/package.json:17 — `"axios": "^1.6.0",`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/avatarkit/backend/package.json:16 — `"dotenv": "^16.3.1",`
+- **/home/ubuntu/.openclaw/workspace/skills/browse/skills/auth**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/browse/skills/auth
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：b2e935ddb28d2945
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/browse/skills/auth/SKILL.md  (4294 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/browse/skills/browser-automation**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/browse/skills/browser-automation
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：64e7c2261bd2f1b1
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md  (10841 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/browse/skills/create**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/browse/skills/create
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：a7c06fcee2f81314
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/browse/skills/create/SKILL.md  (4607 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/create/SKILL.md:128 — `Then invoke locally via curl:`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/browse/skills/create/SKILL.md:130 — `curl -X POST http://127.0.0.1:14113/v1/functions/my-automation/invoke \`
+- **/home/ubuntu/.openclaw/workspace/skills/browse/skills/fix**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/browse/skills/fix
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：2f1bfa0cfbcb2fd0
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/browse/skills/fix/SKILL.md  (4867 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/claw-roam**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/claw-roam
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：存在少量敏感关键字命中（需人工确认是否仅为文档/示例）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=True 
+    - git status（该目录相关，节选）：
+      - `?? skills/claw-roam/`
+  - 变更（mtime fingerprint）：116cd93274aef615
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 17:49:35 UTC  /home/ubuntu/.openclaw/workspace/skills/claw-roam/scripts/claw-roam.sh  (7762 bytes)
+      - 2026-02-06 17:49:35 UTC  /home/ubuntu/.openclaw/workspace/skills/claw-roam/SKILL.md  (7214 bytes)
+      - 2026-02-06 17:04:43 UTC  /home/ubuntu/.openclaw/workspace/skills/claw-roam/_meta.json  (128 bytes)
+      - 2026-02-06 17:04:43 UTC  /home/ubuntu/.openclaw/workspace/skills/claw-roam/.clawhub/origin.json  (141 bytes)
+  - 关键模式命中（节选）：
+    - [info] /home/ubuntu/.openclaw/workspace/skills/claw-roam/SKILL.md:232 — `3. Update Telegram webhook to point to VPS (if using webhook mode)`
+    - [info] /home/ubuntu/.openclaw/workspace/skills/claw-roam/SKILL.md:238 — `3. Update Telegram webhook back to local (if needed)`
+- **/home/ubuntu/.openclaw/workspace/skills/db-readonly**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/db-readonly
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：44cd558126d74b84
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-09 10:41:27 UTC  /home/ubuntu/.openclaw/workspace/skills/db-readonly/references/query-cookbook.md  (875 bytes)
+      - 2026-02-09 10:41:27 UTC  /home/ubuntu/.openclaw/workspace/skills/db-readonly/scripts/db_readonly.sh  (2893 bytes)
+      - 2026-02-09 10:41:27 UTC  /home/ubuntu/.openclaw/workspace/skills/db-readonly/SKILL.md  (1386 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/deepwiki**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/deepwiki
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：a45cf51708776c16
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/deepwiki/scripts/deepwiki.js  (3452 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/deepwiki/_meta.json  (127 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/deepwiki/SKILL.md  (1304 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/deepwiki/.clawhub/origin.json  (140 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/deepwork-tracker
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：b40e8abd80e4c6eb
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/deepwork-tracker/_meta.json  (135 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/deepwork-tracker/SKILL.md  (2506 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/deepwork-tracker/.clawhub/origin.json  (148 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/find-skills**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/find-skills
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=True 
+    - git status（该目录相关，节选）：
+      - `M skills/find-skills/.clawhub/origin.json`
+  - 变更（mtime fingerprint）：59cbb731d9b4cd0f
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-12 15:56:49 UTC  /home/ubuntu/.openclaw/workspace/skills/find-skills/.clawhub/origin.json  (143 bytes)
+      - 2026-02-12 15:56:49 UTC  /home/ubuntu/.openclaw/workspace/skills/find-skills/_meta.json  (130 bytes)
+      - 2026-02-12 15:56:49 UTC  /home/ubuntu/.openclaw/workspace/skills/find-skills/SKILL.md  (4635 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/github**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/github
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：f11aade4054facfc
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/github/_meta.json  (125 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/github/SKILL.md  (1113 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/github/.clawhub/origin.json  (138 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：ad7c7d9ea73f25d1
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-08 07:52:17 UTC  /home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp/.clawhub/origin.json  (152 bytes)
+      - 2026-02-08 07:52:17 UTC  /home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp/_meta.json  (139 bytes)
+      - 2026-02-08 07:52:17 UTC  /home/ubuntu/.openclaw/workspace/skills/google-workspace-mcp/SKILL.md  (4657 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/larksuite-wiki
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：包含网络请求/下载逻辑（curl/wget/fetch/requests 等）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：34997c404d02c17e
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 17:04:37 UTC  /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki/larksuite-wiki  (939 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki/references/api-reference.md  (806 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki/larksuite-wiki.py  (12769 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki/SKILL.md  (3460 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki/README.md  (1974 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki/larksuite-wiki.py:31 — `resp = requests.post(url, json={`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki/larksuite-wiki.py:48 — `resp = requests.get(url, headers=headers, params=params)`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/larksuite-wiki/larksuite-wiki.py:12 — `from urllib.parse import urlparse`
+- **/home/ubuntu/.openclaw/workspace/skills/obsidian-integration**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/obsidian-integration
+  - SKILL.md：✅；package.json：✅
+  - package：obsidian-integration @ 1.0.0（private=None）
+  - 风险等级：**low**
+    - 理由：包含进程执行/命令调用代码（child_process/exec/spawn）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=True 
+    - git status（该目录相关，节选）：
+      - `?? skills/obsidian-integration/`
+  - 变更（mtime fingerprint）：08064ba879e4942a
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-09 08:28:02 UTC  /home/ubuntu/.openclaw/workspace/skills/obsidian-integration/config.json  (305 bytes)
+      - 2026-02-09 08:24:12 UTC  /home/ubuntu/.openclaw/workspace/skills/obsidian-integration/package.json  (297 bytes)
+      - 2026-02-09 08:23:38 UTC  /home/ubuntu/.openclaw/workspace/skills/obsidian-integration/index.js  (6944 bytes)
+      - 2026-02-09 08:22:04 UTC  /home/ubuntu/.openclaw/workspace/skills/obsidian-integration/SKILL.md  (1860 bytes)
+  - 关键模式命中（节选）：
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/obsidian-integration/index.js:3 — `const { execSync } = require('child_process');`
+    - [medium] /home/ubuntu/.openclaw/workspace/skills/obsidian-integration/index.js:3 — `const { execSync } = require('child_process');`
+- **/home/ubuntu/.openclaw/workspace/skills/reminder**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/reminder
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=True 
+    - git status（该目录相关，节选）：
+      - `?? skills/reminder/.clawhub/`
+      - `?? skills/reminder/SKILL.sync-conflict-20260208-083216-R4LZGWG.md`
+      - `?? skills/reminder/_meta.json`
+      - `?? skills/reminder/scripts/`
+  - 变更（mtime fingerprint）：0be0ef2fc72fb3b6
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-12 17:54:29 UTC  /home/ubuntu/.openclaw/workspace/skills/reminder/SKILL.md  (4957 bytes)
+      - 2026-02-08 03:45:04 UTC  /home/ubuntu/.openclaw/workspace/skills/reminder/scripts/reminder-scheduler.sh  (675 bytes)
+      - 2026-02-08 03:45:04 UTC  /home/ubuntu/.openclaw/workspace/skills/reminder/_meta.json  (127 bytes)
+      - 2026-02-08 03:45:04 UTC  /home/ubuntu/.openclaw/workspace/skills/reminder/.clawhub/origin.json  (140 bytes)
+      - 2026-02-07 02:15:34 UTC  /home/ubuntu/.openclaw/workspace/skills/reminder/assets/events.template.yml  (194 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/self-reflection**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/self-reflection
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：de221f2b31528397
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/self-reflection/self-reflection.example.json  (166 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/self-reflection/_meta.json  (134 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/self-reflection/SKILL.md  (2694 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/self-reflection/README.md  (10655 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/self-reflection/.clawhub/origin.json  (147 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/task-status**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/task-status
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：e4ddb5125cf075f4
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/task-status/scripts/test_send_status.py  (1925 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/task-status/scripts/send_status_with_logging.py  (6848 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/task-status/scripts/send_status_websocket.py  (3219 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/task-status/scripts/send_status.py  (5512 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/task-status/scripts/monitor_task.py  (9269 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/trading-journal**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/trading-journal
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：2717f776f289386c
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-08 03:43:57 UTC  /home/ubuntu/.openclaw/workspace/skills/trading-journal/SKILL.md  (3039 bytes)
+      - 2026-02-06 17:04:37 UTC  /home/ubuntu/.openclaw/workspace/skills/trading-journal/scripts/trade-log.sh  (5811 bytes)
+  - 关键模式命中：无
+- **/home/ubuntu/.openclaw/workspace/skills/webapp-testing**
+  - 来源：/home/ubuntu/.openclaw/workspace/skills/webapp-testing
+  - SKILL.md：✅；package.json：❌
+  - 风险等级：**low**
+    - 理由：未命中常见高风险模式（静态扫描范围内）
+  - 变更：parent git repo /home/ubuntu/.openclaw/workspace（HEAD bfbb964），path-dirty=False 
+  - 变更（mtime fingerprint）：894949f4c5124b49
+    - 最近改动文件（mtime，节选）：
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/webapp-testing/scripts/with_server.py  (3693 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/webapp-testing/examples/static_html_automation.py  (953 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/webapp-testing/examples/element_discovery.py  (1463 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/webapp-testing/examples/console_logging.py  (1027 bytes)
+      - 2026-02-06 15:37:07 UTC  /home/ubuntu/.openclaw/workspace/skills/webapp-testing/_meta.json  (133 bytes)
+  - 关键模式命中：无
+
+---
+
+生成文件：由 OpenClaw cron 夜间扫描任务自动生成。

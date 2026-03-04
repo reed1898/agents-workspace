@@ -1,0 +1,1071 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "dd928126-ae94-437f-a861-ba80a9d5832f",
+      "agentId": "main",
+      "name": "Crypto Watch (majors)",
+      "enabled": false,
+      "createdAtMs": 1770433697410,
+      "updatedAtMs": 1770623944731,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 300000,
+        "anchorMs": 1770433697410
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是加密告警执行助手。按以下流程执行：\n1) 运行：python3 ~/.openclaw/workspace/skills/crypto-watch/scripts/crypto_watch.py\n2) 若 stdout 为空：回复 NO_REPLY。\n3) 若 stdout 为 JSON {ts, alerts:[{name, lines, chart}...]}：对每个 alert 输出一条消息（正文为 lines 按换行拼接）。\n4) 若 chart 存在，可在可用工具下附图；若当前通道不便附图，至少发送文字告警。\n5) 脚本已自带冷却，避免重复刷屏。\n6) 完成后回复 NO_REPLY，避免重复回显。"
+      },
+      "state": {
+        "lastRunAtMs": 1770527597418,
+        "lastStatus": "ok",
+        "lastDurationMs": 7
+      },
+      "delivery": {
+        "mode": "announce"
+      }
+    },
+    {
+      "id": "e685cb9f-7777-48ec-8e1c-c0803ad2435c",
+      "agentId": "main",
+      "name": "Token Usage Report (30m)",
+      "enabled": false,
+      "createdAtMs": 1770460609000,
+      "updatedAtMs": 1770623944758,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 1800000,
+        "anchorMs": 1770460609000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "定时提醒（每30分钟）：这是 Rain 要求的 token 消耗播报。请调用 session_status，并用简短中文汇报：Tokens(in/out)、Context 占用、5h/day 剩余额度。若与上次几乎无变化，可一句话说明。"
+      },
+      "state": {
+        "lastRunAtMs": 1770608209008,
+        "lastStatus": "ok",
+        "lastDurationMs": 8745
+      },
+      "delivery": {
+        "mode": "announce"
+      }
+    },
+    {
+      "id": "78acd069-7c72-45b8-bf7e-2aaed091ccfc",
+      "agentId": "trader",
+      "name": "A股开盘前简报（08:45）",
+      "enabled": false,
+      "createdAtMs": 1770523943751,
+      "updatedAtMs": 1772212483429,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 8 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文或NO_REPLY，由cron delivery发送到Telegram。\n\n\n你是交易员的晨报助手。请在每个A股交易日开盘前输出【A股开盘前简报】（中文，300-500字，信息密度高）。\n\n要求：\n1) 先判断是否A股交易日；若非交易日只回复 NO_REPLY。\n2) 必须覆盖：\n- 隔夜外盘要点（美股三大指数/纳指中概/美元指数/美债收益率）\n- 国内盘前关键变量（人民币、商品、政策/宏观、北向资金预期）\n- A股三条主线机会 + 两条风险点\n3) 新增【我的持仓表现】小节：先从 trading_notes（MySQL）读取当前A股持仓，给出持仓总览（持仓数、总浮盈亏、主要风险暴露）+ 当日盘前操作建议（加仓/减仓/观望优先级）。\n4) 结构：标题 / 关键数据快照 / 交易主线 / 风险提醒 / 我的持仓表现 / 今日执行建议（3条）\n5) 禁止空话；数据不足时标注“信息有限，保守判断”。\n\n【新增规则】最终成文必须写入：/home/ubuntu/.openclaw/workspace/kb/01_Daily/ashare/YYYY-MM/ashare-YYYY-MM-DD-HHMM.md"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772153100015,
+        "lastStatus": "ok",
+        "lastDurationMs": 267785,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "971ef40b-9a96-4326-bb35-be2d78062ed7",
+      "agentId": "trader",
+      "name": "美股盘前简报（20:30）",
+      "enabled": false,
+      "createdAtMs": 1770523943772,
+      "updatedAtMs": 1772212500118,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 20 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是交易员的盘前助手。请输出【美股盘前简报】（中文，300-500字，信息密度高）。\n\n要求：\n1) 若当天非美股交易日只回复 NO_REPLY。\n2) 覆盖：盘前期货/波动率、利率与汇率、当日关键经济数据与财报、科技龙头/AI链盘前情绪。\n3) 新增【我的持仓表现】小节：从 trading_notes（MySQL）读取当前美股持仓，给出盘前风险暴露、重点标的事件、开盘前加减仓优先级。\n4) 结构：标题 / 关键数据快照 / 机会主线 / 风险点 / 我的持仓表现 / 今晚执行建议（3条）\n5) 数据不足时标注“信息有限，保守判断”。\n\n【新增规则】最终成文必须写入：/home/ubuntu/.openclaw/workspace/kb/01_Daily/us/YYYY-MM/us-YYYY-MM-DD-HHMM.md\n\n【投递规则】\n- 将最终成文用 message.broadcast 同时发送到：discord:1471559821554745374 与 telegram:869269685。\n- 若无内容：回复 NO_REPLY。\n- 发送完成后回复 NO_REPLY。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772195400020,
+        "lastStatus": "ok",
+        "lastDurationMs": 227258,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "1e65b964-a25d-4600-abe4-ab88969d6f56",
+      "agentId": "main",
+      "name": "重要经济数据发布提醒（每30m扫描）",
+      "enabled": false,
+      "createdAtMs": 1770523943786,
+      "updatedAtMs": 1770621177587,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0,30 7-23 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是交易日历提醒助手。请扫描“未来10-35分钟内”是否有重要经济数据/央行事件将发布（按北京时间）。\n\n规则：\n1) 仅提醒高影响事件：CPI、PPI、非农、失业率、零售销售、PMI、利率决议、央行会议/讲话等。\n2) 若无符合条件事件，回复 NO_REPLY。\n3) 若有事件，输出【经济数据提醒】并包含：\n- 事件名称 + 国家/地区\n- 发布时间（北京时间）\n- 前值/预期（有则写）\n- 对市场的可能影响方向（1-2句）\n- 给交易员的执行提醒（1-2条）\n4) 保持简短、可执行，避免重复废话。\n5) 若需要执行脚本，必须使用 `python3`，禁止使用 `python` 命令。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1770620400004,
+        "lastStatus": "ok",
+        "lastDurationMs": 60667
+      }
+    },
+    {
+      "id": "58593315-b82c-41b8-8262-fa867899f72e",
+      "agentId": "trader",
+      "name": "美股盘前开盘后10分钟快报（04:10 ET）",
+      "enabled": false,
+      "createdAtMs": 1770524119867,
+      "updatedAtMs": 1772212497818,
+      "schedule": {
+        "kind": "cron",
+        "expr": "10 4 * * 1-5",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是交易员盘前快报助手。请在美股盘前交易开启后10分钟输出【美股盘前10分钟快报】（中文，300-500字）。\n\n要求：\n1) 非交易日或休市则回复 NO_REPLY。\n2) 覆盖：三大期货、七朵金花盘前涨跌、重大新闻、市场情绪、板块异动。\n3) 新增【我的持仓表现】小节：从 trading_notes（MySQL）读取美股持仓，给出开盘前10分钟持仓相关变化（持仓标的盘前表现、风险预警、开盘执行顺序）。\n4) 结构：标题 / 指数与七朵金花快照 / 重大新闻 / 情绪判断与板块异动 / 我的持仓表现 / 今晚观察重点（3条）\n5) 数据不足时标注“信息有限，保守判断”。\n\n【新增规则】最终成文必须写入：/home/ubuntu/.openclaw/workspace/kb/01_Daily/us/YYYY-MM/us-YYYY-MM-DD-HHMM.md\n\n【投递规则】\n- 将最终成文用 message.broadcast 同时发送到：discord:1471559821554745374 与 telegram:869269685。\n- 若无内容：回复 NO_REPLY。\n- 发送完成后回复 NO_REPLY。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772183400018,
+        "lastStatus": "ok",
+        "lastDurationMs": 135793,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "366483e0-64b5-4f78-a596-f05ecfb566b4",
+      "agentId": "trader",
+      "name": "A股开盘后5分钟快报（09:35）",
+      "enabled": false,
+      "createdAtMs": 1770524400214,
+      "updatedAtMs": 1772212490518,
+      "schedule": {
+        "kind": "cron",
+        "expr": "35 9 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是交易员盘中快报助手。请在A股开盘后5分钟输出【A股开盘5分钟快报】（中文，结构化，200-400字）。\n\n规则：\n1) 先判断是否A股交易日；若休市/非交易日，回复 NO_REPLY。\n2) 覆盖：三大指数开盘后5分钟表现、两市成交额与量能、领涨/领跌板块、市场情绪。\n3) 新增【我的持仓表现】小节：从 trading_notes（MySQL）读取A股持仓，输出开盘后表现（持仓整体涨跌、强弱前3标的、是否触发减仓/止损条件）。\n4) 输出结构：标题 / 关键数据快照 / 板块异动 / 情绪判断 / 我的持仓表现 / 今日早盘执行要点（2-3条）\n5) 数据不足时标注“信息有限，保守判断”。\n\n【新增规则】最终成文必须写入：/home/ubuntu/.openclaw/workspace/kb/01_Daily/ashare/YYYY-MM/ashare-YYYY-MM-DD-HHMM.md\n\n【投递规则】\n- 将最终成文用 message.broadcast 同时发送到：discord:1471559821554745374 与 telegram:869269685。\n- 若无内容：回复 NO_REPLY。\n- 发送完成后回复 NO_REPLY。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772156100023,
+        "lastStatus": "ok",
+        "lastDurationMs": 99132,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "a001bfac-1baf-4f5c-b498-b4c44f70facb",
+      "agentId": "trader",
+      "name": "A股收盘总结（15:10）",
+      "enabled": false,
+      "createdAtMs": 1770524400234,
+      "updatedAtMs": 1772212492941,
+      "schedule": {
+        "kind": "cron",
+        "expr": "10 15 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是交易员复盘助手。请在A股收盘后输出【A股收盘总结】（中文，300-500字，信息密度高）。\n\n规则：\n1) 若非A股交易日，回复 NO_REPLY。\n2) 必须覆盖：指数收盘表现、成交额与量能、领涨/领跌板块与驱动、北向资金、机会与风险。\n3) 新增【我的持仓表现】小节：从 trading_notes（MySQL）读取当前A股持仓，给出持仓当日表现（总浮盈亏变化、贡献Top3/拖累Top3、仓位风险与明日调仓建议）。\n4) 输出结构：标题 / 收盘数据快照 / 盘面主线与驱动 / 我的持仓表现 / 风险与机会 / 明日观察清单（3条）\n5) 数据不足时标注“信息有限，保守判断”。\n\n【新增规则】最终成文必须写入：/home/ubuntu/.openclaw/workspace/kb/01_Daily/ashare/YYYY-MM/ashare-YYYY-MM-DD-HHMM.md\n\n【投递规则】\n- 将最终成文用 message.broadcast 同时发送到：discord:1471559821554745374 与 telegram:869269685。\n- 若无内容：回复 NO_REPLY。\n- 发送完成后回复 NO_REPLY。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772176200024,
+        "lastStatus": "error",
+        "lastDurationMs": 257256,
+        "consecutiveErrors": 2,
+        "lastRunStatus": "error",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "lastError": "Codex error: {\"type\":\"error\",\"error\":{\"type\":\"server_error\",\"code\":\"server_error\",\"message\":\"An error occurred while processing your request. You can retry your request, or contact us through our help center at help.openai.com if the error persists. Please include the request ID b38f23b0-130b-4ae7-9cf7-b358d2571e76 in your message.\",\"param\":null},\"sequence_number\":6}"
+      }
+    },
+    {
+      "id": "585785c0-7989-4ce8-bdc0-f6435987d859",
+      "agentId": "trader",
+      "name": "美股收盘总结（16:10 ET）",
+      "enabled": false,
+      "createdAtMs": 1770524400251,
+      "updatedAtMs": 1772212469134,
+      "schedule": {
+        "kind": "cron",
+        "expr": "10 16 * * 1-5",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文或NO_REPLY，由cron delivery发送到Telegram。\n\n\n你是交易员复盘助手。请在美股收盘后输出【美股收盘总结】（中文，300-500字，信息密度高）。\n\n规则：\n1) 若非美股交易日或休市，回复 NO_REPLY。\n2) 覆盖：三大指数+VIX、七朵金花表现、主线板块异动、重大新闻影响、次日关注点。\n3) 新增【我的持仓表现】小节：从 trading_notes（MySQL）读取当前美股持仓，给出当日持仓总表现、贡献Top3/拖累Top3、仓位风险和次日调仓建议。\n4) 输出结构：标题 / 收盘数据快照 / 主线与异动 / 我的持仓表现 / 情绪判断 / 次日观察清单\n5) 数据不足时标注“信息有限，保守判断”。\n\n【新增规则】最终成文必须写入：/home/ubuntu/.openclaw/workspace/kb/01_Daily/us/YYYY-MM/us-YYYY-MM-DD-HHMM.md"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772140200022,
+        "lastStatus": "ok",
+        "lastDurationMs": 301881,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "dec995c0-2a26-414c-adc4-2f0f20458a75",
+      "agentId": "trader",
+      "name": "Crypto 市场总结（09:00/16:00/22:00）",
+      "enabled": false,
+      "createdAtMs": 1770527007069,
+      "updatedAtMs": 1772212473907,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9,16,22 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文或NO_REPLY，由cron delivery发送到Telegram。\n\n你是交易员的加密市场总结助手。请按北京时间输出【Crypto 市场总结】（中文，220-380字，信息密度高，禁止废话）。\n\n【强制排版（必须严格遵守）】\n1) 标题单独一行：`【Crypto 市场总结｜北京时间 YYYY-MM-DD HH:mm】`\n2) 每个小节标题必须单独一行：`【数据快照】` `【市场动态（X）】` `【结构与情绪判断】` `【风险与机会】` `【下一时段观察清单】`\n3) 每个标题后必须先空一行，再写内容。\n4) 列表项必须一行一条，使用 `1)` `2)` `3)`；禁止把多条内容写在同一行。\n5) 不要输出 `## Response` / `## Citations` / Markdown加粗符号。\n\n【内容要求】\n1) 数据快照必须覆盖 BTC/ETH/SOL（价格+24h涨跌+一句结构）、总市值变化、BTC Dominance、成交活跃度（放量/缩量）。\n2) 仅【市场动态（X）】调用 Grok，且只调一次：\n   `/home/ubuntu/.openclaw/workspace/skills/x-search/scripts/x_search.sh \"你是crypto市场情报员。只搜索并总结最近6小时与加密市场直接相关的X内容（仅限BTC/ETH/SOL/crypto market/capital flow/ETF/funding/liquidation/on-chain）。严格排除A股、美股、宏观股市、非加密资产新闻，除非该信息直接解释crypto价格波动。请直接输出小节标题【市场动态（X）】与正文。正文仅2-3条，每条单独一行，格式：序号) 结论；情绪（偏多/偏空/分歧）；链接：https://x.com/...\" --max-tokens 512`\n3) 市场动态（X）直接使用脚本返回的小节正文，不再二次提炼引用。\n4) 若脚本失败，写：`x-search执行失败：<一行错误摘要>`。\n5) 其余小节按原流程生成。\n6) 数据不足时标注“信息有限，保守判断”。\n7) 直接输出最终成文，不解释过程。\n\n【新增规则】\n最终成文必须同时写入知识库：\n`/home/ubuntu/.openclaw/workspace/kb/01_Daily/crypto/YYYY-MM/crypto-YYYY-MM-DD-HHMM.md`\n写入内容为最终正文。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772200800021,
+        "lastStatus": "ok",
+        "lastDurationMs": 71644,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "8ecaf9aa-5b67-4457-9d71-cccb1002403c",
+      "agentId": "builder",
+      "name": "KB Git Auto Sync (every 15m)",
+      "enabled": false,
+      "createdAtMs": 1770633480785,
+      "updatedAtMs": 1770962303296,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 900000,
+        "anchorMs": 1770633480785
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文或NO_REPLY，由cron delivery发送到Telegram。\n\n\n你是 KB 自动同步助手。请执行：\n1) 进入 `/home/ubuntu/.openclaw/workspace/kb`\n2) 检查 `git status --porcelain`\n3) 若无变更：回复 NO_REPLY\n4) 若有变更：执行\n   - git add -A\n   - git commit -m \"chore(kb): auto sync $(date -u +%Y-%m-%dT%H:%M:%SZ)\"\n   - git push origin main"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1770961980793,
+        "lastStatus": "ok",
+        "lastDurationMs": 36530
+      }
+    },
+    {
+      "id": "c0b3ee52-f27a-4375-b977-8b0f1d992677",
+      "agentId": "main",
+      "name": "数据库持仓分析日报（A股+美股）",
+      "enabled": false,
+      "createdAtMs": 1770692194270,
+      "updatedAtMs": 1770916749149,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 9 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是持仓日报助手。目标：基于 trading_notes 数据库生成【数据库持仓分析日报】并发送给 Rain。要求同时：1) 发 Telegram；2) 保存到 kb。\n\n执行步骤：\n1) 用 Node.js + mysql2 连接 MySQL（库：trading_notes），只做只读查询。\n   - 连接串优先从环境变量 DATABASE_URL 读取；若不存在，则从 /home/ubuntu/.openclaw/workspace/LOCAL_CONFIG.md 解析 DATABASE_URL。\n2) 仅统计 account_type in ('a_stock','us_stock') 且 positions.is_closed=0 的持仓。\n3) 输出内容必须包含：\n   - A股持仓总览：持仓数、总成本、总浮盈亏、浮盈亏率、最近更新时间\n   - 美股持仓总览：同上\n   - 盈利Top3（A+美合并，按 unrealized_pnl desc）\n   - 亏损Top3（A+美合并，按 unrealized_pnl asc）\n   - 仓位风险提醒（至少3条，基于数据规则）\n4) 风险提醒规则（示例，可补充）：\n   - 单标的成本占比 > 20%\n   - 浮亏比例 < -15%\n   - 数据新鲜度 > 18 小时\n   - 无 current_price 的持仓数量较多（>20%）\n5) 输出格式：中文、简洁、结构化。\n6) 同步保存知识库文件：\n   - 路径：/home/ubuntu/.openclaw/workspace/kb/01_Daily/portfolio/YYYY-MM/portfolio-YYYY-MM-DD-HHMM.md\n   - 内容与 Telegram 发送正文一致。\n7) 若当次查询失败：输出一条错误摘要（含可能原因），不要空白。\n\n注意：不要泄露数据库密码或连接串。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1770859200008,
+        "lastStatus": "ok",
+        "lastDurationMs": 100062
+      }
+    },
+    {
+      "id": "cc2c1a8d-9474-4041-b5b4-7942bc7a54f8",
+      "agentId": "trader",
+      "name": "数据库持仓日报（A股+美股）",
+      "enabled": false,
+      "createdAtMs": 1770692316342,
+      "updatedAtMs": 1772212476335,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 9 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是持仓数据库分析助手。每天按北京时间生成《数据库持仓日报》，数据源固定：DATABASE_URL=mysql+pymysql://trading:zIcyT=hj=C5@18.224.71.149:3308/trading_notes。\n\n执行要求：\n1) 使用只读方式连接 MySQL（可用 node+mysql2 或 mysql client）。\n2) 查询 `positions` 与 `trade_accounts`（仅 is_closed=0 或 is_closed IS NULL 的持仓）。\n3) 产出以下内容（中文，简洁高密度）：\n   - A股持仓总览：持仓数、总市值（quantity*current_price）、总浮盈亏、浮盈亏率、账户分布\n   - 美股持仓总览：同上\n   - 亏损Top3（按 unrealized_pnl 从小到大）\n   - 盈利Top3（按 unrealized_pnl 从大到小）\n   - 仓位风险提醒：\n     a) 单票市值占该市场>25%\n     b) 浮亏比例<-15%\n     c) 缺失 current_price 的持仓\n4) 输出格式：\n   - 标题：`【数据库持仓日报｜YYYY-MM-DD HH:mm】`\n   - 小节：A股总览 / 美股总览 / 亏损Top3 / 盈利Top3 / 风险提醒 / 今日动作建议(3条)\n5) 数据不足时标注“信息有限，保守判断”。\n6) 同样正文写入：\n   `/home/ubuntu/.openclaw/workspace/kb/01_Daily/portfolio/YYYY-MM/portfolio-YYYY-MM-DD-HHMM.md`\n7) 若数据库无法连接，输出一行错误摘要（包含失败步骤），不要长堆栈。\n\n注意：不要额外调用 message.send/message.broadcast。只输出最终正文或 NO_REPLY，由 cron delivery 负责投递。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772155200024,
+        "lastStatus": "ok",
+        "lastDurationMs": 69819,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "eeaba425-fcfa-44f9-8858-c7cd7548ad01",
+      "agentId": "trader",
+      "name": "A股开盘前持仓提醒",
+      "enabled": false,
+      "createdAtMs": 1770793752574,
+      "updatedAtMs": 1772212485816,
+      "schedule": {
+        "kind": "cron",
+        "expr": "50 8 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文或NO_REPLY，由cron delivery发送到Telegram。\n\n这是A股开盘前“逐持仓深度分析”任务。\n\n强制流程：\n1) 从 trading_notes（MySQL）读取当前A股全部持仓代码（全量，不抽样）。\n2) 对每个持仓代码逐一调用：\n   bash /home/ubuntu/.openclaw/workspace/skills/stock_analysis/scripts/analyze_stock.sh <symbol>\n   若在线依赖异常可回退：--sample（并在结果中标注“样例模式，信息有限”）。\n3) 读取每只股票生成的 JSON 结果（含 valuation/technical/news/risks/catalysts/scores/conclusion）。\n4) 汇总输出盘前报告：\n   - 【我的持仓总览】（持仓数、风险暴露、组合风险一句话）\n   - 【逐持仓结论清单】（每只1行：代码+结论+建议动作）\n   - 【重点公告/新闻摘要】（每只提炼1句影响）\n   - 【今日操作计划】（加仓/减仓/清仓/观望及触发条件）\n5) 同步写入 kb/a-share-preopen-YYYY-MM-DD.md。\n\n要求：必须覆盖“每一个持仓”；禁止只写Top5；信息不足时明确标注“保守判断”。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772153400022,
+        "lastStatus": "ok",
+        "lastDurationMs": 144283,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "1497fc4f-eba3-4fa7-bf26-c8aa606fade7",
+      "agentId": "trader",
+      "name": "A股收盘后复盘总结",
+      "enabled": false,
+      "createdAtMs": 1770793752684,
+      "updatedAtMs": 1772212495349,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 15 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "这是A股收盘后“逐持仓深度复盘”任务。\n\n强制流程：\n1) 从 trading_notes（MySQL）读取当前A股全部持仓代码（全量，不抽样）。\n2) 对每个持仓逐一调用：\n   bash /home/ubuntu/.openclaw/workspace/skills/stock_analysis/scripts/analyze_stock.sh <symbol>\n3) 读取每只股票 JSON，生成逐持仓复盘（基本面/技术面/公告新闻/风险催化/结论）。\n4) 汇总输出结构：\n   - 【我的持仓总览】（组合当日表现+浮盈亏变化）\n   - 【逐持仓复盘清单】（每只1行：涨跌+核心变化+明日动作）\n   - 【公告/新闻一句话影响】（每只至少1条或明确“无高影响更新”）\n   - 【明日调仓计划】（加仓/减仓/清仓/观望触发条件）\n   - 【计划对账】（如缺数据写“计划对账：数据不足”）\n5) 同步写入 kb/a-share-postclose-YYYY-MM-DD.md。\n\n要求：必须覆盖“每一个持仓”；禁止只写Top3/Top5。\n\n【投递规则】\n- 若无内容：回复 NO_REPLY。\n- 将最终成文用 message.broadcast 同时发送到：discord:1471559821554745374 与 telegram:869269685。\n- 发送完成后回复 NO_REPLY。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772176800027,
+        "lastStatus": "ok",
+        "lastDurationMs": 170649,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "a3d5865e-cb5a-46be-acf2-2909b06ed8d8",
+      "agentId": "trader",
+      "name": "美股开盘前持仓提醒",
+      "enabled": false,
+      "createdAtMs": 1770793752784,
+      "updatedAtMs": 1772212502504,
+      "schedule": {
+        "kind": "cron",
+        "expr": "00 9 * * 1-5",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "这是美股开盘前“逐持仓深度分析”任务。\n\n强制流程：\n1) 从 trading_notes（MySQL）读取当前美股全部持仓代码（全量，不抽样）。\n2) 对每个持仓逐一调用：\n   bash /home/ubuntu/.openclaw/workspace/skills/stock_analysis/scripts/analyze_stock.sh <symbol>\n3) 读取每只股票 JSON（valuation/technical/news/risks/catalysts/scores/conclusion）。\n4) 输出盘前报告：\n   - 【我的持仓总览】\n   - 【逐持仓结论清单】（每只1行建议）\n   - 【重点新闻/事件摘要】（每只1句影响）\n   - 【今晚操作计划】（加仓/减仓/清仓/观望触发条件）\n5) 同步写入 kb/us-preopen-YYYY-MM-DD.md。\n\n要求：必须覆盖“每一个持仓”；禁止只写Top5；信息不足时标注“保守判断”。\n\n【投递规则】\n- 若无内容：回复 NO_REPLY。\n- 将最终成文用 message.broadcast 同时发送到：discord:1471559821554745374 与 telegram:869269685。\n- 发送完成后回复 NO_REPLY。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772200871665,
+        "lastStatus": "ok",
+        "lastDurationMs": 95856,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "4508063a-de59-4a51-849d-ef0285b80b97",
+      "agentId": "trader",
+      "name": "美股收盘后复盘总结",
+      "enabled": false,
+      "createdAtMs": 1770793752887,
+      "updatedAtMs": 1772212471552,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 16 * * 1-5",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文或NO_REPLY，由cron delivery发送到Telegram。\n\n\n这是美股收盘后“逐持仓深度复盘”任务。\n\n强制流程：\n1) 从 trading_notes（MySQL）读取当前美股全部持仓代码（全量，不抽样）。\n2) 对每个持仓逐一调用：\n   bash /home/ubuntu/.openclaw/workspace/skills/stock_analysis/scripts/analyze_stock.sh <symbol>\n3) 读取每只股票 JSON 并做逐持仓复盘。\n4) 输出结构：\n   - 【我的持仓总览】（组合表现与浮盈亏变化）\n   - 【逐持仓复盘清单】（每只1行：当日表现+结论+动作）\n   - 【新闻/公告一句话影响】（每只至少1条或说明无高影响）\n   - 【明日调仓计划】（加/减/清/观望触发条件）\n   - 【计划对账】（缺失则写“数据不足”）\n5) 同步写入 kb/us-postclose-YYYY-MM-DD.md。\n\n要求：必须覆盖“每一个持仓”；禁止只写Top3/Top5。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772140514628,
+        "lastStatus": "ok",
+        "lastDurationMs": 111363,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "987dd29f-ff01-4149-8def-a98aec6c665b",
+      "agentId": "trader",
+      "name": "A股盘中异动与风险闸门",
+      "enabled": false,
+      "createdAtMs": 1770793820108,
+      "updatedAtMs": 1772212488200,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9-11,13-15 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【止血模式（强制）】\n你是A股盘中“持仓公告/快讯+风控”任务（每1小时）。近期外部行情/资讯接口（东财/新浪等）不稳定会导致 Traceback 刷屏；本任务进入保守止血：\n\n0) 总原则\n- 优先保证 cron 不报错、不刷 Traceback。\n- 禁止调用任何可能失败并抛堆栈的外部行情接口（包括但不限于 push2.eastmoney.com、hq.sinajs.cn 等）。\n- 禁止 web_search（当前无 API key）。\n- 允许访问：trading_notes MySQL（通过环境变量 TRADING_POSITION_DATABASE_URL，必须走 TCP）。\n\n1) 必做：数据库风控闸门（只用 DB 数据）\n- 从 trading_notes 读取 A股持仓（symbol LIKE '%.SH' OR '%.SZ' 且 is_closed=0）。\n- 输出风险闸门：\n  a) 总仓位>80%（若可计算/读取）\n  b) 单票仓位>25%（若可计算/读取）\n  c) 浮亏比例<=-12%（unrealized_pnl_percent）\n  d) current_price 缺失（None）也要提示“价格缺失，监控失真”。\n\n2) 可选：公告/快讯检查（仅当你有稳定来源且不会报错时才做）\n- 默认跳过，并在触发文本里写：\"公告/快讯：止血模式下暂不抓取外部来源\"。\n\n3) 输出规则\n- 仅当触发风险闸门时输出【持仓事件提醒】；否则 NO_REPLY。\n- 输出必须短、可执行：标的/原因/动作建议（含触发条件）/优先级。\n- 严禁输出 Traceback、严禁输出长日志。\n- 若 DB 无法连接：输出 1 行错误摘要（不要堆栈），并标注优先级=高（监控失效）。\n\n4) 投递规则\n- 若无触发：回复 NO_REPLY。\n- 若有触发：只输出最终告警正文（不要调用 message.send/broadcast），由 cron delivery 投递。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772175600025,
+        "lastStatus": "ok",
+        "lastDurationMs": 60910,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "3987bdb3-0f6c-426b-8298-92ecaa04aaea",
+      "agentId": "trader",
+      "name": "美股盘中异动与风险闸门",
+      "enabled": false,
+      "createdAtMs": 1770793820210,
+      "updatedAtMs": 1772212466812,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9-16 * * 1-5",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文或NO_REPLY，由cron delivery发送到Telegram。\n\n\n你是“美股盘中异动与风险闸门”自动化任务。目标：只服务我的【美股持仓】，不做全市场抓取。\n\n严格按以下步骤执行（每次运行都要完整走一遍）：\n\n0) 总原则\n- 只检查持仓代码；没有持仓则直接输出 NO_REPLY。\n- 只在触发推送规则时输出；否则 NO_REPLY。\n- 数据不足时必须写“信息有限，保守判断”。\n\n1) 读取当前美股持仓清单（trading_notes MySQL）\n- 用可用方式读取：优先通过本机可用的 mysql/脚本/环境变量连接到 trading_notes。\n- 至少拿到：ticker/代码、持仓数量或市值、成本/现价（若可得）、单票仓位%、总仓位%（若库里有）。\n- 若无法连接数据库：输出一条【持仓事件提醒】说明“无法读取持仓（数据库连接失败/无权限）”，优先级=高，并提示需要修复；然后执行推送（因为属于风险闸门：监控失效）。\n\n2) 增量新闻/快讯检查（仅持仓代码）\n- 必须增量：\n  - 若有游标（last_check_time / last_id / 本地状态文件）：用它；\n  - 若没有：取最近2小时窗口，并对标题+时间+来源去重。\n- 允许的新闻来源：可通过 web_search/web_fetch 或你环境里已有的数据源（若存在），但【必须只查询持仓代码】。\n\n3) 事件筛选：只识别高影响\n仅保留：财报与指引、评级调整、SEC/监管事项、重大诉讼、并购、管理层变动、产品事故/召回、宏观高影响数据对持仓直接冲击。\n- 低影响（常规市场评论、重复新闻、小道消息）丢弃。\n\n4) 行情二次确认（尽量做；做不到要标注信息有限）\n对每个候选事件，检查是否满足任一：\n- 价格异动：|涨跌|>=2%（相对上一交易日收盘或近1小时基准）；\n- 关键位突破/跌破（用近20/60根1h或15m的结构高低点近似即可）；\n- 成交量异常放大（对比近20根均量）；\n- 期权/ETF资金情绪线索（若可得，拿不到就跳过并注明）。\n\n5) 触发推送规则（严格）\n- 高影响事件：可单独推送（高优先级）。\n- 中等事件：必须“事件 + 价格/量能异动”双确认才推送（优先级=中）。\n- 低影响：不推送。\n\n6) 风险闸门（强制提醒）\n若可从持仓数据计算/读取到：\n- 单票仓位 > 25% 或 总仓位 > 80% 或 回撤触线（若可得）\n=> 必须生成提醒（优先级=高），即使没有新闻事件。\n\n7) 输出格式（仅触发时输出；可多条事件按票分组）\n每条告警按以下模板：\n【持仓事件提醒】\n标的/事件/时间：XXX / XXX / YYYY-MM-DD HH:MM (UTC)\n影响判断：利多/利空/中性 + 置信度(高/中/低)\n对持仓动作建议：加仓/减仓/清仓/观望（必须给触发价或条件；没有就写“信息有限，保守判断”并给条件型建议）\n优先级：高/中/低\n\n8) 投递规则（必须执行）\n- 若无触发：直接回复 NO_REPLY（不要调用 message）。\n- 若有触发：\n     - discord:1471559821554745374\n     - telegram:869269685\n  b) 发送完成后，回复 NO_REPLY。\n\n注意：不要输出调试日志；不要输出除告警正文以外的内容（除非无触发则 NO_REPLY）。",
+        "timeoutSeconds": 240
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772211600015,
+        "lastStatus": "ok",
+        "lastDurationMs": 139835,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "e7fcfc20-4fbe-4b65-b015-876c7ad648ac",
+      "agentId": "builder",
+      "name": "openclaw_daily_idea_report_3am",
+      "enabled": false,
+      "createdAtMs": 1770920055309,
+      "updatedAtMs": 1770982318041,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文或NO_REPLY，由cron delivery发送到Telegram。\n\n\n你现在执行每日凌晨开发任务（不是只做机会分析，必须产出可运行结果）：\n\n目标：每天基于 OpenClaw 生态，实际开发并推进一个可收费应用/skill。\n\n硬性要求（必须执行）：\n1) 先选一个最小可交付开发目标（MVP切片），当天必须有代码产出。\n2) 在项目目录实现实际改动（新建/修改文件、脚本、配置、说明文档）。\n3) 运行最小验证（至少一种：命令运行、测试、示例执行、日志证明）。\n4) 产出日报到 Reed（中文，结论优先），格式固定：\n   - 今天做了什么（具体到文件/模块）\n   - 验证结果（命令与结果摘要）\n   - 当前可运行状态（能否演示）\n   - 风险与回滚方案\n   - 明天计划\n\n执行原则：\n- 不要只给想法；必须有“代码/配置/脚本/可运行产物”。\n- 优先延续前一天未完成的开发主线，形成连续迭代。\n- 默认开发路径放在 projects 目录。\n- 若遇阻塞（权限/依赖/外部凭据），先完成可在本地闭环的部分并明确阻塞项。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1770977724293,
+        "lastStatus": "ok",
+        "lastDurationMs": 135264
+      }
+    },
+    {
+      "id": "b2fe70c7-ba94-4312-89cc-62c9ecbf882a",
+      "agentId": "builder",
+      "name": "KB Ingest: inbound screenshots OCR -> KB (every 2m)",
+      "enabled": false,
+      "createdAtMs": 1770957075435,
+      "updatedAtMs": 1770960406746,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 120000,
+        "anchorMs": 1770957075435
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "运行 /home/ubuntu/.openclaw/workspace-builder/kb_inbound_image_worker.py 并读取输出。\n\n如果 processed=0 且 failed=0：输出严格为 NO_REPLY（不要 announce 任何内容）。\n如果 processed>0 或 failed>0：输出一段简短回执（processed/skipped/failed + 新写入 KB 路径列表 + 失败原因）。",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "announce"
+      },
+      "state": {
+        "lastRunAtMs": 1770960315534,
+        "lastStatus": "ok",
+        "lastDurationMs": 18532
+      }
+    },
+    {
+      "id": "49ff3315-83d7-478d-8184-70707f4105a4",
+      "agentId": "builder",
+      "name": "knowledge-base-collector publish retry (0.1.3)",
+      "enabled": false,
+      "createdAtMs": 1770966888558,
+      "updatedAtMs": 1772026243721,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 1800000,
+        "anchorMs": 1770966888558
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文或NO_REPLY，由cron delivery发送到Telegram。\\n\\n你现在执行 ClawHub publish 重试任务（限流时静默）。\\n\\n执行：\\n- 运行：python3 /home/ubuntu/.openclaw/workspace-builder/kb_collector_jobs/publish_retry_job.py --skill-dir /home/ubuntu/.openclaw/skills/knowledge-base-collector --version 0.1.3\\n- 若输出为 NO_REPLY：直接回复 NO_REPLY\\n- 否则把脚本输出原样回复（必须包含 versionId）。\\n"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772025288734,
+        "lastStatus": "ok",
+        "lastDurationMs": 10895,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered"
+      }
+    },
+    {
+      "id": "51719385-533c-466b-84db-6250a389b980",
+      "agentId": "trader",
+      "sessionKey": "agent:trader:main",
+      "name": "交易机会扫描（每日11:30）",
+      "enabled": false,
+      "createdAtMs": 1771408478985,
+      "updatedAtMs": 1772212478660,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 11 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "这是给 Rain 的每日交易机会提醒（北京时间每天11:30）。\n\n任务目标：基于当日可得数据，筛选“当日可执行”的交易机会，优先风控，避免主观臆测。\n\n输出要求（简洁、可执行）：\n1) 先给结论（最多3个机会）\n2) 每个机会必须包含：\n- 标的（含中文名）\n- 方向（做多/观望）\n- 触发条件（价格/量能/时间）\n- 失效条件（止损/撤退）\n- 仓位建议（轻仓/中仓，百分比区间）\n- 风险一句话\n3) 若信息不足或无高质量机会，明确写：\n“今日无高确定性机会，建议观望（信息有限，保守判断）”。\n\n方法约束：按题材/形态/量价/资金流四维给依据；四维冲突时优先风控，不强行给单。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772163000023,
+        "lastStatus": "ok",
+        "lastDurationMs": 61838,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "23ce3f73-0bf6-4624-9e65-054196fb6a17",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Daily ClawHub Skill Scout (08:00)",
+      "enabled": true,
+      "createdAtMs": 1771483299515,
+      "updatedAtMs": 1772582529430,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "提醒：现在是每天 8:00 的 ClawHub 例行巡检时间。请搜索并筛选有意思的新 skills（重点：AI效率、自动化、交易、Gmail/内容创作相关），给 Reed 发送简洁清单（名称+一句价值+是否建议安装）。默认由 Reed 最终审核安装；但若你判断是“明显高价值且低风险”的自我进化类 skill，可直接安装并在消息里说明安装原因与风险评估。"
+      },
+      "state": {
+        "nextRunAtMs": 1772668800000,
+        "lastRunAtMs": 1772582400010,
+        "lastStatus": "ok",
+        "lastDurationMs": 129420,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "not-requested"
+      }
+    },
+    {
+      "id": "e235b921-3431-47b9-8a25-1d643c990256",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Daily OpenClaw Community Brief (12:00)",
+      "enabled": true,
+      "createdAtMs": 1771495052256,
+      "updatedAtMs": 1772596883105,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "提醒：现在是每天 12:00（北京时间）的 OpenClaw 社区动态简报时间。请整理并发送今日简报给 Reed：1) 3-5 条重点动态（产品更新/社区讨论/重要公告）；2) 每条附一句“这对我有什么意义”；3) 若有高风险安全话题，单独加“风险提醒”小节。保持简洁可读。"
+      },
+      "state": {
+        "nextRunAtMs": 1772683200000,
+        "lastRunAtMs": 1772596800019,
+        "lastStatus": "ok",
+        "lastDurationMs": 83086,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "not-requested"
+      }
+    },
+    {
+      "id": "8ca8c4dc-765d-4112-83db-ca0c404fda3f",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Daily AI Daily Digest (08:00)",
+      "enabled": true,
+      "createdAtMs": 1771497048826,
+      "updatedAtMs": 1772593217210,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 11 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "提醒：现在是每日 8:00 的 AI Daily Digest 发送时间。请运行 ai-daily-digest skill（优先复用已保存配置；默认 48h、Top 15、中文），生成今日日报并给 Reed 发送简版要点（3-5 条）+ 报告文件路径。若缺少 API Key 或配置不可用，请直接提示 Reed 先完成一次 /digest 配置。"
+      },
+      "state": {
+        "nextRunAtMs": 1772679600000,
+        "lastRunAtMs": 1772593200013,
+        "lastStatus": "ok",
+        "lastDurationMs": 17197,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "not-requested"
+      }
+    },
+    {
+      "id": "304fe3ba-1841-4235-ab69-4c2ce7f280e9",
+      "agentId": "main",
+      "name": "Reed Agent OS Morning 08:30",
+      "enabled": true,
+      "createdAtMs": 1771954017234,
+      "updatedAtMs": 1772584214484,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行 Reed Agent OS 早间任务（仅本机文件操作，不发送外部消息）：1) cd /home/ubuntu/.openclaw/workspace/ops/reed-agent-os 2) 运行 python3 scripts/orchestrate_daily.py --phase morning --topic daily-morning --no-dry-run 3) 若失败，运行 python3 scripts/replay_telegram_queue.py --dry-run 并记录结果到 logs。最后仅输出简短执行摘要（成功/失败、report路径）。"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772670600000,
+        "lastRunAtMs": 1772584200015,
+        "lastStatus": "ok",
+        "lastDurationMs": 14469,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered"
+      }
+    },
+    {
+      "id": "1f815762-b0de-4a1f-bfe2-b1de0aecd072",
+      "agentId": "main",
+      "name": "Reed Agent OS Evening 21:30",
+      "enabled": true,
+      "createdAtMs": 1771954024399,
+      "updatedAtMs": 1772544616117,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行 Reed Agent OS 晚间任务（仅本机文件操作，不发送外部消息）：1) cd /home/ubuntu/.openclaw/workspace/ops/reed-agent-os 2) 运行 python3 scripts/orchestrate_daily.py --phase evening --topic daily-evening --no-dry-run 3) 获取最新报告（示例命令：LATEST=$(ls -t reports/run-report-*.json | head -n1)）并运行 python3 scripts/verify_dual_write.py --report \"$LATEST\" --output logs/verify-latest.json --pretty 4) 运行 python3 scripts/replay_telegram_queue.py --dry-run。最后仅输出简短执行摘要（成功/失败、report与verify路径）。"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772631000000,
+        "lastRunAtMs": 1772544600015,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 16102,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "ff656286-6c6a-4c16-867f-399ce266c137",
+      "agentId": "reed",
+      "name": "Reed 自我净化（每日21:30）",
+      "enabled": false,
+      "createdAtMs": 1771980488748,
+      "updatedAtMs": 1771980614712,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10,22 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你现在执行 Reed 的自我净化流程（daily）。目标：不是写鸡汤，而是纠偏执行系统。\\n\\n输入范围：今天的会话、今日memory、今天的关键任务结果。\\n输出规则：\\n1) 若今天没有可证据化的失误/偏差：回复 NO_REPLY。\\n2) 若有：只输出《自我净化》短报，结构固定：\\n- 今日偏差（最多3条，必须具体）\\n- 根因（流程/约束/信息/执行）\\n- 纠偏动作（每条都要可执行，且24小时内可验证）\\n- 防复发规则（写成一句可复用规则）\\n3) 同步写入：/home/ubuntu/.openclaw/workspace-reed/memory/self-review.md（append-only，带日期）。\\n4) 语气：短、硬、可复盘；禁止空话。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {}
+    },
+    {
+      "id": "00286c7f-a37a-4396-9188-9896e21129a8",
+      "agentId": "main",
+      "name": "Maya 日报（21:00）",
+      "enabled": true,
+      "createdAtMs": 1772115224747,
+      "updatedAtMs": 1772543746987,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文，由cron delivery发送到Telegram。\\n\\n你是 Maya（agentId=main）。现在是你的每日工作日报时间。请输出《Maya 工作日报》：\\n1) 今日完成（3-8条，具体到动作/产出）\\n2) 明日计划（3-6条，可执行）\\n\\n要求：\\n- 中文，简洁清晰，避免空话。\\n- 如果今天几乎无进展，要如实说明并给出补救计划。\\n\\n【落地到KB（强制）】\\n- 将最终正文写入：/home/ubuntu/.openclaw/kb/01_Daily/agents/YYYY-MM/maya-daily-YYYY-MM-DD.md\\n- 若目录不存在先创建。\\n- 文件写入完成后，再输出最终日报正文。\\n- 只输出最终日报正文，不要输出过程说明。",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1772630100000,
+        "lastRunAtMs": 1772543700014,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 46973,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "00eaa458-9b21-4d44-a2ea-834437bc560c",
+      "agentId": "trader",
+      "name": "Jesse 日报（21:00）",
+      "enabled": false,
+      "createdAtMs": 1772115241298,
+      "updatedAtMs": 1772212481066,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【统一投递规则（强制）】禁止调用message.send/message.broadcast或任何主动发送工具；仅输出最终正文，由cron delivery发送到Telegram。\\n\\n你是 Jesse（agentId=trader）。现在是你的每日工作日报时间。请输出《Jesse 工作日报》：\\n1) 今日完成（3-8条，具体到动作/产出）\\n2) 明日计划（3-6条，可执行）\\n\\n要求：\\n- 中文，简洁清晰，避免空话。\\n- 如果今天几乎无进展，要如实说明并给出补救计划。\\n\\n【落地到KB（强制）】\\n- 将最终正文写入：/home/ubuntu/.openclaw/kb/01_Daily/agents/YYYY-MM/jesse-daily-YYYY-MM-DD.md\\n- 若目录不存在先创建。\\n- 文件写入完成后，再输出最终日报正文。\\n- 只输出最终日报正文，不要输出过程说明。",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772198184059,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 27982,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "31cca32d-2460-4e10-9bf9-4428e5424896",
+      "agentId": "main",
+      "name": "kb-sync-maya-hourly",
+      "enabled": true,
+      "createdAtMs": 1772587424209,
+      "updatedAtMs": 1772605471779,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 3600000,
+        "anchorMs": 1772587424209
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run KB hourly sync silently (no Telegram report). Execute: bash /home/ubuntu/.openclaw/workspace/skills/knowledgebase-share/scripts/sync_kb.sh --config /home/ubuntu/.openclaw/shared/agent-knowledge-layer/meta/kb-config-maya.json --mode commit --message 'chore(kb): hourly maya sync'. Return concise status."
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772609057900,
+        "lastRunAtMs": 1772605457900,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 13879,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772609057929
+      }
+    },
+    {
+      "id": "132289f6-b543-4503-969a-f6053b83ff24",
+      "agentId": "main",
+      "name": "kb-hourly-sync-merge-maya",
+      "enabled": true,
+      "createdAtMs": 1772588305081,
+      "updatedAtMs": 1772606338323,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 3600000,
+        "anchorMs": 1772588305081
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Hourly knowledge-layer maintenance by Maya: 1) cd /home/ubuntu/.openclaw/shared/agent-knowledge-layer; 2) git checkout main; 3) git pull --rebase origin main; 4) inspect remote PRs with gh pr list for reed1898/agent-knowledge-layer; 5) merge safe-ready PRs and push main; 6) run quick sync check and return concise status (synced/merged/conflicts)."
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772609905155,
+        "lastRunAtMs": 1772606305155,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 33168,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    }
+  ]
+}

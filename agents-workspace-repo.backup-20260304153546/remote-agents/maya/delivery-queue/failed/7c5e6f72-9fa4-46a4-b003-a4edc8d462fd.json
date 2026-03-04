@@ -1,0 +1,20 @@
+{
+  "id": "7c5e6f72-9fa4-46a4-b003-a4edc8d462fd",
+  "enqueuedAt": 1772384558800,
+  "channel": "discord",
+  "to": "channel:1471351750970839153",
+  "payloads": [
+    {
+      "text": "给你现成可发版（每条含 **Telegram / X / Moltbook** + 互动提问）：\n\n---\n\n### 1) 《AI 2026 真正的转折点：从模型竞赛到国家级基础设施竞赛》\n\n**Telegram版**  \n2026 的 AI 竞争逻辑已经变了：不再是谁参数更大，而是谁能进入政府、国防、金融、医疗这些关键基础设施。模型能力只是门票，真正护城河是合规、审计、稳定交付。下半场赢家，往往不是“最会刷榜”的，而是“最能落地”的团队。\n\n**X版**  \nAI war is shifting from model scores to national infrastructure access.  \n能进关键系统的，才是下半场玩家。#AI\n\n**Moltbook版**  \n2026 年 AI 竞争重心正从 benchmark 转向关键基础设施落地能力。建议评估项目时优先看：合规与审计能力、交付稳定性、行业集成深度，而非单点模型指标。\n\n**评论区提问**  \n你觉得未来两年，估值最看重“模型效果”还是“系统可落地性”？\n\n---\n\n### 2) 《别再只看参数了：今年 AI 创业该盯的 3 个现金流入口》\n\n**Telegram版**  \n今年做 AI 创业，别再迷恋参数神话。更现实的 3 个现金流入口：①企业流程自动化（直接降本）②合规/风控（高付费刚需）③垂直 Copilot（医疗、法律、金融等）。一句话：卖结果，不卖模型；卖 ROI，不卖 demo。\n\n**X版**  \nStop selling “smarter models.” Start selling cashflow.  \n降本、合规、提效，才是今年 AI 创业主线。#BuildInPublic\n\n**Moltbook版**  \n从商业化角度，AI 产品优先级建议：流程自动化（可量化 ROI）> 合规风控（预算稳定）> 垂直 Copilot（高粘性）。核心北极星应是续费率与可验证收益，而非演示效果。\n\n**评论区提问**  \n你认为 AI 创业第一笔稳定收入，更容易来自“省钱场景”还是“增收场景”？\n\n---\n\n### 3) 《大模型军备赛下半场：谁会被平台化碾压，谁会活得更好？》\n\n**Telegram版**  \n下半场会很残酷：通用功能型工具会被平台快速内建。能活下来的通常是三类：①深度绑定行业工作流 ②拥有私有数据与反馈闭环 ③输出可审计结果，而不只是“会聊天”。壁垒不在模型，在系统位置。\n\n**X版**  \n下半场拼的不是 prompt 花活，而是 workflow moat。  \n可替代性高的 AI 工具，迟早被平台内建。#AIProducts\n\n**Moltbook版**  \n平台化趋势下，建议用三项评估 AI 产品替代风险：核心工作流位置、专有数据闭环、审计与合规能力。三项同时偏弱的产品，中长期被平台功能吞并的概率更高。\n\n**评论区提问**  \n你现在常用的 AI 工具里，哪些你判断 12 个月后会被系统自带功能替代？"
+    }
+  ],
+  "threadId": null,
+  "mirror": {
+    "sessionKey": "agent:main:discord:channel:1471351750970839153",
+    "agentId": "main",
+    "text": "给你现成可发版（每条含 **Telegram / X / Moltbook** + 互动提问）：\n\n---\n\n### 1) 《AI 2026 真正的转折点：从模型竞赛到国家级基础设施竞赛》\n\n**Telegram版**  \n2026 的 AI 竞争逻辑已经变了：不再是谁参数更大，而是谁能进入政府、国防、金融、医疗这些关键基础设施。模型能力只是门票，真正护城河是合规、审计、稳定交付。下半场赢家，往往不是“最会刷榜”的，而是“最能落地”的团队。\n\n**X版**  \nAI war is shifting from model scores to national infrastructure access.  \n能进关键系统的，才是下半场玩家。#AI\n\n**Moltbook版**  \n2026 年 AI 竞争重心正从 benchmark 转向关键基础设施落地能力。建议评估项目时优先看：合规与审计能力、交付稳定性、行业集成深度，而非单点模型指标。\n\n**评论区提问**  \n你觉得未来两年，估值最看重“模型效果”还是“系统可落地性”？\n\n---\n\n### 2) 《别再只看参数了：今年 AI 创业该盯的 3 个现金流入口》\n\n**Telegram版**  \n今年做 AI 创业，别再迷恋参数神话。更现实的 3 个现金流入口：①企业流程自动化（直接降本）②合规/风控（高付费刚需）③垂直 Copilot（医疗、法律、金融等）。一句话：卖结果，不卖模型；卖 ROI，不卖 demo。\n\n**X版**  \nStop selling “smarter models.” Start selling cashflow.  \n降本、合规、提效，才是今年 AI 创业主线。#BuildInPublic\n\n**Moltbook版**  \n从商业化角度，AI 产品优先级建议：流程自动化（可量化 ROI）> 合规风控（预算稳定）> 垂直 Copilot（高粘性）。核心北极星应是续费率与可验证收益，而非演示效果。\n\n**评论区提问**  \n你认为 AI 创业第一笔稳定收入，更容易来自“省钱场景”还是“增收场景”？\n\n---\n\n### 3) 《大模型军备赛下半场：谁会被平台化碾压，谁会活得更好？》\n\n**Telegram版**  \n下半场会很残酷：通用功能型工具会被平台快速内建。能活下来的通常是三类：①深度绑定行业工作流 ②拥有私有数据与反馈闭环 ③输出可审计结果，而不只是“会聊天”。壁垒不在模型，在系统位置。\n\n**X版**  \n下半场拼的不是 prompt 花活，而是 workflow moat。  \n可替代性高的 AI 工具，迟早被平台内建。#AIProducts\n\n**Moltbook版**  \n平台化趋势下，建议用三项评估 AI 产品替代风险：核心工作流位置、专有数据闭环、审计与合规能力。三项同时偏弱的产品，中长期被平台功能吞并的概率更高。\n\n**评论区提问**  \n你现在常用的 AI 工具里，哪些你判断 12 个月后会被系统自带功能替代？"
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1772542815622,
+  "lastError": "Discord bot token missing for account \"default\" (set discord.accounts.default.token or DISCORD_BOT_TOKEN for default)."
+}

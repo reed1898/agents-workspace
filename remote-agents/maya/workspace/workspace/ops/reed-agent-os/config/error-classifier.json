@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "default_class": "fatal",
+  "retryable": {
+    "exit_codes": [124, 408, 425, 429, 500, 502, 503, 504],
+    "stderr_keywords": [
+      "timeout",
+      "timed out",
+      "rate limit",
+      "too many requests",
+      "temporarily",
+      "try again",
+      "connection reset",
+      "connection refused",
+      "broken pipe",
+      "network",
+      "econnreset",
+      "enotfound",
+      "eai_again"
+    ]
+  },
+  "fatal": {
+    "exit_codes": [2, 3, 4, 5],
+    "stderr_keywords": [
+      "invalid",
+      "unauthorized",
+      "forbidden",
+      "not found",
+      "unknown option",
+      "validation",
+      "missing required"
+    ]
+  },
+  "step_overrides": {
+    "generate_daily_summary": {
+      "always": "fatal"
+    },
+    "write_kb": {
+      "fatal_exit_codes": [2, 3, 4, 5]
+    }
+  }
+}

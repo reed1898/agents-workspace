@@ -1,0 +1,21 @@
+{
+  "next_id": 3,
+  "items": [
+    {
+      "id": 2,
+      "title": "基于 Elvis 那篇 OpenClaw Agent Swarm 文章（https://x.com/elvissun/status/2025920521871716562）搭建一套可运行的开发流程并实测",
+      "status": "open",
+      "tags": [
+        "openclaw",
+        "agent-swarm",
+        "workflow",
+        "实践"
+      ],
+      "due": null,
+      "created_at": "2026-02-24T06:21:24+00:00",
+      "updated_at": "2026-02-24T06:21:24+00:00",
+      "done_at": null,
+      "note": "后续按最小可用版本先落地：任务卡→worktree→agent执行→DoD→巡检"
+    }
+  ]
+}

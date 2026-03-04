@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "19559ebf-f2e6-426a-bb72-e2371d0dc20b",
+      "name": "agent-data-sync",
+      "enabled": true,
+      "createdAtMs": 1772474670659,
+      "updatedAtMs": 1772496704479,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "HEARTBEAT: Sync agent-network-data and agent-knowledge-layer"
+      },
+      "state": {
+        "nextRunAtMs": 1772510572942,
+        "lastRunAtMs": 1772496697971,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 6508,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "cd2a0a35-38d5-46af-8cbd-21d59d94ae5f",
+      "name": "skill-discovery-3am",
+      "enabled": true,
+      "createdAtMs": 1772475758003,
+      "updatedAtMs": 1772478843086,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "HEARTBEAT: Skill discovery - search for new skills"
+      },
+      "state": {
+        "nextRunAtMs": 1772564400000,
+        "lastRunAtMs": 1772478833546,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 9540,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "88043b80-35df-4d51-a1b5-a004623d8c77",
+      "name": "daily-work-report",
+      "enabled": true,
+      "createdAtMs": 1772499561706,
+      "updatedAtMs": 1772499561706,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 8 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus，Reed 的 build 合伙人。现在是每日工作日报时间。\n\n请执行以下步骤：\n1. 读取 memory/ 目录下最近 3 天的日记文件（memory/YYYY-MM-DD.md）\n2. 用 memory_search 搜索近期的重要事项、待办、项目进展\n3. 读取 MEMORY.md 中的长期任务和项目信息\n\n然后生成一份简洁的工作日报，格式如下：\n\n📋 工作日报 YYYY-MM-DD\n\n**昨日完成：**\n- 列出昨天实际做的事情\n\n**今日计划：**\n- 根据上下文推断今天可能要做的事\n\n**长期待办：**\n- 列出还在进行中或等待执行的长期任务\n\n**备注：**\n- 任何值得注意的事项\n\n用中文写，简洁直接，不要废话。直接发给 Reed。",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772583300000
+      }
+    }
+  ]
+}

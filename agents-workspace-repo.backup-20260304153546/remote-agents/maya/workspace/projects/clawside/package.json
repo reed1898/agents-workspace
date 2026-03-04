@@ -1,0 +1,6 @@
+{
+  "name": "clawside",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ClawSide: Chrome MV3 extension with direct OpenClaw integration"
+}

@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "8e871147-a5f2-4aaf-8fd6-687e21873db1",
+      "name": "sync-shared-repos-4h",
+      "enabled": true,
+      "createdAtMs": 1772474989691,
+      "updatedAtMs": 1772489417522,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 14400000,
+        "anchorMs": 1772474989691
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "SYNC_SHARED_REPOS_4H: pull ~/.openclaw/shared/agent-network-data and ~/.openclaw/shared/agent-knowledge-layer; report only on failure"
+      },
+      "state": {
+        "nextRunAtMs": 1772503789707,
+        "lastRunAtMs": 1772489389707,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 27815,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "49e98280-ac18-4d67-be9f-c964c935a3bd",
+      "name": "skill-scout-hourly-3to8",
+      "enabled": true,
+      "createdAtMs": 1772475743180,
+      "updatedAtMs": 1772496063129,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3-8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "SKILL_SCOUT_HOURLY: search web/skill hubs for trending skills matching Jesse role (trading/risk/research/automation), evaluate, and append concise notes to ~/.openclaw/shared/agent-knowledge-layer daily log."
+      },
+      "state": {
+        "nextRunAtMs": 1772564400000,
+        "lastRunAtMs": 1772496000014,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 63115,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "ca2b5c45-9736-4899-aaf3-ab4f5de33523",
+      "name": "daily-work-report-0815",
+      "enabled": true,
+      "createdAtMs": 1772475751549,
+      "updatedAtMs": 1772496935534,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DAILY_WORK_REPORT_0815: At 08:15 Asia/Shanghai, write a concise daily report to Reed in #team based on recent communications: 1) what was done yesterday, 2) what will be done today, 3) long-term pending tasks; include key blockers if any."
+      },
+      "state": {
+        "nextRunAtMs": 1772583300000,
+        "lastRunAtMs": 1772496900013,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 35521,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    }
+  ]
+}

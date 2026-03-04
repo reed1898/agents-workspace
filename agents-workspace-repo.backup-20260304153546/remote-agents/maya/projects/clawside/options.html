@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ClawSide Settings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="oc-options-page">
+      <header class="oc-options-header">
+        <div>
+          <h1 id="titleMain">ClawSide Settings</h1>
+          <p id="subtitleMain">Manage OpenClaw agents, layout mode, and privacy rules.</p>
+        </div>
+      </header>
+
+      <section class="oc-card">
+        <div class="oc-card-head">
+          <h2 id="agentsTitle">OpenClaw Agents</h2>
+          <p id="agentsDesc">Choose current agent and maintain multiple OpenClaw endpoints.</p>
+        </div>
+
+        <div class="oc-grid-two">
+          <label class="oc-field"><span id="labelCurrentAgent">Current Agent</span>
+            <select id="agentSelect"></select>
+          </label>
+          <label class="oc-field"><span id="labelAgentName">Agent Name</span>
+            <input id="agentName" />
+          </label>
+          <label class="oc-field"><span id="labelGatewayUrl">Gateway URL</span>
+            <input id="baseUrl" placeholder="ws://127.0.0.1:18789" />
+          </label>
+          <label class="oc-field"><span id="labelToken">Token</span>
+            <input id="token" type="password" />
+          </label>
+        </div>
+
+        <div class="oc-actions-row">
+          <button id="newAgent" class="oc-btn">New Agent</button>
+          <button id="saveAgent" class="oc-btn oc-btn-primary">Save Agent</button>
+          <button id="deleteAgent" class="oc-btn">Delete Agent</button>
+          <button id="testAgent" class="oc-btn">Test Connection</button>
+          <button id="exportAgents" class="oc-btn">Export Agents</button>
+          <button id="importAgents" class="oc-btn">Import Agents</button>
+          <input id="importAgentsFile" type="file" accept="application/json,.json" hidden />
+        </div>
+      </section>
+
+      <section class="oc-card">
+        <div class="oc-card-head">
+          <h2 id="layoutTitle">UI Layout</h2>
+          <p id="layoutDesc">Default is Push. Overlay keeps page position unchanged.</p>
+        </div>
+
+        <div class="oc-grid-two">
+          <label class="oc-field"><span id="labelLayoutMode">Layout Mode</span>
+            <select id="layoutMode">
+              <option value="push">Push (default)</option>
+              <option value="overlay">Overlay</option>
+            </select>
+          </label>
+
+          <label class="oc-field"><span id="labelLanguage">Language</span>
+            <select id="languagePreference">
+              <option value="auto">Auto (Chrome)</option>
+              <option value="zh">中文</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+
+          <label class="oc-field"><span id="labelBubbleDefaultPosition">Default Bubble Position</span>
+            <select id="bubbleDefaultPosition">
+              <option value="bottom-right">Bottom Right</option>
+              <option value="bottom-left">Bottom Left</option>
+              <option value="top-right">Top Right</option>
+              <option value="top-left">Top Left</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="oc-card">
+        <div class="oc-card-head">
+          <h2 id="privacyTitle">Privacy Domains</h2>
+          <p id="privacyDesc">Use comma-separated domains.</p>
+        </div>
+
+        <div class="oc-grid-two">
+          <label class="oc-field"><span id="labelAllowList">Allow list</span>
+            <input id="allow" placeholder="example.com, another.com" />
+          </label>
+          <label class="oc-field"><span id="labelDenyList">Deny list</span>
+            <input id="deny" placeholder="private.example.com" />
+          </label>
+        </div>
+
+        <div class="oc-actions-row">
+          <button id="savePrivacy" class="oc-btn oc-btn-primary">Save Preferences</button>
+        </div>
+      </section>
+
+      <pre id="status" class="oc-status" aria-live="polite"></pre>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>

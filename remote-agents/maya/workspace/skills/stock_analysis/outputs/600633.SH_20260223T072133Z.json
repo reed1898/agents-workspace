@@ -1,0 +1,69 @@
+{
+  "symbol": "600633",
+  "company": "浙数文化",
+  "as_of": "2026-02-23T07:21:33.215246+00:00",
+  "price": 15.66,
+  "currency": "CNY",
+  "change_percent": -2.61,
+  "valuation": {
+    "pe": 27.85,
+    "pb": 1.95,
+    "market_cap": 19858046231,
+    "float_market_cap": 19858046231
+  },
+  "technical": {
+    "sma20": 15.43,
+    "sma50": 14.23,
+    "rsi14": 48.17,
+    "trend": "uptrend"
+  },
+  "news": [
+    {
+      "time": "2026-01-14 18:00:06:374",
+      "title": "浙数文化:浙数文化股票交易风险提示性公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600633/AN202601141817017235.html"
+    },
+    {
+      "time": "2026-01-13 18:51:16:358",
+      "title": "浙数文化:浙数文化股票交易异常波动公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600633/AN202601131816985537.html"
+    },
+    {
+      "time": "2025-12-30 17:16:26:237",
+      "title": "浙数文化:浙数文化关于参与投资苏州永徽隆行股权投资合伙企业(有限合伙)的进展公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600633/AN202512301811348191.html"
+    },
+    {
+      "time": "2025-12-17 18:42:46:332",
+      "title": "浙数文化:浙数文化关于参与设立杭州杭数智能壹号创业投资基金合伙企业(有限合伙)的进展公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600633/AN202512171802459385.html"
+    },
+    {
+      "time": "2025-12-15 18:28:12:360",
+      "title": "浙数文化:浙数文化关于以非公开协议转让的方式受让浙版传媒股份完成过户登记的公告",
+      "link": "https://data.eastmoney.com/notices/detail/SH600633/AN202512151801073082.html"
+    }
+  ],
+  "risks": [
+    "成长风格回撤时弹性较高，波动风险偏大",
+    "若跌破关键支撑位需防守仓位"
+  ],
+  "catalysts": [
+    "若公告出现订单/业绩超预期，可能触发估值修复",
+    "资金回流并放量突破关键位可增强上行延续",
+    "近期公告关注：浙数文化:浙数文化股票交易风险提示性公告"
+  ],
+  "scores": {
+    "quality": 72,
+    "valuation": 63,
+    "momentum": 85,
+    "total": 73.8
+  },
+  "conclusion": "综合中性偏多，建议结合仓位与风险预算小步试探。 当前技术趋势偏强。",
+  "confidence": "medium",
+  "data_sources": [
+    "eastmoney_quote",
+    "eastmoney_kline",
+    "eastmoney_announcements"
+  ]
+}

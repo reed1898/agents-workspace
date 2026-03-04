@@ -1,0 +1,11 @@
+{
+  "created_at_utc": "2026-02-25T03:47:02.557165+00:00",
+  "run_id": "",
+  "attempt": 1,
+  "next_attempt": 2,
+  "error_class": "fatal",
+  "last_error": "Error: Channel is required when multiple channels are configured: telegram, discord",
+  "account_id": "maya",
+  "target": "telegram:869269685",
+  "text": "[修复验证] Reed Agent OS Telegram 发送参数已修正为 --account"
+}
