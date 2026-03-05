@@ -211,9 +211,9 @@
       "agentId": "main",
       "sessionKey": "agent:main:discord:channel:1471363336192131276",
       "name": "evolver-hourly",
-      "enabled": true,
+      "enabled": false,
       "createdAtMs": 1772560611996,
-      "updatedAtMs": 1772661702607,
+      "updatedAtMs": 1772712739554,
       "schedule": {
         "kind": "cron",
         "expr": "0 3,4,5,6 * * *",
@@ -232,7 +232,6 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772737200000,
         "lastRunAtMs": 1772661600023,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
@@ -322,9 +321,9 @@
       "sessionKey": "agent:main:main",
       "name": "reed-hourly-proactive-checkin",
       "description": "If Reed has not messaged in the last hour, send a proactive status update; otherwise stay silent.",
-      "enabled": true,
+      "enabled": false,
       "createdAtMs": 1772604495794,
-      "updatedAtMs": 1772712305533,
+      "updatedAtMs": 1772712734376,
       "schedule": {
         "kind": "cron",
         "expr": "0 10,12,14,16,18,20,22 * * *",
@@ -344,7 +343,6 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772719476835,
         "lastRunAtMs": 1772712276844,
         "lastRunStatus": "ok",
         "lastStatus": "ok",

@@ -322,9 +322,9 @@
       "sessionKey": "agent:main:main",
       "name": "reed-hourly-proactive-checkin",
       "description": "If Reed has not messaged in the last hour, send a proactive status update; otherwise stay silent.",
-      "enabled": true,
+      "enabled": false,
       "createdAtMs": 1772604495794,
-      "updatedAtMs": 1772705155165,
+      "updatedAtMs": 1772712734376,
       "schedule": {
         "kind": "cron",
         "expr": "0 10,12,14,16,18,20,22 * * *",
@@ -344,15 +344,13 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772712276835,
-        "lastRunAtMs": 1772705076840,
+        "lastRunAtMs": 1772712276844,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 78325,
+        "lastDurationMs": 28689,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
-        "lastDelivered": true,
-        "runningAtMs": 1772712276841
+        "lastDelivered": true
       }
     }
   ]
