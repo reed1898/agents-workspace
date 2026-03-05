@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772647676288,
+      "updatedAtMs": 1772662076805,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772662049205,
-        "lastRunAtMs": 1772647649205,
+        "nextRunAtMs": 1772676449214,
+        "lastRunAtMs": 1772662049214,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 27083,
+        "lastDurationMs": 27591,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -169,7 +169,8 @@
         "lastDurationMs": 143938,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772665200010
       }
     },
     {
@@ -213,7 +214,7 @@
       "name": "evolver-hourly",
       "enabled": true,
       "createdAtMs": 1772560611996,
-      "updatedAtMs": 1772650882580,
+      "updatedAtMs": 1772661702607,
       "schedule": {
         "kind": "cron",
         "expr": "0 3,4,5,6 * * *",
@@ -232,15 +233,14 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772654400000,
-        "lastRunAtMs": 1772650800027,
+        "nextRunAtMs": 1772737200000,
+        "lastRunAtMs": 1772661600023,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 82553,
+        "lastDurationMs": 102584,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772654400009
+        "consecutiveErrors": 0
       }
     },
     {
@@ -250,7 +250,7 @@
       "name": "evolver-daily-summary",
       "enabled": true,
       "createdAtMs": 1772560618132,
-      "updatedAtMs": 1772575838560,
+      "updatedAtMs": 1772662241643,
       "schedule": {
         "kind": "cron",
         "expr": "10 6 * * *",
@@ -269,11 +269,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772662200000,
-        "lastRunAtMs": 1772575800018,
+        "nextRunAtMs": 1772748600000,
+        "lastRunAtMs": 1772662200012,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 38542,
+        "lastDurationMs": 41631,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0

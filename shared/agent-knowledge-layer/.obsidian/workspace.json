@@ -182,6 +182,10 @@
   },
   "active": "634e90fe4179edb5",
   "lastOpenFiles": [
+    "shared/security/2026-03-05-morning-security-report.md",
+    "shared/evolution/2026-03-05-evolution-summary.md",
+    "private/linus/skill-scout/2026-03-05.md",
+    "private/linus/evolution/2026-03-05-0300.md",
     "shared/evolution/2026-03-05-evolution-log.md",
     "shared/40_playbooks/agent-engineering-contract-playbook-20260305.md",
     "shared/14_x_saved/supezen-做了一个Youtube字幕的 skill 不依赖任何外部 api 无限提取 准备放到-20260304-223621.md",
@@ -211,10 +215,6 @@
     "shared/40_playbooks/daily-ai-web3-digest-sop.md",
     "shared/evolution/2026-03-04-evolution-log.md",
     "shared/evolution/2026-03-04-evolution-summary.md",
-    "shared/security/2026-03-04-morning-security-report.md",
-    "private/xiaohong/reports/multi-agent-setup-2026-03.md",
-    "private/xiaohong/daily-summaries/2026-03-03.md",
-    "private/xiaohong/daily-digest/2026-03-04.md",
     "private/xiaohong/daily-digest/run_daily_digest.sh",
     "private/xiaohong/daily-digest",
     "kb-config-xiaohong.json"

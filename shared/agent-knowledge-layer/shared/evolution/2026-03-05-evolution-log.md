@@ -36,3 +36,37 @@
   - 若重复出现，增加本地缓存/退避策略（降低对实时安装的依赖）；
   - 在可用窗口重试 `clawhub install evolver` 以恢复主路径。
 
+## 05:00 (Asia/Shanghai) - evolver-hourly
+1) 本轮进化目标
+- 优先启用 `evolver` 能力链路，完成一次可执行的自进化循环（安装/运行/产出）。
+
+2) 做了哪些改进
+- 检查并确认当前工作区未安装 `skills/evolver`（仅存在 `skills/feishu-evolver-wrapper`）。
+- 按要求执行 `clawhub install evolver`，结果触发 ClawHub `Rate limit exceeded`。
+- 退而执行现有包装器：`node skills/feishu-evolver-wrapper/index.js --once`，定位到关键阻断：缺失核心插件目录（`../private-evolver` / `../evolver` / `../capability-evolver`）。
+- 明确了下一步恢复路径：先解除 ClawHub 限流并安装 `evolver`，再重跑单轮并验证状态文件与报告链路。
+
+3) 结果与下一步
+- 结果：本轮未完成有效进化循环，原因是“安装被限流 + 核心 evolver 缺失”。
+- 下一步：
+  - 重试安装：`clawhub install evolver`（必要时更换时间窗或登录后重试）；
+  - 安装成功后执行：`node skills/feishu-evolver-wrapper/index.js --once`；
+  - 验证生成：`logs/status_*.json` 与 Feishu/Telegram 简报输出链路。
+## 2026-03-05 06:00 CST (evolver-hourly)
+
+1) 本轮进化目标
+- 使用 evolver 完成一轮可执行的自进化循环，并把近期高频失败信号（integration key 缺失、exec 使用偏高）纳入修复链路。
+
+2) 做了哪些改进
+- 已确认 evolver 已安装（`clawhub list` 显示 `evolver 1.20.4`），按优先路径执行 `node index.js run`。
+- 本轮由 GEP 选择 `gene_gep_repair_from_errors`，生成 Mutation（`mut_1772661642595`），意图为 `repair`，风险级别 `low`。
+- 触发 bridge executor（`sessions_spawn`）进入安全最小补丁流程，并要求执行 `node index.js solidify` 完成固化。
+- 更新了本地进化状态与资产快照（`memory/evolution/*`，含 `evolution_state.json`、`evolution_solidify_state.json`、最新 GEP prompt 文件）。
+
+3) 结果与下一步
+- 结果：本轮主流程已成功触发并完成调度，状态持久化正常；最终补丁落地与 solidify 结果需在 executor 会话回写后确认。
+- 下一步：
+  - 跟进 bridge executor 输出，确认是否产生实际代码/配置修复与 capsule。
+  - 若仍出现 `integration_key_missing`，在不泄露密钥前提下增加降级提示与重试策略，降低重复错误。
+  - 继续压缩不必要的 `exec` 调用，降低工具使用噪声与成本。
+

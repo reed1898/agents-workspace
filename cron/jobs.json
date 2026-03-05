@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772647676288,
+      "updatedAtMs": 1772662076805,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772662049205,
-        "lastRunAtMs": 1772647649205,
+        "nextRunAtMs": 1772676449214,
+        "lastRunAtMs": 1772662049214,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 27083,
+        "lastDurationMs": 27591,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -143,7 +143,7 @@
       "description": "每天早上7点安全巡检（系统/OpenClaw漏洞/不安全skills），写入知识库并通过Telegram汇报",
       "enabled": true,
       "createdAtMs": 1772508056718,
-      "updatedAtMs": 1772578943956,
+      "updatedAtMs": 1772665334442,
       "schedule": {
         "kind": "cron",
         "expr": "0 7 * * *",
@@ -162,11 +162,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772665200000,
-        "lastRunAtMs": 1772578800018,
+        "nextRunAtMs": 1772751600000,
+        "lastRunAtMs": 1772665200021,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 143938,
+        "lastDurationMs": 134421,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -213,7 +213,7 @@
       "name": "evolver-hourly",
       "enabled": true,
       "createdAtMs": 1772560611996,
-      "updatedAtMs": 1772654521995,
+      "updatedAtMs": 1772661702607,
       "schedule": {
         "kind": "cron",
         "expr": "0 3,4,5,6 * * *",
@@ -232,11 +232,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772658000000,
-        "lastRunAtMs": 1772654400014,
+        "nextRunAtMs": 1772737200000,
+        "lastRunAtMs": 1772661600023,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 121981,
+        "lastDurationMs": 102584,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -249,7 +249,7 @@
       "name": "evolver-daily-summary",
       "enabled": true,
       "createdAtMs": 1772560618132,
-      "updatedAtMs": 1772575838560,
+      "updatedAtMs": 1772662241643,
       "schedule": {
         "kind": "cron",
         "expr": "10 6 * * *",
@@ -268,11 +268,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772662200000,
-        "lastRunAtMs": 1772575800018,
+        "nextRunAtMs": 1772748600000,
+        "lastRunAtMs": 1772662200012,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 38542,
+        "lastDurationMs": 41631,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
