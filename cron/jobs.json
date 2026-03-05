@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772676464847,
+      "updatedAtMs": 1772690872386,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772690849220,
-        "lastRunAtMs": 1772676449220,
+        "nextRunAtMs": 1772705249228,
+        "lastRunAtMs": 1772690849228,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 15627,
+        "lastDurationMs": 23158,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -324,7 +324,7 @@
       "description": "If Reed has not messaged in the last hour, send a proactive status update; otherwise stay silent.",
       "enabled": true,
       "createdAtMs": 1772604495794,
-      "updatedAtMs": 1772676330204,
+      "updatedAtMs": 1772690733792,
       "schedule": {
         "kind": "cron",
         "expr": "0 10,12,14,16,18,20,22 * * *",
@@ -344,15 +344,15 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772683476835,
-        "lastRunAtMs": 1772676292674,
+        "nextRunAtMs": 1772697876835,
+        "lastRunAtMs": 1772690676844,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 37530,
-        "lastDelivered": true,
+        "lastDurationMs": 56948,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772683476841
+        "lastDelivered": true,
+        "runningAtMs": 1772697876841
       }
     }
   ]
