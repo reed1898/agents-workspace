@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772662076805,
+      "updatedAtMs": 1772676464847,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772676449214,
-        "lastRunAtMs": 1772662049214,
+        "nextRunAtMs": 1772690849220,
+        "lastRunAtMs": 1772676449220,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 27591,
+        "lastDurationMs": 15627,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -109,7 +109,7 @@
       "description": "每天早上8:15 生成并发送工作日报到 Reed Telegram 私聊",
       "enabled": true,
       "createdAtMs": 1772476674474,
-      "updatedAtMs": 1772583330559,
+      "updatedAtMs": 1772669732392,
       "schedule": {
         "kind": "cron",
         "expr": "15 8 * * *",
@@ -127,11 +127,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772669700000,
-        "lastRunAtMs": 1772583300019,
+        "nextRunAtMs": 1772756100000,
+        "lastRunAtMs": 1772669700014,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 30540,
+        "lastDurationMs": 32378,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -285,7 +285,7 @@
       "name": "kb-hourly-closed-loop-xiaohong",
       "enabled": true,
       "createdAtMs": 1772587819080,
-      "updatedAtMs": 1772646313323,
+      "updatedAtMs": 1772676290664,
       "schedule": {
         "kind": "cron",
         "expr": "0 10,22 * * *",
@@ -305,11 +305,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772676237495,
-        "lastRunAtMs": 1772643837502,
+        "nextRunAtMs": 1772719437495,
+        "lastRunAtMs": 1772676237503,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 94342,
+        "lastDurationMs": 53161,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -324,7 +324,7 @@
       "description": "If Reed has not messaged in the last hour, send a proactive status update; otherwise stay silent.",
       "enabled": true,
       "createdAtMs": 1772604495794,
-      "updatedAtMs": 1772646313346,
+      "updatedAtMs": 1772676330204,
       "schedule": {
         "kind": "cron",
         "expr": "0 10,12,14,16,18,20,22 * * *",
@@ -344,14 +344,15 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772676276835,
-        "lastRunAtMs": 1772643933882,
+        "nextRunAtMs": 1772683476835,
+        "lastRunAtMs": 1772676292674,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 62102,
+        "lastDurationMs": 37530,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772683476841
       }
     }
   ]
