@@ -25,7 +25,7 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772719649241,
+        "nextRunAtMs": 1772733856179,
         "lastRunAtMs": 1772705249241,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
@@ -42,7 +42,7 @@
       "name": "daily-agent-summary",
       "enabled": true,
       "createdAtMs": 1772475266617,
-      "updatedAtMs": 1772646264850,
+      "updatedAtMs": 1772730034385,
       "schedule": {
         "kind": "cron",
         "expr": "0 1 * * *",
@@ -59,11 +59,11 @@
         "mode": "announce"
       },
       "state": {
-        "nextRunAtMs": 1772730000000,
-        "lastRunAtMs": 1772560800008,
+        "nextRunAtMs": 1772816400000,
+        "lastRunAtMs": 1772730000010,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 46357,
+        "lastDurationMs": 34375,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -196,7 +196,7 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772716800000,
+        "nextRunAtMs": 1772803200000,
         "lastRunAtMs": 1772630400008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
@@ -304,7 +304,7 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772719437495,
+        "nextRunAtMs": 1772762637495,
         "lastRunAtMs": 1772676237503,
         "lastRunStatus": "ok",
         "lastStatus": "ok",

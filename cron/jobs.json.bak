@@ -25,7 +25,7 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772719649241,
+        "nextRunAtMs": 1772733856179,
         "lastRunAtMs": 1772705249241,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
@@ -66,7 +66,8 @@
         "lastDurationMs": 46357,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772730000006
       }
     },
     {
@@ -196,7 +197,7 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772716800000,
+        "nextRunAtMs": 1772803200000,
         "lastRunAtMs": 1772630400008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
@@ -211,9 +212,9 @@
       "agentId": "main",
       "sessionKey": "agent:main:discord:channel:1471363336192131276",
       "name": "evolver-hourly",
-      "enabled": true,
+      "enabled": false,
       "createdAtMs": 1772560611996,
-      "updatedAtMs": 1772661702607,
+      "updatedAtMs": 1772712739554,
       "schedule": {
         "kind": "cron",
         "expr": "0 3,4,5,6 * * *",
@@ -232,7 +233,6 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772737200000,
         "lastRunAtMs": 1772661600023,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
@@ -305,7 +305,7 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772719437495,
+        "nextRunAtMs": 1772762637495,
         "lastRunAtMs": 1772676237503,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
