@@ -1,5 +1,5 @@
 {
-  "next_id": 4,
+  "next_id": 5,
   "items": [
     {
       "id": 2,
@@ -29,6 +29,21 @@
       "due": "2026-03-04",
       "created_at": "2026-03-03T18:22:08+00:00",
       "updated_at": "2026-03-03T18:22:08+00:00",
+      "done_at": null,
+      "note": ""
+    },
+    {
+      "id": 4,
+      "title": "后续研究 Open-AutoGLM 项目：https://github.com/zai-org/Open-AutoGLM",
+      "status": "open",
+      "tags": [
+        "research",
+        "openclaw",
+        "ai-agent"
+      ],
+      "due": null,
+      "created_at": "2026-03-06T14:27:09+00:00",
+      "updated_at": "2026-03-06T14:27:09+00:00",
       "done_at": null,
       "note": ""
     }

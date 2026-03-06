@@ -23,10 +23,12 @@ Things like:
 ## 代理 (VPN)
 
 - **软件**: QuickQ
-- **端口不固定**，每次需用 `lsof | grep quickqser` 检测
+- **端口不固定**，每次执行前先检测（不要假设沿用上次端口）
+- **检测命令**: `/usr/sbin/lsof -nP | grep quickqser | grep LISTEN`
+- **常见端口形态**: `127.0.0.1:10020`(HTTP) + `127.0.0.1:10900`(SOCKS5)，但会自动切换
 - **用途**: 访问被墙的服务（Google API、GitHub 等）
 - **注意**: gws 等 CLI 工具需要手动设置 `https_proxy`/`http_proxy`，不会自动走系统代理
-- **gws-proxy.sh 已内置自动检测逻辑**
+- **操作规范**: 凡是访问 Google/外网 API 的任务，先查 QuickQ 最新端口，再执行请求
 
 ## GWS (Google Workspace CLI)
 

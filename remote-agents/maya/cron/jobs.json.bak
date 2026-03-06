@@ -876,7 +876,7 @@
       "name": "Reed Agent OS Evening 21:30",
       "enabled": true,
       "createdAtMs": 1771954024399,
-      "updatedAtMs": 1772717419649,
+      "updatedAtMs": 1772803818549,
       "schedule": {
         "kind": "cron",
         "expr": "30 21 * * *",
@@ -893,11 +893,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772803800000,
-        "lastRunAtMs": 1772717400010,
+        "nextRunAtMs": 1772890200000,
+        "lastRunAtMs": 1772803800012,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 19639,
+        "lastDurationMs": 18537,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -935,10 +935,10 @@
       "name": "Maya 日报（21:00）",
       "enabled": true,
       "createdAtMs": 1772115224747,
-      "updatedAtMs": 1772716536107,
+      "updatedAtMs": 1772809017995,
       "schedule": {
         "kind": "cron",
-        "expr": "15 21 * * *",
+        "expr": "0 9 * * *",
         "tz": "Asia/Shanghai"
       },
       "sessionTarget": "isolated",
@@ -955,11 +955,11 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1772802900000,
-        "lastRunAtMs": 1772716500009,
+        "nextRunAtMs": 1772845200000,
+        "lastRunAtMs": 1772802900011,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 36098,
+        "lastDurationMs": 35588,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -1006,7 +1006,7 @@
       "name": "kb-hourly-unified-maya",
       "enabled": true,
       "createdAtMs": 1772588305081,
-      "updatedAtMs": 1772786946221,
+      "updatedAtMs": 1772811554472,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1023,14 +1023,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772789905808,
-        "lastRunAtMs": 1772786305808,
+        "nextRunAtMs": 1772815105880,
+        "lastRunAtMs": 1772811505880,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 640413,
+        "lastDurationMs": 48592,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772815105888
       },
       "description": "Unified hourly KB sync + PR merge (single job to avoid race)"
     },
@@ -1041,7 +1042,7 @@
       "description": "Check openclawdirectory.co.uk for hot skills twice daily and notify Reed only when notable",
       "enabled": true,
       "createdAtMs": 1772614370276,
-      "updatedAtMs": 1772762490828,
+      "updatedAtMs": 1772805753331,
       "schedule": {
         "kind": "cron",
         "expr": "0 10,22 * * *",
@@ -1060,13 +1061,13 @@
         "accountId": "maya"
       },
       "state": {
-        "nextRunAtMs": 1772805600000,
-        "lastRunAtMs": 1772762400011,
+        "nextRunAtMs": 1772848800000,
+        "lastRunAtMs": 1772805600011,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 90817,
-        "lastDelivered": false,
-        "lastDeliveryStatus": "not-delivered",
+        "lastDurationMs": 153320,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
       }
     },
@@ -1077,7 +1078,7 @@
       "name": "Track PKU Marxism MA retest updates",
       "enabled": true,
       "createdAtMs": 1772679510268,
-      "updatedAtMs": 1772766016921,
+      "updatedAtMs": 1772809189877,
       "schedule": {
         "kind": "every",
         "everyMs": 21600000,
@@ -1095,15 +1096,14 @@
         "channel": "telegram"
       },
       "state": {
-        "nextRunAtMs": 1772787510311,
-        "lastRunAtMs": 1772765910311,
+        "nextRunAtMs": 1772830710347,
+        "lastRunAtMs": 1772809110347,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 106610,
+        "lastDurationMs": 79530,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772787510327
+        "consecutiveErrors": 0
       }
     }
   ]

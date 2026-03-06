@@ -1,0 +1,6 @@
+2026/03/06-21:30:43.288 2326b Creating DB /Users/rain/.openclaw/browser/openclaw/user-data/Default/WebStorage/8/IndexedDB/indexeddb.leveldb since it was missing.
+2026/03/06-21:30:43.294 2326b Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/WebStorage/8/IndexedDB/indexeddb.leveldb/MANIFEST-000001
+2026/03/06-22:49:02.859 2326d Level-0 table #5: started
+2026/03/06-22:49:02.875 2326d Level-0 table #5: 13859 bytes OK
+2026/03/06-22:49:02.882 2326d Delete type=0 #3
+2026/03/06-22:49:02.885 2326d Manual compaction at level-0 from (begin) .. (end); will stop at (end)

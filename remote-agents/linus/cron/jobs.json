@@ -6,7 +6,7 @@
       "name": "agent-data-sync",
       "enabled": true,
       "createdAtMs": 1772474670659,
-      "updatedAtMs": 1772774067566,
+      "updatedAtMs": 1772812991992,
       "schedule": {
         "kind": "cron",
         "expr": "0 */4 * * *",
@@ -19,14 +19,13 @@
         "text": "HEARTBEAT: Sync agent-network-data and agent-knowledge-layer"
       },
       "state": {
-        "nextRunAtMs": 1772784172942,
-        "lastRunAtMs": 1772773152553,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 915013,
+        "nextRunAtMs": 1772827372942,
+        "lastRunAtMs": 1772812972961,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 19031,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
-        "lastError": "cron: job execution timed out"
+        "consecutiveErrors": 0
       }
     },
     {
@@ -122,7 +121,7 @@
       "name": "security-scan-evening",
       "enabled": true,
       "createdAtMs": 1772508069208,
-      "updatedAtMs": 1772716874499,
+      "updatedAtMs": 1772803392382,
       "schedule": {
         "kind": "cron",
         "expr": "20 21 * * *",
@@ -135,11 +134,11 @@
         "text": "HEARTBEAT: 执行 OpenClaw 安全扫描 - 运行 openclaw security audit 和 openclaw doctor，发现问题尝试修复，通过 Telegram 私聊向 Reed 发送安全报告"
       },
       "state": {
-        "nextRunAtMs": 1772803200000,
-        "lastRunAtMs": 1772716800010,
+        "nextRunAtMs": 1772889600000,
+        "lastRunAtMs": 1772803200009,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 74489,
+        "lastDurationMs": 192373,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -254,7 +253,7 @@
       "name": "linus-kb-sync-hourly",
       "enabled": true,
       "createdAtMs": 1772587835886,
-      "updatedAtMs": 1772781344214,
+      "updatedAtMs": 1772816468591,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -272,14 +271,14 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772784004513,
-        "lastRunAtMs": 1772780658525,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 685689,
-        "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 2,
-        "lastError": "cron: job execution timed out"
+        "nextRunAtMs": 1772820004513,
+        "lastRunAtMs": 1772816404534,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 64057,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": false
       }
     },
     {
@@ -288,7 +287,7 @@
       "name": "reed-openclaw-pr-daily-2310",
       "enabled": true,
       "createdAtMs": 1772587988431,
-      "updatedAtMs": 1772723508555,
+      "updatedAtMs": 1772809881641,
       "schedule": {
         "kind": "cron",
         "expr": "10 23 * * *",
@@ -307,11 +306,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772809800000,
-        "lastRunAtMs": 1772723400022,
+        "nextRunAtMs": 1772896200000,
+        "lastRunAtMs": 1772809800032,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 108533,
+        "lastDurationMs": 81609,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -360,7 +359,7 @@
       "name": "reddit-openclaw-hot-2x-daily",
       "enabled": true,
       "createdAtMs": 1772623651571,
-      "updatedAtMs": 1772771189120,
+      "updatedAtMs": 1772805016722,
       "schedule": {
         "kind": "cron",
         "expr": "45 11,21 * * *",
@@ -380,11 +379,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772804700000,
-        "lastRunAtMs": 1772769168481,
+        "nextRunAtMs": 1772855100000,
+        "lastRunAtMs": 1772804700022,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 2020639,
+        "lastDurationMs": 316700,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -430,7 +429,7 @@
       "name": "x-lists-digest-2x",
       "enabled": true,
       "createdAtMs": 1772628490862,
-      "updatedAtMs": 1772773150194,
+      "updatedAtMs": 1772804550766,
       "schedule": {
         "kind": "cron",
         "expr": "40 11,21 * * *",
@@ -449,11 +448,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772804400000,
-        "lastRunAtMs": 1772771189120,
+        "nextRunAtMs": 1772854800000,
+        "lastRunAtMs": 1772804400009,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 1961074,
+        "lastDurationMs": 150757,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0

@@ -17,6 +17,8 @@
 ## Cron 自适应规则
 - **Timeout 自动调整**：如果某个 cron 任务实际耗时超过 timeout 的 70%，主动上调 timeout（×1.5），不等超时才反应。
 - **超时后自动恢复**：任务超时后，下次触发前自动检查并放大 timeout。
+- **重型任务拆分**：盘前深度扫描提前执行（A股06:00、美股19:00），盘前总结只补实时数据。
+- **KB 自动合并**：agent/jesse 分支积压超过 10 个 commit 时，自动 merge 到 main 并 push，不等 Reed 指示。
 - Reed 明确要求：timeout 这类运维参数应该自己进化，不要让他来指定具体值。
 
 ## Trading Rules（Reed 明确指令）

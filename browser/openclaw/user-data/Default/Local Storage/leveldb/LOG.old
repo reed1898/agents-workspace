@@ -1,2 +1,18 @@
-2026/03/04-14:56:46.222 76b329 Creating DB /Users/rain/.openclaw/browser/openclaw/user-data/Default/Local Storage/leveldb since it was missing.
-2026/03/04-14:56:46.226 76b329 Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/Local Storage/leveldb/MANIFEST-000001
+2026/03/04-14:56:55.773 76b97c Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/Local Storage/leveldb/MANIFEST-000001
+2026/03/04-14:56:55.775 76b97c Recovering log #3
+2026/03/04-14:56:55.775 76b97c Reusing old log /Users/rain/.openclaw/browser/openclaw/user-data/Default/Local Storage/leveldb/000003.log 
+2026/03/04-20:35:56.669 76b97f Level-0 table #5: started
+2026/03/04-20:35:56.674 76b97f Level-0 table #5: 9324 bytes OK
+2026/03/04-20:35:56.677 76b97f Delete type=0 #3
+2026/03/05-02:28:56.800 76b97f Level-0 table #7: started
+2026/03/05-02:28:56.804 76b97f Level-0 table #7: 8802 bytes OK
+2026/03/05-02:28:56.808 76b97f Delete type=0 #4
+2026/03/05-08:21:56.886 76b97f Level-0 table #9: started
+2026/03/05-08:21:56.889 76b97f Level-0 table #9: 8695 bytes OK
+2026/03/05-08:21:56.892 76b97f Delete type=0 #6
+2026/03/05-14:14:56.897 76b97f Level-0 table #11: started
+2026/03/05-14:14:56.901 76b97f Level-0 table #11: 8723 bytes OK
+2026/03/05-14:14:56.905 76b97f Delete type=0 #8
+2026/03/05-20:07:56.957 76b97f Level-0 table #13: started
+2026/03/05-20:07:56.959 76b97f Level-0 table #13: 8764 bytes OK
+2026/03/05-20:07:56.961 76b97f Delete type=0 #10

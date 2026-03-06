@@ -40,7 +40,7 @@
 
 
 ## 命名约定
-- **Reminder Skill Rule**: 所有提醒/日程类事件（行程安排、生日提醒等）必须通过 `reminder` skill 处理（写入 `reminders/events.yml` + 按规范创建 cron），不要直接调用 `cron` 工具（2026-02-11；2026-02-13 再次确认）
+- **Reminder Skill Rule**: 所有提醒/日程类事件（行程安排、生日提醒等）必须通过 `reminder` skill 处理；按 Reed 2026-03-06 新偏好：不要自动创建/落地到 crons（先记录与确认，再按当下指令执行）。
 - **Cron 总规则偏好**: 定时任务默认统一使用 OpenClaw Cron（网关侧）管理，不用本地机器 crontab；若任务执行主体在本地 Mac，则由 VPS/OpenClaw Cron 定时触发并向 Reed-Mac 下发执行指令（2026-02-25）
 
 ## Machine-Specific Configuration

@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772777204835,
+      "updatedAtMs": 1772806245947,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,14 +25,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772791544815,
-        "lastRunAtMs": 1772777144815,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 60020,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 1,
-        "lastError": "cron: job execution timed out"
+        "nextRunAtMs": 1772820601571,
+        "lastRunAtMs": 1772806201571,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 44376,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
       }
     },
     {
@@ -42,7 +42,7 @@
       "name": "daily-agent-summary",
       "enabled": true,
       "createdAtMs": 1772475266617,
-      "updatedAtMs": 1772730034385,
+      "updatedAtMs": 1772816436293,
       "schedule": {
         "kind": "cron",
         "expr": "0 1 * * *",
@@ -59,11 +59,11 @@
         "mode": "announce"
       },
       "state": {
-        "nextRunAtMs": 1772816400000,
-        "lastRunAtMs": 1772730000010,
+        "nextRunAtMs": 1772902800000,
+        "lastRunAtMs": 1772816400014,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 34375,
+        "lastDurationMs": 36279,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -179,7 +179,7 @@
       "description": "每天晚上9:20安全扫描并报告",
       "enabled": true,
       "createdAtMs": 1772508063062,
-      "updatedAtMs": 1772630576198,
+      "updatedAtMs": 1772803380031,
       "schedule": {
         "kind": "cron",
         "expr": "20 21 * * *",
@@ -197,14 +197,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772803200000,
-        "lastRunAtMs": 1772630400008,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 176190,
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "nextRunAtMs": 1772889600000,
+        "lastRunAtMs": 1772803200011,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 180020,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out"
       }
     },
     {
@@ -285,7 +285,7 @@
       "name": "kb-hourly-closed-loop-xiaohong",
       "enabled": true,
       "createdAtMs": 1772587819080,
-      "updatedAtMs": 1772762742755,
+      "updatedAtMs": 1772805928539,
       "schedule": {
         "kind": "cron",
         "expr": "0 10,22 * * *",
@@ -305,11 +305,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772805837495,
-        "lastRunAtMs": 1772762637504,
+        "nextRunAtMs": 1772849037495,
+        "lastRunAtMs": 1772805837502,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 105251,
+        "lastDurationMs": 91037,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -358,7 +358,7 @@
       "name": "evolver_watchdog_robust",
       "enabled": true,
       "createdAtMs": 1772731903737,
-      "updatedAtMs": 1772785963141,
+      "updatedAtMs": 1772814825381,
       "schedule": {
         "kind": "every",
         "everyMs": 1800000,
@@ -375,15 +375,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772787744080,
-        "lastRunAtMs": 1772785944080,
+        "nextRunAtMs": 1772816610416,
+        "lastRunAtMs": 1772814810416,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 19061,
+        "lastDurationMs": 14965,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772787744087
+        "runningAtMs": 1772816610422
       }
     },
     {
@@ -487,7 +487,7 @@
       "name": "gmail-patrol-evening-2100",
       "enabled": true,
       "createdAtMs": 1772781835381,
-      "updatedAtMs": 1772781835381,
+      "updatedAtMs": 1772802208301,
       "schedule": {
         "kind": "cron",
         "expr": "0 21 * * *",
@@ -506,7 +506,14 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772802000000
+        "nextRunAtMs": 1772888400000,
+        "lastRunAtMs": 1772802000011,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 208290,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
       }
     }
   ]

@@ -63,4 +63,8 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - Generic keys (`DATABASE_URL`, `MYSQL_*`) are deprecated and should stay unset to avoid collisions with other databases.
 - If required ENV keys are missing, report missing key names explicitly and request refresh once.
 
+## Git Operations
+- 本机没有 gh CLI，不要尝试。直接用 git 命令操作（merge/push/rebase）。
+- KB 合并流程：git checkout main → pull → merge agent/jesse → push → checkout agent/jesse → rebase main。
+
 Add whatever helps you do your job. This is your cheat sheet.
