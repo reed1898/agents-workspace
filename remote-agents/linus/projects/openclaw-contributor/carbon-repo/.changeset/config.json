@@ -1,0 +1,11 @@
+{
+	"$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
+	"commit": false,
+	"fixed": [],
+	"linked": [],
+	"access": "public",
+	"baseBranch": "main",
+	"updateInternalDependencies": "patch",
+	"ignore": ["website", "demo-*"],
+	"changelog": ["@changesets/changelog-git", { "repo": "t3-oss/create-t3-app" }]
+}

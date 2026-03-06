@@ -1,3 +1,5 @@
-2026/03/03-02:41:24.353 fa217 Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/MANIFEST-000001
-2026/03/03-02:41:24.359 fa217 Recovering log #3
-2026/03/03-02:41:24.360 fa217 Reusing old log /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/000003.log 
+2026/03/06-07:46:48.223 3dd1e2 Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/MANIFEST-000001
+2026/03/06-07:46:48.233 3dd1e2 Recovering log #19
+2026/03/06-07:46:48.242 3dd1e2 Level-0 table #22: started
+2026/03/06-07:46:48.262 3dd1e2 Level-0 table #22: 351456 bytes OK
+2026/03/06-07:46:48.271 3dd1e2 Delete type=0 #19

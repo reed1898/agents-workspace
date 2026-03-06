@@ -80,7 +80,8 @@ ext="${AUDIO##*.}"; ext="$(echo "$ext" | tr '[:upper:]' '[:lower:]')"
 format="$ext"
 case "$ext" in oga|opus) format="ogg" ;; wav|mp3|ogg) ;; *) format="mp3" ;; esac
 codec="raw"; [[ "$format" == "ogg" ]] && codec="opus"
-AUDIO_B64="$(base64 -w 0 "$AUDIO" 2>/dev/null || base64 "$AUDIO" | tr -d '\n')"
+# macOS base64 does not support -w and requires stdin for file input.
+AUDIO_B64="$(base64 -w 0 "$AUDIO" 2>/dev/null || base64 < "$AUDIO" | tr -d '\n')"
 
 TMP_REQ="$(mktemp)"; TMP_RES="$(mktemp)"; TMP_H="$(mktemp)"
 trap 'rm -f "$TMP_REQ" "$TMP_RES" "$TMP_H"' EXIT

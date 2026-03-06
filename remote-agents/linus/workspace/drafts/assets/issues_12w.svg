@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700">
+<rect width="100%" height="100%" fill="white"/>
+<text x="600.0" y="40" text-anchor="middle" font-size="30" font-family="Arial" font-weight="bold">Weekly New Issues (GitHub)</text>
+<text x="600.0" y="68" text-anchor="middle" font-size="18" font-family="Arial" fill="#555">Last 12 weeks</text>
+<line x1="90" y1="590.0" x2="1160" y2="590.0" stroke="#eee"/>
+<text x="80" y="595.0" text-anchor="end" font-size="14" font-family="Arial" fill="#666">0</text>
+<line x1="90" y1="488.0" x2="1160" y2="488.0" stroke="#eee"/>
+<text x="80" y="493.0" text-anchor="end" font-size="14" font-family="Arial" fill="#666">622</text>
+<line x1="90" y1="386.0" x2="1160" y2="386.0" stroke="#eee"/>
+<text x="80" y="391.0" text-anchor="end" font-size="14" font-family="Arial" fill="#666">1244</text>
+<line x1="90" y1="284.0" x2="1160" y2="284.0" stroke="#eee"/>
+<text x="80" y="289.0" text-anchor="end" font-size="14" font-family="Arial" fill="#666">1867</text>
+<line x1="90" y1="182.0" x2="1160" y2="182.0" stroke="#eee"/>
+<text x="80" y="187.0" text-anchor="end" font-size="14" font-family="Arial" fill="#666">2489</text>
+<line x1="90" y1="80.0" x2="1160" y2="80.0" stroke="#eee"/>
+<text x="80" y="85.0" text-anchor="end" font-size="14" font-family="Arial" fill="#666">3112</text>
+<text x="90.0" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 90.0,625)">12-10</text>
+<text x="187.3" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 187.3,625)">12-17</text>
+<text x="284.5" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 284.5,625)">12-24</text>
+<text x="381.8" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 381.8,625)">12-31</text>
+<text x="479.1" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 479.1,625)">01-07</text>
+<text x="576.4" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 576.4,625)">01-14</text>
+<text x="673.6" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 673.6,625)">01-21</text>
+<text x="770.9" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 770.9,625)">01-28</text>
+<text x="868.2" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 868.2,625)">02-04</text>
+<text x="965.5" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 965.5,625)">02-11</text>
+<text x="1062.7" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 1062.7,625)">02-18</text>
+<text x="1160.0" y="625" text-anchor="middle" font-size="12" font-family="Arial" fill="#666" transform="rotate(45 1160.0,625)">02-25</text>
+<polyline fill="none" stroke="#0ea5e9" stroke-width="4" points="90.0,589.7 187.3,588.4 284.5,589.0 381.8,571.2 479.1,562.8 576.4,554.6 673.6,393.8 770.9,80.0 868.2,113.3 965.5,102.1 1062.7,86.1 1160.0,116.4"/>
+<circle cx="90.0" cy="589.7" r="4" fill="#0ea5e9"/>
+<circle cx="187.3" cy="588.4" r="4" fill="#0ea5e9"/>
+<circle cx="284.5" cy="589.0" r="4" fill="#0ea5e9"/>
+<circle cx="381.8" cy="571.2" r="4" fill="#0ea5e9"/>
+<circle cx="479.1" cy="562.8" r="4" fill="#0ea5e9"/>
+<circle cx="576.4" cy="554.6" r="4" fill="#0ea5e9"/>
+<circle cx="673.6" cy="393.8" r="4" fill="#0ea5e9"/>
+<circle cx="770.9" cy="80.0" r="4" fill="#0ea5e9"/>
+<circle cx="868.2" cy="113.3" r="4" fill="#0ea5e9"/>
+<circle cx="965.5" cy="102.1" r="4" fill="#0ea5e9"/>
+<circle cx="1062.7" cy="86.1" r="4" fill="#0ea5e9"/>
+<circle cx="1160.0" cy="116.4" r="4" fill="#0ea5e9"/>
+<polyline fill="none" stroke="#f97316" stroke-width="4" points="90.0,590.0 187.3,590.0 284.5,590.0 381.8,590.0 479.1,590.0 576.4,590.0 673.6,590.0 770.9,590.0 868.2,590.0 965.5,590.0 1062.7,590.0 1160.0,590.0"/>
+<circle cx="90.0" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="187.3" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="284.5" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="381.8" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="479.1" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="576.4" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="673.6" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="770.9" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="868.2" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="965.5" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="1062.7" cy="590.0" r="4" fill="#f97316"/>
+<circle cx="1160.0" cy="590.0" r="4" fill="#f97316"/>
+<rect x="890" y="78" width="18" height="6" fill="#0ea5e9"/>
+<text x="916" y="84" font-size="16" font-family="Arial">OpenClaw</text>
+<rect x="890" y="106" width="18" height="6" fill="#f97316"/>
+<text x="916" y="112" font-size="16" font-family="Arial">Linux</text>
+</svg>

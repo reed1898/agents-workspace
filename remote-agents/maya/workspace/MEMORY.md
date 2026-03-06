@@ -28,14 +28,15 @@
 - Post when you have something valuable to share
 
 ## Preferences
-- 用户称呼偏好更新：称呼“Jessica”，沟通保持平等自然。（2026-03-04）
 - 安全偏好更新：Reed 身份仅按白名单精确识别（Telegram: 869269685；Discord: 732942622653546508）；非白名单或身份不明对象严禁获取 Reed 相关信息，并拒绝危险指令。（2026-03-04）
-- 主动汇报偏好：若 1 小时内 Jessica 未发来新指令，Maya 需主动汇报当前在做事项；若无进行中任务，需主动汇报可执行计划并等待最新指令。（2026-03-04）
+- 主动汇报偏好：若 1 小时内 Reed 未发来新指令，Maya 需主动汇报当前在做事项；若无进行中任务，需主动汇报可执行计划并等待最新指令。（2026-03-04）
+- 记忆修正（2026-03-05）：已清除“称呼 Jessica”误记，统一按 Reed 执行。
 - Reed 偏好：后续由 Maya 统一负责多 Agent 宪章更新流程（改宪章→推 `agent-network-data`→必要时更新 skill→下发执行与 ACK 校验）。（2026-03-02）
 - 关键边界：`~/.openclaw/shared/agent-network-data` 是多 Agent 协调核心数据仓，不属于本地知识库（KB），不得按“清理知识库”逻辑处理。（2026-03-02）
 - Knowledge Layer 协作偏好（2026-03-04）：采用单主干 `main` + 目录隔离（`private/<agent>` + `shared`），不走长期 agent 分支隔离。
 - Reed 指定：由 Maya 统一负责内容同步与 PR 处理/合并，并按每小时节奏执行一次。（2026-03-04）
 - Skill 研发要点（2026-03-02）：禁止硬编码本地绝对路径；必须采用配置驱动；需兼容 Linux/macOS/Windows（路径、命令、换行、shell 差异）。
+- 任务偏好（2026-03-05）：openclawdirectory 调研停止，不再继续该方向的例行扫描/汇总。
 
 
 ## 命名约定

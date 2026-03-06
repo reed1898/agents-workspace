@@ -1,0 +1,8 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"name": "@buape/carbon",
+	"out": "docs",
+	"plugin": ["typedoc-plugin-mdn-links"],
+	"disableSources": true,
+	"readme": "none"
+}

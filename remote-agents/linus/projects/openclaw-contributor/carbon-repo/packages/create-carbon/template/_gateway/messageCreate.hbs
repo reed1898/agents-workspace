@@ -1,0 +1,18 @@
+---
+{{#if plugins.gateway}}
+path: src/events/messageCreate.ts
+{{/if}}
+---
+
+import {
+	MessageCreateListener,
+	type ListenerEventData,
+	type Client
+} from "@buape/carbon"
+
+export default class MessageCreate extends MessageCreateListener {
+	async handle(data: ListenerEventData[this["type"]], client: Client) {
+		// Handle the message create event
+		console.log(`Message received from ${data.author.username}: ${data.content}`)
+	}
+} 

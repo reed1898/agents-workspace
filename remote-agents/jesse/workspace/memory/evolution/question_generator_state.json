@@ -1,0 +1,7 @@
+{
+  "lastAskedAt": "2026-03-05T19:00:28.521Z",
+  "recentQuestions": [
+    "Capability gap detected in agent environment: **ASSISTANT**: `--review` not supported in this version. Let me run the standard command. [TOOL: exec] -- How can this be addressed or what alternative approaches exist?",
+    "User requested a feature that may benefit from community solutions: **TOOLRESULT**: [agent/jesse eda2365] jesse: add 21:20 healthcheck audit report 1 file changed, 20 insertions(+), 1 deletion(-) -- Are there existing implementations or best practices for this?"
+  ]
+}

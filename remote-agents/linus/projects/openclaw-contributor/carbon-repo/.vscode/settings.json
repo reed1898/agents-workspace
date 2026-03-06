@@ -1,0 +1,52 @@
+{
+	"dotenv.enableAutocloaking": false,
+	"cSpell.words": [
+		"@buape/carbon",
+		"APIDM",
+		"apilink",
+		"appender",
+		"appenders",
+		"biomejs",
+		"bitfield",
+		"Buape",
+		"BUAPEBOT",
+		"Cloudo",
+		"Datetime",
+		"frontmatter",
+		"fumadocs",
+		"hono",
+		"invitable",
+		"lucide",
+		"outro",
+		"paginators",
+		"pointo",
+		"Precheck",
+		"Prechecks",
+		"resumability",
+		"Rocko",
+		"Runtimes",
+		"socketo",
+		"Undeafen",
+		"whatwg",
+		"yocto"
+	],
+	"editor.defaultFormatter": "biomejs.biome",
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[yaml]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[mdx]": {
+		"editor.defaultFormatter": "unifiedjs.vscode-mdx"
+	}
+}

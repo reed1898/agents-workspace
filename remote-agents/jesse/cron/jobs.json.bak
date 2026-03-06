@@ -6,7 +6,7 @@
       "name": "sync-shared-repos-4h",
       "enabled": true,
       "createdAtMs": 1772474989691,
-      "updatedAtMs": 1772489417522,
+      "updatedAtMs": 1772745855449,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -19,11 +19,11 @@
         "text": "SYNC_SHARED_REPOS_4H: pull ~/.openclaw/shared/agent-network-data and ~/.openclaw/shared/agent-knowledge-layer; report only on failure"
       },
       "state": {
-        "nextRunAtMs": 1772503789707,
-        "lastRunAtMs": 1772489389707,
+        "nextRunAtMs": 1772760227701,
+        "lastRunAtMs": 1772745827701,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 27815,
+        "lastDurationMs": 27748,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -31,9 +31,9 @@
     {
       "id": "49e98280-ac18-4d67-be9f-c964c935a3bd",
       "name": "skill-scout-hourly-3to8",
-      "enabled": true,
+      "enabled": false,
       "createdAtMs": 1772475743180,
-      "updatedAtMs": 1772496063129,
+      "updatedAtMs": 1772712702916,
       "schedule": {
         "kind": "cron",
         "expr": "0 3-8 * * *",
@@ -46,39 +46,554 @@
         "text": "SKILL_SCOUT_HOURLY: search web/skill hubs for trending skills matching Jesse role (trading/risk/research/automation), evaluate, and append concise notes to ~/.openclaw/shared/agent-knowledge-layer daily log."
       },
       "state": {
-        "nextRunAtMs": 1772564400000,
-        "lastRunAtMs": 1772496000014,
+        "lastRunAtMs": 1772668800035,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 63115,
+        "lastDurationMs": 105108,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
     },
     {
       "id": "ca2b5c45-9736-4899-aaf3-ab4f5de33523",
-      "name": "daily-work-report-0815",
+      "name": "daily-work-report-0900",
       "enabled": true,
       "createdAtMs": 1772475751549,
-      "updatedAtMs": 1772496935534,
+      "updatedAtMs": 1772758865344,
       "schedule": {
         "kind": "cron",
-        "expr": "15 8 * * *",
+        "expr": "0 9 * * *",
         "tz": "Asia/Shanghai"
       },
       "sessionTarget": "main",
       "wakeMode": "now",
       "payload": {
         "kind": "systemEvent",
-        "text": "DAILY_WORK_REPORT_0815: At 08:15 Asia/Shanghai, write a concise daily report to Reed in #team based on recent communications: 1) what was done yesterday, 2) what will be done today, 3) long-term pending tasks; include key blockers if any."
+        "text": "【每日09:00日报提醒】请向 Reed（Telegram 私聊）发送日报，至少包含三项：1）昨日完成；2）今日待做；3）长期任务进展。要求：简洁、可执行；若有阻塞，单列“阻塞与需要支持”。"
       },
       "state": {
-        "nextRunAtMs": 1772583300000,
-        "lastRunAtMs": 1772496900013,
+        "nextRunAtMs": 1772845200000,
+        "lastRunAtMs": 1772758800029,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 35521,
+        "lastDurationMs": 65315,
         "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "4c5d27a0-3c12-443d-928f-6079f813c8f5",
+      "name": "security-patrol-0700",
+      "enabled": true,
+      "createdAtMs": 1772508076497,
+      "updatedAtMs": 1772751691721,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "【每日07:00安全巡检提醒】请执行安全巡检并输出简报：1) 系统安全问题：运行 openclaw security audit --deep，汇总高/中风险；2) OpenClaw 漏洞与版本状态：运行 openclaw update status，若有更新或已知风险要标注；3) 不安全 skill 排查：检查已安装/启用 skills，识别高风险行为（未受控外联、可执行任意命令、越权读写、凭据暴露风险），给出风险分级与处理建议。完成后：A) 将巡检结论追加写入 ~/.openclaw/shared/agent-knowledge-layer 对应每日日志；B) 通过 Telegram channel 给 Reed 发送“结论+依据(1-3点)+下一步”的简报。若无异常也要发“今日无重大异常”简报。"
+      },
+      "state": {
+        "nextRunAtMs": 1772838000000,
+        "lastRunAtMs": 1772751600035,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 91686,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "2578b5ff-84a1-4313-b36b-b4ac89e5fe61",
+      "name": "healthcheck-security-2120",
+      "enabled": true,
+      "createdAtMs": 1772508092996,
+      "updatedAtMs": 1772717025621,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "HEALTHCHECK_2120: run openclaw security audit --deep, then openclaw security audit --fix for OpenClaw-safe fixes, then re-run openclaw security audit --deep and openclaw update status; post concise report to Reed in #team with findings/fixes/remaining risks."
+      },
+      "state": {
+        "nextRunAtMs": 1772803200000,
+        "lastRunAtMs": 1772716802104,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 223517,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "4f248196-5834-4ff9-b08d-341d0f8d9b0f",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "stock-tracking-a-daily-detailed-1520",
+      "enabled": true,
+      "createdAtMs": 1772558273080,
+      "updatedAtMs": 1772695213447,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 15 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "【每日详细个股追踪｜A股】请先完成“逐只持仓详细追踪”（仅A股，覆盖全部持仓，不省略）：每只股票包含当日表现/驱动因素/技术位置/风险信号/明日计划。然后将完整明细写入知识库（~/.openclaw/shared/agent-knowledge-layer 的每日日志或交易追踪文档）；最后仅向 Reed（Telegram 私聊）发送精简总结：1) 总体结论1句；2) 重点关注Top3（机会/风险）；3) 明日执行清单3条以内。要求：持仓清单基于数据库实时查询。"
+      },
+      "state": {
+        "nextRunAtMs": 1772781600000,
+        "lastRunAtMs": 1772695200024,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 13423,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "fda2aab8-0e94-449f-958e-8d680e3678c6",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "stock-tracking-us-daily-detailed-0530",
+      "enabled": true,
+      "createdAtMs": 1772558273146,
+      "updatedAtMs": 1772747688808,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 5 * * 2-6",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "【每日详细个股追踪｜美股】请先完成“逐只持仓详细追踪”（仅美股，覆盖全部持仓，不省略）：每只股票包含当日表现/驱动因素/技术位置/风险信号/下一交易日计划。然后将完整明细写入知识库（~/.openclaw/shared/agent-knowledge-layer 的每日日志或交易追踪文档）；最后仅向 Reed（Telegram 私聊）发送精简总结：1) 总体结论1句；2) 重点关注Top3（机会/风险）；3) 下一交易日执行清单3条以内。要求：持仓清单基于数据库实时查询。"
+      },
+      "state": {
+        "nextRunAtMs": 1772833500000,
+        "lastRunAtMs": 1772747100040,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 588768,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "e48f06af-be1f-4d46-a9e8-6cdb12280f13",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1471363336192131276",
+      "name": "evolver-hourly-0300-0600",
+      "enabled": true,
+      "createdAtMs": 1772560610373,
+      "updatedAtMs": 1772748066985,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3-6 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "【Evolver 定时任务】现在执行 capability-evolver（autogame-17/evolver）一轮进化：优先运行 node index.js --review；若环境不支持 review 再运行 node index.js。完成后必须：1) 将本轮进化记录（发现问题、改进点、风险、变更结果）追加写入 ~/.openclaw/shared/agent-knowledge-layer 当日日志；2) 产出“当日进化总结报告”（可累计更新）；3) 通过 Telegram channel 发送给 Reed，格式：结论1句 + 依据1-3点 + 下一步1句。若执行失败，按失败透明规则报告卡点/原因/下一步。"
+      },
+      "state": {
+        "nextRunAtMs": 1772823600000,
+        "lastRunAtMs": 1772748000033,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 66952,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "b316ad5d-dc1c-4244-9193-35bbfe3b445b",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1471363336192131276",
+      "name": "jesse-kb-hourly-closed-loop",
+      "enabled": true,
+      "createdAtMs": 1772587814607,
+      "updatedAtMs": 1772757327241,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 3600000,
+        "anchorMs": 1772587814607
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Execute Jesse knowledgebase hourly closed-loop using git-only flow (no gh dependency).\n\nRepository:\n- path: C:/Users/RainH/.openclaw/shared/agent-knowledge-layer\n- remote: origin\n- working branch: agent/jesse\n- protected target: main (never direct commits/pushes to main)\n\nSteps:\n1) git -C <path> fetch origin\n2) git -C <path> checkout agent/jesse\n3) sync main into personal branch (prefer rebase):\n   - git -C <path> rebase origin/main\n   - fallback: merge origin/main into agent/jesse if policy requires\n4) commit and push latest personal branch changes if any:\n   - git add/commit as needed\n   - git -C <path> push origin agent/jesse\n5) detect effective change vs main:\n   - if `git -C <path> rev-list --count origin/main..agent/jesse` > 0, set no-changes=false and output PR compare URL for manual/automated PR create/update:\n     https://github.com/reed1898/agent-knowledge-layer/compare/main...agent/jesse?expand=1\n   - else set no-changes=true\n\nOutput requirement:\n- concise status: sync result, push result, no-changes flag, and compare URL when changes exist\n- if failed: transparent failure format (blocker / cause / next step)."
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772760876064,
+        "lastRunAtMs": 1772757276064,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 51177,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "98a09b7e-5a04-4c18-84ce-e86f1a69d5d4",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "Hourly proactive status to Reed",
+      "enabled": true,
+      "createdAtMs": 1772604480895,
+      "updatedAtMs": 1772755772579,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 3600000,
+        "anchorMs": 1772604480895
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "【每小时主动汇报提醒】如果过去1小时 Reed 没有新指令，请主动发送：1) 你刚才在做什么；2) 当前可推进的1-3件事；3) 等待 Reed 最新指令。若当前无任务，给出可执行候选并保持简洁。"
+      },
+      "state": {
+        "nextRunAtMs": 1772759332767,
+        "lastRunAtMs": 1772755732767,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 39812,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "5dd0dc8e-e0d0-40b6-821f-974c84b2ddec",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "Crypto市场晨报",
+      "enabled": true,
+      "createdAtMs": 1772627528304,
+      "updatedAtMs": 1772735140267,
+      "schedule": {
+        "kind": "cron",
+        "expr": "7 9 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请生成【Crypto 市场晨报】（北京时间）。\n\n## 数据采集要求\n请依次调用以下数据源获取链上实时数据（用 curl 调用 HTTP API，不依赖 onchainos CLI）：\n\n### 1. 主流币实时价格（okx-dex-market skill）\n用 onchainos market prices 或直接 web 搜索获取 BTC/ETH/SOL/BNB 实时价格和24h涨跌。\n\n### 2. Trending 代币 TOP10（crypto-market-rank skill）\ncurl -X POST 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/unified/rank/list' -H 'Content-Type: application/json' -H 'Accept-Encoding: identity' -d '{\"rankType\":10,\"period\":50,\"sortBy\":0,\"page\":1,\"size\":10}'\n展示：代币名、价格、24h涨跌%、市值、成交量\n\n### 3. Smart Money 资金流入排名 TOP10（crypto-market-rank skill）\n分别查 Solana 和 BSC：\ncurl -X POST 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/tracker/wallet/token/inflow/rank/query' -H 'Content-Type: application/json' -H 'Accept-Encoding: identity' -d '{\"chainId\":\"CT_501\",\"period\":\"24h\",\"tagType\":2}'\ncurl -X POST 同上 -d '{\"chainId\":\"56\",\"period\":\"24h\",\"tagType\":2}'\n展示：代币名、链、净流入金额、价格、24h涨跌%、市值\n\n### 4. Smart Money 交易信号 TOP5（trading-signal skill）\ncurl -X POST 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/web/signal/smart-money' -H 'Content-Type: application/json' -H 'Accept-Encoding: identity' -d '{\"smartSignalType\":\"\",\"page\":1,\"pageSize\":10,\"chainId\":\"CT_501\"}'\n同样查 BSC (chainId=56)\n展示：代币、方向(买/卖)、触发价、当前价、最大涨幅%、聪明钱地址数、状态\n\n### 5. 社交热度排名 TOP5（crypto-market-rank skill）\ncurl 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/social/hype/rank/leaderboard?chainId=56&sentiment=All&socialLanguage=ALL&targetLanguage=zh&timeRange=1' -H 'Accept-Encoding: identity'\n展示：代币名、社交热度指数、情绪(正面/负面/中性)、社交摘要\n\n### 6. 热门叙事/Topic Rush（meme-rush skill）\ncurl 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/social-rush/rank/list?chainId=CT_501&rankType=30&sort=30&asc=false' -H 'Accept-Encoding: identity'\n展示：TOP3热门叙事主题、净流入金额、关联代币\n\n### 7. Meme 新币速览（meme-rush skill）\n新上线：curl -X POST 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/rank/list' -H 'Content-Type: application/json' -H 'Accept-Encoding: identity' -d '{\"chainId\":\"CT_501\",\"rankType\":10,\"limit\":5}'\n即将迁移：同上 rankType=20\n展示：代币名、价格、市值、bonding curve进度、持有人数、Dev卖出%\n\n## 输出格式\n\n开头注明\"这是定时晨报\"。\n\n1️⃣ **一句话结论**\n\n2️⃣ **核心数据**：BTC/ETH/SOL/BNB 现价、24h涨跌、总市值、BTC Dominance、恐慌贪婪指数\n\n3️⃣ **🔥 Trending 代币 TOP10**（来自链上数据）\n\n4️⃣ **💰 Smart Money 动向**\n- 资金流入排名 TOP10\n- 交易信号 TOP5（标注买/卖方向和涨幅）\n\n5️⃣ **📱 社交热度 TOP5**（含情绪和摘要）\n\n6️⃣ **🎯 热门叙事 TOP3**（Topic Rush 数据）\n\n7️⃣ **🆕 Meme 新币速览**\n- 新上线 TOP5\n- 即将迁移 TOP3\n\n8️⃣ **⚠️ 风险提示**：未来12小时关键风险位与事件\n\n9️⃣ **💡 今日建议**：观察/轻仓/回避（非投资建议）\n\n输出简洁，中文，项目符号。如果某个API调用失败，标注\"数据获取失败\"并继续其他模块，不要因为一个失败就跳过整个报告。",
+        "timeoutSeconds": 480
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772759220000,
+        "lastRunAtMs": 1772672820022,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 82991,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "10705fb5-c55d-441f-8ae7-4076c070a856",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "Crypto市场午报",
+      "enabled": true,
+      "createdAtMs": 1772627528374,
+      "updatedAtMs": 1772735187423,
+      "schedule": {
+        "kind": "cron",
+        "expr": "7 13 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请生成【Crypto 市场午报】（北京时间）。\n\n## 数据采集要求\n请依次调用以下数据源获取链上实时数据（用 curl 调用 HTTP API）：\n\n### 1. 主流币实时价格\n通过 web 搜索获取 BTC/ETH/SOL/BNB 实时价格和上午涨跌。\n\n### 2. Smart Money 资金流入排名 TOP10（crypto-market-rank skill）\ncurl -X POST 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/tracker/wallet/token/inflow/rank/query' -H 'Content-Type: application/json' -H 'Accept-Encoding: identity' -d '{\"chainId\":\"CT_501\",\"period\":\"4h\",\"tagType\":2}'\n同样查 BSC: chainId=56\n展示：代币名、链、净流入金额、价格、4h涨跌%\n\n### 3. Smart Money 交易信号 TOP5（trading-signal skill）\ncurl -X POST 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/web/signal/smart-money' -H 'Content-Type: application/json' -H 'Accept-Encoding: identity' -d '{\"smartSignalType\":\"\",\"page\":1,\"pageSize\":10,\"chainId\":\"CT_501\"}'\n同样查 BSC (chainId=56)\n展示：代币、方向、触发价、当前价、最大涨幅%、状态\n\n### 4. 社交热度排名 TOP5（crypto-market-rank skill）\ncurl 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/social/hype/rank/leaderboard?chainId=56&sentiment=All&socialLanguage=ALL&targetLanguage=zh&timeRange=1' -H 'Accept-Encoding: identity'\n\n### 5. OKX Smart Money 信号（okx-dex-market skill）\n如果 onchainos CLI 可用：\nonchainos market signal-list solana --wallet-type \"1,2,3\" --min-amount-usd 5000\nonchainos market signal-list ethereum --wallet-type \"1,3\" --min-amount-usd 10000\n如果不可用，跳过此模块。\n\n### 6. Meme 迁移监控（meme-rush skill）\ncurl -X POST 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/rank/list' -H 'Content-Type: application/json' -H 'Accept-Encoding: identity' -d '{\"chainId\":\"CT_501\",\"rankType\":20,\"limit\":5}'\n展示：即将完成 bonding curve 的 Meme 币 TOP5\n\n## 输出格式\n\n开头注明\"这是定时午报\"。\n\n1️⃣ **一句话结论**\n\n2️⃣ **上午盘回顾**：BTC/ETH/SOL/BNB 波动、资金轮动（主流/山寨/Meme）\n\n3️⃣ **💰 Smart Money 动向**\n- 4h资金流入 TOP10\n- 交易信号 TOP5\n\n4️⃣ **📱 社交热度 TOP5**（含情绪和摘要）\n\n5️⃣ **🚀 Meme 迁移监控**：即将完成 bonding curve 的代币\n\n6️⃣ **盘口与情绪**：成交量、清算数据、资金费率变化\n\n7️⃣ **午后展望**：可能延续/反转的情景与触发条件\n\n8️⃣ **💡 执行建议**：持有/减仓/等待（非投资建议）\n\n输出简洁，中文，项目符号。某个API失败则标注并继续。",
+        "timeoutSeconds": 480
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772773620000,
+        "lastRunAtMs": 1772687220028,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 72196,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "0fa5ca19-7923-47f4-ad26-ef0bf0818b0a",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "Crypto市场晚报",
+      "enabled": true,
+      "createdAtMs": 1772627528443,
+      "updatedAtMs": 1772735240226,
+      "schedule": {
+        "kind": "cron",
+        "expr": "7 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请生成【Crypto 市场晚报】（北京时间）。\n\n## 数据采集要求\n请依次调用以下数据源获取链上实时数据（用 curl 调用 HTTP API）：\n\n### 1. 主流币实时价格\n通过 web 搜索获取 BTC/ETH/SOL/BNB 实时价格和全天涨跌。\n\n### 2. Smart Money 资金流入排名 TOP10（crypto-market-rank skill）\ncurl -X POST 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/tracker/wallet/token/inflow/rank/query' -H 'Content-Type: application/json' -H 'Accept-Encoding: identity' -d '{\"chainId\":\"CT_501\",\"period\":\"24h\",\"tagType\":2}'\n同样查 BSC: chainId=56\n展示：代币名、链、净流入金额、价格、24h涨跌%、市值\n\n### 3. Smart Money 交易信号 TOP5（trading-signal skill）\ncurl -X POST 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/web/signal/smart-money' -H 'Content-Type: application/json' -H 'Accept-Encoding: identity' -d '{\"smartSignalType\":\"\",\"page\":1,\"pageSize\":10,\"chainId\":\"CT_501\"}'\n同样查 BSC (chainId=56)\n\n### 4. 社交热度排名 TOP5（crypto-market-rank skill）\ncurl 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/social/hype/rank/leaderboard?chainId=56&sentiment=All&socialLanguage=ALL&targetLanguage=zh&timeRange=1' -H 'Accept-Encoding: identity'\n同时查 Solana: chainId=CT_501\n\n### 5. Top Trader PnL 排行榜 TOP5（crypto-market-rank skill）\ncurl 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/market/leaderboard/query?tag=ALL&pageNo=1&chainId=CT_501&pageSize=5&sortBy=0&orderBy=0&period=30d' -H 'Accept-Encoding: identity'\n同样查 BSC: chainId=56\n展示：地址、盈亏(USD)、胜率、最赚钱代币\n\n### 6. 已迁移 Meme 代币表现（meme-rush skill）\ncurl -X POST 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/rank/list' -H 'Content-Type: application/json' -H 'Accept-Encoding: identity' -d '{\"chainId\":\"CT_501\",\"rankType\":30,\"limit\":10}'\n展示：当日迁移到 DEX 的 Meme 币表现 TOP10\n\n### 7. Meme 爆发潜力排名（crypto-market-rank Meme Rank）\ncurl 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/exclusive/rank/list?chainId=56' -H 'Accept-Encoding: identity'\n展示：排名、代币名、算法评分、24h涨跌%、市值\n\n## 输出格式\n\n开头注明\"这是定时晚报\"。\n\n1️⃣ **一句话结论**\n\n2️⃣ **全天复盘**：主流币表现、板块强弱、资金流向\n\n3️⃣ **💰 Smart Money 动向**\n- 24h资金流入 TOP10\n- 交易信号 TOP5\n\n4️⃣ **🏆 Top Trader 排行榜 TOP5**（30天盈利最高的地址）\n\n5️⃣ **📱 社交热度 TOP5**（含情绪和摘要）\n\n6️⃣ **🚀 Meme 代币动态**\n- 已迁移 Meme 表现 TOP10\n- 爆发潜力排名 TOP5\n\n7️⃣ **重点事件**：宏观/监管/项目方新闻及影响\n\n8️⃣ **🌙 夜盘风险地图**\n必须覆盖 BTC/ETH/SOL/BNB 四个币，分别给出：\n- 关键支撑阻力\n- 波动预警\n- 仓位建议\n\n9️⃣ **BNB 夜盘专项**：强弱判断、驱动因素、关键价位、触发条件\n\n🔟 **明日关注清单**（3-5条）\n\n输出简洁，中文，项目符号。某个API失败则标注并继续。",
+        "timeoutSeconds": 480
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772802420000,
+        "lastRunAtMs": 1772716020022,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 91978,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "c6a906ab-f96e-4f6a-99e9-9cb208b1e5cf",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "A股盘后总结",
+      "enabled": true,
+      "createdAtMs": 1772714846846,
+      "updatedAtMs": 1772714846846,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 15 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "现在是A股收盘后15分钟，请执行盘后总结任务：\n1. 通过东方财富API拉取今日三大指数（上证/深证/创业板）收盘数据、成交额、涨跌家数、板块涨幅TOP5和跌幅TOP5\n2. 连接 trading_notes 数据库查询 Reed 的A股持仓（positions表，is_closed=0，account_type=a_stock），再用东方财富API获取每只持仓的今日实时收盘价\n3. 按以下模版生成盘后总结并发送给 Reed：\n   - 一、三大指数表现（表格）\n   - 二、板块热点（领涨/领跌）\n   - 三、持仓今日表现（按账户分组，含标的/持仓/成本/今收/今日涨跌/持仓盈亏/盈亏%）\n   - 四、持仓整体一览（账户汇总）\n   - 五、今日持仓亮点（涨幅最大、盈利最多、亏损最深、需关注的标的）\n4. 注意：周末和法定节假日不需要发送（cron已限制周一到周五，但如果遇到调休请在总结开头说明今日休市）",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "to": "869269685",
+        "channel": "telegram"
+      },
+      "state": {
+        "nextRunAtMs": 1772781300000
+      }
+    },
+    {
+      "id": "0162b63b-68ea-4fe7-81c8-c1018cf083ba",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "A股盘前总结",
+      "enabled": true,
+      "createdAtMs": 1772715009285,
+      "updatedAtMs": 1772759345376,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "现在是A股开盘前（北京时间09:00），请执行A股盘前总结任务，发送给 Reed：\n\n## 一、隔夜外盘回顾\n- 美股三大指数昨夜收盘表现\n- 中概股表现\n- 欧洲主要市场\n- 恒生指数/恒生科技\n- 美元指数、10年期美债收益率\n- 大宗商品、加密货币\n\n## 二、宏观与政策\n- 重要经济数据\n- 央行/监管层政策动向\n- 国内外重要财经新闻\n\n## 三、市场情绪\n- A50期货\n- 北向资金前日流向\n- 融资融券余额变化\n\n## 四、⭐ Reed A股持仓逐只深度扫描（最重要！）\n连接 trading_notes 数据库查询 Reed 的A股持仓（JOIN trade_accounts，account_type='a_stock'，is_closed=0）。\n对每一只持仓个股，通过 web 搜索获取最新信息，逐只分析以下维度：\n\n1. **昨收价格与近期走势**\n2. **最新重大新闻/公告**（过去48小时内）\n3. **管理层变动**（董事长/总经理/董秘变化）\n4. **股权变动**（大股东增减持、股东质押、解禁、定增）\n5. **收购/并购/重组/战略合作**消息\n6. **📊 财报日期预警（关键！）**\n   - 下一次财报（季报/年报）发布日期\n   - 距离财报还有几天\n   - ⚠️ 如果财报在5个交易日内，必须用 🔴❗ 醒目标注\n   - 💡 Reed 的原则：财报前清仓，不赌财报\n7. **分析师评级/研报**变动\n8. **重大诉讼/监管/处罚风险**\n9. **所在板块/行业政策面影响**\n10. **技术面关键位**（支撑/阻力）\n11. **龙虎榜/大单异动**（如昨日有的话）\n\n每只股票输出格式：\n📌 **代码 股票名称** — 账户名\n· 持仓：XX股 | 成本：¥XX | 昨收：¥XX\n· 持仓盈亏：XX%（¥XX）\n· 最新公告/动态：...\n· 管理层/股权变动：...\n· 📊 财报：下次 YYYY-MM-DD（还有X天）[预警等级]\n· 研报/评级：...\n· 风险提示：...\n· 💡 操作建议：...\n\n## 五、🔴 财报清仓预警汇总\n- 单独列出所有5个交易日内有财报的持仓\n- 明确建议：根据 Reed 的\"财报前清仓不赌\"原则，这些标的需要在财报前减仓/清仓\n\n## 六、今日关注\n- 今日重要经济数据/事件\n- 新股申购/上市\n- 限售股解禁\n\n## 七、今日走势预判\n- 综合预判（偏多/震荡/偏空）\n- 板块方向\n- 操作建议\n\n数据来源：东方财富、同花顺、巨潮资讯、web搜索等。\n\n重要提醒：\n- 每只持仓都必须扫描，不能省略任何一只\n- 财报日期是最重要的预警信息，必须准确查询\n- 如果某只股票信息获取失败，必须明确说明，不能编造",
+        "timeoutSeconds": 480
+      },
+      "delivery": {
+        "mode": "announce",
+        "to": "869269685",
+        "channel": "telegram"
+      },
+      "state": {
+        "nextRunAtMs": 1773018000000,
+        "lastRunAtMs": 1772758865344,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 480032,
+        "lastError": "cron: job execution timed out",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "b174e69d-1ffc-4c60-a573-41c0fd733e63",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "A股开盘短报",
+      "enabled": true,
+      "createdAtMs": 1772715203126,
+      "updatedAtMs": 1772715203126,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 9 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "现在是A肩开盘15分钟，请执行开盘短报任务，发送给 Reed：\n\n## 一、开盘总览\n- 三大指数开盘表现（上证/深证/创业板）：开盘价、当前价、涨跌幅\n- 成交额情况（与昨日同期对比）\n- 涨跌家数、涨停/跌停数量\n\n## 二、板块动向\n- 开盘15分钟涨幅前5板块\n- 开盘15分钟跌幅前5板块\n- 主力资金流入方向\n\n## 三、Reed 持仓实时表现\n- 连接 trading_notes 数据库查询 Reed 的A股持仓（positions表，is_closed=0，account_type=a_stock）\n- 通过东方财富API获取每只持仓当前实时价格\n- 按账户分组展示：标的、持仓、成本、当前价、今日涨跌%、持仓盈亏%\n\n## 四、❗预警提醒（重点！）\n对每只持仓进行预警检查，触发任一条件即预警：\n- 🔴 今日跌幅超过 -5%：单日大跌预警\n- 🔴 今日跌庅超过 -3% 且持仓浮亏超过 -20%：加速亏损预警\n- 🟡 持仓浮亏超过 -25%：深度套牢预警\n- 🟡 成交量异常放大（如能判断）\n预警格式：用❗和红色标记突出显示，说明触发原因和建议操作\n\n## 五、开盘简评\n- 开盘风格判断（强势/震荡/弱势）\n- 与盘前预判对比\n- 简短操作建议\n\n数据来源：东方财富API实时行情 + trading_notes数据库。",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "to": "869269685",
+        "channel": "telegram"
+      },
+      "state": {
+        "nextRunAtMs": 1772761500000
+      }
+    },
+    {
+      "id": "2a2a9070-dfb9-46d1-9196-6d1c7e9c159b",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "美股盘前总结",
+      "enabled": true,
+      "createdAtMs": 1772715609964,
+      "updatedAtMs": 1772726655047,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 22 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "现在是美股开盘前（北京时间22:00），请执行美股盘前总结任务，发送给 Reed：\n\n## 一、全球市场回顾\n- A股今日收盘表现（三大指数简要）\n- 欧洲主要市场实时表现\n- 恒生指数/恒生科技今日表现\n- 美元指数、10年期美债收益率\n- 原油、黄金等大宗商品\n- 加密货币（BTC/ETH）近期走势\n\n## 二、美股盘前交易数据\n- 美股三大期指盘前涨跌幅\n- 盘前涨幅前10热门个股（含异动原因）\n- 盘前跌幅前10热门个股（含异动原因）\n- 科技巨头盘前表现（AAPL/MSFT/GOOGL/AMZN/NVDA/META/TSLA）\n- 热门中概股盘前表现\n\n## 三、宏观与事件\n- 今日重要经济数据\n- 美联储官员讲话\n- 重要财报日历\n- 其他市场事件\n\n## 四、⭐ Reed 美股持仓逐只深度扫描（最重要！）\n连接 trading_notes 数据库查询 Reed 的美股持仓（JOIN trade_accounts，account_type='us_stock'，is_closed=0）。\n对每一只持仓个股，通过 web 搜索获取最新信息，逐只分析以下维度：\n\n1. **盘前价格与涨跌幅**\n2. **最新重大新闻**（过去48小时内）\n3. **管理层变动**（CEO/CFO/董事会变化）\n4. **股权变动**（大股东增减持、机构持仓变化、内部人交易）\n5. **收购/并购/战略合作**消息\n6. **📊 财报日期预警（关键！）**\n   - 下一次财报发布日期\n   - 距离财报还有几天\n   - ⚠️ 如果财报在5个交易日内，必须用 🔴❗ 醒目标注\n   - 💡 Reed 的原则：财报前清仓，不赌财报\n7. **分析师评级变动**（近期升降级、目标价调整）\n8. **重大诉讼/监管风险**\n9. **行业/政策面影响**\n10. **技术面关键位**（支撑/阻力）\n\n每只股票输出格式：\n📌 **SYMBOL（公司名）** — 账户名\n· 持仓：XX股 | 成本：$XX | 盘前价：$XX | 盘前涨跌：XX%\n· 持仓盈亏：XX%（$XX）\n· 最新动态：...\n· 管理层/股权：...\n· 📊 财报：下次 YYYY-MM-DD（还有X天）[预警等级]\n· 分析师：...\n· 风险提示：...\n· 💡 操作建议：...\n\n## 五、🔴 财报清仓预警汇总\n- 单独列出所有5个交易日内有财报的持仓\n- 明确建议：根据 Reed 的\"财报前清仓不赌\"原则，这些标的需要在财报前减仓/清仓\n\n## 六、今夜走势预判\n- 综合以上信息给出走势预判\n- 操作建议\n\n数据来源：Yahoo Finance、MarketWatch、东方财富美股、CNBC、SEC Edgar 等。\n美股开盘时间：北京时间22:30。\n\n重要提醒：\n- 每只持仓都必须扫描，不能省略任何一只\n- 财报日期是最重要的预警信息，必须准确查询\n- 如果某只股票信息获取失败，必须明确说明，不能编造",
+        "timeoutSeconds": 480
+      },
+      "delivery": {
+        "mode": "announce",
+        "to": "869269685",
+        "channel": "telegram"
+      },
+      "state": {
+        "nextRunAtMs": 1772805600000,
+        "lastRunAtMs": 1772716500015,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 300032,
+        "lastError": "cron: job execution timed out",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "ada7f42f-06b4-4f0a-a38d-f2e5a0a000ce",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "美股开盘短报",
+      "enabled": true,
+      "createdAtMs": 1772715643495,
+      "updatedAtMs": 1772726167692,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 22 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "现在是美股开盘15分钟（北京时间22:45），请执行美股开盘短报任务，发送给 Reed：\n\n## 一、开盘总览\n- 三大指数开盘表现（道琼斯/纳斯达克/标普500）：开盘价、当前价、涨跌幅\n- VIX 恐慌指数实时表现\n- 中概股整体表现\n\n## 二、板块与热点\n- 开盘15分钟领涨板块/ETF\n- 开盘15分钟领跌板块/ETF\n- 科技巨头（AAPL/MSFT/GOOGL/AMZN/NVDA/META/TSLA）开盘表现\n\n## 三、Reed 美股持仓实时表现\n- 连接 trading_notes 数据库查询 Reed 的美股持仓（positions表，is_closed=0，account_type=us_stock）\n- 通过实时行情API获取每只持仓当前价格\n- 展示：标的、持仓、成本、当前价、今日涨跌%、持仓盈亏%、盈亏金额(USD)\n\n## 四、❗预警提醒\n对每只持仓进行预警检查：\n- 🔴 今日跌幅超过 -5%：单日大跌预警\n- 🔴 今日跌幅超过 -3% 且持仓浮亏超过 -15%：加速亏损预警\n- 🟡 持仓浮亏超过 -20%：深度套牢预警\n预警格式：用❗和红色标记突出显示，说明触发原因和建议操作\n\n## 五、开盘简评\n- 开盘风格判断\n- 与盘前预判对比\n- 简短操作建议\n\n数据来源：Yahoo Finance / 东方财富美股API / web搜索。\n美股开盘时间：北京时间22:30。",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "to": "869269685",
+        "channel": "telegram"
+      },
+      "state": {
+        "nextRunAtMs": 1772808300000,
+        "lastRunAtMs": 1772725882030,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 285662,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 2,
+        "lastError": "⚠️ ✉️ Message failed",
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "3811a5b3-39f8-4e01-ae96-9d65e8ca347d",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "美股盘后总结",
+      "enabled": true,
+      "createdAtMs": 1772715679223,
+      "updatedAtMs": 1772746473773,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 5 * * 2-6",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "美股已收盘（北京时间05:00），请执行美股盘后总结任务，发送给 Reed：\n\n## 一、三大指数收盘表现\n- 道琼斯工业指数：收盘价、涨跌幅、涨跌点\n- 纳斯达克综合指数：收盘价、涨跌幅、涨跌点\n- 标普500指数：收盘价、涨跌幅、涨跌点\n\n## 二、市场概况\n- VIX 恐慌指数收盘值\n- 美元指数、10年期美债收益率\n- 科技巨头表现（AAPL/MSFT/GOOGL/AMZN/NVDA/META/TSLA）\n- 中概股表现（重点标的）\n- 热门板块/ETF 涨跌幅TOP5\n\n## 三、Reed 美股持仓收盘表现\n- 连接 trading_notes 数据库查询 Reed 的美股持仓（positions表，is_closed=0，account_type=us_stock）\n- 获取每只持仓收盘价\n- 按账户分组展示：标的、持仓、成本、收盘价、今夜涨跌%、持仓盈亏%、盈亏金额(USD)\n\n## 四、持仓整体一览\n- 账户汇总：持仓市值、总浮盈/亏\n\n## 五、今日持仓亮点\n- 涨幅最大的标的\n- 盈利最多的标的\n- 亏损最深的标的\n- 需要关注的风险点\n\n## 六、盘后重要信息\n- 盘后财报发布情况\n- 盘后重要新闻\n- 明日关注事项\n\n数据来源：Yahoo Finance / 东方财富美股API / web搜索。\n美股收盘时间：北京时间05:00。",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "to": "869269685",
+        "channel": "telegram"
+      },
+      "state": {
+        "nextRunAtMs": 1772832600000,
+        "lastRunAtMs": 1772746200050,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 273723,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
       }
     }

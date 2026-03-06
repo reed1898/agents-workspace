@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772705270172,
+      "updatedAtMs": 1772748284683,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772733856179,
-        "lastRunAtMs": 1772705249241,
+        "nextRunAtMs": 1772762656197,
+        "lastRunAtMs": 1772748256197,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 20931,
+        "lastDurationMs": 28486,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -109,7 +109,7 @@
       "description": "每天早上8:15 生成并发送工作日报到 Reed Telegram 私聊",
       "enabled": true,
       "createdAtMs": 1772476674474,
-      "updatedAtMs": 1772669732392,
+      "updatedAtMs": 1772756138734,
       "schedule": {
         "kind": "cron",
         "expr": "15 8 * * *",
@@ -127,11 +127,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772756100000,
-        "lastRunAtMs": 1772669700014,
+        "nextRunAtMs": 1772842500000,
+        "lastRunAtMs": 1772756100017,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 32378,
+        "lastDurationMs": 38717,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -143,7 +143,7 @@
       "description": "每天早上7点安全巡检（系统/OpenClaw漏洞/不安全skills），写入知识库并通过Telegram汇报",
       "enabled": true,
       "createdAtMs": 1772508056718,
-      "updatedAtMs": 1772665334442,
+      "updatedAtMs": 1772751741840,
       "schedule": {
         "kind": "cron",
         "expr": "0 7 * * *",
@@ -162,14 +162,15 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772751600000,
-        "lastRunAtMs": 1772665200021,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 134421,
+        "nextRunAtMs": 1772838000000,
+        "lastRunAtMs": 1772751600011,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 141829,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 1,
+        "lastError": "⚠️ ✍️ Write: `to ~/.openclaw/shared/agent-knowledge-layer/shared/security/2026-03-06-morning-security-report.md (4393 chars)` failed"
       }
     },
     {
@@ -248,7 +249,7 @@
       "name": "evolver-daily-summary",
       "enabled": true,
       "createdAtMs": 1772560618132,
-      "updatedAtMs": 1772662241643,
+      "updatedAtMs": 1772748696906,
       "schedule": {
         "kind": "cron",
         "expr": "10 6 * * *",
@@ -267,11 +268,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772748600000,
-        "lastRunAtMs": 1772662200012,
+        "nextRunAtMs": 1772835000000,
+        "lastRunAtMs": 1772748600022,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 41631,
+        "lastDurationMs": 96884,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -350,6 +351,74 @@
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
+      }
+    },
+    {
+      "id": "c7a21d89-52a3-453a-92ce-0912ca5c80db",
+      "name": "evolver_watchdog_robust",
+      "enabled": true,
+      "createdAtMs": 1772731903737,
+      "updatedAtMs": 1772758986172,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 1800000,
+        "anchorMs": 1772731903737
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "exec: node skills/feishu-evolver-wrapper/lifecycle.js ensure"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772760743899,
+        "lastRunAtMs": 1772758943899,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 42273,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "a99700cb-4958-44a3-b7cd-f60fb22374ac",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1477278968909660375",
+      "name": "night-evolver-5round",
+      "enabled": true,
+      "createdAtMs": 1772733652044,
+      "updatedAtMs": 1772737279933,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行夜间 5 轮 evolver 进化（repair-only*2 + optimize*2 + innovate*1）。严格按以下要求：\n1) 运行脚本：`/Users/rain/.openclaw/workspace/scripts/night-evolver-batch.sh`。\n2) 每轮的输出日志必须保留在 `/Users/rain/.openclaw/workspace/reports/evolver-nightly/<timestamp>/`。\n3) 将每轮结果与合并报告写入知识库路径：`/Users/rain/.openclaw/shared/agent-knowledge-layer/private/xiaohong/evolver-nightly/`。\n4) 最终给 Reed 一份合并 report，内容包含：每轮策略、是否成功、关键改动、失败原因（若有）、下一步建议。\n5) 除非出现致命错误，不要中断整批任务。",
+        "timeoutSeconds": 7200
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1477278968909660375"
+      },
+      "state": {
+        "nextRunAtMs": 1772823600000,
+        "lastRunAtMs": 1772737200008,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 79925,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
       }
     }
   ]

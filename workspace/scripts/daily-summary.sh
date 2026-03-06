@@ -5,6 +5,8 @@ set -euo pipefail
 
 REMOTE_AGENTS_DIR="$HOME/.openclaw/remote-agents"
 KB_DIR="$HOME/.openclaw/shared/agent-knowledge-layer"
+KB_REMOTE_NAME="${KB_REMOTE_NAME:-origin}"
+KB_REMOTE_URL="${KB_REMOTE_URL:-}"
 DATE=$(date +%Y-%m-%d)
 # 昨天（跑在 02:00，总结"当天"即前一天）
 SUMMARY_DATE=$(date -v-1d +%Y-%m-%d 2>/dev/null || date -d yesterday +%Y-%m-%d)
@@ -77,10 +79,18 @@ if [[ -d "$KB_DIR" ]]; then
   
   cd "$KB_DIR"
   git checkout agent/xiaohong 2>/dev/null || git checkout -b agent/xiaohong
-  git pull --rebase origin agent/xiaohong 2>/dev/null || true
+  # Allow bootstrap of a named remote when no default remote exists.
+  if ! git remote get-url "$KB_REMOTE_NAME" >/dev/null 2>&1 && [[ -n "$KB_REMOTE_URL" ]]; then
+    git remote add "$KB_REMOTE_NAME" "$KB_REMOTE_URL" 2>/dev/null || true
+  fi
+  if git remote get-url "$KB_REMOTE_NAME" >/dev/null 2>&1; then
+    git pull --rebase "$KB_REMOTE_NAME" agent/xiaohong 2>/dev/null || true
+  fi
   git add "$KB_SUMMARY_DIR/${SUMMARY_DATE}.md"
   git commit -m "daily summary: ${SUMMARY_DATE}" 2>/dev/null || true
-  git push origin agent/xiaohong 2>/dev/null || true
+  if git remote get-url "$KB_REMOTE_NAME" >/dev/null 2>&1; then
+    git push "$KB_REMOTE_NAME" agent/xiaohong 2>/dev/null || true
+  fi
 fi
 
 # 输出内容供 cron 汇报

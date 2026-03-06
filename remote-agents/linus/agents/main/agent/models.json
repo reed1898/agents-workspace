@@ -1,8 +1,7 @@
 {
   "providers": {
     "cc-club-claude": {
-      "baseUrl": "https://jp.claude-code.club/api",
-      "apiKey": "cr_85dfb9bf834f250da634869a0c93f67b96538e284c3800e612c0784e0231865e",
+      "baseUrl": "https://sz.ai-code.club/api",
       "api": "anthropic-messages",
       "models": [
         {
@@ -20,7 +19,10 @@
           },
           "contextWindow": 200000,
           "maxTokens": 8192,
-          "api": "anthropic-messages"
+          "api": "anthropic-messages",
+          "headers": {
+            "user-agent": "curl/8.7.1"
+          }
         },
         {
           "id": "claude-sonnet-4-6",
@@ -37,9 +39,75 @@
           },
           "contextWindow": 200000,
           "maxTokens": 8192,
-          "api": "anthropic-messages"
+          "api": "anthropic-messages",
+          "headers": {
+            "user-agent": "curl/8.7.1"
+          }
         }
-      ]
+      ],
+      "apiKey": "cr_85dfb9bf834f250da634869a0c93f67b96538e284c3800e612c0784e0231865e"
+    },
+    "cc-club-gemini": {
+      "baseUrl": "https://sz.ai-code.club/gemini/v1",
+      "api": "google-generative-ai",
+      "models": [
+        {
+          "id": "gemini-2.5-flash",
+          "name": "Gemini 2.5 Flash",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 8192
+        },
+        {
+          "id": "gemini-2.5-pro",
+          "name": "Gemini 2.5 Pro",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 8192
+        }
+      ],
+      "apiKey": "cr_85dfb9bf834f250da634869a0c93f67b96538e284c3800e612c0784e0231865e"
+    },
+    "cc-club-codex": {
+      "baseUrl": "https://sz.ai-code.club/openai",
+      "api": "openai-responses",
+      "models": [
+        {
+          "id": "gpt-5.3-codex",
+          "name": " GPT-5.3-Codex",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32768
+        }
+      ],
+      "apiKey": "cr_85dfb9bf834f250da634869a0c93f67b96538e284c3800e612c0784e0231865e"
     },
     "kimi-coding": {
       "baseUrl": "https://api.kimi.com/coding/",

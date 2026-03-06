@@ -18,8 +18,8 @@
       "installedAt": 1772369455013
     },
     "evolver": {
-      "version": "1.20.4",
-      "installedAt": 1772369466291
+      "version": "1.27.2",
+      "installedAt": 1772733635381
     },
     "find-skills": {
       "version": "0.1.0",
@@ -56,6 +56,14 @@
     "volcengine-stt": {
       "version": "0.2.1",
       "installedAt": 1772467926383
+    },
+    "feishu-evolver-wrapper": {
+      "version": "1.7.1",
+      "installedAt": 1772650908954
+    },
+    "vercel": {
+      "version": "1.0.1",
+      "installedAt": 1772624242638
     }
   }
 }

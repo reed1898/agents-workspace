@@ -1,0 +1,92 @@
+import { Client } from "@buape/carbon"
+import { createHandler } from "@buape/carbon/adapters/fetch"
+import {
+	ApplicationRoleConnectionMetadataType,
+	LinkedRoles
+} from "@buape/carbon/linked-roles"
+import PingCommand from "./commands/ping.js"
+import ButtonCommand from "./commands/testing/button.js"
+import ComponentsV2 from "./commands/testing/components_v2.js"
+import EmojiCommand from "./commands/testing/emoji.js"
+import EphemeralCommand from "./commands/testing/ephemeral.js"
+import EverySelectCommand from "./commands/testing/every_select.js"
+import MessageCommand from "./commands/testing/message_command.js"
+import ModalCommand from "./commands/testing/modal.js"
+import Modal2Command from "./commands/testing/modal2.js"
+import Modal3Command from "./commands/testing/modal3.js"
+import Modal4Command from "./commands/testing/modal4.js"
+import OptionsCommand from "./commands/testing/options.js"
+import PermissionCommand from "./commands/testing/permissions.js"
+import SubcommandsCommand from "./commands/testing/subcommand.js"
+import SubcommandGroupsCommand from "./commands/testing/subcommandgroup.js"
+import UserCommand from "./commands/testing/user_command.js"
+import ApplicationAuthorized from "./events/authorized.js"
+
+const linkedRoles = new LinkedRoles({
+	metadata: [
+		{
+			key: "is_staff",
+			name: "Verified Staff",
+			description: "Whether the user is a verified staff member",
+			type: ApplicationRoleConnectionMetadataType.BooleanEqual
+		}
+	],
+	metadataCheckers: {
+		is_staff: async (userId) => {
+			const isAllowed = ["439223656200273932"]
+			if (isAllowed.includes(userId)) return true
+			return false
+		}
+	}
+})
+
+const client = new Client(
+	{
+		baseUrl: process.env.BASE_URL,
+		deploySecret: process.env.DEPLOY_SECRET,
+		clientId: process.env.DISCORD_CLIENT_ID,
+		clientSecret: process.env.DISCORD_CLIENT_SECRET,
+		publicKey: process.env.DISCORD_PUBLIC_KEY,
+		token: process.env.DISCORD_BOT_TOKEN
+	},
+	{
+		commands: [
+			// commands/*
+			new PingCommand(),
+			// commands/testing/*
+			new ButtonCommand(),
+			new EphemeralCommand(),
+			new EverySelectCommand(),
+			new MessageCommand(),
+			new ModalCommand(),
+			new Modal2Command(),
+			new Modal3Command(),
+			new Modal4Command(),
+			new OptionsCommand(),
+			new PermissionCommand(),
+			new SubcommandsCommand(),
+			new SubcommandGroupsCommand(),
+			new UserCommand(),
+			new EmojiCommand(),
+			new ComponentsV2()
+		],
+		listeners: [new ApplicationAuthorized()]
+	},
+	[linkedRoles]
+)
+
+const handler = createHandler(client)
+export default { fetch: handler }
+
+declare global {
+	namespace NodeJS {
+		interface ProcessEnv {
+			BASE_URL: string
+			DEPLOY_SECRET: string
+			DISCORD_CLIENT_ID: string
+			DISCORD_CLIENT_SECRET: string
+			DISCORD_PUBLIC_KEY: string
+			DISCORD_BOT_TOKEN: string
+		}
+	}
+}

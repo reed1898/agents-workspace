@@ -1,0 +1,1 @@
+{"ts":1772755215918,"jobId":"5908651e-f1ec-48cb-88a3-b34eddc74048","action":"finished","status":"ok","summary":"提醒：现在是早上8点，请执行 osascript -e 'set volume without output muted' 恢复电脑声音。","deliveryStatus":"not-requested","runAtMs":1772755200012,"durationMs":15903,"nextRunAtMs":1772755200000}

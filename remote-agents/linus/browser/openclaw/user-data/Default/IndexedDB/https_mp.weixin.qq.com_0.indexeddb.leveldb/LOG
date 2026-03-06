@@ -1,0 +1,6 @@
+2026/03/04-00:13:26.993 17f007 Creating DB /Users/rain/.openclaw/browser/openclaw/user-data/Default/IndexedDB/https_mp.weixin.qq.com_0.indexeddb.leveldb since it was missing.
+2026/03/04-00:13:26.998 17f007 Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/IndexedDB/https_mp.weixin.qq.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/03/04-00:44:36.797 17eee1 Level-0 table #5: started
+2026/03/04-00:44:36.799 17eee1 Level-0 table #5: 4115 bytes OK
+2026/03/04-00:44:36.800 17eee1 Delete type=0 #3
+2026/03/04-00:44:36.800 17eee1 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

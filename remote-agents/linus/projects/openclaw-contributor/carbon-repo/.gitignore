@@ -1,0 +1,17 @@
+node_modules
+dist
+.turbo
+.pnpm-store
+.env
+.map.ts
+.contentlayer
+.content-collections
+out/
+build/
+.next/
+.DS_Store
+packages/*/docs/
+website/.source
+.open-next/
+website/public/*.txt
+.idea/

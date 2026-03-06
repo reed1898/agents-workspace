@@ -1,3 +1,27 @@
-2026/03/03-01:47:36.347 eeea7 Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/MANIFEST-000001
-2026/03/03-01:47:36.350 eeea7 Recovering log #3
-2026/03/03-01:47:36.350 eeea7 Reusing old log /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/000003.log 
+2026/03/06-01:56:54.016 3c4e6d Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/MANIFEST-000001
+2026/03/06-01:56:54.017 3c4e6d Recovering log #7
+2026/03/06-01:56:54.019 3c4e6d Reusing old log /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/000007.log 
+2026/03/06-02:16:31.002 3c4e70 Level-0 table #11: started
+2026/03/06-02:16:31.009 3c4e70 Level-0 table #11: 28955 bytes OK
+2026/03/06-02:16:31.014 3c4e70 Delete type=0 #7
+2026/03/06-02:17:06.545 3c4e6d Level-0 table #13: started
+2026/03/06-02:17:06.602 3c4e6d Level-0 table #13: 714122 bytes OK
+2026/03/06-02:17:06.632 3c4e6d Delete type=0 #10
+2026/03/06-02:23:18.322 3c4e70 Level-0 table #15: started
+2026/03/06-02:23:18.385 3c4e70 Level-0 table #15: 724188 bytes OK
+2026/03/06-02:23:18.399 3c4e70 Delete type=0 #12
+2026/03/06-02:38:36.889 3c4e70 Level-0 table #17: started
+2026/03/06-02:38:36.902 3c4e70 Level-0 table #17: 372384 bytes OK
+2026/03/06-02:38:36.906 3c4e70 Delete type=0 #14
+2026/03/06-02:38:36.907 3c4e70 Compacting 4@0 + 1@1 files
+2026/03/06-02:38:36.944 3c4e70 Generated table #18@0: 163 keys, 1442160 bytes
+2026/03/06-02:38:36.944 3c4e70 Compacted 4@0 + 1@1 files => 1442160 bytes
+2026/03/06-02:38:36.945 3c4e70 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/03/06-02:38:36.947 3c4e70 Delete type=2 #15
+2026/03/06-02:38:36.947 3c4e70 Delete type=2 #17
+2026/03/06-02:38:36.947 3c4e70 Delete type=2 #13
+2026/03/06-02:38:36.947 3c4e70 Delete type=2 #11
+2026/03/06-02:38:36.947 3c4e70 Delete type=2 #8
+2026/03/06-02:58:26.538 3c4e70 Level-0 table #20: started
+2026/03/06-02:58:26.549 3c4e70 Level-0 table #20: 362540 bytes OK
+2026/03/06-02:58:26.551 3c4e70 Delete type=0 #16

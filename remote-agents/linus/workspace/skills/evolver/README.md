@@ -19,6 +19,11 @@ Capability Evolver is the core engine behind **[EvoMap](https://evomap.ai)**, a 
 
 Keywords: protocol-constrained evolution, audit trail, genes and capsules, prompt governance.
 
+## Prerequisites
+
+- **Node.js** >= 18
+- **Git** -- Required. Evolver uses git for rollback, blast radius calculation, and solidify. Running in a non-git directory will fail with a clear error message.
+
 ## Try It Now (Minimal)
 
 ```bash
@@ -124,6 +129,17 @@ node src/ops/lifecycle.js status   # show running state
 node src/ops/lifecycle.js check    # health check + auto-restart if stagnant
 ```
 
+### Cron / external runner keepalive
+If you run a periodic keepalive/tick from a cron/agent runner, prefer a single simple command with minimal quoting.
+
+Recommended:
+
+```bash
+bash -lc 'node index.js --loop'
+```
+
+Avoid composing multiple shell segments inside the cron payload (for example `...; echo EXIT:$?`) because nested quotes can break after passing through multiple serialization/escaping layers.
+
 ## Public Release
 
 This repository is the public distribution.
@@ -215,20 +231,37 @@ EVOLVE_REPORT_TOOL=feishu-card
 **Method 2: Dynamic Detection**
 The script automatically detects if compatible local skills (like `skills/feishu-card`) exist in your workspace and upgrades its behavior accordingly.
 
+### Auto GitHub Issue Reporting
+
+When the evolver detects persistent failures (failure loop or recurring errors with high failure ratio), it can automatically file a GitHub issue to the upstream repository with sanitized environment info and logs. All sensitive data (tokens, local paths, emails, etc.) is redacted before submission.
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `EVOLVER_AUTO_ISSUE` | `true` | Enable/disable auto issue reporting |
+| `EVOLVER_ISSUE_REPO` | `autogame-17/capability-evolver` | Target GitHub repository (owner/repo) |
+| `EVOLVER_ISSUE_COOLDOWN_MS` | `86400000` (24h) | Cooldown period for the same error signature |
+| `EVOLVER_ISSUE_MIN_STREAK` | `5` | Minimum consecutive failure streak to trigger |
+
+Requires `GITHUB_TOKEN` (or `GH_TOKEN` / `GITHUB_PAT`) with `repo` scope. When no token is available, the feature is silently skipped.
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=autogame-17/evolver&type=Date)](https://star-history.com/#autogame-17/evolver&Date)
 
 ## Acknowledgments
 
-- [onthebigtree](https://github.com/onthebigtree) -- Inspired the creation of evomap evolution network.
+- [onthebigtree](https://github.com/onthebigtree) -- Inspired the creation of evomap evolution network. Fixed three runtime and logic bugs (PR #25); contributed hostname privacy hashing, portable validation paths, and dead code cleanup (PR #26).
 - [lichunr](https://github.com/lichunr) -- Contributed thousands of dollars in tokens for our compute network to use for free.
 - [shinjiyu](https://github.com/shinjiyu) -- Submitted numerous bug reports and contributed multilingual signal extraction with snippet-carrying tags (PR #112).
 - [voidborne-d](https://github.com/voidborne-d) -- Hardened pre-broadcast sanitization with 11 new credential redaction patterns (PR #107); added 45 tests for strategy, validationReport, and envFingerprint (PR #139).
 - [blackdogcat](https://github.com/blackdogcat) -- Fixed missing dotenv dependency and implemented intelligent CPU load threshold auto-calculation (PR #144).
+- [LKCY33](https://github.com/LKCY33) -- Fixed .env loading path and directory permissions (PR #21).
+- [hendrixAIDev](https://github.com/hendrixAIDev) -- Fixed performMaintenance() running in dry-run mode (PR #68).
+- [toller892](https://github.com/toller892) -- Independently identified and reported the events.jsonl forbidden_paths bug (PR #149).
+- [WeZZard](https://github.com/WeZZard) -- Added A2A_NODE_ID setup guide to SKILL.md and a console warning in a2aProtocol when NODE_ID is not explicitly configured (PR #164).
+- [Golden-Koi](https://github.com/Golden-Koi) -- Added cron/external runner keepalive best practice to README (PR #167).
 - [upbit](https://github.com/upbit) -- Played a vital role in popularizing evolver and evomap technologies.
 - [Chi Jianqiang](https://mowen.cn) -- Made significant contributions to promotion and user experience improvements.
-- More contributors to be added.
 
 ## License
 

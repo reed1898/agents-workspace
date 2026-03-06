@@ -1,7 +1,7 @@
 # USER.md - About Your Human
 
 - **Name:** Reed
-- **What to call them:** Reed / 主人 (看场合)
+- **What to call them:** Reed
 - **Pronouns:** 
 - **Timezone:** Asia/Shanghai (GMT+8)
 - **Age:** 43岁 (2026年)

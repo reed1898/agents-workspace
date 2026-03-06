@@ -5,6 +5,7 @@ $logDir = Join-Path $stateDir 'logs'
 $logFile = Join-Path $logDir 'gateway-watchdog.log'
 $stateFile = Join-Path $stateDir 'gateway-watchdog.state.json'
 $configPath = Join-Path $stateDir 'openclaw.json'
+$gatewayCmdPath = Join-Path $stateDir 'gateway.cmd'
 $port = 18789
 $alertThreshold = 3
 $alertCooldownMinutes = 30
@@ -28,7 +29,12 @@ function Load-WatchdogState {
     }
   }
   try {
-    return Get-Content $stateFile -Raw | ConvertFrom-Json -AsHashtable
+    $rawState = Get-Content $stateFile -Raw | ConvertFrom-Json
+    return @{
+      failCount = if ($null -ne $rawState.failCount) { [int]$rawState.failCount } else { 0 }
+      lastFailureAt = if ($null -ne $rawState.lastFailureAt) { [string]$rawState.lastFailureAt } else { $null }
+      lastAlertAt = if ($null -ne $rawState.lastAlertAt) { [string]$rawState.lastAlertAt } else { $null }
+    }
   }
   catch {
     Write-WatchdogLog "State file is invalid, resetting: $($_.Exception.Message)"
@@ -136,6 +142,12 @@ try {
   if ($null -eq $conn) {
     Write-WatchdogLog "Gateway not listening on 127.0.0.1:$port, attempting start."
     openclaw gateway start *> $null
+    Start-Sleep -Seconds 3
+    $quickCheck = Get-NetTCPConnection -LocalAddress 127.0.0.1 -LocalPort $port -State Listen -ErrorAction SilentlyContinue
+    if ($null -eq $quickCheck -and (Test-Path $gatewayCmdPath)) {
+      Write-WatchdogLog "Gateway still down after service start; launching gateway.cmd fallback."
+      Start-Process -FilePath $gatewayCmdPath -WorkingDirectory $stateDir -WindowStyle Hidden | Out-Null
+    }
     $isListening = $false
     foreach ($i in 1..30) {
       Start-Sleep -Seconds 1

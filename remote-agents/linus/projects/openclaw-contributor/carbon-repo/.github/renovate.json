@@ -1,0 +1,39 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		":disableDependencyDashboard",
+		":ignoreModulesAndTests",
+		"group:monorepos",
+		"group:recommended",
+		"replacements:all",
+		"workarounds:all",
+		"helpers:disableTypesNodeMajor"
+	],
+	"assigneesFromCodeOwners": true,
+	"automerge": true,
+	"automergeType": "pr",
+	"automergeStrategy": "squash",
+	"platformAutomerge": true,
+	"packageRules": [
+		{
+			"matchFileNames": ["website/**"],
+			"groupName": "web"
+		},
+		{
+			"matchPackageNames": ["wrangler"],
+			"schedule": ["* 0 1/14 * *"]
+		},
+		{
+			"matchDepTypes": ["devDependencies"],
+			"schedule": ["* 0 1/14 * *"],
+			"groupName": "devDependencies"
+		},
+		{
+			"matchDepTypes": ["dependencies"],
+			"groupName": "dependencies"
+		}
+	],
+	"labels": ["dependencies"],
+	"schedule": ["* 0 */7 * *"],
+	"gitIgnoredAuthors": ["119761697+buapebot@users.noreply.github.com"]
+}

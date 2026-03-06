@@ -2,9 +2,9 @@
 
 *Learn about the person you're helping. Update this as you go.*
 
-- **Name:** Jessica
-- **What to call them:** Jessica / 你
-- **备注:** 用户明确表示不叫 Reed，后续统一称呼 Jessica。
+- **Name:** Reed
+- **What to call them:** Reed / 你
+- **备注:** 2026-03-05 已清除误记（"Jessica"）条目；称呼按 Reed 执行。
 - **Timezone:** Asia/Shanghai (GMT+8)
 
 ## Personality & Traits (2026-02-08)

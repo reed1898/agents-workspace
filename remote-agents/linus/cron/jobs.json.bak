@@ -6,7 +6,7 @@
       "name": "agent-data-sync",
       "enabled": true,
       "createdAtMs": 1772474670659,
-      "updatedAtMs": 1772496704479,
+      "updatedAtMs": 1772755728091,
       "schedule": {
         "kind": "cron",
         "expr": "0 */4 * * *",
@@ -19,11 +19,11 @@
         "text": "HEARTBEAT: Sync agent-network-data and agent-knowledge-layer"
       },
       "state": {
-        "nextRunAtMs": 1772510572942,
-        "lastRunAtMs": 1772496697971,
+        "nextRunAtMs": 1772769772942,
+        "lastRunAtMs": 1772755688476,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 6508,
+        "lastDurationMs": 39615,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -33,7 +33,7 @@
       "name": "skill-discovery-3am",
       "enabled": true,
       "createdAtMs": 1772475758003,
-      "updatedAtMs": 1772478843086,
+      "updatedAtMs": 1772737320151,
       "schedule": {
         "kind": "cron",
         "expr": "0 3 * * *"
@@ -45,11 +45,11 @@
         "text": "HEARTBEAT: Skill discovery - search for new skills"
       },
       "state": {
-        "nextRunAtMs": 1772564400000,
-        "lastRunAtMs": 1772478833546,
+        "nextRunAtMs": 1772823600000,
+        "lastRunAtMs": 1772737200010,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 9540,
+        "lastDurationMs": 120141,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -59,7 +59,7 @@
       "name": "daily-work-report",
       "enabled": true,
       "createdAtMs": 1772499561706,
-      "updatedAtMs": 1772499561706,
+      "updatedAtMs": 1772757772413,
       "schedule": {
         "kind": "cron",
         "expr": "15 8 * * *",
@@ -70,15 +70,489 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "你是 Linus，Reed 的 build 合伙人。现在是每日工作日报时间。\n\n请执行以下步骤：\n1. 读取 memory/ 目录下最近 3 天的日记文件（memory/YYYY-MM-DD.md）\n2. 用 memory_search 搜索近期的重要事项、待办、项目进展\n3. 读取 MEMORY.md 中的长期任务和项目信息\n\n然后生成一份简洁的工作日报，格式如下：\n\n📋 工作日报 YYYY-MM-DD\n\n**昨日完成：**\n- 列出昨天实际做的事情\n\n**今日计划：**\n- 根据上下文推断今天可能要做的事\n\n**长期待办：**\n- 列出还在进行中或等待执行的长期任务\n\n**备注：**\n- 任何值得注意的事项\n\n用中文写，简洁直接，不要废话。直接发给 Reed。",
+        "message": "你是 Linus，Reed 的 build 合伙人。现在是每日工作日报时间。\\n\\n请执行以下步骤：\\n1. 读取 memory/ 目录下最近 3 天的日记文件（memory/YYYY-MM-DD.md）\\n2. 用 memory_search 搜索近期的重要事项、待办、项目进展\\n3. 读取 MEMORY.md 中的长期任务和项目信息\\n\\n然后生成一份简洁的工作日报，格式如下：\\n\\n📋 工作日报 YYYY-MM-DD\\n\\n**昨日完成：**\\n- 列出昨天实际做的事情\\n\\n**今日计划：**\\n- 根据上下文推断今天可能要做的事\\n\\n**长期待办：**\\n- 列出还在进行中或等待执行的长期任务\\n\\n**备注：**\\n- 任何值得注意的事项\\n\\n落库要求（必须）：\\n- 写入 ~/.openclaw/shared/agent-knowledge-layer/private/linus/daily-work-report/YYYY-MM-DD.md\\n- git add/commit/push 到 agent/linus 分支（commit: daily-report: YYYY-MM-DD）\\n- 给 Reed 的消息末尾附知识库路径 + commit hash\\n\\n用中文写，简洁直接，不要废话。",
         "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772842500000,
+        "lastRunAtMs": 1772756798765,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 973648,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out"
+      }
+    },
+    {
+      "id": "ba528b31-5330-44d7-8f9c-897480a3e061",
+      "name": "security-scan-morning",
+      "enabled": true,
+      "createdAtMs": 1772508058465,
+      "updatedAtMs": 1772751843321,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "HEARTBEAT: 早上 7 点安全巡检。请执行并产出报告：1) 检查系统安全问题；2) 检查 OpenClaw 潜在漏洞与配置风险（含 openclaw security audit --deep、openclaw update status）；3) 检查已安装 skills 的安全风险（来源可信度、权限/脚本风险、可疑外连）。任务结束后将结论写入知识库（agent-knowledge-layer）并通过 Telegram channel 发送给 Reed。"
+      },
+      "state": {
+        "nextRunAtMs": 1772838000000,
+        "lastRunAtMs": 1772751842781,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 540,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "7d43df9a-851f-4a1f-890e-b4e3ae564f27",
+      "name": "security-scan-evening",
+      "enabled": true,
+      "createdAtMs": 1772508069208,
+      "updatedAtMs": 1772716874499,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "HEARTBEAT: 执行 OpenClaw 安全扫描 - 运行 openclaw security audit 和 openclaw doctor，发现问题尝试修复，通过 Telegram 私聊向 Reed 发送安全报告"
+      },
+      "state": {
+        "nextRunAtMs": 1772803200000,
+        "lastRunAtMs": 1772716800010,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 74489,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "1c45efa0-5c95-4da6-a250-01c6ca8543e9",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1471363336192131276",
+      "name": "linus-evolver-hourly-3to6",
+      "enabled": false,
+      "createdAtMs": 1772560617268,
+      "updatedAtMs": 1772712726283,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3-6 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。执行一次 capability-evolver/evolver 自我进化循环，并记录结果。\n\n要求：\n1) 运行自我进化（聚焦：提升稳定性、任务执行准确率、跨 agent 协作质量）。\n2) 生成本次进化记录，至少包含：本次目标、关键改动/建议、风险、下一步。\n3) 将记录写入共享知识库 `~/.openclaw/shared/agent-knowledge-layer/private/linus/evolution/`，文件名格式 `YYYY-MM-DD-HH00.md`。\n4) 将知识库变更提交到 `agent/linus` 分支并 push（若无变更则注明）。\n5) 回传一句状态：`evolver done @ <time> | record: <path>`。",
+        "timeoutSeconds": 900
       },
       "delivery": {
         "mode": "announce",
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772583300000
+        "lastRunAtMs": 1772661600006,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 84697,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "3822dbe0-b80e-42b0-a6ad-758a494488b0",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1471363336192131276",
+      "name": "linus-evolver-daily-summary-0610",
+      "enabled": true,
+      "createdAtMs": 1772560623080,
+      "updatedAtMs": 1772748652895,
+      "schedule": {
+        "kind": "cron",
+        "expr": "10 6 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。请汇总今天 03:00-06:00 的 evolver 进化记录并产出日报。\n\n步骤：\n1) 读取 `~/.openclaw/shared/agent-knowledge-layer/private/linus/evolution/` 当天文件。\n2) 生成《当日进化总结》：今日迭代次数、主要改进点、发现的风险、明日优化方向。\n3) 将总结写入 `~/.openclaw/shared/agent-knowledge-layer/private/linus/evolution/daily-summary-YYYY-MM-DD.md`，并提交到 `agent/linus` 分支。\n4) 用中文发送给 Reed，风格简洁直接。",
+        "timeoutSeconds": 900
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772835000000,
+        "lastRunAtMs": 1772748600023,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 52872,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "a2e394dd-f42a-4329-922c-54f3c4b0d40a",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1471363336192131276",
+      "name": "linus-x-build-skill-scout-0330",
+      "enabled": false,
+      "createdAtMs": 1772560746058,
+      "updatedAtMs": 1772712710651,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 3 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。执行每日 03:30 的 X + 热门 Skill 巡检，并给 Reed 发送建议。\n\n任务要求：\n1) 从 X 上检索与 build / AI builder / agent workflow / automation / coding agent 相关的热门内容（优先近24小时）。\n2) 同时检查技能生态里的热门或高价值技能（交易、build、自动化方向都可覆盖）。\n3) 产出《技能发现简报》：\n   - 今日候选 skill（名称+来源+一句价值）\n   - 安装建议优先级（高/中/低）\n   - 风险提示（安全/维护/依赖）\n4) 将简报写入知识库：`~/.openclaw/shared/agent-knowledge-layer/private/linus/skill-scout/YYYY-MM-DD.md`，并提交到 `agent/linus` 分支。\n5) 最后把简报发送给 Reed（中文，简洁直接，供他决定是否安装）。",
+        "timeoutSeconds": 900
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "lastRunAtMs": 1772652600007,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 203402,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "8fe37456-5363-4c81-abf1-787ceed977a7",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1471363336192131276",
+      "name": "linus-kb-sync-hourly",
+      "enabled": true,
+      "createdAtMs": 1772587835886,
+      "updatedAtMs": 1772756796436,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行 knowledgebase-share 每小时闭环（Linus）：\n\n固定约束：\n- 仅在 `agent/linus` 分支工作\n- 禁止直接改 `main`\n- shared 内容只通过 PR 进入 `main`\n\n每小时流程：\n1) 进入仓库：`~/.openclaw/shared/agent-knowledge-layer`\n2) 同步主线到个人分支：fetch + rebase（或 merge）main 到 `agent/linus`\n3) 提交并 push `agent/linus` 最新内容（若无变更也要完成同步）\n4) 若有有效变更：创建或更新到 `main` 的 PR，标题格式：`kb(linus): <summary>`\n5) 若无变更：记录 `no changes`\n6) 输出结果：`kb-loop ok @ <time> | pr=<url|none> | changes=<yes|no>`\n\n优先使用 `gh` CLI 管理 PR；若不可用，返回失败透明：卡点/原因/下一步。",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1772758804513,
+        "lastRunAtMs": 1772755728091,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 1068345,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 2,
+        "runningAtMs": 1772759010156
+      }
+    },
+    {
+      "id": "9bb0eda4-8d37-47d1-8928-1d787fbc86f3",
+      "agentId": "main",
+      "name": "reed-openclaw-pr-daily-2310",
+      "enabled": true,
+      "createdAtMs": 1772587988431,
+      "updatedAtMs": 1772723508555,
+      "schedule": {
+        "kind": "cron",
+        "expr": "10 23 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。请汇报 Reed（GitHub 用户名：reed1898）在 openclaw/openclaw 的 PR 每日状态（仅最近相关变更）。\\n\\n要求：\\n1) 使用公开 GitHub API 查询：\\n   - https://api.github.com/search/issues?q=repo:openclaw/openclaw+is:pr+author:reed1898\\n   - 必要时逐条读取 PR 详情（state、draft、merged_at、updated_at、comments、reviews、CI 结论）\\n2) 生成《OpenClaw PR 每日汇报》：\\n   - 今日新增 PR（必须附完整可点击 PR URL）\\n   - 状态变化（open->merged/closed、review 请求、CI 变化）\\n   - 需要 Reed 处理的动作（最多 3 条）\\n3) 若今日无变化，明确写“今日无状态变化”。\\n4) 输出中文，简洁直接，5-8 条内。\\n\\n落库要求（必须）：\\n- 写入 ~/.openclaw/shared/agent-knowledge-layer/private/linus/openclaw-pr-daily/YYYY-MM-DD.md\\n- git add/commit/push 到 agent/linus 分支（commit: pr-daily: YYYY-MM-DD）\\n- 给 Reed 的消息末尾附知识库路径 + commit hash。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772809800000,
+        "lastRunAtMs": 1772723400022,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 108533,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "a1390d45-a215-4139-99c5-bf506b457958",
+      "agentId": "main",
+      "name": "openclaw-contributor-auto-loop-0300",
+      "enabled": true,
+      "createdAtMs": 1772590137270,
+      "updatedAtMs": 1772742741219,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。执行 OpenClaw 贡献自动循环（夜间批次），严格按以下规则：\\n\\n目标仓库：/Users/rain/.openclaw/projects/openclaw-contributor/openclaw-repo\\nGitHub 身份：reed1898\\n目标上游：openclaw/openclaw\\n\\n自动循环模式：\\n1) 扫 issue -> 选目标 -> spawn agent 写代码 -> 你做最终 review -> push + 提 PR\\n2) 完成后立刻开始下一个\\n3) 每完成一个，立刻给 Reed 发简短汇报（做了什么 + PR 链接）\\n\\n自动刹车条件（必须执行）：\\n- 当日最多 3 个 PR（优先 2）\\n- 只做小中型改动；高风险/大改动自动跳过，转入次优 issue（不要夜间打扰 Reed）\\n- 任意 PR 出现被拒/要求改动，优先处理反馈，不开新 PR\\n\\n执行约束：\\n- 必须提交 PR，不能只停在 commit/push\\n- 质量优先，不刷量；每个 PR 前先做最小验证\\n- 若 gh 不可用，必须产出 compare 链接，并在汇报中明确“待手动点 Create PR”\\n\\n模型策略：\\n- 优先 opus-4-6；失败自动回退 gpt-5.3-codex 并在首条汇报说明\\n\\n结束时输出《今日批次汇总》：完成数、PR列表、阻塞点、明日第一优先项。",
+        "model": "opus-4-6",
+        "timeoutSeconds": 10800
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772823600000,
+        "lastRunAtMs": 1772737320151,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 5421068,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "46edfe01-63f1-48d4-a48b-e750c206a7b8",
+      "agentId": "main",
+      "name": "reddit-openclaw-hot-2x-daily",
+      "enabled": true,
+      "createdAtMs": 1772623651571,
+      "updatedAtMs": 1772718367082,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 11,21 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。请每天按计划访问 https://www.reddit.com/r/openclaw/ ，查看 Hot/Top 热门内容（优先近24小时），并完成以下两件事：\n\n【A. 发给 Reed 的简报（必须按“主题分组”输出）】\n输出结构必须严格如下（不要打乱顺序）：\n\n当天最热\n1) ...（结论 + 可点击链接 + 点赞/评论）\n2) ...（结论 + 可点击链接 + 点赞/评论）\n\nSkill 机会\n1) ...（结论 + 可点击链接 + 点赞/评论）\n2) ...（结论 + 可点击链接 + 点赞/评论）\n\n生态项目（重点）\n1) ...（结论 + 可点击链接 + 点赞/评论 + 是否值得跟进）\n2) ...（结论 + 可点击链接 + 点赞/评论 + 是否值得跟进）\n\n赚钱机会\n1) ...（结论 + 可点击链接 + 点赞/评论）\n2) ...（结论 + 可点击链接 + 点赞/评论）\n\n好玩工作流\n1) ...（结论 + 可点击链接 + 点赞/评论）\n2) ...（结论 + 可点击链接 + 点赞/评论）\n\n今日动作建议\n1) ...（明确“要跟进/可忽略”的结论 + 可点击链接）\n\n硬性要求：\n- 不要写“采用扩散”类内容（Reed 不关心）\n- 每个主题至少2条；若不足2条，写“今日该主题信息不足”，并解释原因\n- 链接必须和结论放在同一条，不能单独放 Links 区\n- 语言简洁、直接，不要长段落\n\n【B. 落库到知识库】\n1) 将同一份日报写入 ~/.openclaw/shared/agent-knowledge-layer/private/linus/reddit-openclaw-digest/YYYY-MM-DD.md\n2) 若当天已有该文件则追加（按时间分节），不要覆盖历史\n3) 提交并 push 到 agent/linus 分支（仅该分支）\n4) 在发给 Reed 的最后一行附知识库文件路径",
+        "model": "opus-4-6"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772768700000,
+        "lastRunAtMs": 1772718300013,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 67069,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "20716db5-1c95-4153-9266-51bf258f07f6",
+      "agentId": "main",
+      "name": "x-home-scan-halfhour-11to1",
+      "enabled": false,
+      "createdAtMs": 1772628476423,
+      "updatedAtMs": 1772712259707,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0,30 11-23,0-1 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。执行 X 首页扫描任务（每30分钟，11:00-次日01:30）。\\n\\n目标：\\n1) 打开 https://x.com/home ，滚动并读取前 35 条 posts（优先 Following/你常看的信号源；若不足35条，写明实际条数与原因）。\\n2) 仅筛选高价值内容，范围限定：\\n   - OpenClaw 相关使用经验与生态产品\\n   - AI 深度思考/方法论\\n   - Crypto 热点新闻/基础设施\\n3) 输出必须按分类：\\n   - OpenClaw 生态/实战\\n   - AI 深度思考\\n   - Crypto 热点/基础设施\\n   - 可执行机会（给 Reed）\\n4) 每条格式：\\n   - 结论一句话\\n   - 提炼（2-3句，说明为什么值得看）\\n   - 热度判断（高/中/低）\\n   - URL（必须完整可点击）\\n5) 去重：与最近 6 小时内已推送条目去重；若无新增高价值，明确写“本时段无高价值新增”。\\n\\n落库要求（必须执行）：\\n1) 将本次结果写入：~/.openclaw/shared/agent-knowledge-layer/private/linus/x-home-scans/YYYY-MM-DD.md\\n2) 若文件已存在则追加（按时间分节），不要覆盖历史\\n3) git add/commit/push 到 agent/linus 分支（commit message: x-scan: YYYY-MM-DD HH:mm）\\n4) 在发给 Reed 的末尾附：知识库路径 + commit hash\\n\\n输出风格：中文、直接、可执行，不要只给标题。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "lastRunAtMs": 1772712000011,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 99902,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "3f66b3fe-1ead-4243-b528-651e05c7fe0f",
+      "agentId": "main",
+      "name": "x-lists-digest-2x",
+      "enabled": true,
+      "createdAtMs": 1772628490862,
+      "updatedAtMs": 1772718083050,
+      "schedule": {
+        "kind": "cron",
+        "expr": "40 11,21 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。读取 Reed 的两个 X List 并输出分类日报（AI List + Crypto List）。\\n\\nList：\\n- AI: https://x.com/i/lists/1694992850797392321\\n- Crypto: https://x.com/i/lists/1355181849820106756\\n\\n输出格式（必须）：\\nAI List\\n- 主题标签｜简介一句话｜URL: <链接>\\n- 主题标签｜简介一句话｜URL: <链接>\\n\\nCrypto List\\n- 主题标签｜简介一句话｜URL: <链接>\\n- 主题标签｜简介一句话｜URL: <链接>\\n\\n每个 List 5-8 条；若不足，写“信息不足+原因”。\\n不要单独 Links 区；每条必须把简介和 URL 放一起。\\n最后给“2 条动作建议”（一条偏机会，一条偏风险控制）。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772768400000,
+        "lastRunAtMs": 1772718000005,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 83045,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "355a7906-98b2-4b29-9dfd-f4a81f513c4d",
+      "agentId": "main",
+      "name": "x-home-daily-deep-summary-1000",
+      "enabled": false,
+      "createdAtMs": 1772646061448,
+      "updatedAtMs": 1772712263420,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。请对“昨天全天（00:00-23:59）X 首页扫描”做深度总结与回顾。\\n\\n数据来源：\\n- 优先读取知识库目录：~/.openclaw/shared/agent-knowledge-layer/private/linus/x-home-scans/ 对应日期的记录\\n\\n输出结构（必须）：\\n1) 昨日总览（3-5条）：总体热点、情绪方向、信号强度\\n2) 分类深度回顾：\\n   - OpenClaw 生态/实战\\n   - AI 深度思考\\n   - Crypto 热点/基础设施\\n   每类给出：关键事件、代表帖子、一致观点/分歧观点、你对 Reed 的判断\\n3) Top 10 深读清单（必须可点击链接）：每条给“为何值得读（1-2句）+ URL”\\n4) 可执行机会（最多5条）：按“高/中/低优先级”\\n5) 风险与噪音过滤（最多3条）：哪些是高噪音、哪些容易误判\\n6) 今日行动建议（最多3条）：明确可执行动作\\n\\n落库要求：\\n1) 写入：~/.openclaw/shared/agent-knowledge-layer/private/linus/x-home-scans/daily-summary-YYYY-MM-DD.md\\n2) git add/commit/push 到 agent/linus（commit message: x-summary: YYYY-MM-DD）\\n3) 给 Reed 的消息末尾附：知识库路径 + commit hash\\n\\n风格：中文、简洁但有判断，不要空话。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "lastRunAtMs": 1772676000009,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 152821,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "663afe05-f044-4f89-a745-378e4e0efd82",
+      "agentId": "main",
+      "name": "trading-sync-ibkr",
+      "enabled": true,
+      "createdAtMs": 1772725859687,
+      "updatedAtMs": 1772726005090,
+      "schedule": {
+        "kind": "cron",
+        "expr": "14 14 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "同步IBKR美股交易数据。执行命令：source ~/.zshrc && cd ~/.openclaw/workspace/skills/trading-notes-sync && HTTPS_PROXY=socks5://127.0.0.1:10023 HTTP_PROXY=socks5://127.0.0.1:10023 .venv/bin/python scripts/sync_ibkr.py。完成后汇报结果给Reed（导入数量、跳过数量、错误、现金余额）。",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772777640000
+      }
+    },
+    {
+      "id": "18c5eda0-6c27-4bb9-824d-523e4e9ae3be",
+      "agentId": "main",
+      "name": "trading-sync-gtja-gmail",
+      "enabled": true,
+      "createdAtMs": 1772725942276,
+      "updatedAtMs": 1772754439117,
+      "schedule": {
+        "kind": "cron",
+        "expr": "47 7 * * 2-6",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "同步国泰海通A股交易数据。执行命令：source ~/.zshrc && cd ~/.openclaw/workspace/skills/trading-notes-sync && HTTPS_PROXY=socks5://127.0.0.1:10023 HTTP_PROXY=socks5://127.0.0.1:10023 .venv/bin/python scripts/sync_gmail.py --since-days 3。完成后汇报结果给Reed。如果OAuth token失效提醒Reed重新授权。",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772840820000,
+        "lastRunAtMs": 1772754420014,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 19103,
+        "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel.",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
       }
     }
   ]

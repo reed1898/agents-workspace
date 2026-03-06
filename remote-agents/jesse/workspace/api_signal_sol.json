@@ -1,0 +1,58 @@
+﻿{
+    "code":  "000000",
+    "message":  null,
+    "messageDetail":  null,
+    "data":  [
+                 {
+                     "signalId":  22646,
+                     "ticker":  "Punch",
+                     "chainId":  "CT_501",
+                     "contractAddress":  "NV2RYH954cTJ3ckFUpvfqaQXU4ARqqDH3562nFSpump",
+                     "logoUrl":  "/images/web3-data/public/token/logos/825C62EC6BE606406017F26ABCAEBAD2.png",
+                     "chainLogoUrl":  "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20250303/42065e0a-3808-400e-b589-61c2dbfc0eac.png",
+                     "tokenDecimals":  6,
+                     "isAlpha":  false,
+                     "launchPlatform":  "Pumpfun",
+                     "mark":  null,
+                     "isExclusiveLaunchpad":  false,
+                     "alphaPoint":  null,
+                     "tokenTag":  {
+                                      "Social Events":  [
+                                                            {
+                                                                "tagName":  "DEX Paid",
+                                                                "languageKey":  "wmp-label-update-dexscreener-social"
+                                                            }
+                                                        ],
+                                      "Launch Platform":  [
+                                                              {
+                                                                  "tagName":  "Pumpfun",
+                                                                  "languageKey":  "wmp-label-title-pumpfun"
+                                                              }
+                                                          ],
+                                      "Sensitive Events":  [
+                                                               {
+                                                                   "tagName":  "Smart Money Add Holdings",
+                                                                   "languageKey":  "wmp-label-title-smart-money-add-position"
+                                                               }
+                                                           ]
+                                  },
+                     "smartSignalType":  "SMART_MONEY",
+                     "smartMoneyCount":  4,
+                     "direction":  "buy",
+                     "timeFrame":  614000,
+                     "signalTriggerTime":  1772528709000,
+                     "totalTokenValue":  "16432.113225741498453170",
+                     "alertPrice":  "0.013636055585157125",
+                     "alertMarketCap":  "13635597.595385008926867717",
+                     "currentPrice":  "0.0079755",
+                     "currentMarketCap":  "8012689.0038539761819655619687004002",
+                     "highestPrice":  "0.015008000000000000",
+                     "highestPriceTime":  1772538680000,
+                     "exitRate":  3,
+                     "status":  "timeout",
+                     "maxGain":  "0.8797",
+                     "signalCount":  16
+                 }
+             ],
+    "success":  true
+}

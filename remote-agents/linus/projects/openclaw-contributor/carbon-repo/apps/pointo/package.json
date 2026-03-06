@@ -1,0 +1,21 @@
+{
+	"name": "demo-pointo",
+	"private": true,
+	"type": "module",
+	"main": "./dist/index.js",
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc-watch --onSuccess \"node .\"",
+		"start": "node ."
+	},
+	"dependencies": {
+		"@buape/carbon": "workspace:*",
+		"dotenv": "17.2.3",
+		"ws": "8.19.0"
+	},
+	"devDependencies": {
+		"@types/node": "25.0.9",
+		"tsc-watch": "7.2.0",
+		"typescript": "5.9.3"
+	}
+}

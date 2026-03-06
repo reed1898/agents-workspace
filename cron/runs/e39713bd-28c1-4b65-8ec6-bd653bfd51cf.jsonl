@@ -1,0 +1,1 @@
+{"ts":1772737297843,"jobId":"e39713bd-28c1-4b65-8ec6-bd653bfd51cf","action":"finished","status":"ok","summary":"现在是凌晨3点，请执行 osascript -e 'set volume with output muted' 静音电脑，Reed 在睡觉。","deliveryStatus":"not-requested","runAtMs":1772737279933,"durationMs":17906,"nextRunAtMs":1772737200000}

@@ -1,0 +1,19 @@
+"dependencies":
+    - changed-files:
+        - any-glob-to-any-file: ["pnpm-lock.yaml"]
+"package: carbon":
+    - changed-files:
+        - any-glob-to-any-file: ["packages/carbon/**"]
+"package: create-carbon":
+    - changed-files:
+        - any-glob-to-any-file: ["packages/create-carbon/**"]
+"plugin: gateway":
+    - changed-files:
+        - any-glob-to-any-file: [
+            "packages/carbon/src/plugins/gateway-forwarder",
+            "packages/carbon/src/plugins/gateway",
+            "packages/carbon/src/plugins/sharding"
+        ]
+"package: linked-roles":
+    - changed-files:
+        - any-glob-to-any-file: ["packages/carbon/src/plugins/linked-roles"]

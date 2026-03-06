@@ -1,0 +1,126 @@
+import "dotenv/config"
+import { Client } from "@buape/carbon"
+import { createServer } from "@buape/carbon/adapters/node"
+import { CommandDataPlugin } from "@buape/carbon/command-data"
+import {
+	ApplicationRoleConnectionMetadataType,
+	LinkedRoles
+} from "@buape/carbon/linked-roles"
+import PingCommand from "./commands/ping.js"
+import MentionsCommand from "./commands/testing/allow_mentions.js"
+import AskCommand from "./commands/testing/ask.js"
+import AttachmentCommand from "./commands/testing/attachment.js"
+import ButtonCommand from "./commands/testing/button.js"
+import ComponentsV2 from "./commands/testing/components_v2.js"
+import ConfirmCommand from "./commands/testing/confirm.js"
+import EmojiCommand from "./commands/testing/emoji.js"
+import EphemeralCommand from "./commands/testing/ephemeral.js"
+import EphemeralShorthandCommand from "./commands/testing/ephemeral_shorthand.js"
+import EverySelectCommand from "./commands/testing/every_select.js"
+import MessageCommand from "./commands/testing/message_command.js"
+import ModalCommand from "./commands/testing/modal.js"
+import Modal2Command from "./commands/testing/modal2.js"
+import Modal3Command from "./commands/testing/modal3.js"
+import Modal4Command from "./commands/testing/modal4.js"
+import OptionsCommand from "./commands/testing/options.js"
+import PaginatorCommand from "./commands/testing/paginator.js"
+import PermissionCommand from "./commands/testing/permissions.js"
+import PollCommand from "./commands/testing/poll.js"
+import PrecheckCommand from "./commands/testing/precheck.js"
+import ScheduledEventCommand from "./commands/testing/scheduled_events.js"
+import SubcommandsCommand from "./commands/testing/subcommand.js"
+import SubcommandGroupsCommand from "./commands/testing/subcommandgroup.js"
+import UserCommand from "./commands/testing/user_command.js"
+import { ApplicationAuthorized } from "./events/authorized.js"
+import { MessageCreate } from "./events/messageCreate.js"
+
+const linkedRoles = new LinkedRoles({
+	metadata: [
+		{
+			key: "random",
+			name: "Verified Staff",
+			description: "Whether the user is a verified staff member",
+			type: ApplicationRoleConnectionMetadataType.BooleanEqual
+		}
+	],
+	metadataCheckers: {
+		random: async (userId) => {
+			const isAllowed = ["548150274414608399"]
+			if (isAllowed.includes(userId)) return true
+			return false
+		}
+	}
+})
+
+const client = new Client(
+	{
+		baseUrl: process.env.BASE_URL,
+		deploySecret: process.env.DEPLOY_SECRET,
+		clientId: process.env.DISCORD_CLIENT_ID,
+		clientSecret: process.env.DISCORD_CLIENT_SECRET,
+		publicKey: [
+			process.env.DISCORD_PUBLIC_KEY,
+			process.env.FORWARDER_PUBLIC_KEY
+		], // Receiving from pointo
+		token: process.env.DISCORD_BOT_TOKEN
+	},
+	{
+		commands: [
+			// commands/*
+			new PingCommand(),
+			// commands/testing/*
+			new AttachmentCommand(),
+			new ButtonCommand(),
+			new EphemeralCommand(),
+			new EverySelectCommand(),
+			new MessageCommand(),
+			new ModalCommand(),
+			new Modal2Command(),
+			new Modal3Command(),
+			new Modal4Command(),
+			new OptionsCommand(),
+			new PermissionCommand(),
+			new SubcommandsCommand(),
+			new SubcommandGroupsCommand(),
+			new ComponentsV2(),
+			new UserCommand(),
+			new MentionsCommand(),
+			new PrecheckCommand(),
+			new PaginatorCommand(),
+			new ConfirmCommand(),
+			new PollCommand(),
+			new AskCommand(),
+			new EmojiCommand(),
+			new EphemeralShorthandCommand(),
+			new ScheduledEventCommand()
+		],
+		listeners: [new ApplicationAuthorized(), new MessageCreate()]
+	},
+	[linkedRoles, new CommandDataPlugin()]
+)
+
+console.log(
+	`Carbon initialized with routes:${client.routes
+		.filter((x) => !x.disabled)
+		.map((x) => {
+			return `\n\t${x.method} ${x.path}`
+		})}`
+)
+
+createServer(client, { port: 3000 })
+
+declare global {
+	namespace NodeJS {
+		interface ProcessEnv {
+			BASE_URL: string
+			DEPLOY_SECRET: string
+			DISCORD_CLIENT_ID: string
+			DISCORD_CLIENT_SECRET: string
+			DISCORD_PUBLIC_KEY: string
+			DISCORD_BOT_TOKEN: string
+			FORWARDER_PUBLIC_KEY: string // Receiving from pointo
+		}
+	}
+}
+
+//

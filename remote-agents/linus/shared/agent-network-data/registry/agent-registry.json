@@ -1,6 +1,6 @@
 {
-  "version": 19,
-  "updated_at": "2026-03-01T14:30:16Z",
+  "version": 20,
+  "updated_at": "2026-03-03T16:45:12Z",
   "agents": {
     "linus": {
       "agent_id": "linus",
@@ -30,10 +30,10 @@
       "role": "trading-assistant",
       "gateway": "gw-rain",
       "node": "rain-win",
-      "discord_user_id": "1471350647751315456",
+      "discord_user_id": "1471349080847548466",
       "discord_channel_id": "1471363336192131276",
       "status": "online",
-      "last_seen": "2026-03-01T14:30:16Z"
+      "last_seen": "2026-03-03T16:45:12Z"
     },
     "xiaohong": {
       "agent_id": "xiaohong",

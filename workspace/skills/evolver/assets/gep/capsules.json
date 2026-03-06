@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "capsules": [
+    {
+      "type": "Capsule",
+      "schema_version": "1.6.0",
+      "id": "capsule_1770477654236",
+      "trigger": [
+        "log_error",
+        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }",
+        "user_missing",
+        "windows_shell_incompatible",
+        "perf_bottleneck"
+      ],
+      "gene": "gene_gep_repair_from_errors",
+      "summary": "固化：gene_gep_repair_from_errors 命中信号 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck，变更 1 文件 / 2 行。",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 0,
+        "lines": 0
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 2,
+      "success_reason": "Gene gene_gep_repair_from_errors (repair) matched signals [log_error, errsig:**TOOLRESULT**: 致命错误：没有配置推送目标。 或通过命令行指定 URL，或用下面命令配置一个远程仓库 git remote add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command exited with code 128), user_feature_request:add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command, repeated_tool_usage:exec]. Scope: 0 file(s), 0 line(s) changed. Outcome score: 0.85. Strategy applied: Extract structured signals from logs and user instructions; Select an existing Gene by signals match (no improvisation); Estimate blast radius (files, lines) before editing.",
+      "env_fingerprint": {
+        "device_id": "21528bb11b550d8c7a8b59c93f8a1349",
+        "node_version": "v25.2.1",
+        "platform": "darwin",
+        "arch": "arm64",
+        "os_release": "25.2.0",
+        "hostname": "2a41fe06b3ad",
+        "evolver_version": "1.27.2",
+        "client": "evolver",
+        "client_version": "1.27.2",
+        "cwd": "8d2d6614e0fe",
+        "container": false
+      },
+      "source_type": "generated",
+      "reused_asset_id": null,
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "content": "Gene: gene_gep_repair_from_errors (repair)\n\nSignals: log_error, errsig:**TOOLRESULT**: 致命错误：没有配置推送目标。 或通过命令行指定 URL，或用下面命令配置一个远程仓库 git remote add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command exited with code 128), user_feature_request:add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command, repeated_tool_usage:exec\n\nStrategy:\n1. Extract structured signals from logs and user instructions\n2. Select an existing Gene by signals match (no improvisation)\n3. Estimate blast radius (files, lines) before editing\n4. Apply smallest reversible patch\n5. Validate using declared validation steps; rollback on failure\n6. Solidify knowledge: append EvolutionEvent, update Gene/Capsule store\n\nScope: 0 file(s), 0 line(s)\n\nOutcome score: 0.85",
+      "strategy": [
+        "Extract structured signals from logs and user instructions",
+        "Select an existing Gene by signals match (no improvisation)",
+        "Estimate blast radius (files, lines) before editing",
+        "Apply smallest reversible patch",
+        "Validate using declared validation steps; rollback on failure",
+        "Solidify knowledge: append EvolutionEvent, update Gene/Capsule store"
+      ],
+      "asset_id": "sha256:0cee6c7b354e05cd1a59b5d81112f09ef26a703bb990c32801df4ab06e2f140e"
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.5.0",
+      "id": "capsule_1770478341769",
+      "trigger": [
+        "log_error",
+        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }",
+        "user_missing",
+        "windows_shell_incompatible",
+        "perf_bottleneck"
+      ],
+      "gene": "gene_gep_repair_from_errors",
+      "summary": "固化：gene_gep_repair_from_errors 命中信号 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck，变更 2 文件 / 44 行。",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 2,
+        "lines": 44
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 1,
+      "env_fingerprint": {
+        "node_version": "v22.22.0",
+        "platform": "linux",
+        "arch": "x64",
+        "os_release": "6.1.0-42-cloud-amd64",
+        "evolver_version": "1.7.0",
+        "cwd": ".",
+        "captured_at": "2026-02-07T15:32:21.678Z"
+      },
+      "a2a": {
+        "eligible_to_broadcast": false
+      },
+      "asset_id": "sha256:20d971a3c4cb2b75f9c045376d1aa003361c12a6b89a4b47b7e81dbd4f4d8fe8"
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.6.0",
+      "id": "capsule_1772732997448",
+      "trigger": [
+        "protocol_drift",
+        "user_feature_request:add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command",
+        "high_tool_usage:exec",
+        "repeated_tool_usage:exec",
+        "force_innovation_after_repair_loop"
+      ],
+      "gene": "gene_gep_innovate_from_opportunity",
+      "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 protocol_drift, user_feature_request:add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command, high_tool_usage:exec, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 0,
+        "lines": 0
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 1,
+      "success_reason": "Gene gene_gep_innovate_from_opportunity (innovate) matched signals [protocol_drift, user_feature_request:add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command, high_tool_usage:exec, repeated_tool_usage:exec]. Scope: 0 file(s), 0 line(s) changed. Outcome score: 0.85. Strategy applied: Extract opportunity signals and identify the specific user need or system gap; Search existing Genes and Capsules for partial matches (avoid reinventing); Design a minimal, testable implementation plan (prefer small increments).",
+      "env_fingerprint": {
+        "device_id": "21528bb11b550d8c7a8b59c93f8a1349",
+        "node_version": "v25.2.1",
+        "platform": "darwin",
+        "arch": "arm64",
+        "os_release": "25.2.0",
+        "hostname": "2a41fe06b3ad",
+        "evolver_version": "1.27.2",
+        "client": "evolver",
+        "client_version": "1.27.2",
+        "cwd": "8d2d6614e0fe",
+        "container": false
+      },
+      "source_type": "generated",
+      "reused_asset_id": null,
+      "a2a": {
+        "eligible_to_broadcast": false
+      },
+      "content": "Gene: gene_gep_innovate_from_opportunity (innovate)\n\nSignals: protocol_drift, user_feature_request:add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command, high_tool_usage:exec, repeated_tool_usage:exec, force_innovation_after_repair_loop\n\nStrategy:\n1. Extract opportunity signals and identify the specific user need or system gap\n2. Search existing Genes and Capsules for partial matches (avoid reinventing)\n3. Design a minimal, testable implementation plan (prefer small increments)\n4. Estimate blast radius; innovate changes may touch more files but must stay within constraints\n5. Implement the change with clear validation criteria\n6. Validate using declared validation steps; rollback on failure\n7. Solidify: record EvolutionEvent with intent=innovate, create new Gene if pattern is novel, create Capsule on success\n\nScope: 0 file(s), 0 line(s)\n\nOutcome score: 0.85",
+      "diff": "diff --git a/assets/gep/capsules.json b/assets/gep/capsules.json\nindex 40f9ee5..0d18e8f 100644\n--- a/assets/gep/capsules.json\n+++ b/assets/gep/capsules.json\n@@ -3,7 +3,7 @@\n   \"capsules\": [\n     {\n       \"type\": \"Capsule\",\n-      \"schema_version\": \"1.5.0\",\n+      \"schema_version\": \"1.6.0\",\n       \"id\": \"capsule_1770477654236\",\n       \"trigger\": [\n         \"log_error\",\n@@ -16,27 +16,43 @@\n       \"summary\": \"固化：gene_gep_repair_from_errors 命中信号 log_error, errsig:**TOOLRESULT**: { \\\"status\\\": \\\"error\\\", \\\"tool\\\": \\\"exec\\\", \\\"error\\\": \\\"error: unknown command 'process'\\\\n\\\\nCommand exited with code 1\\\" }, user_missing, windows_shell_incompatible, perf_bottleneck，变更 1 文件 / 2 行。\",\n       \"confidence\": 0.85,\n       \"blast_radius\": {\n-        \"files\": 1,\n-        \"lines\": 2\n+        \"files\": 0,\n+        \"lines\": 0\n       },\n       \"outcome\": {\n         \"status\": \"success\",\n         \"score\": 0.85\n       },\n-      \"success_streak\": 1,\n+      \"success_streak\": 2,\n+      \"success_reason\": \"Gene gene_gep_repair_from_errors (repair) matched signals [log_error, errsig:**TOOLRESULT**: 致命错误：没有配置推送目标。 或通过命令行指定 URL，或用下面命令配置一个远程仓库 git remote add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command exited with code 128), user_feature_request:add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command, repeated_tool_usage:exec]. Scope: 0 file(s), 0 line(s) changed. Outcome score: 0.85. Strategy applied: Extract structured signals from logs and user instructions; Select an existing Gene by signals match (no improvisation); Estimate blast radius (files, lines) before editing.\",\n       \"env_fingerprint\": {\n-        \"node_version\": \"v22.22.0\",\n-        \"platform\": \"linux\",\n-        \"arch\": \"x64\",\n-        \"os_release\": \"6.1.0-42-cloud-amd64\",\n-        \"evolver_version\": \"1.7.0\",\n-        \"cwd\": \".\",\n-        \"captured_at\": \"2026-02-07T15:20:54.155Z\"\n+        \"device_id\": \"21528bb11b550d8c7a8b59c93f8a1349\",\n+        \"node_version\": \"v25.2.1\",\n+        \"platform\": \"darwin\",\n+        \"arch\": \"arm64\",\n+        \"os_release\": \"25.2.0\",\n+        \"hostname\": \"2a41fe06b3ad\",\n+        \"evolver_version\": \"1.27.2\",\n+        \"client\": \"evolver\",\n+        \"client_version\": \"1.27.2\",\n+        \"cwd\": \"8d2d6614e0fe\",\n+        \"container\": false\n       },\n+      \"source_type\": \"generated\",\n+      \"reused_asset_id\": null,\n       \"a2a\": {\n-        \"eligible_to_broadcast\": false\n+        \"eligible_to_broadcast\": true\n       },\n-      \"asset_id\": \"sha256:3eed0cd5038f9e85fbe0d093890e291e9b8725644c766e6cce40bf62d0f5a2e8\"\n+      \"content\": \"Gene: gene_gep_repair_from_errors (repair)\\n\\nSignals: log_error, errsig:**TOOLRESULT**: 致命错误：没有配置推送目标。 或通过命令行指定 URL，或用下面命令配置一个远程仓库 git remote add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command exited with code 128), user_feature_request:add <名称> <地址> 然后使用该远程仓库名执行推送 git push <名称> (Command, repeated_tool_usage:exec\\n\\nStrategy:\\n1. Extract structured signals from logs and user instructions\\n2. Select an existing Gene by signals match (no improvisation)\\n3. Estimate blast radius (files, lines) before editing\\n4. Apply smallest reversible patch\\n5. Validate using declared validation steps; rollback on failure\\n6. Solidify knowledge: append EvolutionEvent, update Gene/Capsule store\\n\\nScope: 0 file(s), 0 line(s)\\n\\nOutcome score: 0.85\",\n+      \"strategy\": [\n+        \"Extract structured signals from logs and user instructions\",\n+        \"Select an existing Gene by signals match (no improvisation)\",\n+        \"Estimate blast radius (files, lines) before editing\",\n+        \"Apply smallest reversible patch\",\n+        \"Validate using declared validation steps; rollback on failure\",\n+        \"Solidify knowledge: append EvolutionEvent, update Gene/Capsule store\"\n+      ],\n+      \"asset_id\": \"sha256:0cee6c7b354e05cd1a59b5d81112f09ef26a703bb990c32801df4ab06e2f140e\"\n     },\n     {\n       \"type\": \"Capsule\",\ndiff --git a/assets/gep/events.jsonl b/assets/gep/events.jsonl\nindex ec31e3e..baef774 100644\n--- a/assets/gep/events.jsonl\n+++ b/assets/gep/events.jsonl\n@@ -5,3 +5,5 @@\n {\"type\":\"EvolutionEvent\",\"schema_version\":\"1.5.0\",\"id\":\"evt_1770477654236\",\"parent\":\"evt_1770477201173\",\"intent\":\"repair\",\"signals\":[\"log_error\",\"errsig:**TOOLRESULT**: { \\\"status\\\": \\\"error\\\", \\\"tool\\\": \\\"exec\\\", \\\"error\\\": \\\"error: unknown command 'process'\\\\n\\\\nCommand exited with code 1\\\" }\",\"user_missing\",\"windows_shell_incompatible\",\"perf_bottleneck\"],\"genes_used\":[\"gene_gep_repair_from_errors\"],\"mutation_id\":\"mut_1770477615603\",\"personality_state\":{\"type\":\"PersonalityState\",\"rigor\":0.7,\"creativity\":0.35,\"verbosity\":0.25,\"risk_tolerance\":0.4,\"obedience\":0.9},\"blast_radius\":{\"files\":1,\"lines\":2},\"outcome\":{\"status\":\"success\",\"score\":0.85},\"capsule_id\":\"capsule_1770477654236\",\"env_fingerprint\":{\"node_version\":\"v22.22.0\",\"platform\":\"linux\",\"arch\":\"x64\",\"os_release\":\"6.1.0-42-cloud-amd64\",\"evolver_version\":\"1.7.0\",\"cwd\":\"/home/crishaocredits/.openclaw/workspace\",\"captured_at\":\"2026-02-07T15:20:54.155Z\"},\"validation_report_id\":\"vr_1770477654235\",\"meta\":{\"at\":\"2026-02-07T15:20:54.236Z\",\"signal_key\":\"errsig_norm:870c3a82|log_error|perf_bottleneck|user_missing|windows_shell_incompatible\",\"selector\":{\"selected\":\"gene_gep_repair_from_errors\",\"reason\":[\"signals match gene.signals_match\",\"signals: log_error, errsig:**TOOLRESULT**: { \\\"status\\\": \\\"error\\\", \\\"tool\\\": \\\"exec\\\", \\\"error\\\": \\\"error: unknown command 'process'\\\\n\\\\nCommand exited with code 1\\\" }, user_missing, windows_shell_incompatible, perf_bottleneck\",\"memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.500\"],\"alternatives\":[\"gene_gep_innovate_from_opportunity\"]},\"blast_radius_estimate\":{\"files\":12,\"lines\":960},\"mutation\":{\"type\":\"Mutation\",\"id\":\"mut_1770477615603\",\"category\":\"repair\",\"trigger_signals\":[\"log_error\",\"errsig:**TOOLRESULT**: { \\\"status\\\": \\\"error\\\", \\\"tool\\\": \\\"exec\\\", \\\"error\\\": \\\"error: unknown command 'process'\\\\n\\\\nCommand exited with code 1\\\" }\",\"user_missing\",\"windows_shell_incompatible\",\"perf_bottleneck\"],\"target\":\"gene:gene_gep_repair_from_errors\",\"expected_effect\":\"reduce runtime errors, increase stability, and lower failure rate\",\"risk_level\":\"low\"},\"personality\":{\"key\":\"rigor=0.7|creativity=0.3|verbosity=0.3|risk_tolerance=0.4|obedience=0.9\",\"known\":true,\"mutations\":[]},\"gene\":{\"id\":\"gene_gep_repair_from_errors\",\"created\":false,\"reason\":\"selected_gene_id_present\"},\"constraints_ok\":true,\"constraint_violations\":[],\"validation_ok\":true,\"validation\":[{\"cmd\":\"node -e \\\"require('./src/evolve'); require('./src/gep/solidify'); console.log('ok')\\\"\",\"ok\":true},{\"cmd\":\"node -e \\\"require('./src/gep/selector'); require('./src/gep/memoryGraph'); console.log('ok')\\\"\",\"ok\":true}],\"validation_report\":{\"type\":\"ValidationReport\",\"schema_version\":\"1.5.0\",\"id\":\"vr_1770477654235\",\"gene_id\":\"gene_gep_repair_from_errors\",\"env_fingerprint\":{\"node_version\":\"v22.22.0\",\"platform\":\"linux\",\"arch\":\"x64\",\"os_release\":\"6.1.0-42-cloud-amd64\",\"evolver_version\":\"1.7.0\",\"cwd\":\"/home/crishaocredits/.openclaw/workspace\",\"captured_at\":\"2026-02-07T15:20:54.155Z\"},\"env_fingerprint_key\":\"b98472b2ef785976\",\"commands\":[{\"command\":\"node -e \\\"require('./src/evolve'); require('./src/gep/solidify'); console.log('ok')\\\"\",\"ok\":true,\"stdout\":\"ok\\n\",\"stderr\":\"\"},{\"command\":\"node -e \\\"require('./src/gep/selector'); require('./src/gep/memoryGraph'); console.log('ok')\\\"\",\"ok\":true,\"stdout\":\"ok\\n\",\"stderr\":\"\"}],\"overall_ok\":true,\"duration_ms\":80,\"created_at\":\"2026-02-07T15:20:54.236Z\",\"asset_id\":\"sha256:404345b559ec9a29d30444c3d66ff8f346d87017b7dea1d965ae35f029c8d5c6\"},\"protocol_ok\":true,\"protocol_violations\":[],\"memory_graph\":\"/home/crishaocredits/.openclaw/workspace/skills/evolver/memory/memory_graph.jsonl\"},\"asset_id\":\"sha256:a795229043cb18c18f108eed7e9c26b95b48119fb143877d57ea004dade5799f\"}\n {\"type\":\"ValidationReport\",\"schema_version\":\"1.5.0\",\"id\":\"vr_1770478341768\",\"gene_id\":\"gene_gep_repair_from_errors\",\"env_fingerprint\":{\"node_version\":\"v22.22.0\",\"platform\":\"linux\",\"arch\":\"x64\",\"os_release\":\"6.1.0-42-cloud-amd64\",\"evolver_version\":\"1.7.0\",\"cwd\":\"/home/crishaocredits/.op\n... [TRUNCATED]",
+      "strategy": [
+        "Extract opportunity signals and identify the specific user need or system gap",
+        "Search existing Genes and Capsules for partial matches (avoid reinventing)",
+        "Design a minimal, testable implementation plan (prefer small increments)",
+        "Estimate blast radius; innovate changes may touch more files but must stay within constraints",
+        "Implement the change with clear validation criteria",
+        "Validate using declared validation steps; rollback on failure",
+        "Solidify: record EvolutionEvent with intent=innovate, create new Gene if pattern is novel, create Capsule on success"
+      ],
+      "asset_id": "sha256:748c9b1a29d66e767047aedf5fb73bc41603fb0d699f7822c982df445af75e88"
+    }
+  ]
+}
