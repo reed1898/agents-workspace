@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772806245947,
+      "updatedAtMs": 1772820639389,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772820601571,
-        "lastRunAtMs": 1772806201571,
+        "nextRunAtMs": 1772835001575,
+        "lastRunAtMs": 1772820601575,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 44376,
+        "lastDurationMs": 37814,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -358,7 +358,7 @@
       "name": "evolver_watchdog_robust",
       "enabled": true,
       "createdAtMs": 1772731903737,
-      "updatedAtMs": 1772814825381,
+      "updatedAtMs": 1772829240782,
       "schedule": {
         "kind": "every",
         "everyMs": 1800000,
@@ -375,15 +375,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772816610416,
-        "lastRunAtMs": 1772814810416,
+        "nextRunAtMs": 1772831010504,
+        "lastRunAtMs": 1772829210504,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 14965,
+        "lastDurationMs": 30278,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772816610422
+        "runningAtMs": 1772831010513
       }
     },
     {
@@ -393,7 +393,7 @@
       "name": "night-evolver-5round",
       "enabled": true,
       "createdAtMs": 1772733652044,
-      "updatedAtMs": 1772737279933,
+      "updatedAtMs": 1772823698375,
       "schedule": {
         "kind": "cron",
         "expr": "0 3 * * *",
@@ -412,11 +412,11 @@
         "to": "channel:1477278968909660375"
       },
       "state": {
-        "nextRunAtMs": 1772823600000,
-        "lastRunAtMs": 1772737200008,
+        "nextRunAtMs": 1772910000000,
+        "lastRunAtMs": 1772823600011,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 79925,
+        "lastDurationMs": 98364,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0

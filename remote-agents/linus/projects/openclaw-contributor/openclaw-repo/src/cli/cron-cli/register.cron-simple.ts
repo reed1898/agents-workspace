@@ -2,7 +2,7 @@ import type { Command } from "commander";
 import { danger } from "../../globals.js";
 import { defaultRuntime } from "../../runtime.js";
 import { addGatewayClientOptions, callGatewayFromCli } from "../gateway-rpc.js";
-import { warnIfCronSchedulerDisabled } from "./shared.js";
+import { formatCronJobJson, warnIfCronSchedulerDisabled } from "./shared.js";
 
 function registerCronToggleCommand(params: {
   cron: Command;
@@ -21,7 +21,7 @@ function registerCronToggleCommand(params: {
             id,
             patch: { enabled: params.enabled },
           });
-          defaultRuntime.log(JSON.stringify(res, null, 2));
+          defaultRuntime.log(JSON.stringify(formatCronJobJson(res), null, 2));
           await warnIfCronSchedulerDisabled(opts);
         } catch (err) {
           defaultRuntime.error(danger(String(err)));

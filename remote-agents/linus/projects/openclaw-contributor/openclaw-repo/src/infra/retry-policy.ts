@@ -71,46 +71,6 @@ export function createDiscordRetryRunner(params: {
     });
 }
 
-export const WHATSAPP_RETRY_DEFAULTS = {
-  attempts: 5,
-  minDelayMs: 2_000,
-  maxDelayMs: 30_000,
-  jitter: 0.15,
-};
-
-const WHATSAPP_RETRY_RE = /429|timeout|connect|reset|closed|unavailable|temporarily|socket/i;
-
-export function createWhatsAppRetryRunner(params: {
-  retry?: RetryConfig;
-  configRetry?: RetryConfig;
-  verbose?: boolean;
-  shouldRetry?: (err: unknown) => boolean;
-}): RetryRunner {
-  const retryConfig = resolveRetryConfig(WHATSAPP_RETRY_DEFAULTS, {
-    ...params.configRetry,
-    ...params.retry,
-  });
-  const shouldRetry = params.shouldRetry
-    ? (err: unknown) =>
-        params.shouldRetry?.(err) || WHATSAPP_RETRY_RE.test(formatErrorMessage(err))
-    : (err: unknown) => WHATSAPP_RETRY_RE.test(formatErrorMessage(err));
-
-  return <T>(fn: () => Promise<T>, label?: string) =>
-    retryAsync(fn, {
-      ...retryConfig,
-      label,
-      shouldRetry,
-      onRetry: params.verbose
-        ? (info) => {
-            const maxRetries = Math.max(1, info.maxAttempts - 1);
-            log.warn(
-              `whatsapp send retry ${info.attempt}/${maxRetries} for ${info.label ?? label ?? "request"} in ${info.delayMs}ms: ${formatErrorMessage(info.err)}`,
-            );
-          }
-        : undefined,
-    });
-}
-
 export function createTelegramRetryRunner(params: {
   retry?: RetryConfig;
   configRetry?: RetryConfig;

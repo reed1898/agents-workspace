@@ -1,40 +1,37 @@
 {
   "last_run": {
-    "run_id": "run_1772737236992",
-    "created_at": "2026-03-05T19:00:37.023Z",
-    "parent_event_id": "evt_1772732997448",
-    "selected_gene_id": "gene_gep_innovate_from_opportunity",
-    "selected_capsule_id": "capsule_1772732997448",
+    "run_id": "run_1772823626647",
+    "created_at": "2026-03-06T19:00:26.677Z",
+    "parent_event_id": null,
+    "selected_gene_id": null,
+    "selected_capsule_id": null,
     "selector": {
-      "selected": "gene_gep_innovate_from_opportunity",
+      "selected": null,
       "reason": [
-        "signals match gene.signals_match",
-        "capsule trigger matches signals",
-        "signals: capability_gap, high_tool_usage:exec, repeated_tool_usage:exec",
-        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.875",
-        "drift_intensity: 0.577"
+        "no matching gene found; new gene may be required",
+        "signals: integration_key_missing, repeated_tool_usage:exec",
+        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.394",
+        "drift_intensity: 0.707"
       ],
       "alternatives": []
     },
     "signals": [
-      "capability_gap",
-      "high_tool_usage:exec",
+      "integration_key_missing",
       "repeated_tool_usage:exec"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1772737236989",
-      "category": "innovate",
+      "id": "mut_1772823626646",
+      "category": "optimize",
       "trigger_signals": [
-        "capability_gap",
-        "high_tool_usage:exec",
+        "integration_key_missing",
         "repeated_tool_usage:exec"
       ],
-      "target": "gene:gene_gep_innovate_from_opportunity",
-      "expected_effect": "explore new strategy combinations to escape local optimum",
-      "risk_level": "medium"
+      "target": "behavior:protocol",
+      "expected_effect": "improve success rate and reduce repeated operational cost",
+      "risk_level": "low"
     },
-    "mutation_id": "mut_1772737236989",
+    "mutation_id": "mut_1772823626646",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -53,16 +50,12 @@
     "reused_source_node": null,
     "reused_chain_id": null,
     "baseline_untracked": [
-      "assets/gep/failed_capsules.json",
-      "assets/gep/genes.jsonl",
-      "evolver.pid",
-      "logs/status_undefined.json",
-      "package-lock.json"
+      "assets/gep/candidates.jsonl"
     ],
-    "baseline_git_head": "9c915013a89a4d24fba5dc79a989f18b88f9d2f5",
+    "baseline_git_head": "9e3b0fbec6003ca0c61622bca07be32c47cb1cfe",
     "blast_radius_estimate": {
-      "files": 25,
-      "lines": 2000
+      "files": 12,
+      "lines": 960
     },
     "active_task_id": null,
     "active_task_title": null,

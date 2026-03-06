@@ -1,2 +1,23 @@
 2026/03/06-22:24:51.737 19796d8 Creating DB /Users/rain/.openclaw/browser/openclaw/user-data/Default/IndexedDB/https_www.reddit.com_0.indexeddb.leveldb since it was missing.
 2026/03/06-22:24:51.741 19796d8 Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/IndexedDB/https_www.reddit.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/03/07-02:06:01.854 19796db Level-0 table #5: started
+2026/03/07-02:06:01.868 19796db Level-0 table #5: 947809 bytes OK
+2026/03/07-02:06:01.871 19796db Delete type=0 #3
+2026/03/07-03:42:34.553 19796db Level-0 table #7: started
+2026/03/07-03:42:34.569 19796db Level-0 table #7: 943675 bytes OK
+2026/03/07-03:42:34.571 19796db Delete type=0 #4
+2026/03/07-03:50:50.376 19796d8 Compacting 1@1 + 1@2 files
+2026/03/07-03:50:50.387 19796d8 Generated table #8@1: 109 keys, 6815 bytes
+2026/03/07-03:50:50.387 19796d8 Compacted 1@1 + 1@2 files => 6815 bytes
+2026/03/07-03:50:50.388 19796d8 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/03/07-03:50:50.389 19796d8 Delete type=2 #7
+2026/03/07-03:50:50.389 19796d8 Delete type=2 #5
+2026/03/07-05:18:49.535 19796db Level-0 table #10: started
+2026/03/07-05:18:49.548 19796db Level-0 table #10: 945034 bytes OK
+2026/03/07-05:18:49.550 19796db Delete type=0 #6
+2026/03/07-05:31:44.272 19796d8 Compacting 1@1 + 1@2 files
+2026/03/07-05:31:44.280 19796d8 Generated table #11@1: 109 keys, 6804 bytes
+2026/03/07-05:31:44.280 19796d8 Compacted 1@1 + 1@2 files => 6804 bytes
+2026/03/07-05:31:44.281 19796d8 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/03/07-05:31:44.281 19796d8 Delete type=2 #10
+2026/03/07-05:31:44.282 19796d8 Delete type=2 #8

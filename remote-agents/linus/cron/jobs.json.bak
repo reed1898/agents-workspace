@@ -6,7 +6,7 @@
       "name": "agent-data-sync",
       "enabled": true,
       "createdAtMs": 1772474670659,
-      "updatedAtMs": 1772812991992,
+      "updatedAtMs": 1772831227474,
       "schedule": {
         "kind": "cron",
         "expr": "0 */4 * * *",
@@ -19,11 +19,11 @@
         "text": "HEARTBEAT: Sync agent-network-data and agent-knowledge-layer"
       },
       "state": {
-        "nextRunAtMs": 1772827372942,
-        "lastRunAtMs": 1772812972961,
+        "nextRunAtMs": 1772841772942,
+        "lastRunAtMs": 1772831185488,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 19031,
+        "lastDurationMs": 41986,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -253,7 +253,7 @@
       "name": "linus-kb-sync-hourly",
       "enabled": true,
       "createdAtMs": 1772587835886,
-      "updatedAtMs": 1772812842254,
+      "updatedAtMs": 1772820564606,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -271,15 +271,14 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772816404513,
-        "lastRunAtMs": 1772812804599,
+        "nextRunAtMs": 1772823604513,
+        "lastRunAtMs": 1772820513255,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 37655,
+        "lastDurationMs": 51351,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "lastDelivered": false,
-        "runningAtMs": 1772816404529
+        "lastDelivered": false
       }
     },
     {

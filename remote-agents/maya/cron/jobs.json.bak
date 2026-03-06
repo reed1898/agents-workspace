@@ -1006,7 +1006,7 @@
       "name": "kb-hourly-unified-maya",
       "enabled": true,
       "createdAtMs": 1772588305081,
-      "updatedAtMs": 1772811554472,
+      "updatedAtMs": 1772829540243,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1023,15 +1023,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772815105880,
-        "lastRunAtMs": 1772811505880,
+        "nextRunAtMs": 1772833105931,
+        "lastRunAtMs": 1772829505931,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 48592,
+        "lastDurationMs": 34312,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772815105888
+        "consecutiveErrors": 0
       },
       "description": "Unified hourly KB sync + PR merge (single job to avoid race)"
     },
@@ -1103,7 +1102,8 @@
         "lastDurationMs": 79530,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772830710355
       }
     }
   ]

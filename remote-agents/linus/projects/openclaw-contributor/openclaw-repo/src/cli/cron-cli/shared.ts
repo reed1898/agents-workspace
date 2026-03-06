@@ -174,6 +174,71 @@ const formatStatus = (job: CronJob) => {
   return job.state.lastStatus ?? "idle";
 };
 
+/**
+ * Format a millisecond epoch timestamp to "YYYY-MM-DD HH:MM:SSZ (relative)" for display.
+ * Returns `undefined` if the input is falsy or not a finite number.
+ */
+const formatMsHuman = (ms: number | null | undefined, nowMs: number): string | undefined => {
+  if (!ms || !Number.isFinite(ms)) {
+    return undefined;
+  }
+  const d = new Date(ms);
+  if (Number.isNaN(d.getTime())) {
+    return undefined;
+  }
+  const iso = d.toISOString();
+  const dateTime = `${iso.slice(0, 10)} ${iso.slice(11, 19)}Z`;
+  const delta = ms - nowMs;
+  const relative = formatSpan(Math.abs(delta));
+  const suffix = delta >= 0 ? `in ${relative}` : `${relative} ago`;
+  return `${dateTime} (${suffix})`;
+};
+
+/**
+ * Decorate a cron job (or similar object with a `state` containing `*AtMs` fields)
+ * with human-readable datetime annotations so `JSON.stringify` output is friendlier.
+ *
+ * The original fields are preserved; new `*_human` sibling fields are added alongside.
+ */
+export function formatCronJobJson(job: unknown): unknown {
+  if (!job || typeof job !== "object") {
+    return job;
+  }
+  const obj = job as Record<string, unknown>;
+  const nowMs = Date.now();
+  const result: Record<string, unknown> = {};
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (key === "state" && value && typeof value === "object") {
+      const state = value as Record<string, unknown>;
+      const decoratedState: Record<string, unknown> = {};
+      for (const [sKey, sValue] of Object.entries(state)) {
+        decoratedState[sKey] = sValue;
+        if (sKey.endsWith("AtMs") && typeof sValue === "number") {
+          const humanKey = sKey.replace(/AtMs$/, "At_human");
+          const humanVal = formatMsHuman(sValue, nowMs);
+          if (humanVal) {
+            decoratedState[humanKey] = humanVal;
+          }
+        }
+      }
+      result[key] = decoratedState;
+    } else if (key === "createdAtMs" || key === "updatedAtMs") {
+      result[key] = value;
+      if (typeof value === "number") {
+        const humanKey = key.replace(/AtMs$/, "At_human");
+        const humanVal = formatMsHuman(value, nowMs);
+        if (humanVal) {
+          result[humanKey] = humanVal;
+        }
+      }
+    } else {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
 export function printCronList(jobs: CronJob[], runtime = defaultRuntime) {
   if (jobs.length === 0) {
     runtime.log("No cron jobs.");

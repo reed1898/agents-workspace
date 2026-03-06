@@ -1,7 +1,7 @@
 {
   "last_run": {
-    "run_id": "run_1772744420211",
-    "created_at": "2026-03-05T21:00:20.322Z",
+    "run_id": "run_1772827246595",
+    "created_at": "2026-03-06T20:00:46.708Z",
     "parent_event_id": null,
     "selected_gene_id": "gene_gep_repair_from_errors",
     "selected_capsule_id": "capsule_1770477654236",
@@ -10,31 +10,34 @@
       "reason": [
         "signals match gene.signals_match",
         "capsule trigger matches signals",
-        "signals: log_error, errsig:**TOOLRESULT**: git : error: cannot rebase: You have unstaged changes. ����λ�� ��:1 �ַ�: 1 + git -C \"C:/Users/RainH/.openclaw/shared/agent-knowledge-layer\" rebase ... + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ + CategoryInfo : NotS, user_feature_request:add 2026-03-06 evolver notes 1 file changed, 36 insertions(+) create mode, capability_gap, high_tool_usage:exec, repeated_tool_usage:exec",
-        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.250",
+        "signals: log_error, errsig:**TOOLRESULT**: ����λ�� ��:1 �ַ�: 41 + cd ~/.openclaw/workspace/skills/evolver && node -e \"const p=require(' ... + ~~ ��ǡ�&&�����Ǵ˰汾�е���Ч���ָ����� + CategoryInfo : ParserError: (:) [], ParentContainsErrorRecordException + FullyQualifiedErrorId : Invalid, protocol_drift, user_feature_request:- 进化日志已追加写入 `~/.openclaw/shared/agent-knowledge-layer/2026-03-06-jesse-evolver.md`, perf_bottleneck, high_tool_usage:exec, repeated_tool_usage:exec",
+        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.200",
         "drift_intensity: 0.577"
       ],
       "alternatives": [
-        "gene_gep_innovate_from_opportunity"
+        "gene_gep_innovate_from_opportunity",
+        "gene_gep_optimize_prompt_and_assets"
       ]
     },
     "signals": [
       "log_error",
-      "errsig:**TOOLRESULT**: git : error: cannot rebase: You have unstaged changes. ����λ�� ��:1 �ַ�: 1 + git -C \"C:/Users/RainH/.openclaw/shared/agent-knowledge-layer\" rebase ... + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ + CategoryInfo : NotS",
-      "user_feature_request:add 2026-03-06 evolver notes 1 file changed, 36 insertions(+) create mode",
-      "capability_gap",
+      "errsig:**TOOLRESULT**: ����λ�� ��:1 �ַ�: 41 + cd ~/.openclaw/workspace/skills/evolver && node -e \"const p=require(' ... + ~~ ��ǡ�&&�����Ǵ˰汾�е���Ч���ָ����� + CategoryInfo : ParserError: (:) [], ParentContainsErrorRecordException + FullyQualifiedErrorId : Invalid",
+      "protocol_drift",
+      "user_feature_request:- 进化日志已追加写入 `~/.openclaw/shared/agent-knowledge-layer/2026-03-06-jesse-evolver.md`",
+      "perf_bottleneck",
       "high_tool_usage:exec",
       "repeated_tool_usage:exec"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1772744420209",
+      "id": "mut_1772827246592",
       "category": "repair",
       "trigger_signals": [
         "log_error",
-        "errsig:**TOOLRESULT**: git : error: cannot rebase: You have unstaged changes. ����λ�� ��:1 �ַ�: 1 + git -C \"C:/Users/RainH/.openclaw/shared/agent-knowledge-layer\" rebase ... + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ + CategoryInfo : NotS",
-        "user_feature_request:add 2026-03-06 evolver notes 1 file changed, 36 insertions(+) create mode",
-        "capability_gap",
+        "errsig:**TOOLRESULT**: ����λ�� ��:1 �ַ�: 41 + cd ~/.openclaw/workspace/skills/evolver && node -e \"const p=require(' ... + ~~ ��ǡ�&&�����Ǵ˰汾�е���Ч���ָ����� + CategoryInfo : ParserError: (:) [], ParentContainsErrorRecordException + FullyQualifiedErrorId : Invalid",
+        "protocol_drift",
+        "user_feature_request:- 进化日志已追加写入 `~/.openclaw/shared/agent-knowledge-layer/2026-03-06-jesse-evolver.md`",
+        "perf_bottleneck",
         "high_tool_usage:exec",
         "repeated_tool_usage:exec"
       ],
@@ -42,7 +45,7 @@
       "expected_effect": "reduce runtime errors, increase stability, and lower failure rate",
       "risk_level": "low"
     },
-    "mutation_id": "mut_1772744420209",
+    "mutation_id": "mut_1772827246592",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,

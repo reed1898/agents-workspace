@@ -6,7 +6,7 @@
       "name": "sync-shared-repos-4h",
       "enabled": true,
       "createdAtMs": 1772474989691,
-      "updatedAtMs": 1772817853746,
+      "updatedAtMs": 1772832257759,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -19,11 +19,11 @@
         "text": "SYNC_SHARED_REPOS_4H: pull ~/.openclaw/shared/agent-network-data and ~/.openclaw/shared/agent-knowledge-layer; report only on failure"
       },
       "state": {
-        "nextRunAtMs": 1772832227833,
-        "lastRunAtMs": 1772817827833,
+        "nextRunAtMs": 1772846627870,
+        "lastRunAtMs": 1772832227870,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 25913,
+        "lastDurationMs": 29889,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -200,7 +200,7 @@
       "name": "evolver-hourly-0300-0600",
       "enabled": true,
       "createdAtMs": 1772560610373,
-      "updatedAtMs": 1772748066985,
+      "updatedAtMs": 1772830857751,
       "schedule": {
         "kind": "cron",
         "expr": "0 3-6 * * *",
@@ -213,11 +213,11 @@
         "text": "【Evolver 定时任务】现在执行 capability-evolver（autogame-17/evolver）一轮进化：优先运行 node index.js --review；若环境不支持 review 再运行 node index.js。完成后必须：1) 将本轮进化记录（发现问题、改进点、风险、变更结果）追加写入 ~/.openclaw/shared/agent-knowledge-layer 当日日志；2) 产出“当日进化总结报告”（可累计更新）；3) 通过 Telegram channel 发送给 Reed，格式：结论1句 + 依据1-3点 + 下一步1句。若执行失败，按失败透明规则报告卡点/原因/下一步。"
       },
       "state": {
-        "nextRunAtMs": 1772823600000,
-        "lastRunAtMs": 1772748000033,
+        "nextRunAtMs": 1772834400000,
+        "lastRunAtMs": 1772830800032,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 66952,
+        "lastDurationMs": 57719,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -229,7 +229,7 @@
       "name": "jesse-kb-hourly-closed-loop",
       "enabled": true,
       "createdAtMs": 1772587814607,
-      "updatedAtMs": 1772814912289,
+      "updatedAtMs": 1772829318498,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -247,11 +247,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772818476566,
-        "lastRunAtMs": 1772814876566,
+        "nextRunAtMs": 1772832876692,
+        "lastRunAtMs": 1772829276692,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 35723,
+        "lastDurationMs": 41806,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -264,7 +264,7 @@
       "name": "Hourly proactive status to Reed",
       "enabled": true,
       "createdAtMs": 1772604480895,
-      "updatedAtMs": 1772817126062,
+      "updatedAtMs": 1772831526340,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -277,11 +277,11 @@
         "text": "【每小时主动汇报提醒】如果过去1小时 Reed 没有新指令，请主动发送：1) 你刚才在做什么；2) 当前可推进的1-3件事；3) 等待 Reed 最新指令。若当前无任务，给出可执行候选并保持简洁。"
       },
       "state": {
-        "nextRunAtMs": 1772820718277,
-        "lastRunAtMs": 1772817118277,
+        "nextRunAtMs": 1772835118387,
+        "lastRunAtMs": 1772831518387,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 7785,
+        "lastDurationMs": 7953,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -608,7 +608,8 @@
         "lastDurationMs": 273723,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772832600030
       }
     },
     {

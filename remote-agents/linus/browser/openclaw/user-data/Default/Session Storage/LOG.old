@@ -1,3 +1,18 @@
-2026/03/06-15:20:43.600 3ff6d5 Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/MANIFEST-000001
-2026/03/06-15:20:43.632 3ff6d5 Recovering log #25
-2026/03/06-15:20:43.633 3ff6d5 Reusing old log /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/000025.log 
+2026/03/06-21:06:46.200 232cc Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/MANIFEST-000001
+2026/03/06-21:06:46.202 232cc Recovering log #25
+2026/03/06-21:06:46.206 232cc Reusing old log /Users/rain/.openclaw/browser/openclaw/user-data/Default/Session Storage/000025.log 
+2026/03/06-22:53:37.521 232cf Level-0 table #29: started
+2026/03/06-22:53:37.553 232cf Level-0 table #29: 112386 bytes OK
+2026/03/06-22:53:37.582 232cf Delete type=0 #25
+2026/03/06-22:53:37.585 232cf Compacting 4@0 + 1@1 files
+2026/03/06-22:53:37.771 232cf Generated table #30@0: 266 keys, 116215 bytes
+2026/03/06-22:53:37.771 232cf Compacted 4@0 + 1@1 files => 116215 bytes
+2026/03/06-22:53:37.871 232cf compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/03/06-22:53:37.925 232cf Delete type=2 #29
+2026/03/06-22:53:37.926 232cf Delete type=2 #20
+2026/03/06-22:53:37.926 232cf Delete type=2 #22
+2026/03/06-22:53:37.926 232cf Delete type=2 #26
+2026/03/06-22:53:37.926 232cf Delete type=2 #18
+2026/03/06-22:55:34.096 232cf Level-0 table #32: started
+2026/03/06-22:55:34.101 232cf Level-0 table #32: 106200 bytes OK
+2026/03/06-22:55:34.109 232cf Delete type=0 #28
