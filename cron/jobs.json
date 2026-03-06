@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772748284683,
+      "updatedAtMs": 1772762769689,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772762656197,
-        "lastRunAtMs": 1772748256197,
+        "nextRunAtMs": 1772777144805,
+        "lastRunAtMs": 1772762744805,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 28486,
+        "lastDurationMs": 24884,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -285,7 +285,7 @@
       "name": "kb-hourly-closed-loop-xiaohong",
       "enabled": true,
       "createdAtMs": 1772587819080,
-      "updatedAtMs": 1772676290664,
+      "updatedAtMs": 1772762742755,
       "schedule": {
         "kind": "cron",
         "expr": "0 10,22 * * *",
@@ -305,11 +305,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772762637495,
-        "lastRunAtMs": 1772676237503,
+        "nextRunAtMs": 1772805837495,
+        "lastRunAtMs": 1772762637504,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 53161,
+        "lastDurationMs": 105251,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -358,7 +358,7 @@
       "name": "evolver_watchdog_robust",
       "enabled": true,
       "createdAtMs": 1772731903737,
-      "updatedAtMs": 1772758986172,
+      "updatedAtMs": 1772773376312,
       "schedule": {
         "kind": "every",
         "everyMs": 1800000,
@@ -375,11 +375,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772760743899,
-        "lastRunAtMs": 1772758943899,
+        "nextRunAtMs": 1772775143994,
+        "lastRunAtMs": 1772773343994,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 42273,
+        "lastDurationMs": 32318,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0

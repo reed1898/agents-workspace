@@ -6,7 +6,7 @@
       "name": "sync-shared-repos-4h",
       "enabled": true,
       "createdAtMs": 1772474989691,
-      "updatedAtMs": 1772745855449,
+      "updatedAtMs": 1772760255462,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -19,11 +19,11 @@
         "text": "SYNC_SHARED_REPOS_4H: pull ~/.openclaw/shared/agent-network-data and ~/.openclaw/shared/agent-knowledge-layer; report only on failure"
       },
       "state": {
-        "nextRunAtMs": 1772760227701,
-        "lastRunAtMs": 1772745827701,
+        "nextRunAtMs": 1772774627722,
+        "lastRunAtMs": 1772760227722,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 27748,
+        "lastDurationMs": 27740,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -229,7 +229,7 @@
       "name": "jesse-kb-hourly-closed-loop",
       "enabled": true,
       "createdAtMs": 1772587814607,
-      "updatedAtMs": 1772757327241,
+      "updatedAtMs": 1772771714475,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -247,11 +247,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772760876064,
-        "lastRunAtMs": 1772757276064,
+        "nextRunAtMs": 1772775276191,
+        "lastRunAtMs": 1772771676191,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 51177,
+        "lastDurationMs": 38284,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -264,7 +264,7 @@
       "name": "Hourly proactive status to Reed",
       "enabled": true,
       "createdAtMs": 1772604480895,
-      "updatedAtMs": 1772755772579,
+      "updatedAtMs": 1772770155544,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -277,13 +277,14 @@
         "text": "【每小时主动汇报提醒】如果过去1小时 Reed 没有新指令，请主动发送：1) 你刚才在做什么；2) 当前可推进的1-3件事；3) 等待 Reed 最新指令。若当前无任务，给出可执行候选并保持简洁。"
       },
       "state": {
-        "nextRunAtMs": 1772759332767,
-        "lastRunAtMs": 1772755732767,
+        "nextRunAtMs": 1772773747696,
+        "lastRunAtMs": 1772770147696,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 39812,
+        "lastDurationMs": 7848,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772773781802
       }
     },
     {
@@ -293,7 +294,7 @@
       "name": "Crypto市场晨报",
       "enabled": true,
       "createdAtMs": 1772627528304,
-      "updatedAtMs": 1772735140267,
+      "updatedAtMs": 1772759556033,
       "schedule": {
         "kind": "cron",
         "expr": "7 9 * * *",
@@ -312,11 +313,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772759220000,
-        "lastRunAtMs": 1772672820022,
+        "nextRunAtMs": 1772845620000,
+        "lastRunAtMs": 1772759356731,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 82991,
+        "lastDurationMs": 199302,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -329,7 +330,7 @@
       "name": "Crypto市场午报",
       "enabled": true,
       "createdAtMs": 1772627528374,
-      "updatedAtMs": 1772735187423,
+      "updatedAtMs": 1772773779640,
       "schedule": {
         "kind": "cron",
         "expr": "7 13 * * *",
@@ -348,11 +349,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772773620000,
-        "lastRunAtMs": 1772687220028,
+        "nextRunAtMs": 1772860020000,
+        "lastRunAtMs": 1772773620044,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 72196,
+        "lastDurationMs": 159596,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -401,7 +402,7 @@
       "name": "A股盘后总结",
       "enabled": true,
       "createdAtMs": 1772714846846,
-      "updatedAtMs": 1772714846846,
+      "updatedAtMs": 1772762187780,
       "schedule": {
         "kind": "cron",
         "expr": "15 15 * * 1-5",
@@ -412,7 +413,7 @@
       "payload": {
         "kind": "agentTurn",
         "message": "现在是A股收盘后15分钟，请执行盘后总结任务：\n1. 通过东方财富API拉取今日三大指数（上证/深证/创业板）收盘数据、成交额、涨跌家数、板块涨幅TOP5和跌幅TOP5\n2. 连接 trading_notes 数据库查询 Reed 的A股持仓（positions表，is_closed=0，account_type=a_stock），再用东方财富API获取每只持仓的今日实时收盘价\n3. 按以下模版生成盘后总结并发送给 Reed：\n   - 一、三大指数表现（表格）\n   - 二、板块热点（领涨/领跌）\n   - 三、持仓今日表现（按账户分组，含标的/持仓/成本/今收/今日涨跌/持仓盈亏/盈亏%）\n   - 四、持仓整体一览（账户汇总）\n   - 五、今日持仓亮点（涨幅最大、盈利最多、亏损最深、需关注的标的）\n4. 注意：周末和法定节假日不需要发送（cron已限制周一到周五，但如果遇到调休请在总结开头说明今日休市）",
-        "timeoutSeconds": 300
+        "timeoutSeconds": 480
       },
       "delivery": {
         "mode": "announce",
@@ -430,18 +431,18 @@
       "name": "A股盘前总结",
       "enabled": true,
       "createdAtMs": 1772715009285,
-      "updatedAtMs": 1772759345376,
+      "updatedAtMs": 1772760552478,
       "schedule": {
         "kind": "cron",
-        "expr": "0 9 * * 1-5",
+        "expr": "0 8 * * 1-5",
         "tz": "Asia/Shanghai"
       },
       "sessionTarget": "isolated",
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "现在是A股开盘前（北京时间09:00），请执行A股盘前总结任务，发送给 Reed：\n\n## 一、隔夜外盘回顾\n- 美股三大指数昨夜收盘表现\n- 中概股表现\n- 欧洲主要市场\n- 恒生指数/恒生科技\n- 美元指数、10年期美债收益率\n- 大宗商品、加密货币\n\n## 二、宏观与政策\n- 重要经济数据\n- 央行/监管层政策动向\n- 国内外重要财经新闻\n\n## 三、市场情绪\n- A50期货\n- 北向资金前日流向\n- 融资融券余额变化\n\n## 四、⭐ Reed A股持仓逐只深度扫描（最重要！）\n连接 trading_notes 数据库查询 Reed 的A股持仓（JOIN trade_accounts，account_type='a_stock'，is_closed=0）。\n对每一只持仓个股，通过 web 搜索获取最新信息，逐只分析以下维度：\n\n1. **昨收价格与近期走势**\n2. **最新重大新闻/公告**（过去48小时内）\n3. **管理层变动**（董事长/总经理/董秘变化）\n4. **股权变动**（大股东增减持、股东质押、解禁、定增）\n5. **收购/并购/重组/战略合作**消息\n6. **📊 财报日期预警（关键！）**\n   - 下一次财报（季报/年报）发布日期\n   - 距离财报还有几天\n   - ⚠️ 如果财报在5个交易日内，必须用 🔴❗ 醒目标注\n   - 💡 Reed 的原则：财报前清仓，不赌财报\n7. **分析师评级/研报**变动\n8. **重大诉讼/监管/处罚风险**\n9. **所在板块/行业政策面影响**\n10. **技术面关键位**（支撑/阻力）\n11. **龙虎榜/大单异动**（如昨日有的话）\n\n每只股票输出格式：\n📌 **代码 股票名称** — 账户名\n· 持仓：XX股 | 成本：¥XX | 昨收：¥XX\n· 持仓盈亏：XX%（¥XX）\n· 最新公告/动态：...\n· 管理层/股权变动：...\n· 📊 财报：下次 YYYY-MM-DD（还有X天）[预警等级]\n· 研报/评级：...\n· 风险提示：...\n· 💡 操作建议：...\n\n## 五、🔴 财报清仓预警汇总\n- 单独列出所有5个交易日内有财报的持仓\n- 明确建议：根据 Reed 的\"财报前清仓不赌\"原则，这些标的需要在财报前减仓/清仓\n\n## 六、今日关注\n- 今日重要经济数据/事件\n- 新股申购/上市\n- 限售股解禁\n\n## 七、今日走势预判\n- 综合预判（偏多/震荡/偏空）\n- 板块方向\n- 操作建议\n\n数据来源：东方财富、同花顺、巨潮资讯、web搜索等。\n\n重要提醒：\n- 每只持仓都必须扫描，不能省略任何一只\n- 财报日期是最重要的预警信息，必须准确查询\n- 如果某只股票信息获取失败，必须明确说明，不能编造",
-        "timeoutSeconds": 480
+        "message": "现在是A股开盘前（北京时间08:00），请执行A股盘前总结任务，发送给 Reed：\n\n## 一、隔夜外盘回顾\n- 美股三大指数昨夜收盘表现\n- 中概股表现\n- 欧洲主要市场\n- 恒生指数/恒生科技\n- 美元指数、10年期美债收益率\n- 大宗商品、加密货币\n\n## 二、宏观与政策\n- 重要经济数据\n- 央行/监管层政策动向\n- 国内外重要财经新闻\n\n## 三、市场情绪\n- A50期货\n- 北向资金前日流向\n- 融资融券余额变化\n\n## 四、⭐ Reed A股持仓逐只深度扫描（最重要！）\n连接 trading_notes 数据库查询 Reed 的A股持仓（JOIN trade_accounts，account_type='a_stock'，is_closed=0）。\n对每一只持仓个股，通过 web 搜索获取最新信息，逐只分析以下维度：\n\n1. **昨收价格与近期走势**\n2. **最新重大新闻/公告**（过去48小时内）\n3. **管理层变动**（董事长/总经理/董秘变化）\n4. **股权变动**（大股东增减持、股东质押、解禁、定增）\n5. **收购/并购/重组/战略合作**消息\n6. **📊 财报日期预警（关键！）**\n   - 下一次财报（季报/年报）发布日期\n   - 距离财报还有几天\n   - ⚠️ 如果财报在5个交易日内，必须用 🔴❗ 醒目标注\n   - 💡 Reed 的原则：财报前清仓，不赌财报\n7. **分析师评级/研报**变动\n8. **重大诉讼/监管/处罚风险**\n9. **所在板块/行业政策面影响**\n10. **技术面关键位**（支撑/阻力）\n11. **龙虎榜/大单异动**（如昨日有的话）\n\n每只股票输出格式：\n📌 **代码 股票名称** — 账户名\n· 持仓：XX股 | 成本：¥XX | 昨收：¥XX\n· 持仓盈亏：XX%（¥XX）\n· 最新公告/动态：...\n· 管理层/股权变动：...\n· 📊 财报：下次 YYYY-MM-DD（还有X天）[预警等级]\n· 研报/评级：...\n· 风险提示：...\n· 💡 操作建议：...\n\n## 五、🔴 财报清仓预警汇总\n- 单独列出所有5个交易日内有财报的持仓\n- 明确建议：根据 Reed 的\"财报前清仓不赌\"原则，这些标的需要在财报前减仓/清仓\n\n## 六、今日关注\n- 今日重要经济数据/事件\n- 新股申购/上市\n- 限售股解禁\n\n## 七、今日走势预判\n- 综合预判（偏多/震荡/偏空）\n- 板块方向\n- 操作建议\n\n数据来源：东方财富、同花顺、巨潮资讯、web搜索等。\n\n重要提醒：\n- 每只持仓都必须扫描，不能省略任何一只\n- 财报日期是最重要的预警信息，必须准确查询\n- 如果某只股票信息获取失败，必须明确说明，不能编造",
+        "timeoutSeconds": 900
       },
       "delivery": {
         "mode": "announce",
@@ -449,7 +450,7 @@
         "channel": "telegram"
       },
       "state": {
-        "nextRunAtMs": 1773018000000,
+        "nextRunAtMs": 1773014400000,
         "lastRunAtMs": 1772758865344,
         "lastRunStatus": "error",
         "lastStatus": "error",
@@ -466,7 +467,7 @@
       "name": "A股开盘短报",
       "enabled": true,
       "createdAtMs": 1772715203126,
-      "updatedAtMs": 1772715203126,
+      "updatedAtMs": 1772762187528,
       "schedule": {
         "kind": "cron",
         "expr": "45 9 * * 1-5",
@@ -477,7 +478,7 @@
       "payload": {
         "kind": "agentTurn",
         "message": "现在是A肩开盘15分钟，请执行开盘短报任务，发送给 Reed：\n\n## 一、开盘总览\n- 三大指数开盘表现（上证/深证/创业板）：开盘价、当前价、涨跌幅\n- 成交额情况（与昨日同期对比）\n- 涨跌家数、涨停/跌停数量\n\n## 二、板块动向\n- 开盘15分钟涨幅前5板块\n- 开盘15分钟跌幅前5板块\n- 主力资金流入方向\n\n## 三、Reed 持仓实时表现\n- 连接 trading_notes 数据库查询 Reed 的A股持仓（positions表，is_closed=0，account_type=a_stock）\n- 通过东方财富API获取每只持仓当前实时价格\n- 按账户分组展示：标的、持仓、成本、当前价、今日涨跌%、持仓盈亏%\n\n## 四、❗预警提醒（重点！）\n对每只持仓进行预警检查，触发任一条件即预警：\n- 🔴 今日跌幅超过 -5%：单日大跌预警\n- 🔴 今日跌庅超过 -3% 且持仓浮亏超过 -20%：加速亏损预警\n- 🟡 持仓浮亏超过 -25%：深度套牢预警\n- 🟡 成交量异常放大（如能判断）\n预警格式：用❗和红色标记突出显示，说明触发原因和建议操作\n\n## 五、开盘简评\n- 开盘风格判断（强势/震荡/弱势）\n- 与盘前预判对比\n- 简短操作建议\n\n数据来源：东方财富API实时行情 + trading_notes数据库。",
-        "timeoutSeconds": 300
+        "timeoutSeconds": 600
       },
       "delivery": {
         "mode": "announce",
@@ -485,7 +486,14 @@
         "channel": "telegram"
       },
       "state": {
-        "nextRunAtMs": 1772761500000
+        "nextRunAtMs": 1773020700000,
+        "lastRunAtMs": 1772761500027,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 300033,
+        "lastError": "cron: job execution timed out",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
       }
     },
     {
@@ -495,7 +503,7 @@
       "name": "美股盘前总结",
       "enabled": true,
       "createdAtMs": 1772715609964,
-      "updatedAtMs": 1772726655047,
+      "updatedAtMs": 1772762187698,
       "schedule": {
         "kind": "cron",
         "expr": "0 22 * * 1-5",
@@ -506,7 +514,7 @@
       "payload": {
         "kind": "agentTurn",
         "message": "现在是美股开盘前（北京时间22:00），请执行美股盘前总结任务，发送给 Reed：\n\n## 一、全球市场回顾\n- A股今日收盘表现（三大指数简要）\n- 欧洲主要市场实时表现\n- 恒生指数/恒生科技今日表现\n- 美元指数、10年期美债收益率\n- 原油、黄金等大宗商品\n- 加密货币（BTC/ETH）近期走势\n\n## 二、美股盘前交易数据\n- 美股三大期指盘前涨跌幅\n- 盘前涨幅前10热门个股（含异动原因）\n- 盘前跌幅前10热门个股（含异动原因）\n- 科技巨头盘前表现（AAPL/MSFT/GOOGL/AMZN/NVDA/META/TSLA）\n- 热门中概股盘前表现\n\n## 三、宏观与事件\n- 今日重要经济数据\n- 美联储官员讲话\n- 重要财报日历\n- 其他市场事件\n\n## 四、⭐ Reed 美股持仓逐只深度扫描（最重要！）\n连接 trading_notes 数据库查询 Reed 的美股持仓（JOIN trade_accounts，account_type='us_stock'，is_closed=0）。\n对每一只持仓个股，通过 web 搜索获取最新信息，逐只分析以下维度：\n\n1. **盘前价格与涨跌幅**\n2. **最新重大新闻**（过去48小时内）\n3. **管理层变动**（CEO/CFO/董事会变化）\n4. **股权变动**（大股东增减持、机构持仓变化、内部人交易）\n5. **收购/并购/战略合作**消息\n6. **📊 财报日期预警（关键！）**\n   - 下一次财报发布日期\n   - 距离财报还有几天\n   - ⚠️ 如果财报在5个交易日内，必须用 🔴❗ 醒目标注\n   - 💡 Reed 的原则：财报前清仓，不赌财报\n7. **分析师评级变动**（近期升降级、目标价调整）\n8. **重大诉讼/监管风险**\n9. **行业/政策面影响**\n10. **技术面关键位**（支撑/阻力）\n\n每只股票输出格式：\n📌 **SYMBOL（公司名）** — 账户名\n· 持仓：XX股 | 成本：$XX | 盘前价：$XX | 盘前涨跌：XX%\n· 持仓盈亏：XX%（$XX）\n· 最新动态：...\n· 管理层/股权：...\n· 📊 财报：下次 YYYY-MM-DD（还有X天）[预警等级]\n· 分析师：...\n· 风险提示：...\n· 💡 操作建议：...\n\n## 五、🔴 财报清仓预警汇总\n- 单独列出所有5个交易日内有财报的持仓\n- 明确建议：根据 Reed 的\"财报前清仓不赌\"原则，这些标的需要在财报前减仓/清仓\n\n## 六、今夜走势预判\n- 综合以上信息给出走势预判\n- 操作建议\n\n数据来源：Yahoo Finance、MarketWatch、东方财富美股、CNBC、SEC Edgar 等。\n美股开盘时间：北京时间22:30。\n\n重要提醒：\n- 每只持仓都必须扫描，不能省略任何一只\n- 财报日期是最重要的预警信息，必须准确查询\n- 如果某只股票信息获取失败，必须明确说明，不能编造",
-        "timeoutSeconds": 480
+        "timeoutSeconds": 600
       },
       "delivery": {
         "mode": "announce",
@@ -531,7 +539,7 @@
       "name": "美股开盘短报",
       "enabled": true,
       "createdAtMs": 1772715643495,
-      "updatedAtMs": 1772726167692,
+      "updatedAtMs": 1772762187614,
       "schedule": {
         "kind": "cron",
         "expr": "45 22 * * 1-5",
@@ -542,7 +550,7 @@
       "payload": {
         "kind": "agentTurn",
         "message": "现在是美股开盘15分钟（北京时间22:45），请执行美股开盘短报任务，发送给 Reed：\n\n## 一、开盘总览\n- 三大指数开盘表现（道琼斯/纳斯达克/标普500）：开盘价、当前价、涨跌幅\n- VIX 恐慌指数实时表现\n- 中概股整体表现\n\n## 二、板块与热点\n- 开盘15分钟领涨板块/ETF\n- 开盘15分钟领跌板块/ETF\n- 科技巨头（AAPL/MSFT/GOOGL/AMZN/NVDA/META/TSLA）开盘表现\n\n## 三、Reed 美股持仓实时表现\n- 连接 trading_notes 数据库查询 Reed 的美股持仓（positions表，is_closed=0，account_type=us_stock）\n- 通过实时行情API获取每只持仓当前价格\n- 展示：标的、持仓、成本、当前价、今日涨跌%、持仓盈亏%、盈亏金额(USD)\n\n## 四、❗预警提醒\n对每只持仓进行预警检查：\n- 🔴 今日跌幅超过 -5%：单日大跌预警\n- 🔴 今日跌幅超过 -3% 且持仓浮亏超过 -15%：加速亏损预警\n- 🟡 持仓浮亏超过 -20%：深度套牢预警\n预警格式：用❗和红色标记突出显示，说明触发原因和建议操作\n\n## 五、开盘简评\n- 开盘风格判断\n- 与盘前预判对比\n- 简短操作建议\n\n数据来源：Yahoo Finance / 东方财富美股API / web搜索。\n美股开盘时间：北京时间22:30。",
-        "timeoutSeconds": 300
+        "timeoutSeconds": 600
       },
       "delivery": {
         "mode": "announce",
@@ -568,7 +576,7 @@
       "name": "美股盘后总结",
       "enabled": true,
       "createdAtMs": 1772715679223,
-      "updatedAtMs": 1772746473773,
+      "updatedAtMs": 1772762187865,
       "schedule": {
         "kind": "cron",
         "expr": "30 5 * * 2-6",
@@ -579,7 +587,7 @@
       "payload": {
         "kind": "agentTurn",
         "message": "美股已收盘（北京时间05:00），请执行美股盘后总结任务，发送给 Reed：\n\n## 一、三大指数收盘表现\n- 道琼斯工业指数：收盘价、涨跌幅、涨跌点\n- 纳斯达克综合指数：收盘价、涨跌幅、涨跌点\n- 标普500指数：收盘价、涨跌幅、涨跌点\n\n## 二、市场概况\n- VIX 恐慌指数收盘值\n- 美元指数、10年期美债收益率\n- 科技巨头表现（AAPL/MSFT/GOOGL/AMZN/NVDA/META/TSLA）\n- 中概股表现（重点标的）\n- 热门板块/ETF 涨跌幅TOP5\n\n## 三、Reed 美股持仓收盘表现\n- 连接 trading_notes 数据库查询 Reed 的美股持仓（positions表，is_closed=0，account_type=us_stock）\n- 获取每只持仓收盘价\n- 按账户分组展示：标的、持仓、成本、收盘价、今夜涨跌%、持仓盈亏%、盈亏金额(USD)\n\n## 四、持仓整体一览\n- 账户汇总：持仓市值、总浮盈/亏\n\n## 五、今日持仓亮点\n- 涨幅最大的标的\n- 盈利最多的标的\n- 亏损最深的标的\n- 需要关注的风险点\n\n## 六、盘后重要信息\n- 盘后财报发布情况\n- 盘后重要新闻\n- 明日关注事项\n\n数据来源：Yahoo Finance / 东方财富美股API / web搜索。\n美股收盘时间：北京时间05:00。",
-        "timeoutSeconds": 300
+        "timeoutSeconds": 480
       },
       "delivery": {
         "mode": "announce",

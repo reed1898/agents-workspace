@@ -1,0 +1,6 @@
+2026/03/06-02:15:20.900 3c4e1f Creating DB /Users/rain/.openclaw/browser/openclaw/user-data/Default/IndexedDB/https_dash.cloudflare.com_0.indexeddb.leveldb since it was missing.
+2026/03/06-02:15:20.904 3c4e1f Reusing MANIFEST /Users/rain/.openclaw/browser/openclaw/user-data/Default/IndexedDB/https_dash.cloudflare.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/03/06-03:23:49.000 3c4e21 Level-0 table #5: started
+2026/03/06-03:23:49.005 3c4e21 Level-0 table #5: 5090 bytes OK
+2026/03/06-03:23:49.007 3c4e21 Delete type=0 #3
+2026/03/06-03:23:49.008 3c4e21 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

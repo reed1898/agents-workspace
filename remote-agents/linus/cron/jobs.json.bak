@@ -253,7 +253,7 @@
       "name": "linus-kb-sync-hourly",
       "enabled": true,
       "createdAtMs": 1772587835886,
-      "updatedAtMs": 1772756796436,
+      "updatedAtMs": 1772762561362,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -271,14 +271,15 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772758804513,
-        "lastRunAtMs": 1772755728091,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 1068345,
-        "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 2,
-        "runningAtMs": 1772759010156
+        "nextRunAtMs": 1772766004513,
+        "lastRunAtMs": 1772762404734,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 156628,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": false,
+        "runningAtMs": 1772766004519
       }
     },
     {

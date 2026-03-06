@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "reed-image-oss",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-03-06",
+  "ai": { "binding": "AI", "remote": true },
+  "r2_buckets": [
+    { "binding": "IMAGES", "bucket_name": "reed-image-oss", "remote": true }
+  ],
+  "observability": { "enabled": true }
+}
