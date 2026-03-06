@@ -6,7 +6,7 @@
       "name": "agent-data-sync",
       "enabled": true,
       "createdAtMs": 1772474670659,
-      "updatedAtMs": 1772755728091,
+      "updatedAtMs": 1772774067566,
       "schedule": {
         "kind": "cron",
         "expr": "0 */4 * * *",
@@ -19,13 +19,14 @@
         "text": "HEARTBEAT: Sync agent-network-data and agent-knowledge-layer"
       },
       "state": {
-        "nextRunAtMs": 1772769772942,
-        "lastRunAtMs": 1772755688476,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 39615,
+        "nextRunAtMs": 1772784172942,
+        "lastRunAtMs": 1772773152553,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 915013,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out"
       }
     },
     {
@@ -253,7 +254,7 @@
       "name": "linus-kb-sync-hourly",
       "enabled": true,
       "createdAtMs": 1772587835886,
-      "updatedAtMs": 1772762561362,
+      "updatedAtMs": 1772777729429,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -271,15 +272,14 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772766004513,
-        "lastRunAtMs": 1772762404734,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 156628,
-        "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0,
-        "lastDelivered": false,
-        "runningAtMs": 1772766004519
+        "nextRunAtMs": 1772780404513,
+        "lastRunAtMs": 1772776995300,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 734129,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 1,
+        "runningAtMs": 1772780658517
       }
     },
     {
@@ -360,7 +360,7 @@
       "name": "reddit-openclaw-hot-2x-daily",
       "enabled": true,
       "createdAtMs": 1772623651571,
-      "updatedAtMs": 1772718367082,
+      "updatedAtMs": 1772771189120,
       "schedule": {
         "kind": "cron",
         "expr": "45 11,21 * * *",
@@ -380,11 +380,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772768700000,
-        "lastRunAtMs": 1772718300013,
+        "nextRunAtMs": 1772804700000,
+        "lastRunAtMs": 1772769168481,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 67069,
+        "lastDurationMs": 2020639,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -430,7 +430,7 @@
       "name": "x-lists-digest-2x",
       "enabled": true,
       "createdAtMs": 1772628490862,
-      "updatedAtMs": 1772718083050,
+      "updatedAtMs": 1772773150194,
       "schedule": {
         "kind": "cron",
         "expr": "40 11,21 * * *",
@@ -449,11 +449,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772768400000,
-        "lastRunAtMs": 1772718000005,
+        "nextRunAtMs": 1772804400000,
+        "lastRunAtMs": 1772771189120,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 83045,
+        "lastDurationMs": 1961074,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -499,7 +499,7 @@
       "name": "trading-sync-ibkr",
       "enabled": true,
       "createdAtMs": 1772725859687,
-      "updatedAtMs": 1772726005090,
+      "updatedAtMs": 1772778705104,
       "schedule": {
         "kind": "cron",
         "expr": "14 14 * * *",
@@ -518,7 +518,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772777640000
+        "nextRunAtMs": 1772864040000,
+        "lastRunAtMs": 1772777731695,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 973409,
+        "lastError": "cron: job execution timed out",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
       }
     },
     {

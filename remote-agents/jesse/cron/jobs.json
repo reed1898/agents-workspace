@@ -6,7 +6,7 @@
       "name": "sync-shared-repos-4h",
       "enabled": true,
       "createdAtMs": 1772474989691,
-      "updatedAtMs": 1772760255462,
+      "updatedAtMs": 1772789049644,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -19,11 +19,11 @@
         "text": "SYNC_SHARED_REPOS_4H: pull ~/.openclaw/shared/agent-network-data and ~/.openclaw/shared/agent-knowledge-layer; report only on failure"
       },
       "state": {
-        "nextRunAtMs": 1772774627722,
-        "lastRunAtMs": 1772760227722,
+        "nextRunAtMs": 1772803427789,
+        "lastRunAtMs": 1772789027789,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 27740,
+        "lastDurationMs": 21855,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -142,7 +142,7 @@
       "name": "stock-tracking-a-daily-detailed-1520",
       "enabled": true,
       "createdAtMs": 1772558273080,
-      "updatedAtMs": 1772695213447,
+      "updatedAtMs": 1772782099657,
       "schedule": {
         "kind": "cron",
         "expr": "20 15 * * 1-5",
@@ -155,11 +155,11 @@
         "text": "【每日详细个股追踪｜A股】请先完成“逐只持仓详细追踪”（仅A股，覆盖全部持仓，不省略）：每只股票包含当日表现/驱动因素/技术位置/风险信号/明日计划。然后将完整明细写入知识库（~/.openclaw/shared/agent-knowledge-layer 的每日日志或交易追踪文档）；最后仅向 Reed（Telegram 私聊）发送精简总结：1) 总体结论1句；2) 重点关注Top3（机会/风险）；3) 明日执行清单3条以内。要求：持仓清单基于数据库实时查询。"
       },
       "state": {
-        "nextRunAtMs": 1772781600000,
-        "lastRunAtMs": 1772695200024,
+        "nextRunAtMs": 1773040800000,
+        "lastRunAtMs": 1772781782241,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 13423,
+        "lastDurationMs": 317416,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -229,7 +229,7 @@
       "name": "jesse-kb-hourly-closed-loop",
       "enabled": true,
       "createdAtMs": 1772587814607,
-      "updatedAtMs": 1772771714475,
+      "updatedAtMs": 1772786122432,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -247,11 +247,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772775276191,
-        "lastRunAtMs": 1772771676191,
+        "nextRunAtMs": 1772789676312,
+        "lastRunAtMs": 1772786076312,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 38284,
+        "lastDurationMs": 46120,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -264,7 +264,7 @@
       "name": "Hourly proactive status to Reed",
       "enabled": true,
       "createdAtMs": 1772604480895,
-      "updatedAtMs": 1772773795245,
+      "updatedAtMs": 1772788192368,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -277,11 +277,11 @@
         "text": "【每小时主动汇报提醒】如果过去1小时 Reed 没有新指令，请主动发送：1) 你刚才在做什么；2) 当前可推进的1-3件事；3) 等待 Reed 最新指令。若当前无任务，给出可执行候选并保持简洁。"
       },
       "state": {
-        "nextRunAtMs": 1772777381810,
-        "lastRunAtMs": 1772773781810,
+        "nextRunAtMs": 1772791781922,
+        "lastRunAtMs": 1772788181922,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 13435,
+        "lastDurationMs": 10446,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -401,7 +401,7 @@
       "name": "A股盘后总结",
       "enabled": true,
       "createdAtMs": 1772714846846,
-      "updatedAtMs": 1772762187780,
+      "updatedAtMs": 1772784611567,
       "schedule": {
         "kind": "cron",
         "expr": "15 15 * * 1-5",
@@ -412,7 +412,7 @@
       "payload": {
         "kind": "agentTurn",
         "message": "现在是A股收盘后15分钟，请执行盘后总结任务：\n1. 通过东方财富API拉取今日三大指数（上证/深证/创业板）收盘数据、成交额、涨跌家数、板块涨幅TOP5和跌幅TOP5\n2. 连接 trading_notes 数据库查询 Reed 的A股持仓（positions表，is_closed=0，account_type=a_stock），再用东方财富API获取每只持仓的今日实时收盘价\n3. 按以下模版生成盘后总结并发送给 Reed：\n   - 一、三大指数表现（表格）\n   - 二、板块热点（领涨/领跌）\n   - 三、持仓今日表现（按账户分组，含标的/持仓/成本/今收/今日涨跌/持仓盈亏/盈亏%）\n   - 四、持仓整体一览（账户汇总）\n   - 五、今日持仓亮点（涨幅最大、盈利最多、亏损最深、需关注的标的）\n4. 注意：周末和法定节假日不需要发送（cron已限制周一到周五，但如果遇到调休请在总结开头说明今日休市）",
-        "timeoutSeconds": 480
+        "timeoutSeconds": 720
       },
       "delivery": {
         "mode": "announce",
@@ -420,7 +420,14 @@
         "channel": "telegram"
       },
       "state": {
-        "nextRunAtMs": 1772781300000
+        "nextRunAtMs": 1773040500000,
+        "lastRunAtMs": 1772781300036,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 480038,
+        "lastError": "cron: job execution timed out",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
       }
     },
     {

@@ -54,6 +54,27 @@
 - **雷区**: 极其反感装逼和不守时的人。
 - **分身职责**: 作为"包工头"跟进其他 Agent 的工作，提取有价值内容；并协助运营 X (Twitter) 账号打造 KOL 影响力。
 
+## Trading Notes Sync
+
+- **Skill 路径**: `~/.openclaw/workspace/skills/trading-notes-sync/`
+- **依赖项目**: `~/.openclaw/projects/trading-notes` (必须先 clone)
+- **venv**: Skill 目录下的 `.venv/bin/python`，需运行 `bash scripts/setup.sh` 创建
+- **IBKR 需要代理**: `HTTPS_PROXY=socks5://127.0.0.1:10023`
+- **ENCRYPTION_KEY/SECRET_KEY**: 必须在环境变量中正确设置，用于解密数据库中的 API 凭证
+
+### 同步命令
+- **Binance**: `cd <skill_dir> && .venv/bin/python scripts/sync_binance.py`
+- **IBKR**: `cd <skill_dir> && <proxy> .venv/bin/python scripts/sync_ibkr.py`
+- **国泰海通 (Gmail)**: `cd <skill_dir> && .venv/bin/python scripts/sync_gmail.py --since-days 7`
+- **国信/Moomoo**: 手动导出文件到 `~/Downloads/` 后用 `import_csv.py` 导入
+- **全部同步**: `.venv/bin/python scripts/sync_all.py`
+- **查看持仓**: `.venv/bin/python scripts/show_positions.py --summary`
+
+### 关键问题 & 解决方案
+- **Fernet Key Error**: `TRADING_NOTES_ENCRYPTION_KEY` 不正确或未加载
+- **Gmail OAuth failed**: 需到 trading-notes Web UI 重新授权
+- **SyntaxError (str | None)**: Python 版本需 3.10+
+
 ---
 
 _每日详情见 memory/YYYY-MM-DD.md_

@@ -1006,7 +1006,7 @@
       "name": "kb-hourly-unified-maya",
       "enabled": true,
       "createdAtMs": 1772588305081,
-      "updatedAtMs": 1772771932177,
+      "updatedAtMs": 1772786946221,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1023,11 +1023,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772775505770,
-        "lastRunAtMs": 1772771905770,
+        "nextRunAtMs": 1772789905808,
+        "lastRunAtMs": 1772786305808,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 26407,
+        "lastDurationMs": 640413,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -1077,7 +1077,7 @@
       "name": "Track PKU Marxism MA retest updates",
       "enabled": true,
       "createdAtMs": 1772679510268,
-      "updatedAtMs": 1772766016921,
+      "updatedAtMs": 1772787987131,
       "schedule": {
         "kind": "every",
         "everyMs": 21600000,
@@ -1095,11 +1095,11 @@
         "channel": "telegram"
       },
       "state": {
-        "nextRunAtMs": 1772787510311,
-        "lastRunAtMs": 1772765910311,
+        "nextRunAtMs": 1772809110331,
+        "lastRunAtMs": 1772787510331,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 106610,
+        "lastDurationMs": 476800,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0

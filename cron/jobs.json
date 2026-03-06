@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772762769689,
+      "updatedAtMs": 1772777204835,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,14 +25,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772777144805,
-        "lastRunAtMs": 1772762744805,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 24884,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0,
-        "lastDelivered": true
+        "nextRunAtMs": 1772791544815,
+        "lastRunAtMs": 1772777144815,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 60020,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out"
       }
     },
     {
@@ -358,7 +358,7 @@
       "name": "evolver_watchdog_robust",
       "enabled": true,
       "createdAtMs": 1772731903737,
-      "updatedAtMs": 1772773376312,
+      "updatedAtMs": 1772787919414,
       "schedule": {
         "kind": "every",
         "everyMs": 1800000,
@@ -368,18 +368,18 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "exec: node skills/feishu-evolver-wrapper/lifecycle.js ensure"
+        "message": "exec: node skills/evolver/src/ops/lifecycle.js check"
       },
       "delivery": {
         "mode": "none",
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772775143994,
-        "lastRunAtMs": 1772773343994,
+        "nextRunAtMs": 1772789544090,
+        "lastRunAtMs": 1772787744090,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 32318,
+        "lastDurationMs": 175324,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -419,6 +419,93 @@
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "94d4e12a-f0d7-4f81-94ba-0fc7feee5825",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "gmail-patrol-morning-0900",
+      "enabled": true,
+      "createdAtMs": 1772781835345,
+      "updatedAtMs": 1772781835345,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是小洪。执行一次 Gmail 邮件巡检（早间批次）。严格按 `~/workspace/config/gmail-patrol.md` 的规则：扫描未读、分类（🔴💳🟠🔵🟢⚪）、给 Top3、对🔵做中文全文摘要（每封>=100字）、完成后全部标已读。必须通过 `~/workspace/scripts/gws-proxy.sh` 调用 gws。最终把巡检报告发送给 Telegram:869269685（Reed），语气简洁直接。",
+        "timeoutSeconds": 900
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772845200000
+      }
+    },
+    {
+      "id": "d5c6c3d3-51c9-45e1-9b17-6018f522952d",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "gmail-patrol-noon-1400",
+      "enabled": true,
+      "createdAtMs": 1772781835364,
+      "updatedAtMs": 1772781835364,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 14 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是小洪。执行一次 Gmail 邮件巡检（中间批次）。严格按 `~/workspace/config/gmail-patrol.md` 的规则：扫描未读、分类（🔴💳🟠🔵🟢⚪）、给 Top3、对🔵做中文全文摘要（每封>=100字）、完成后全部标已读。必须通过 `~/workspace/scripts/gws-proxy.sh` 调用 gws。最终把巡检报告发送给 Telegram:869269685（Reed），语气简洁直接。",
+        "timeoutSeconds": 900
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772863200000
+      }
+    },
+    {
+      "id": "fa935a0c-3894-48f8-beb3-17fdd8b3bcd6",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "gmail-patrol-evening-2100",
+      "enabled": true,
+      "createdAtMs": 1772781835381,
+      "updatedAtMs": 1772781835381,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是小洪。执行一次 Gmail 邮件巡检（晚间批次）。严格按 `~/workspace/config/gmail-patrol.md` 的规则：扫描未读、分类（🔴💳🟠🔵🟢⚪）、给 Top3、对🔵做中文全文摘要（每封>=100字）、完成后全部标已读。必须通过 `~/workspace/scripts/gws-proxy.sh` 调用 gws。最终把巡检报告发送给 Telegram:869269685（Reed），语气简洁直接。",
+        "timeoutSeconds": 900
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772802000000
       }
     }
   ]

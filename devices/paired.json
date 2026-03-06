@@ -3,8 +3,8 @@
     "deviceId": "c78252234518e672ee830e236fd67828752ebee38e3436aebf24dc39ab00a31a",
     "publicKey": "2nKLmHO6ugAgLiKQhbMPY93b88FkMd4GdcfSuJSN3YY",
     "platform": "darwin",
-    "clientId": "gateway-client",
-    "clientMode": "backend",
+    "clientId": "cli",
+    "clientMode": "cli",
     "role": "operator",
     "roles": [
       "operator"
