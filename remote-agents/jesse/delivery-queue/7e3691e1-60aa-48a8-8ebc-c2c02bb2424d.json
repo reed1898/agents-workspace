@@ -1,0 +1,14 @@
+{
+  "id": "7e3691e1-60aa-48a8-8ebc-c2c02bb2424d",
+  "enqueuedAt": 1772848398054,
+  "channel": "telegram",
+  "to": "telegram:869269685",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "周六上午，半小时内第三次触发，没有新情况，继续静默。\n\nNO_REPLY",
+      "mediaUrls": []
+    }
+  ],
+  "retryCount": 0
+}

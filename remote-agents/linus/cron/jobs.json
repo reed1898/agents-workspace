@@ -6,7 +6,7 @@
       "name": "agent-data-sync",
       "enabled": true,
       "createdAtMs": 1772474670659,
-      "updatedAtMs": 1772842699332,
+      "updatedAtMs": 1772856210939,
       "schedule": {
         "kind": "cron",
         "expr": "0 */4 * * *",
@@ -19,11 +19,11 @@
         "text": "HEARTBEAT: Sync agent-network-data and agent-knowledge-layer"
       },
       "state": {
-        "nextRunAtMs": 1772856172942,
-        "lastRunAtMs": 1772842698706,
+        "nextRunAtMs": 1772870572942,
+        "lastRunAtMs": 1772856172955,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 626,
+        "lastDurationMs": 37984,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -253,7 +253,7 @@
       "name": "linus-kb-sync-hourly",
       "enabled": true,
       "createdAtMs": 1772587835886,
-      "updatedAtMs": 1772845240883,
+      "updatedAtMs": 1772859709262,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -271,11 +271,11 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772848804513,
-        "lastRunAtMs": 1772845204523,
+        "nextRunAtMs": 1772863204513,
+        "lastRunAtMs": 1772859604524,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 36360,
+        "lastDurationMs": 104738,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
         "lastDelivered": false
@@ -359,7 +359,7 @@
       "name": "reddit-openclaw-hot-2x-daily",
       "enabled": true,
       "createdAtMs": 1772623651571,
-      "updatedAtMs": 1772805016722,
+      "updatedAtMs": 1772855253466,
       "schedule": {
         "kind": "cron",
         "expr": "45 11,21 * * *",
@@ -379,11 +379,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772855100000,
-        "lastRunAtMs": 1772804700022,
+        "nextRunAtMs": 1772891100000,
+        "lastRunAtMs": 1772855100205,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 316700,
+        "lastDurationMs": 153261,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -429,7 +429,7 @@
       "name": "x-lists-digest-2x",
       "enabled": true,
       "createdAtMs": 1772628490862,
-      "updatedAtMs": 1772804550766,
+      "updatedAtMs": 1772854874306,
       "schedule": {
         "kind": "cron",
         "expr": "40 11,21 * * *",
@@ -448,11 +448,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772854800000,
-        "lastRunAtMs": 1772804400009,
+        "nextRunAtMs": 1772890800000,
+        "lastRunAtMs": 1772854800008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 150757,
+        "lastDurationMs": 74298,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -560,6 +560,67 @@
         "lastDeliveryStatus": "unknown",
         "consecutiveErrors": 2,
         "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
+      }
+    },
+    {
+      "id": "924f63a7-54bb-4b69-aac9-2bd50d11c1d6",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "linus-self-improving-am-0709",
+      "enabled": true,
+      "createdAtMs": 1772851398671,
+      "updatedAtMs": 1772851468910,
+      "schedule": {
+        "kind": "cron",
+        "expr": "9 7 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。执行一次 self-improving 反思例行任务：\\n1) 读取 ~/self-improving/memory.md、~/self-improving/corrections.md、~/self-improving/reflections.md（如不存在则补齐）。\\n2) 基于最近工作写 1 条简洁自我反思到 ~/self-improving/reflections.md。\\n3) 若有明确可复用教训，追加 1 条到 ~/self-improving/corrections.md（表格格式）。\\n4) 更新 ~/self-improving/index.md 的行数与日期。\\n5) 向 Reed 回一条简报：本次新增了什么。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772924940000,
+        "lastRunAtMs": 1772851429882,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 39028,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "ace582aa-23d4-4b3f-b773-9b6245a5d66a",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:869269685",
+      "name": "linus-self-improving-pm-2103",
+      "enabled": true,
+      "createdAtMs": 1772851411246,
+      "updatedAtMs": 1772851411246,
+      "schedule": {
+        "kind": "cron",
+        "expr": "3 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是 Linus。执行一次 self-improving 反思例行任务：\\n1) 读取 ~/self-improving/memory.md、~/self-improving/corrections.md、~/self-improving/reflections.md（如不存在则补齐）。\\n2) 基于最近工作写 1 条简洁自我反思到 ~/self-improving/reflections.md。\\n3) 若有明确可复用教训，追加 1 条到 ~/self-improving/corrections.md（表格格式）。\\n4) 更新 ~/self-improving/index.md 的行数与日期。\\n5) 向 Reed 回一条简报：本次新增了什么。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772888580000
       }
     }
   ]

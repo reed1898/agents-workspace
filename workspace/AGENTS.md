@@ -23,6 +23,8 @@ You wake up fresh each session. These files are your continuity:
 
 - **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw logs of what happened
 - **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
+- **Self-improving:** `~/self-improving/` — 执行改进记忆（行为模式、纠错、反思）
+- **Memory 同步规则：** self-improving 反思完成后，将新增/变更的 confirmed 规则同步写入 `MEMORY.md`；反之，`MEMORY.md` 新增的关键规则也同步到 `~/self-improving/memory.md`。两边保持一致。
 
 Capture what matters. Decisions, context, things to remember. Skip the secrets unless asked to keep them.
 

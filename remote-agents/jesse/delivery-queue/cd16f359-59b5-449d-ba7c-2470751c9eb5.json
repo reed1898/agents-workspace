@@ -10,5 +10,7 @@
       "mediaUrls": []
     }
   ],
-  "retryCount": 0
+  "retryCount": 1,
+  "lastAttemptAt": 1772847494847,
+  "lastError": "Network request for 'sendMessage' failed!"
 }

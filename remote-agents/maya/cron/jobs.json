@@ -786,7 +786,7 @@
       "name": "Daily OpenClaw Community Brief (12:00)",
       "enabled": true,
       "createdAtMs": 1771495052256,
-      "updatedAtMs": 1772769679431,
+      "updatedAtMs": 1772856108560,
       "schedule": {
         "kind": "cron",
         "expr": "0 12 * * *",
@@ -799,10 +799,10 @@
         "text": "提醒：现在是每天 12:00（北京时间）的 OpenClaw 社区动态简报时间。请整理并发送今日简报给 Reed：1) 3-5 条重点动态（产品更新/社区讨论/重要公告）；2) 每条附一句“这对我有什么意义”；3) 若有高风险安全话题，单独加“风险提醒”小节。保持简洁可读。"
       },
       "state": {
-        "nextRunAtMs": 1772856000000,
-        "lastRunAtMs": 1772769600021,
+        "nextRunAtMs": 1772942400000,
+        "lastRunAtMs": 1772856000014,
         "lastStatus": "ok",
-        "lastDurationMs": 79410,
+        "lastDurationMs": 108546,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested"
@@ -815,7 +815,7 @@
       "name": "Daily AI Daily Digest (08:00)",
       "enabled": true,
       "createdAtMs": 1771497048826,
-      "updatedAtMs": 1772766036579,
+      "updatedAtMs": 1772852478258,
       "schedule": {
         "kind": "cron",
         "expr": "0 11 * * *",
@@ -828,10 +828,10 @@
         "text": "提醒：现在是每日 8:00 的 AI Daily Digest 发送时间。请运行 ai-daily-digest skill（优先复用已保存配置；默认 48h、Top 15、中文），生成今日日报并给 Reed 发送简版要点（3-5 条）+ 报告文件路径。若缺少 API Key 或配置不可用，请直接提示 Reed 先完成一次 /digest 配置。"
       },
       "state": {
-        "nextRunAtMs": 1772852400000,
-        "lastRunAtMs": 1772766018945,
+        "nextRunAtMs": 1772938800000,
+        "lastRunAtMs": 1772852450675,
         "lastStatus": "ok",
-        "lastDurationMs": 17634,
+        "lastDurationMs": 27583,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested"
@@ -1006,7 +1006,7 @@
       "name": "kb-hourly-unified-maya",
       "enabled": true,
       "createdAtMs": 1772588305081,
-      "updatedAtMs": 1772843956086,
+      "updatedAtMs": 1772858350506,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1023,11 +1023,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772847505973,
-        "lastRunAtMs": 1772843905973,
+        "nextRunAtMs": 1772861906019,
+        "lastRunAtMs": 1772858306019,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 50113,
+        "lastDurationMs": 44487,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -1041,7 +1041,7 @@
       "description": "Check openclawdirectory.co.uk for hot skills twice daily and notify Reed only when notable",
       "enabled": true,
       "createdAtMs": 1772614370276,
-      "updatedAtMs": 1772805753331,
+      "updatedAtMs": 1772848886507,
       "schedule": {
         "kind": "cron",
         "expr": "0 10,22 * * *",
@@ -1060,11 +1060,11 @@
         "accountId": "maya"
       },
       "state": {
-        "nextRunAtMs": 1772848800000,
-        "lastRunAtMs": 1772805600011,
+        "nextRunAtMs": 1772892000000,
+        "lastRunAtMs": 1772848800016,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 153320,
+        "lastDurationMs": 86491,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -1077,7 +1077,7 @@
       "name": "Track PKU Marxism MA retest updates",
       "enabled": true,
       "createdAtMs": 1772679510268,
-      "updatedAtMs": 1772830797216,
+      "updatedAtMs": 1772852448649,
       "schedule": {
         "kind": "every",
         "everyMs": 21600000,
@@ -1095,14 +1095,64 @@
         "channel": "telegram"
       },
       "state": {
-        "nextRunAtMs": 1772852310357,
-        "lastRunAtMs": 1772830710357,
+        "nextRunAtMs": 1772873910369,
+        "lastRunAtMs": 1772852310369,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 86859,
+        "lastDurationMs": 138280,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "6dac3fc6-a007-4d25-b9c7-8e512c2c1c56",
+      "name": "self-improving-morning",
+      "description": "Run self-improving routine at 07:09 daily",
+      "enabled": true,
+      "createdAtMs": 1772851424754,
+      "updatedAtMs": 1772851558629,
+      "schedule": {
+        "kind": "cron",
+        "expr": "9 7 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "Run self-improving routine now: use skill self-improving, perform one reflection pass, update ~/self-improving files as needed, and send Reed a concise report with 目标/步骤/结果/产物路径/下一步 + TODO reminder list."
+      },
+      "state": {
+        "nextRunAtMs": 1772924940000,
+        "lastRunAtMs": 1772851438435,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 120194,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "d2d5e1a3-f89a-485a-b119-671e8eed49fa",
+      "name": "self-improving-evening",
+      "description": "Run self-improving routine at 21:03 daily",
+      "enabled": true,
+      "createdAtMs": 1772851427392,
+      "updatedAtMs": 1772851427392,
+      "schedule": {
+        "kind": "cron",
+        "expr": "3 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "Run self-improving routine now: use skill self-improving, perform one reflection pass, update ~/self-improving files as needed, and send Reed a concise report with 目标/步骤/结果/产物路径/下一步 + TODO reminder list."
+      },
+      "state": {
+        "nextRunAtMs": 1772888580000
       }
     }
   ]

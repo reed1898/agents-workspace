@@ -4,7 +4,7 @@
     "publicKey": "w4IqE7SSISFRtoo5OUApCxeANdKR3uV-mnDX_QxAtpM",
     "platform": "darwin",
     "clientId": "cli",
-    "clientMode": "probe",
+    "clientMode": "cli",
     "role": "operator",
     "roles": [
       "operator"

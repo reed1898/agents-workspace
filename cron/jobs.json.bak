@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772835152457,
+      "updatedAtMs": 1772849567790,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,14 +25,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772849500854,
-        "lastRunAtMs": 1772835100854,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 51603,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 1,
-        "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
+        "nextRunAtMs": 1772863911008,
+        "lastRunAtMs": 1772849511008,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 56782,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
       }
     },
     {
@@ -284,7 +284,7 @@
       "name": "kb-hourly-closed-loop-xiaohong",
       "enabled": true,
       "createdAtMs": 1772587819080,
-      "updatedAtMs": 1772805928539,
+      "updatedAtMs": 1772849130065,
       "schedule": {
         "kind": "cron",
         "expr": "0 10,22 * * *",
@@ -304,11 +304,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772849037495,
-        "lastRunAtMs": 1772805837502,
+        "nextRunAtMs": 1772892237495,
+        "lastRunAtMs": 1772849037504,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 91037,
+        "lastDurationMs": 92561,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -357,7 +357,7 @@
       "name": "evolver_watchdog_robust",
       "enabled": true,
       "createdAtMs": 1772731903737,
-      "updatedAtMs": 1772843639517,
+      "updatedAtMs": 1772858483424,
       "schedule": {
         "kind": "every",
         "everyMs": 1800000,
@@ -374,15 +374,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772845410579,
-        "lastRunAtMs": 1772843610579,
+        "nextRunAtMs": 1772860250235,
+        "lastRunAtMs": 1772858450235,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 28938,
+        "lastDurationMs": 33189,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772845850153
+        "runningAtMs": 1772860250241
       }
     },
     {
@@ -520,6 +520,52 @@
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "b65cf24a-e186-46ff-8f87-107d3a099eb4",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "self-improving-morning-0709",
+      "enabled": true,
+      "createdAtMs": 1772851409177,
+      "updatedAtMs": 1772851409177,
+      "schedule": {
+        "kind": "cron",
+        "expr": "9 7 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "提醒：现在是早上 self-improving 复盘时间。请运行一次 self-improving（日常反思+更新 ~/self-improving/{memory.md,reflections.md}），并给 Reed 发送简短报告（3-5 条：问题、根因、改进、下一步）。"
+      },
+      "state": {
+        "nextRunAtMs": 1772924940000
+      }
+    },
+    {
+      "id": "296f00fd-4cd5-4a54-b026-4808b8862a59",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "self-improving-evening-2103",
+      "enabled": true,
+      "createdAtMs": 1772851414085,
+      "updatedAtMs": 1772851414085,
+      "schedule": {
+        "kind": "cron",
+        "expr": "3 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "提醒：现在是晚上 self-improving 复盘时间。请运行一次 self-improving（总结当天改进点并更新 ~/self-improving），并给 Reed 发送简短报告（3-5 条：做得好/不足/明天调整）。"
+      },
+      "state": {
+        "nextRunAtMs": 1772888580000
       }
     }
   ]
