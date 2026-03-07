@@ -6,7 +6,7 @@
       "name": "agent-data-sync",
       "enabled": true,
       "createdAtMs": 1772474670659,
-      "updatedAtMs": 1772870727262,
+      "updatedAtMs": 1772885001593,
       "schedule": {
         "kind": "cron",
         "expr": "0 */4 * * *",
@@ -19,11 +19,11 @@
         "text": "HEARTBEAT: Sync agent-network-data and agent-knowledge-layer"
       },
       "state": {
-        "nextRunAtMs": 1772884972942,
-        "lastRunAtMs": 1772870572954,
+        "nextRunAtMs": 1772899372942,
+        "lastRunAtMs": 1772884973048,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 154308,
+        "lastDurationMs": 28545,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -140,7 +140,8 @@
         "lastStatus": "ok",
         "lastDurationMs": 192373,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772889600070
       }
     },
     {
@@ -253,7 +254,7 @@
       "name": "linus-kb-sync-hourly",
       "enabled": true,
       "createdAtMs": 1772587835886,
-      "updatedAtMs": 1772870440982,
+      "updatedAtMs": 1772888451955,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -271,15 +272,14 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772874004513,
-        "lastRunAtMs": 1772870404522,
+        "nextRunAtMs": 1772892004513,
+        "lastRunAtMs": 1772888404539,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 36460,
+        "lastDurationMs": 47416,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "lastDelivered": false,
-        "runningAtMs": 1772874004520
+        "lastDelivered": false
       }
     },
     {
@@ -604,7 +604,7 @@
       "name": "linus-self-improving-pm-2103",
       "enabled": true,
       "createdAtMs": 1772851411246,
-      "updatedAtMs": 1772851411246,
+      "updatedAtMs": 1772888640386,
       "schedule": {
         "kind": "cron",
         "expr": "3 21 * * *",
@@ -621,7 +621,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772888580000
+        "nextRunAtMs": 1772974980000,
+        "lastRunAtMs": 1772888580103,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 60283,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
       }
     }
   ]

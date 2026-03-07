@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772863928180,
+      "updatedAtMs": 1772878367052,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772878311012,
-        "lastRunAtMs": 1772863911012,
+        "nextRunAtMs": 1772892711019,
+        "lastRunAtMs": 1772878311019,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 17168,
+        "lastDurationMs": 56033,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -178,7 +178,7 @@
       "description": "每天晚上9:20安全扫描并报告",
       "enabled": true,
       "createdAtMs": 1772508063062,
-      "updatedAtMs": 1772803380031,
+      "updatedAtMs": 1772889731711,
       "schedule": {
         "kind": "cron",
         "expr": "20 21 * * *",
@@ -196,14 +196,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772889600000,
-        "lastRunAtMs": 1772803200011,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 180020,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 1,
-        "lastError": "cron: job execution timed out"
+        "nextRunAtMs": 1772976000000,
+        "lastRunAtMs": 1772889600003,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 131708,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
       }
     },
     {
@@ -357,7 +357,7 @@
       "name": "evolver_watchdog_robust",
       "enabled": true,
       "createdAtMs": 1772731903737,
-      "updatedAtMs": 1772874685223,
+      "updatedAtMs": 1772889087318,
       "schedule": {
         "kind": "every",
         "everyMs": 1800000,
@@ -374,11 +374,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772876450320,
-        "lastRunAtMs": 1772874650320,
+        "nextRunAtMs": 1772890850407,
+        "lastRunAtMs": 1772889050407,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 34903,
+        "lastDurationMs": 36911,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
         "lastDelivered": false
@@ -501,7 +501,7 @@
       "name": "gmail-patrol-evening-2100",
       "enabled": true,
       "createdAtMs": 1772781835381,
-      "updatedAtMs": 1772802208301,
+      "updatedAtMs": 1772888749261,
       "schedule": {
         "kind": "cron",
         "expr": "0 21 * * *",
@@ -520,14 +520,16 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772888400000,
-        "lastRunAtMs": 1772802000011,
+        "nextRunAtMs": 1772974800000,
+        "lastRunAtMs": 1772888400009,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 208290,
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "lastDurationMs": 349252,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "lastError": "cron announce delivery failed",
+        "lastDeliveryError": "cron announce delivery failed"
       }
     },
     {
@@ -560,7 +562,7 @@
       "name": "self-improving-evening-2103",
       "enabled": true,
       "createdAtMs": 1772851414085,
-      "updatedAtMs": 1772851414085,
+      "updatedAtMs": 1772888764515,
       "schedule": {
         "kind": "cron",
         "expr": "3 21 * * *",
@@ -573,7 +575,13 @@
         "text": "提醒：现在是晚上 self-improving 复盘时间。请运行一次 self-improving（总结当天改进点并更新 ~/self-improving），并给 Reed 发送简短报告（3-5 条：做得好/不足/明天调整）。"
       },
       "state": {
-        "nextRunAtMs": 1772888580000
+        "nextRunAtMs": 1772974980000,
+        "lastRunAtMs": 1772888751384,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 13131,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
       }
     },
     {

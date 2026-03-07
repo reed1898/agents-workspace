@@ -6,7 +6,7 @@
       "name": "agent-data-sync",
       "enabled": true,
       "createdAtMs": 1772474670659,
-      "updatedAtMs": 1772870727262,
+      "updatedAtMs": 1772885001593,
       "schedule": {
         "kind": "cron",
         "expr": "0 */4 * * *",
@@ -19,11 +19,11 @@
         "text": "HEARTBEAT: Sync agent-network-data and agent-knowledge-layer"
       },
       "state": {
-        "nextRunAtMs": 1772884972942,
-        "lastRunAtMs": 1772870572954,
+        "nextRunAtMs": 1772899372942,
+        "lastRunAtMs": 1772884973048,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 154308,
+        "lastDurationMs": 28545,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -121,7 +121,7 @@
       "name": "security-scan-evening",
       "enabled": true,
       "createdAtMs": 1772508069208,
-      "updatedAtMs": 1772803392382,
+      "updatedAtMs": 1772889790574,
       "schedule": {
         "kind": "cron",
         "expr": "20 21 * * *",
@@ -134,11 +134,11 @@
         "text": "HEARTBEAT: 执行 OpenClaw 安全扫描 - 运行 openclaw security audit 和 openclaw doctor，发现问题尝试修复，通过 Telegram 私聊向 Reed 发送安全报告"
       },
       "state": {
-        "nextRunAtMs": 1772889600000,
-        "lastRunAtMs": 1772803200009,
+        "nextRunAtMs": 1772976000000,
+        "lastRunAtMs": 1772889600087,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 192373,
+        "lastDurationMs": 190487,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -253,7 +253,7 @@
       "name": "linus-kb-sync-hourly",
       "enabled": true,
       "createdAtMs": 1772587835886,
-      "updatedAtMs": 1772874048221,
+      "updatedAtMs": 1772888451955,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -271,11 +271,11 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772877604513,
-        "lastRunAtMs": 1772874004523,
+        "nextRunAtMs": 1772892004513,
+        "lastRunAtMs": 1772888404539,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 43698,
+        "lastDurationMs": 47416,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
         "lastDelivered": false
@@ -603,7 +603,7 @@
       "name": "linus-self-improving-pm-2103",
       "enabled": true,
       "createdAtMs": 1772851411246,
-      "updatedAtMs": 1772851411246,
+      "updatedAtMs": 1772888640386,
       "schedule": {
         "kind": "cron",
         "expr": "3 21 * * *",
@@ -620,7 +620,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772888580000
+        "nextRunAtMs": 1772974980000,
+        "lastRunAtMs": 1772888580103,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 60283,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
       }
     }
   ]

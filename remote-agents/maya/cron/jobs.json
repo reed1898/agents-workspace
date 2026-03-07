@@ -876,7 +876,7 @@
       "name": "Reed Agent OS Evening 21:30",
       "enabled": true,
       "createdAtMs": 1771954024399,
-      "updatedAtMs": 1772803818549,
+      "updatedAtMs": 1772890217986,
       "schedule": {
         "kind": "cron",
         "expr": "30 21 * * *",
@@ -893,11 +893,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772890200000,
-        "lastRunAtMs": 1772803800012,
+        "nextRunAtMs": 1772976600000,
+        "lastRunAtMs": 1772890200014,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 18537,
+        "lastDurationMs": 17972,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -1006,7 +1006,7 @@
       "name": "kb-hourly-unified-maya",
       "enabled": true,
       "createdAtMs": 1772588305081,
-      "updatedAtMs": 1772872752158,
+      "updatedAtMs": 1772890738314,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1023,11 +1023,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772876306070,
-        "lastRunAtMs": 1772872706070,
+        "nextRunAtMs": 1772894306124,
+        "lastRunAtMs": 1772890706124,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 46088,
+        "lastDurationMs": 32190,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -1139,7 +1139,7 @@
       "description": "Run self-improving routine at 21:03 daily",
       "enabled": true,
       "createdAtMs": 1772851427392,
-      "updatedAtMs": 1772851427392,
+      "updatedAtMs": 1772888651729,
       "schedule": {
         "kind": "cron",
         "expr": "3 21 * * *",
@@ -1152,7 +1152,13 @@
         "text": "Run self-improving routine now: use skill self-improving, perform one reflection pass, update ~/self-improving files as needed, and send Reed a concise report with 目标/步骤/结果/产物路径/下一步 + TODO reminder list."
       },
       "state": {
-        "nextRunAtMs": 1772888580000
+        "nextRunAtMs": 1772974980000,
+        "lastRunAtMs": 1772888580011,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 71718,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
       }
     }
   ]

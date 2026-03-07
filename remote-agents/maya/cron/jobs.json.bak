@@ -876,7 +876,7 @@
       "name": "Reed Agent OS Evening 21:30",
       "enabled": true,
       "createdAtMs": 1771954024399,
-      "updatedAtMs": 1772803818549,
+      "updatedAtMs": 1772890217986,
       "schedule": {
         "kind": "cron",
         "expr": "30 21 * * *",
@@ -893,11 +893,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772890200000,
-        "lastRunAtMs": 1772803800012,
+        "nextRunAtMs": 1772976600000,
+        "lastRunAtMs": 1772890200014,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 18537,
+        "lastDurationMs": 17972,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -1006,7 +1006,7 @@
       "name": "kb-hourly-unified-maya",
       "enabled": true,
       "createdAtMs": 1772588305081,
-      "updatedAtMs": 1772872752158,
+      "updatedAtMs": 1772887166623,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1023,14 +1023,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772876306070,
-        "lastRunAtMs": 1772872706070,
+        "nextRunAtMs": 1772890706115,
+        "lastRunAtMs": 1772887106115,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 46088,
+        "lastDurationMs": 60508,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772890706122
       },
       "description": "Unified hourly KB sync + PR merge (single job to avoid race)"
     },
@@ -1077,7 +1078,7 @@
       "name": "Track PKU Marxism MA retest updates",
       "enabled": true,
       "createdAtMs": 1772679510268,
-      "updatedAtMs": 1772852448649,
+      "updatedAtMs": 1772874059644,
       "schedule": {
         "kind": "every",
         "everyMs": 21600000,
@@ -1095,15 +1096,14 @@
         "channel": "telegram"
       },
       "state": {
-        "nextRunAtMs": 1772873910369,
-        "lastRunAtMs": 1772852310369,
+        "nextRunAtMs": 1772895510381,
+        "lastRunAtMs": 1772873910381,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 138280,
+        "lastDurationMs": 149263,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772873910379
+        "consecutiveErrors": 0
       }
     },
     {
@@ -1140,7 +1140,7 @@
       "description": "Run self-improving routine at 21:03 daily",
       "enabled": true,
       "createdAtMs": 1772851427392,
-      "updatedAtMs": 1772851427392,
+      "updatedAtMs": 1772888651729,
       "schedule": {
         "kind": "cron",
         "expr": "3 21 * * *",
@@ -1153,7 +1153,13 @@
         "text": "Run self-improving routine now: use skill self-improving, perform one reflection pass, update ~/self-improving files as needed, and send Reed a concise report with 目标/步骤/结果/产物路径/下一步 + TODO reminder list."
       },
       "state": {
-        "nextRunAtMs": 1772888580000
+        "nextRunAtMs": 1772974980000,
+        "lastRunAtMs": 1772888580011,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 71718,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
       }
     }
   ]
