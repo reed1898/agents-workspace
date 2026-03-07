@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.local/schemas/heartbeat.schema.json",
+  "title": "Heartbeat State",
+  "type": "object",
+  "required": ["agent_id", "last_seen", "interval_sec"],
+  "properties": {
+    "agent_id": { "type": "string" },
+    "last_seen": { "type": "string", "format": "date-time" },
+    "interval_sec": { "type": "number", "minimum": 1 },
+    "status": { "type": "string", "enum": ["ok", "warn", "error", "unknown"] },
+    "source": { "type": "string" }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "runtime.schema.json",
+  "type": "object",
+  "required": ["agent_id", "runtime"],
+  "properties": {
+    "agent_id": { "type": "string" },
+    "runtime": {
+      "type": "object",
+      "properties": {
+        "host": { "type": "string" },
+        "model": { "type": "string" },
+        "uptime_sec": { "type": "number" },
+        "channel": { "type": "string" },
+        "last_openclaw_status_raw": { "type": "string" }
+      }
+    }
+  }
+}

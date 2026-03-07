@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.local/schemas/agent-registry.schema.json",
+  "title": "Agent Registry",
+  "type": "object",
+  "required": ["updated_at", "agents"],
+  "properties": {
+    "updated_at": { "type": "string", "format": "date-time" },
+    "agents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "role", "heartbeat_interval_sec"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "owner": { "type": "string" },
+          "heartbeat_interval_sec": { "type": "number", "minimum": 1 },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

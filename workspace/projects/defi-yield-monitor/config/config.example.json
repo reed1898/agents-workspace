@@ -1,0 +1,28 @@
+{
+  "snapshot_path": "storage/snapshots.json",
+  "wallets": {
+    "evm": [
+      "0xYourWallet1",
+      "0xYourWallet2"
+    ],
+    "solana": [
+      "YourSolanaWallet1"
+    ]
+  },
+  "protocols": [
+    { "chain": "eth", "name": "aave" },
+    { "chain": "bsc", "name": "aave" },
+    { "chain": "eth", "name": "spark" },
+    { "chain": "solana", "name": "kamino" }
+  ],
+  "spark": {
+    "rpc_endpoints": [
+      "https://eth.llamarpc.com",
+      "https://ethereum-rpc.publicnode.com"
+    ]
+  },
+  "thresholds": {
+    "min_health_factor": 1.25,
+    "max_daily_drawdown_pct": 5
+  }
+}

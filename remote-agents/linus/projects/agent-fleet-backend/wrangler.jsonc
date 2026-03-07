@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "agent-fleet-backend",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-03-07",
+  "kv_namespaces": [
+    {
+      "binding": "FLEET_KV",
+      "id": "f78f3c3252f249a8b95b9d2271990849"
+    }
+  ],
+  "vars": {
+    "EVENTS_MAX": "200"
+  }
+}

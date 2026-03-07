@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cron.schema.json",
+  "type": "object",
+  "required": ["agent_id", "jobs"],
+  "properties": {
+    "agent_id": { "type": "string" },
+    "jobs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "consecutive_failures", "last_run_at"],
+        "properties": {
+          "name": { "type": "string" },
+          "schedule": { "type": "string" },
+          "consecutive_failures": { "type": "number" },
+          "last_run_at": { "type": "string", "format": "date-time" },
+          "last_status": { "type": "string" }
+        }
+      }
+    }
+  }
+}

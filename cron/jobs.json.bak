@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772849567790,
+      "updatedAtMs": 1772863928180,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,11 +25,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772863911008,
-        "lastRunAtMs": 1772849511008,
+        "nextRunAtMs": 1772878311012,
+        "lastRunAtMs": 1772863911012,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 56782,
+        "lastDurationMs": 17168,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -357,7 +357,7 @@
       "name": "evolver_watchdog_robust",
       "enabled": true,
       "createdAtMs": 1772731903737,
-      "updatedAtMs": 1772858483424,
+      "updatedAtMs": 1772872889247,
       "schedule": {
         "kind": "every",
         "everyMs": 1800000,
@@ -374,15 +374,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772860250235,
-        "lastRunAtMs": 1772858450235,
+        "nextRunAtMs": 1772874650309,
+        "lastRunAtMs": 1772872850309,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 33189,
-        "lastDelivered": false,
+        "lastDurationMs": 38938,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772860250241
+        "lastDelivered": false,
+        "runningAtMs": 1772874650318
       }
     },
     {
@@ -464,7 +464,7 @@
       "name": "gmail-patrol-noon-1400",
       "enabled": true,
       "createdAtMs": 1772781835364,
-      "updatedAtMs": 1772781835364,
+      "updatedAtMs": 1772863358567,
       "schedule": {
         "kind": "cron",
         "expr": "0 14 * * *",
@@ -483,7 +483,16 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772863200000
+        "nextRunAtMs": 1772949600000,
+        "lastRunAtMs": 1772863200011,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 158556,
+        "lastError": "cron announce delivery failed",
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "lastDeliveryError": "cron announce delivery failed",
+        "consecutiveErrors": 0
       }
     },
     {
@@ -566,6 +575,34 @@
       },
       "state": {
         "nextRunAtMs": 1772888580000
+      }
+    },
+    {
+      "id": "0abc561a-9adc-4db6-8eb5-c1c3640a1c1e",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "bitfinex-funding-daily-1215",
+      "enabled": true,
+      "createdAtMs": 1772865166775,
+      "updatedAtMs": 1772865197777,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 12 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "每天 Asia/Shanghai 12:15 执行：\n1) 在 shell 中 `source ~/.zshrc` 后运行 `python3 /Users/rain/.openclaw/workspace/skills/bitfinex-lending-monitor/scripts/check_lending.py --currency USDT --days 7 --json`。\n2) 解析结果并按以下固定模板汇报（所有金额四舍五入到 0 位小数，单位统一写 USDt）：\n\nBitfinex Funding（USDt）\n- 总资金：<wallet_balance>\n- 已贷出（Credits）：<active_credit_amount>\n- 贷款中（Loans）：<loans_amount>\n- 挂单待成交（Offers）：<offers_amount>\n- 可用余额（Available）：<available_balance>\n- 今日收益（UTC）：<interest_today_utc>\n- 近7天收益：<interest_last_n_days>\n\n3) 若脚本目前未输出 loans/offers，请直接通过 Bitfinex API 补拉：\n- /v2/auth/r/funding/loans/fUST\n- /v2/auth/r/funding/offers/fUST\n并汇总 amount 字段。\n4) 计算挂单占比：offers_ratio = offers_amount / wallet_balance（wallet_balance>0时）。\n5) 若 offers_ratio > 0.5，在汇报末尾追加警示：\n⚠️ 警示：挂单待成交占比超过 50%（当前约 <offers_ratio_percent>%），资金利用率偏低，请考虑调整挂单策略。\n6) 仅发送最终汇总，不输出调试过程。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:869269685"
+      },
+      "state": {
+        "nextRunAtMs": 1772943300000
       }
     }
   ]

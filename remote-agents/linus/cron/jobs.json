@@ -6,7 +6,7 @@
       "name": "agent-data-sync",
       "enabled": true,
       "createdAtMs": 1772474670659,
-      "updatedAtMs": 1772856210939,
+      "updatedAtMs": 1772870727262,
       "schedule": {
         "kind": "cron",
         "expr": "0 */4 * * *",
@@ -19,11 +19,11 @@
         "text": "HEARTBEAT: Sync agent-network-data and agent-knowledge-layer"
       },
       "state": {
-        "nextRunAtMs": 1772870572942,
-        "lastRunAtMs": 1772856172955,
+        "nextRunAtMs": 1772884972942,
+        "lastRunAtMs": 1772870572954,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 37984,
+        "lastDurationMs": 154308,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -253,7 +253,7 @@
       "name": "linus-kb-sync-hourly",
       "enabled": true,
       "createdAtMs": 1772587835886,
-      "updatedAtMs": 1772859709262,
+      "updatedAtMs": 1772874048221,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -271,11 +271,11 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772863204513,
-        "lastRunAtMs": 1772859604524,
+        "nextRunAtMs": 1772877604513,
+        "lastRunAtMs": 1772874004523,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 104738,
+        "lastDurationMs": 43698,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
         "lastDelivered": false
@@ -498,7 +498,7 @@
       "name": "trading-sync-ibkr",
       "enabled": true,
       "createdAtMs": 1772725859687,
-      "updatedAtMs": 1772778705104,
+      "updatedAtMs": 1772864058510,
       "schedule": {
         "kind": "cron",
         "expr": "14 14 * * *",
@@ -517,14 +517,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772864040000,
-        "lastRunAtMs": 1772777731695,
+        "nextRunAtMs": 1772950440000,
+        "lastRunAtMs": 1772864040026,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 973409,
-        "lastError": "cron: job execution timed out",
+        "lastDurationMs": 18484,
         "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 1
+        "consecutiveErrors": 2,
+        "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
       }
     },
     {

@@ -1,0 +1,12 @@
+{
+  "name": "agent-fleet-dashboard",
+  "private": true,
+  "workspaces": [
+    "apps/agent-dashboard",
+    "collectors/openclaw-state-collector"
+  ],
+  "scripts": {
+    "build": "npm run -w apps/agent-dashboard build && npm run -w collectors/openclaw-state-collector build",
+    "typecheck": "npm run -w apps/agent-dashboard typecheck && npm run -w collectors/openclaw-state-collector typecheck"
+  }
+}

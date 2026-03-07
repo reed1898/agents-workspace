@@ -1,17 +1,32 @@
 ---
 name: agent-network
-description: Build and operate a cross-gateway AgentNetwork using Discord as the message bus and GitHub as shared state storage. Use when registering agents, syncing roster snapshots, handling admin offline/remove, and coordinating @agent tasks with lightweight #meta tracking.
+description: Build and operate a cross-gateway AgentNetwork using Discord as message bus, Cloudflare KV for high-frequency fleet status, and GitHub for constitution/static metadata. Use when registering agents, syncing roster snapshots, handling admin offline/remove, and coordinating @agent tasks with lightweight #meta tracking.
 ---
 
 # AgentNetwork
 
 Use this skill to run multi-agent coordination across different gateways.
 
+## Scope Note
+
+This skill focuses on coordination protocol, registry governance, and Discord routing.
+For dashboard data sync (Cloudflare KV, Worker ingest/read API, collector cron, no-LLM high-frequency reporting), use the dedicated `agent-dashboard-sync` skill.
+
 ## Architecture
 
 - **Transport:** Discord team channel (human-readable, @agent routing)
-- **Shared state:** Git repo (registry + heartbeat state)
+- **High-frequency fleet state:** Cloudflare Worker + KV pipeline (`/ingest` + `/fleet`)
+- **Shared Git state:** constitution and static metadata only
 - **Protocol:** natural language + lightweight `#meta`
+
+## Hard rules (mandatory)
+
+1. Heartbeat/cron/runtime/events sync must use Cloudflare KV pipeline. No LLM calls in this sync path.
+2. Git shared repo is reserved for constitutions, registry snapshots, and static metadata; do not treat Git as high-frequency telemetry storage.
+3. Keep project code and shared state separated:
+   - project code: `<PROJECTS_ROOT>/*`
+   - shared state/meta: `<SHARED_ROOT>/agent-network-data`
+4. Collector execution must be crontab-based (every 2 minutes recommended), not ad-hoc manual loops.
 
 **Hard rule:** all inter-agent communication must go through the Discord team channel using OpenClaw message CLI. Do not use direct cross-gateway sessions_send for this network.
 
@@ -32,13 +47,13 @@ Fields:
 - `branch`: default `main`
 
 Default shared-state repo in this workspace:
-- `local_path`: `~/.openclaw/shared/agent-network-data`
+- `local_path`: `<SHARED_ROOT>/agent-network-data`
 - This path is the canonical multi-agent memory/rules repo.
 
 ## Shared memory constitution (mandatory)
 
 Store network-wide memory/rules in:
-- `~/.openclaw/shared/agent-network-data/AGENT_CONSTITUTION.md`
+- `<SHARED_ROOT>/agent-network-data/AGENT_CONSTITUTION.md`
 
 Rules:
 1. Treat `AGENT_CONSTITUTION.md` as single source of truth for shared multi-agent behavior.
@@ -90,7 +105,7 @@ python skills/agent-network/scripts/network.py remove --agent-id linus
 1. Ensure shared repo contains `AGENT_CONSTITUTION.md` (creates minimal file if missing).
 2. Update workspace `MEMORY.md` with a managed constitution index block:
    - `<!-- AGENT_NETWORK_CONSTITUTION_INDEX:START --> ... <!-- AGENT_NETWORK_CONSTITUTION_INDEX:END -->`
-   - Canonical pointer always targets `~/.openclaw/shared/agent-network-data/AGENT_CONSTITUTION.md`.
+   - Canonical pointer always targets `<SHARED_ROOT>/agent-network-data/AGENT_CONSTITUTION.md`.
 
 Re-running `init` keeps both sides in sync (idempotent).
 

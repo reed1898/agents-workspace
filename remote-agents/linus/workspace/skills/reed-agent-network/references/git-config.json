@@ -1,5 +1,5 @@
 {
-  "repo_url": "https://github.com/reed1898/agent-network-data.git",
-  "local_path": "/Users/rain/.openclaw/shared/agent-network-data",
+  "repo_url": "https://github.com/<owner>/<repo>.git",
+  "local_path": "<SHARED_ROOT>/agent-network-data",
   "branch": "main"
 }

@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-start: #0b1022;
+  --bg-end: #1f2937;
+}
+
+body {
+  @apply text-slate-100;
+  background: radial-gradient(circle at 20% 10%, #1e3a8a 0%, transparent 35%),
+    radial-gradient(circle at 80% 80%, #14532d 0%, transparent 30%),
+    linear-gradient(140deg, var(--bg-start), var(--bg-end));
+  min-height: 100vh;
+}

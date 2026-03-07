@@ -154,6 +154,7 @@
 - v1.8 (2026-03-04): 强化 Agent 间通信规则（§16.2-16.6）：明确禁止使用纯文本 `@name`，自动化点名必须使用 `<@user_id>`。
 - v1.9 (2026-03-04): 更新长耗时任务规则（§12）：阈值调整为 >1 分钟；写程序/下载配置等大任务默认走 subagent，并要求阶段性进度汇报。
 - v2.0 (2026-03-04): 新增 Cron/Heartbeat 统一交付规则（§19）：所有 Cron 与 HeartBeat 任务结果必须 Telegram Bot 私聊 Reed 且同步落库到私有知识库。
+- v2.1 (2026-03-07): 新增 Skill 发布安全门禁（§20）：以 `policies/SKILL_PUBLISH_POLICY.md` 为唯一准则，发布前强制执行 `scripts/prepublish-skill-check.sh`，并要求本地 `AGENTS.md` 仅保留索引避免规则冗余。
 
 
 ## 16) Agent 间通信机制（Discord Team Channel，强制）
@@ -200,3 +201,12 @@ ACK 规范：
 3. 发送给 Reed 的消息必须可追溯到对应知识库条目（路径或ID）。
 4. 若任务无结果（无变化/无新告警），可发送简短“无更新”并同样记录最小落库条目（时间戳+检查范围）。
 5. 除 Reed 明确授权外，不得将 Cron/HeartBeat 完整结果默认发送到群聊或公共频道。
+
+## 20) Skill 发布安全门禁（2026-03-07，强制）
+1. Skill 发布规则以共享仓库 `policies/SKILL_PUBLISH_POLICY.md` 为唯一准则（Single Source of Truth）。
+2. 发布任何 skill 前必须执行：`scripts/prepublish-skill-check.sh <skill_dir>`；未通过禁止发布。
+3. 发布版 skill 禁止出现绝对路径（如 `/Users/...`、`~/.openclaw/...`、`C:\...`），必须使用相对路径或占位符（如 `<PROJECTS_ROOT>`）。
+4. 发布版 skill 禁止包含任何真实 secret/token/key/private key；文档示例必须使用占位符。
+5. `NEXT_PUBLIC_*` 禁止承载敏感信息。
+6. 高频自动化任务（collector/cron/sync）必须走确定性脚本，不得调用 LLM。
+7. 各 agent 的本地 `AGENTS.md` 只保留“必须遵守宪章+门禁脚本”的短索引，不重复粘贴整套发布规则，避免冗余与漂移。

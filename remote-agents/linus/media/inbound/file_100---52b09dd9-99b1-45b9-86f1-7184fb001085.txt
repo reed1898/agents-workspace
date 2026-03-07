@@ -1,0 +1,1 @@
+你可以先自己上传一下，这个 heartbeat 跟你现在的，我们定期上传的这个 heartbeat 应该是不太一样的。我觉得你现在定期上传这个 heartbeat 也没有必要显示出来，我是一分钟上报还是两分钟说话，我根本不关心。我觉得你可以把你现在的 UI 的 heartbeat 换成换成真正的 Open Crowd 的一个 heartbeat，这样会比较好一点。
