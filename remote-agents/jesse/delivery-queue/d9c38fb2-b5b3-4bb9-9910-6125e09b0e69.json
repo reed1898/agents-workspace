@@ -1,0 +1,16 @@
+{
+  "id": "d9c38fb2-b5b3-4bb9-9910-6125e09b0e69",
+  "enqueuedAt": 1772846598902,
+  "channel": "telegram",
+  "to": "telegram:869269685",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "周六上午 9:23，Reed 可能已醒但周末无急事，继续静默待命。\n\nNO_REPLY",
+      "mediaUrls": []
+    }
+  ],
+  "retryCount": 1,
+  "lastAttemptAt": 1772847184659,
+  "lastError": "Network request for 'sendMessage' failed!"
+}

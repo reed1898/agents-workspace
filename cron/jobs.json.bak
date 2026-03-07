@@ -7,7 +7,7 @@
       "description": "每4小时同步 agent-network-data 和 agent-knowledge-layer",
       "enabled": true,
       "createdAtMs": 1772474656179,
-      "updatedAtMs": 1772820639389,
+      "updatedAtMs": 1772835152457,
       "schedule": {
         "kind": "every",
         "everyMs": 14400000,
@@ -25,14 +25,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772835001575,
-        "lastRunAtMs": 1772820601575,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 37814,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0,
-        "lastDelivered": true
+        "nextRunAtMs": 1772849500854,
+        "lastRunAtMs": 1772835100854,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 51603,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
       }
     },
     {
@@ -109,7 +109,7 @@
       "description": "每天早上8:15 生成并发送工作日报到 Reed Telegram 私聊",
       "enabled": true,
       "createdAtMs": 1772476674474,
-      "updatedAtMs": 1772756138734,
+      "updatedAtMs": 1772842535206,
       "schedule": {
         "kind": "cron",
         "expr": "15 8 * * *",
@@ -127,14 +127,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772842500000,
-        "lastRunAtMs": 1772756100017,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 38717,
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "nextRunAtMs": 1772928900000,
+        "lastRunAtMs": 1772842500014,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 35192,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
       }
     },
     {
@@ -143,7 +143,7 @@
       "description": "每天早上7点安全巡检（系统/OpenClaw漏洞/不安全skills），写入知识库并通过Telegram汇报",
       "enabled": true,
       "createdAtMs": 1772508056718,
-      "updatedAtMs": 1772751741840,
+      "updatedAtMs": 1772838178432,
       "schedule": {
         "kind": "cron",
         "expr": "0 7 * * *",
@@ -162,15 +162,14 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772838000000,
-        "lastRunAtMs": 1772751600011,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 141829,
+        "nextRunAtMs": 1772924400000,
+        "lastRunAtMs": 1772838000011,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 178421,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 1,
-        "lastError": "⚠️ ✍️ Write: `to ~/.openclaw/shared/agent-knowledge-layer/shared/security/2026-03-06-morning-security-report.md (4393 chars)` failed"
+        "consecutiveErrors": 0
       }
     },
     {
@@ -249,7 +248,7 @@
       "name": "evolver-daily-summary",
       "enabled": true,
       "createdAtMs": 1772560618132,
-      "updatedAtMs": 1772748696906,
+      "updatedAtMs": 1772835098778,
       "schedule": {
         "kind": "cron",
         "expr": "10 6 * * *",
@@ -268,11 +267,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772835000000,
-        "lastRunAtMs": 1772748600022,
+        "nextRunAtMs": 1772921400000,
+        "lastRunAtMs": 1772835000011,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 96884,
+        "lastDurationMs": 98767,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -358,7 +357,7 @@
       "name": "evolver_watchdog_robust",
       "enabled": true,
       "createdAtMs": 1772731903737,
-      "updatedAtMs": 1772829240782,
+      "updatedAtMs": 1772843639517,
       "schedule": {
         "kind": "every",
         "everyMs": 1800000,
@@ -375,15 +374,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772831010504,
-        "lastRunAtMs": 1772829210504,
+        "nextRunAtMs": 1772845410579,
+        "lastRunAtMs": 1772843610579,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 30278,
+        "lastDurationMs": 28938,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772831010513
+        "runningAtMs": 1772845850153
       }
     },
     {
@@ -429,7 +428,7 @@
       "name": "gmail-patrol-morning-0900",
       "enabled": true,
       "createdAtMs": 1772781835345,
-      "updatedAtMs": 1772781835345,
+      "updatedAtMs": 1772845848072,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -448,7 +447,14 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772845200000
+        "nextRunAtMs": 1772931600000,
+        "lastRunAtMs": 1772845202028,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 646044,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
       }
     },
     {

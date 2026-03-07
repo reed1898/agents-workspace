@@ -1,0 +1,2 @@
+before:644 /Users/rain/.ssh/config
+after:600 /Users/rain/.ssh/config

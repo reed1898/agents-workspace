@@ -1,0 +1,89 @@
+OpenClaw security audit
+Summary: 8 critical · 2 warn · 1 info
+Run deeper: openclaw security audit --deep
+
+CRITICAL
+skills.code_safety Skill "baoyu-compress-image" contains dangerous code patterns
+  Found 1 critical issue(s) in 1 scanned file(s) under /Users/rain/.agents/skills/baoyu-compress-image:
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/main.ts:32)
+  Fix: Review the skill source code before use. If untrusted, remove "/Users/rain/.agents/skills/baoyu-compress-image".
+skills.code_safety Skill "baoyu-danger-gemini-web" contains dangerous code patterns
+  Found 2 critical issue(s) in 24 scanned file(s) under /Users/rain/.agents/skills/baoyu-danger-gemini-web:
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/gemini-webapi/utils/load-browser-cookies.ts:180)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/gemini-webapi/utils/paths.ts:38)
+  Fix: Review the skill source code before use. If untrusted, remove "/Users/rain/.agents/skills/baoyu-danger-gemini-web".
+skills.code_safety Skill "baoyu-danger-x-to-markdown" contains dangerous code patterns
+  Found 5 critical issue(s) in 15 scanned file(s) under /Users/rain/.agents/skills/baoyu-danger-x-to-markdown:
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/cookies.ts:206)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/cookies.ts:120)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/graphql.ts:256)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/http.ts:112)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/paths.ts:39)
+  Fix: Review the skill source code before use. If untrusted, remove "/Users/rain/.agents/skills/baoyu-danger-x-to-markdown".
+skills.code_safety Skill "baoyu-format-markdown" contains dangerous code patterns
+  Found 1 critical issue(s) in 3 scanned file(s) under /Users/rain/.agents/skills/baoyu-format-markdown:
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/autocorrect.ts:5)
+  Fix: Review the skill source code before use. If untrusted, remove "/Users/rain/.agents/skills/baoyu-format-markdown".
+skills.code_safety Skill "baoyu-image-gen" contains dangerous code patterns
+  Found 5 critical issue(s) in 6 scanned file(s) under /Users/rain/.agents/skills/baoyu-image-gen:
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/providers/dashscope.ts:4)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/providers/google.ts:81)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/providers/google.ts:17)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/providers/openai.ts:6)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/providers/replicate.ts:11)
+  Fix: Review the skill source code before use. If untrusted, remove "/Users/rain/.agents/skills/baoyu-image-gen".
+skills.code_safety Skill "baoyu-post-to-wechat" contains dangerous code patterns
+  Found 12 critical issue(s) in 28 scanned file(s) under /Users/rain/.agents/skills/baoyu-post-to-wechat:
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/cdp.ts:192)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/cdp.ts:34)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/check-permissions.ts:69)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/copy-to-clipboard.ts:59)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/md-to-wechat.ts:191)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/paste-from-clipboard.ts:54)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/wechat-agent-browser.ts:17)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/wechat-api.ts:320)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/wechat-api.ts:76)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/wechat-article.ts:84)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/wechat-browser.ts:179)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/wechat-browser.ts:112)
+  Fix: Review the skill source code before use. If untrusted, remove "/Users/rain/.agents/skills/baoyu-post-to-wechat".
+skills.code_safety Skill "baoyu-post-to-x" contains dangerous code patterns
+  Found 9 critical issue(s) in 9 scanned file(s) under /Users/rain/.agents/skills/baoyu-post-to-x:
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/check-paste-permissions.ts:69)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/copy-to-clipboard.ts:59)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/paste-from-clipboard.ts:54)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/x-article.ts:123)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/x-browser.ts:39)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/x-quote.ts:43)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/x-utils.ts:77)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/x-utils.ts:63)
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/x-video.ts:43)
+  Fix: Review the skill source code before use. If untrusted, remove "/Users/rain/.agents/skills/baoyu-post-to-x".
+skills.code_safety Skill "baoyu-url-to-markdown" contains dangerous code patterns
+  Found 2 critical issue(s) in 6 scanned file(s) under /Users/rain/.agents/skills/baoyu-url-to-markdown:
+  - [dangerous-exec] Shell command execution detected (child_process) (scripts/cdp.ts:195)
+  - [env-harvesting] Environment variable access combined with network send — possible credential harvesting (scripts/cdp.ts:125)
+  Fix: Review the skill source code before use. If untrusted, remove "/Users/rain/.agents/skills/baoyu-url-to-markdown".
+
+WARN
+security.trust_model.multi_user_heuristic Potential multi-user setup detected (personal-assistant model warning)
+  Heuristic signals indicate this gateway may be reachable by multiple users:
+- channels.discord.accounts.default.groupPolicy="allowlist" with configured group targets
+Runtime/process tools are exposed without full sandboxing in at least one context.
+Potential high-impact tool exposure contexts:
+- agents.defaults (sandbox=off; runtime=[exec, process]; fs=[read, write, edit, apply_patch]; fs.workspaceOnly=true)
+OpenClaw's default security model is personal-assistant (one trusted operator boundary), not hostile multi-tenant isolation on one shared gateway.
+  Fix: If users may be mutually untrusted, split trust boundaries (separate gateways + credentials, ideally separate OS users/hosts). If you intentionally run shared-user access, set agents.defaults.sandbox.mode="all", keep tools.fs.workspaceOnly=true, deny runtime/fs/web tools unless required, and keep personal/private identities + credentials off that runtime.
+skills.code_safety Skill "reddit-research" contains suspicious code patterns
+  Found 1 warning(s) in 4 scanned file(s) under /Users/rain/.openclaw/workspace/skills/reddit-search-but-free:
+  - [potential-exfiltration] File read combined with network send — possible data exfiltration (scripts/reddit.ts:10)
+  Fix: Review flagged lines to ensure the behavior is intentional and safe.
+
+INFO
+summary.attack_surface Attack surface summary
+  groups: open=0, allowlist=2
+tools.elevated: enabled
+hooks.webhooks: disabled
+hooks.internal: disabled
+browser control: enabled
+trust model: personal assistant (one trusted operator boundary), not hostile multi-tenant on one shared gateway

@@ -6,7 +6,7 @@
       "name": "agent-data-sync",
       "enabled": true,
       "createdAtMs": 1772474670659,
-      "updatedAtMs": 1772812991992,
+      "updatedAtMs": 1772842699332,
       "schedule": {
         "kind": "cron",
         "expr": "0 */4 * * *",
@@ -19,11 +19,11 @@
         "text": "HEARTBEAT: Sync agent-network-data and agent-knowledge-layer"
       },
       "state": {
-        "nextRunAtMs": 1772827372942,
-        "lastRunAtMs": 1772812972961,
+        "nextRunAtMs": 1772856172942,
+        "lastRunAtMs": 1772842698706,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 19031,
+        "lastDurationMs": 626,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -45,14 +45,13 @@
         "text": "HEARTBEAT: Skill discovery - search for new skills"
       },
       "state": {
-        "nextRunAtMs": 1772823600000,
+        "nextRunAtMs": 1772910000000,
         "lastRunAtMs": 1772737200010,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
         "lastDurationMs": 120141,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772824297516
+        "consecutiveErrors": 0
       }
     },
     {
@@ -60,7 +59,7 @@
       "name": "daily-work-report",
       "enabled": true,
       "createdAtMs": 1772499561706,
-      "updatedAtMs": 1772757772413,
+      "updatedAtMs": 1772843668101,
       "schedule": {
         "kind": "cron",
         "expr": "15 8 * * *",
@@ -80,13 +79,13 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772842500000,
-        "lastRunAtMs": 1772756798765,
+        "nextRunAtMs": 1772928900000,
+        "lastRunAtMs": 1772842699332,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 973648,
+        "lastDurationMs": 968769,
         "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 1,
+        "consecutiveErrors": 2,
         "lastError": "cron: job execution timed out"
       }
     },
@@ -95,7 +94,7 @@
       "name": "security-scan-morning",
       "enabled": true,
       "createdAtMs": 1772508058465,
-      "updatedAtMs": 1772751843321,
+      "updatedAtMs": 1772838624832,
       "schedule": {
         "kind": "cron",
         "expr": "0 7 * * *",
@@ -108,11 +107,11 @@
         "text": "HEARTBEAT: 早上 7 点安全巡检。请执行并产出报告：1) 检查系统安全问题；2) 检查 OpenClaw 潜在漏洞与配置风险（含 openclaw security audit --deep、openclaw update status）；3) 检查已安装 skills 的安全风险（来源可信度、权限/脚本风险、可疑外连）。任务结束后将结论写入知识库（agent-knowledge-layer）并通过 Telegram channel 发送给 Reed。"
       },
       "state": {
-        "nextRunAtMs": 1772838000000,
-        "lastRunAtMs": 1772751842781,
+        "nextRunAtMs": 1772924400000,
+        "lastRunAtMs": 1772838371459,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 540,
+        "lastDurationMs": 253373,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -185,7 +184,7 @@
       "name": "linus-evolver-daily-summary-0610",
       "enabled": true,
       "createdAtMs": 1772560623080,
-      "updatedAtMs": 1772748652895,
+      "updatedAtMs": 1772836412377,
       "schedule": {
         "kind": "cron",
         "expr": "10 6 * * *",
@@ -203,14 +202,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772835000000,
-        "lastRunAtMs": 1772748600023,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 52872,
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "nextRunAtMs": 1772921400000,
+        "lastRunAtMs": 1772835436643,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 975734,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out"
       }
     },
     {
@@ -254,7 +253,7 @@
       "name": "linus-kb-sync-hourly",
       "enabled": true,
       "createdAtMs": 1772587835886,
-      "updatedAtMs": 1772820564606,
+      "updatedAtMs": 1772845240883,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -272,15 +271,14 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772823604513,
-        "lastRunAtMs": 1772820513255,
+        "nextRunAtMs": 1772848804513,
+        "lastRunAtMs": 1772845204523,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 51351,
+        "lastDurationMs": 36360,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "lastDelivered": false,
-        "runningAtMs": 1772824297516
+        "lastDelivered": false
       }
     },
     {
@@ -345,15 +343,14 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772823600000,
+        "nextRunAtMs": 1772910000000,
         "lastRunAtMs": 1772737320151,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
         "lastDurationMs": 5421068,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772824297516
+        "consecutiveErrors": 0
       }
     },
     {
@@ -536,7 +533,7 @@
       "name": "trading-sync-gtja-gmail",
       "enabled": true,
       "createdAtMs": 1772725942276,
-      "updatedAtMs": 1772754439117,
+      "updatedAtMs": 1772841288233,
       "schedule": {
         "kind": "cron",
         "expr": "47 7 * * 2-6",
@@ -555,14 +552,14 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772840820000,
-        "lastRunAtMs": 1772754420014,
+        "nextRunAtMs": 1773100020000,
+        "lastRunAtMs": 1772841266027,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 19103,
-        "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel.",
+        "lastDurationMs": 22206,
         "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 1
+        "consecutiveErrors": 2,
+        "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
       }
     }
   ]

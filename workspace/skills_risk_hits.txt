@@ -1,0 +1,24 @@
+/Users/rain/.openclaw/workspace/skills/multi-source-news-digest/skill.py:74:                    response = requests.get('{repo}', headers={{'Accept': 'application/vnd.github.v3+json'}}); \
+/Users/rain/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md:43:stagehand --ws $BROWSERBASE_CONNECT_URL open https://example.com
+/Users/rain/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md:62:stagehand --ws $BROWSERBASE_CONNECT_URL open https://example.com
+/Users/rain/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md:260:stagehand --ws $BROWSERBASE_CONNECT_URL open https://example.com
+/Users/rain/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md:281:stagehand --ws $BROWSERBASE_CONNECT_URL open https://slow-site.com
+/Users/rain/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md:289:stagehand --ws $BROWSERBASE_CONNECT_URL open https://example.com
+/Users/rain/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md:292:stagehand open https://example.com
+/Users/rain/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md:299:stagehand --ws $BROWSERBASE_CONNECT_URL open https://example.com/login
+/Users/rain/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md:313:stagehand --ws $BROWSERBASE_CONNECT_URL open https://example.com
+/Users/rain/.openclaw/workspace/skills/browse/skills/browser-automation/SKILL.md:327:stagehand --ws $BROWSERBASE_CONNECT_URL open https://example.com
+/Users/rain/.openclaw/workspace/skills/browse/skills/functions/SKILL.md:209:  const items = await page.$$eval(params.selector, els => 
+/Users/rain/.openclaw/workspace/skills/browse/SKILL.md:253:  const data = await page.$$eval(selector, els =>
+/Users/rain/.openclaw/workspace/skills/veille/SKILL.md:143:- Dispatch delegates to other OpenClaw skills via `subprocess.run()` (never `shell=True`). Script paths are validated to reside under `~/.openclaw/workspace/skills/` before execution, preventing path traversal.
+/Users/rain/.openclaw/workspace/skills/veille/SKILL.md:325:- Contains shell shebangs (`#!/`), SSH keys, PGP blocks, or code injection patterns (`eval(`, `exec(`, `__import__(`, `import os`, `import subprocess`)
+/Users/rain/.openclaw/workspace/skills/veille/SKILL.md:337:result = exec("python3 scripts/veille.py fetch --hours 24 --filter-seen --filter-topic")
+/Users/rain/.openclaw/workspace/skills/veille/README.md:217:| `~/.openclaw/config/veille/config.json` | Sources + settings + outputs | Manual (`rm -rf ~/.openclaw/config/veille`) |
+/Users/rain/.openclaw/workspace/skills/veille/README.md:218:| `~/.openclaw/data/veille/seen_urls.json` | URL dedup store (14d TTL) | Manual (`rm -rf ~/.openclaw/data/veille`) |
+/Users/rain/.openclaw/workspace/skills/veille/README.md:219:| `~/.openclaw/data/veille/topic_seen.json` | Topic fingerprints (5d TTL) | Manual (`rm -rf ~/.openclaw/data/veille`) |
+/Users/rain/.openclaw/workspace/skills/veille/README.md:244:- **Subprocess isolation**: skill-to-skill calls use `subprocess.run()` (never `shell=True`). Script paths are validated to reside under `~/.openclaw/workspace/skills/`.
+/Users/rain/.openclaw/workspace/skills/veille/README.md:253:clawhub remove veille   # or rm -rf ~/.openclaw/workspace/skills/veille
+/Users/rain/.openclaw/workspace/skills/veille/README.md:256:rm -rf ~/.openclaw/config/veille
+/Users/rain/.openclaw/workspace/skills/veille/README.md:257:rm -rf ~/.openclaw/data/veille
+/Users/rain/.openclaw/workspace/skills/veille/references/troubleshooting.md:163:3. **Content blocked**: The digest content was rejected because it contains a suspicious pattern (e.g., `#!/`, SSH keys, `eval(`). This should not happen with normal RSS digests — check if a feed is injecting unexpected content.
+/Users/rain/.openclaw/workspace/skills/veille/scripts/dispatch.py:83:    "eval(", "exec(", "__import__(",

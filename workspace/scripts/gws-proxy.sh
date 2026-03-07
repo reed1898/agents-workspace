@@ -3,7 +3,7 @@
 # QuickQ 端口可能变化，每次自动检测
 
 # 自动检测 QuickQ HTTP 代理端口
-QUICKQ_PORT=$(/usr/sbin/lsof -i -P 2>/dev/null | grep quickqser | grep "TCP localhost:" | grep LISTEN | head -1 | sed 's/.*localhost:\([0-9]*\).*/\1/')
+QUICKQ_PORT=$(/usr/sbin/lsof -nP -iTCP -sTCP:LISTEN 2>/dev/null | grep -Ei 'quickqser|quickq' | grep -E '127.0.0.1|localhost' | head -1 | sed -E 's/.*(127.0.0.1|localhost):([0-9]+).*/\2/')
 
 if [ -z "$QUICKQ_PORT" ]; then
   echo "⚠️  QuickQ not running, trying without proxy..." >&2

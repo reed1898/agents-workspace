@@ -1,0 +1,14 @@
+{
+  "id": "cd16f359-59b5-449d-ba7c-2470751c9eb5",
+  "enqueuedAt": 1772847188961,
+  "channel": "telegram",
+  "to": "telegram:869269685",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "周六上午 9:33，10 分钟前刚静默过，没有新情况，继续待命。\n\nNO_REPLY",
+      "mediaUrls": []
+    }
+  ],
+  "retryCount": 0
+}

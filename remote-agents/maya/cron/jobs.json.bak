@@ -757,7 +757,7 @@
       "name": "Daily ClawHub Skill Scout (08:00)",
       "enabled": true,
       "createdAtMs": 1771483299515,
-      "updatedAtMs": 1772755259976,
+      "updatedAtMs": 1772841702730,
       "schedule": {
         "kind": "cron",
         "expr": "0 8 * * *",
@@ -770,10 +770,10 @@
         "text": "提醒：现在是每天 8:00 的 ClawHub 例行巡检时间。请搜索并筛选有意思的新 skills（重点：AI效率、自动化、交易、Gmail/内容创作相关），给 Reed 发送简洁清单（名称+一句价值+是否建议安装）。默认由 Reed 最终审核安装；但若你判断是“明显高价值且低风险”的自我进化类 skill，可直接安装并在消息里说明安装原因与风险评估。"
       },
       "state": {
-        "nextRunAtMs": 1772841600000,
-        "lastRunAtMs": 1772755200010,
+        "nextRunAtMs": 1772928000000,
+        "lastRunAtMs": 1772841600012,
         "lastStatus": "ok",
-        "lastDurationMs": 59966,
+        "lastDurationMs": 102718,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested"
@@ -843,7 +843,7 @@
       "name": "Reed Agent OS Morning 08:30",
       "enabled": true,
       "createdAtMs": 1771954017234,
-      "updatedAtMs": 1772757015558,
+      "updatedAtMs": 1772843415153,
       "schedule": {
         "kind": "cron",
         "expr": "30 8 * * *",
@@ -860,10 +860,10 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772843400000,
-        "lastRunAtMs": 1772757000012,
+        "nextRunAtMs": 1772929800000,
+        "lastRunAtMs": 1772843400012,
         "lastStatus": "ok",
-        "lastDurationMs": 15546,
+        "lastDurationMs": 15141,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDelivered": false,
@@ -962,7 +962,8 @@
         "lastDurationMs": 35588,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772845200009
       }
     },
     {
@@ -1006,7 +1007,7 @@
       "name": "kb-hourly-unified-maya",
       "enabled": true,
       "createdAtMs": 1772588305081,
-      "updatedAtMs": 1772829540243,
+      "updatedAtMs": 1772843956086,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -1023,11 +1024,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772833105931,
-        "lastRunAtMs": 1772829505931,
+        "nextRunAtMs": 1772847505973,
+        "lastRunAtMs": 1772843905973,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 34312,
+        "lastDurationMs": 50113,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -1077,7 +1078,7 @@
       "name": "Track PKU Marxism MA retest updates",
       "enabled": true,
       "createdAtMs": 1772679510268,
-      "updatedAtMs": 1772809189877,
+      "updatedAtMs": 1772830797216,
       "schedule": {
         "kind": "every",
         "everyMs": 21600000,
@@ -1095,15 +1096,14 @@
         "channel": "telegram"
       },
       "state": {
-        "nextRunAtMs": 1772830710347,
-        "lastRunAtMs": 1772809110347,
+        "nextRunAtMs": 1772852310357,
+        "lastRunAtMs": 1772830710357,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 79530,
+        "lastDurationMs": 86859,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772830710355
+        "consecutiveErrors": 0
       }
     }
   ]

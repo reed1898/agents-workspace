@@ -59,7 +59,7 @@
       "name": "daily-work-report-0900",
       "enabled": true,
       "createdAtMs": 1772475751549,
-      "updatedAtMs": 1772758865344,
+      "updatedAtMs": 1772845336849,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -72,11 +72,11 @@
         "text": "【每日09:00日报提醒】请向 Reed（Telegram 私聊）发送日报，至少包含三项：1）昨日完成；2）今日待做；3）长期任务进展。要求：简洁、可执行；若有阻塞，单列“阻塞与需要支持”。"
       },
       "state": {
-        "nextRunAtMs": 1772845200000,
-        "lastRunAtMs": 1772758800029,
+        "nextRunAtMs": 1772931600000,
+        "lastRunAtMs": 1772845200030,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 65315,
+        "lastDurationMs": 136819,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -86,7 +86,7 @@
       "name": "security-patrol-0700",
       "enabled": true,
       "createdAtMs": 1772508076497,
-      "updatedAtMs": 1772751691721,
+      "updatedAtMs": 1772838090310,
       "schedule": {
         "kind": "cron",
         "expr": "0 7 * * *",
@@ -99,11 +99,11 @@
         "text": "【每日07:00安全巡检提醒】请执行安全巡检并输出简报：1) 系统安全问题：运行 openclaw security audit --deep，汇总高/中风险；2) OpenClaw 漏洞与版本状态：运行 openclaw update status，若有更新或已知风险要标注；3) 不安全 skill 排查：检查已安装/启用 skills，识别高风险行为（未受控外联、可执行任意命令、越权读写、凭据暴露风险），给出风险分级与处理建议。完成后：A) 将巡检结论追加写入 ~/.openclaw/shared/agent-knowledge-layer 对应每日日志；B) 通过 Telegram channel 给 Reed 发送“结论+依据(1-3点)+下一步”的简报。若无异常也要发“今日无重大异常”简报。"
       },
       "state": {
-        "nextRunAtMs": 1772838000000,
-        "lastRunAtMs": 1772751600035,
+        "nextRunAtMs": 1772924400000,
+        "lastRunAtMs": 1772838000026,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 91686,
+        "lastDurationMs": 90284,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -171,7 +171,7 @@
       "name": "stock-tracking-us-daily-detailed-0530",
       "enabled": true,
       "createdAtMs": 1772558273146,
-      "updatedAtMs": 1772747688808,
+      "updatedAtMs": 1772833861875,
       "schedule": {
         "kind": "cron",
         "expr": "45 5 * * 2-6",
@@ -184,11 +184,11 @@
         "text": "【每日详细个股追踪｜美股】请先完成“逐只持仓详细追踪”（仅美股，覆盖全部持仓，不省略）：每只股票包含当日表现/驱动因素/技术位置/风险信号/下一交易日计划。然后将完整明细写入知识库（~/.openclaw/shared/agent-knowledge-layer 的每日日志或交易追踪文档）；最后仅向 Reed（Telegram 私聊）发送精简总结：1) 总体结论1句；2) 重点关注Top3（机会/风险）；3) 下一交易日执行清单3条以内。要求：持仓清单基于数据库实时查询。"
       },
       "state": {
-        "nextRunAtMs": 1772833500000,
-        "lastRunAtMs": 1772747100040,
+        "nextRunAtMs": 1773092700000,
+        "lastRunAtMs": 1772833500034,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 588768,
+        "lastDurationMs": 361841,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -200,7 +200,7 @@
       "name": "evolver-hourly-0300-0600",
       "enabled": true,
       "createdAtMs": 1772560610373,
-      "updatedAtMs": 1772830857751,
+      "updatedAtMs": 1772834449907,
       "schedule": {
         "kind": "cron",
         "expr": "0 3-6 * * *",
@@ -213,11 +213,11 @@
         "text": "【Evolver 定时任务】现在执行 capability-evolver（autogame-17/evolver）一轮进化：优先运行 node index.js --review；若环境不支持 review 再运行 node index.js。完成后必须：1) 将本轮进化记录（发现问题、改进点、风险、变更结果）追加写入 ~/.openclaw/shared/agent-knowledge-layer 当日日志；2) 产出“当日进化总结报告”（可累计更新）；3) 通过 Telegram channel 发送给 Reed，格式：结论1句 + 依据1-3点 + 下一步1句。若执行失败，按失败透明规则报告卡点/原因/下一步。"
       },
       "state": {
-        "nextRunAtMs": 1772834400000,
-        "lastRunAtMs": 1772830800032,
+        "nextRunAtMs": 1772910000000,
+        "lastRunAtMs": 1772834400034,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 57719,
+        "lastDurationMs": 49873,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -229,7 +229,7 @@
       "name": "jesse-kb-hourly-closed-loop",
       "enabled": true,
       "createdAtMs": 1772587814607,
-      "updatedAtMs": 1772829318498,
+      "updatedAtMs": 1772843751194,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -247,11 +247,11 @@
         "to": "869269685"
       },
       "state": {
-        "nextRunAtMs": 1772832876692,
-        "lastRunAtMs": 1772829276692,
+        "nextRunAtMs": 1772847314455,
+        "lastRunAtMs": 1772843714455,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 41806,
+        "lastDurationMs": 36739,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -264,7 +264,7 @@
       "name": "Hourly proactive status to Reed",
       "enabled": true,
       "createdAtMs": 1772604480895,
-      "updatedAtMs": 1772831526340,
+      "updatedAtMs": 1772842326708,
       "schedule": {
         "kind": "every",
         "everyMs": 3600000,
@@ -277,11 +277,11 @@
         "text": "【每小时主动汇报提醒】如果过去1小时 Reed 没有新指令，请主动发送：1) 你刚才在做什么；2) 当前可推进的1-3件事；3) 等待 Reed 最新指令。若当前无任务，给出可执行候选并保持简洁。"
       },
       "state": {
-        "nextRunAtMs": 1772835118387,
-        "lastRunAtMs": 1772831518387,
+        "nextRunAtMs": 1772845918475,
+        "lastRunAtMs": 1772842318475,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 7953,
+        "lastDurationMs": 8233,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0
       }
@@ -582,7 +582,7 @@
       "name": "美股盘后总结",
       "enabled": true,
       "createdAtMs": 1772715679223,
-      "updatedAtMs": 1772762187865,
+      "updatedAtMs": 1772832912189,
       "schedule": {
         "kind": "cron",
         "expr": "30 5 * * 2-6",
@@ -601,14 +601,15 @@
         "channel": "telegram"
       },
       "state": {
-        "nextRunAtMs": 1772832600000,
-        "lastRunAtMs": 1772746200050,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 273723,
+        "nextRunAtMs": 1773091800000,
+        "lastRunAtMs": 1772832600037,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 312152,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 1,
+        "lastError": "⚠️ ✉️ Message failed"
       }
     },
     {
